@@ -19,7 +19,7 @@
             <input type="text" name="key" placeholder="搜索..."/>
         </form>
     </div>
-    <img src="${ctx}/static/app/images/005.png" class="bottom"/>
+    <img src="${ctx}/static/app/images/2018.jpg" class="bottom"/>
 </div>
 
 <div id="navbar">
@@ -48,6 +48,7 @@ main
 </div>
 
 <div id="footer">
+    Copyright © 2018 未来  |  皖ICP备16017743号
 </div>
 
 </body>
