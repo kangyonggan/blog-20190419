@@ -23,7 +23,7 @@
     <bean id="extendsDirective" class="com.kangyonggan.freemarker.ExtendsDirective"/>
     <bean id="overrideDirective" class="com.kangyonggan.freemarker.OverrideDirective"/>
     <bean id="superDirective" class="com.kangyonggan.freemarker.SuperDirective"/>
-    <bean id="shiroTags" class="com.kangyonggan.blog.biz.shiro.ShiroTags"/>
+    <bean id="shiroTags" class="com.kangyonggan.blog.shiro.ShiroTags"/>
 
     <!-- FreeMarker的配置 -->
     <bean id="freeMarkerConfigurer"

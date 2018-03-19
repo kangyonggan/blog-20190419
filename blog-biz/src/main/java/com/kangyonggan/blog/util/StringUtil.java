@@ -1,8 +1,7 @@
-package com.kangyonggan.app.future.common.util;
+package com.kangyonggan.blog.util;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.nio.charset.Charset;
 import java.util.regex.Pattern;
 
 /**
