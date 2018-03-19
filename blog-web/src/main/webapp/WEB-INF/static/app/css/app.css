@@ -38,8 +38,8 @@ body {
     outline: none;
     background: url(../images/search.png) 7px 4px #fdfdfd no-repeat;
     border-radius: 2px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-    transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 #header .bottom {
@@ -84,7 +84,7 @@ body {
 
 #navbar ul li.active {
     height: 57px;
-    border-bottom: 3px solid #a10805;
+    border-bottom: 3px solid #8a0e0c;
 }
 
 #navbar ul li:hover a {
@@ -116,11 +116,32 @@ body {
     width: 1080px;
     margin: 0 auto;
     margin-top: 5px;
-    min-height: 210px;
+    min-height: 400px;
     background: #fff;
 }
 
+#top1 {
+    width: 1054px;
+    background: #F5F5F5;
+    height: 297px;
+    padding: 0 13px;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+#banner {
+    float: left;
+}
+
+#life-thing {
+    width: 519px;
+    height: 269px;
+    background: #f60;
+    margin: 13px 0 0 14px;
+    float: left;
+}
+
 #link {
+    clear: both;
     color: #5a5a5a;
     line-height: 22px;
     text-align: center;

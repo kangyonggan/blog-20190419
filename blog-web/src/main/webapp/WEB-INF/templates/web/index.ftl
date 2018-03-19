@@ -9,12 +9,15 @@
     <link rel="shortcut icon" href="${ctx}/static/app/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <link rel="stylesheet" href="${ctx}/static/app/css/app.css"/>
+    <link rel="stylesheet" href="${ctx}/static/app/css/unslider.css"/>
 </head>
 <body>
 
 <div id="header">
     <div class="top">
-        <a href="${ctx}/login"><div class="img"></div></a>
+        <a href="${ctx}/login">
+            <div class="img"></div>
+        </a>
         <form action="#" class="form">
             <input type="text" name="key" placeholder="搜索..."/>
         </form>
@@ -40,7 +43,25 @@
 </div>
 
 <div id="main">
-main
+    <div id="top1">
+        <!-- 把要轮播的地方写上来 -->
+        <div class="banner" id="banner">
+            <ul>
+                <li><img src="${ctx}/static/app/images/01.jpg" alt="" width="519" height="280"></li>
+                <li><img src="${ctx}/static/app/images/02.jpg" alt="" width="519" height="280"></li>
+                <li><img src="${ctx}/static/app/images/03.jpg" alt="" width="519" height="280"></li>
+                <li><img src="${ctx}/static/app/images/04.jpg" alt="" width="519" height="280"></li>
+                <li><img src="${ctx}/static/app/images/05.jpg" alt="" width="519" height="280"></li>
+            </ul>
+            <a href="javascript:void(0);" class="unslider-arrow04 prev"><img class="arrow" id="al"
+                                                                             src="${ctx}/static/app/images/arrowl.png"
+                                                                             alt="prev" width="20" height="35"></a>
+            <a href="javascript:void(0);" class="unslider-arrow04 next"><img class="arrow" id="ar"
+                                                                             src="${ctx}/static/app/images/arrowr.png"
+                                                                             alt="next" width="20" height="37"></a>
+        </div>
+        <div id="life-thing">生活动态</div>
+    </div>
 </div>
 
 <div id="link">
@@ -48,8 +69,21 @@ main
 </div>
 
 <div id="footer">
-    Copyright © 2018 未来  |  皖ICP备16017743号
+    Copyright © 2018 未来 | 皖ICP备16017743号
 </div>
 
+<script src="${ctx}/static/ace/dist/js/jquery.min.js"></script>
+<script src="${ctx}/static/libs/jquery/unslider.min.js"></script>
+<script>
+    var unslider04 = $('#banner').unslider({
+                dots: true
+            }),
+            data04 = unslider04.data('unslider');
+
+    $('.unslider-arrow04').click(function () {
+        var fn = this.className.split(' ')[1];
+        data04[fn]();
+    });
+</script>
 </body>
 </html>
