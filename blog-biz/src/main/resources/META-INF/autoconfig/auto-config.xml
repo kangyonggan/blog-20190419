@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <group>
+        <!--app-->
+        <property name="blog.app.name" description="项目名字" defaultValue="康永敢的博客"/>
+        <property name="blog.app.name.en" description="项目名字（英文）" defaultValue="Kang YongGan's Blog"/>
+        <property name="blog.app.author" description="项目构建者" defaultValue="康永敢"/>
+        <property name="blog.app.author.en" description="项目构建者（英文）" defaultValue="Kang YongGan"/>
+        <property name="blog.app.ba.no" description="备案号" defaultValue="皖ICP备16017743号-1"/>
+        <property name="blog.app.key" description="阿凡达数据key" defaultValue="xxx"/>
+
+        <!-- redis -->
+        <property name="blog.redis.maxTotal" description="redis最大连接数" defaultValue="1000"/>
+        <property name="blog.redis.minIdle" description="redis最小等待数" defaultValue="50"/>
+        <property name="blog.redis.maxIdle" description="redis最大等待数" defaultValue="100"/>
+        <property name="blog.redis.testOnBorrow" description="redis测试支持" defaultValue="true"/>
+        <property name="blog.redis.host" description="redis主机ip" defaultValue="127.0.0.1"/>
+        <property name="blog.redis.port" description="redis主机端口" defaultValue="xxx"/>
+        <property name="blog.redis.password" description="redis密码" defaultValue="xxx"/>
+        <property name="blog.redis.prefix" description="redis的key的前缀" defaultValue="blog"/>
+
+        <!--jdbc-->
+        <property name="blog.jdbc.driver" description="jdbc驱动" defaultValue="com.mysql.jdbc.Driver"/>
+        <property name="blog.jdbc.url" description="jdbc地址" defaultValue="jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&amp;amp;characterEncoding=UTF-8"/>
+        <property name="blog.jdbc.username" description="jdbc用户名" defaultValue="xxx"/>
+        <property name="blog.jdbc.password" description="jdbc密码" defaultValue="xxx"/>
+
+        <!--mail-->
+        <property name="blog.mail.host" description="邮件服务器地址" defaultValue="smtp.163.com"/>
+        <property name="blog.mail.username" description="邮件服务器用户名" defaultValue="kangyg2017@163.com"/>
+        <property name="blog.mail.password" description="邮件服务器密码" defaultValue="xxx"/>
+        <property name="blog.mail.timeout" description="邮件发送超时时间" defaultValue="25000"/>
+        <property name="blog.mail.receiver" description="错误日志邮件接收人" defaultValue="java@kangyonggan.com"/>
+        <property name="blog.mail.bufferSize" description="错误日志邮件缓冲区大小(单位:k)" defaultValue="50"/>
+
+        <!--sms-->
+        <property name="blog.sms.regionId" description="短信服务器地区" defaultValue="cn-hangzhou"/>
+        <property name="blog.sms.accessKeyId" description="邮件服务器用户名" defaultValue="xxx"/>
+        <property name="blog.sms.secret" description="邮件服务器密码" defaultValue="xxx"/>
+        <property name="blog.sms.domain" description="短信服务器域名" defaultValue="sms.aliyuncs.com"/>
+        <property name="blog.sms.signName" description="短信签名" defaultValue="未来科技"/>
+        <property name="blog.sms.templateCode" description="模板CODE" defaultValue="xxx"/>
+        <property name="blog.sms.debug" description="调试模式" defaultValue="true"/>
+        
+        <!-- log4j2 -->
+        <property name="blog.log4j2.home" description="log4j2日志的文件主目录" defaultValue="/Users/kyg/logs/blog"/>
+
+        <property name="blog.file.root.path" description="文件根目录" defaultValue="/Users/kyg/code/blog/blog-web/src/main/webapp/WEB-INF/"/>
+        <property name="blog.slow.method.time" description="慢方法时间(秒)" defaultValue="2"/>
+        <property name="blog.slow.interface.time" description="慢接口时间(秒)" defaultValue="2"/>
+        <property name="blog.cache.open" description="是否开启缓存,Y:开启,N:不开启" defaultValue="Y"/>
+    </group>
+
+    <script>
+        <generate template="applicationContext-datasource.xml" charset="UTF-8"/>
+        <generate template="applicationContext-redis.xml" charset="UTF-8"/>
+        <generate template="messages_en_US.properties" charset="UTF-8"/>
+        <generate template="messages_zh_CN.properties" charset="UTF-8"/>
+        <generate template="log4j2.xml"/>
+    </script>
+</config>
