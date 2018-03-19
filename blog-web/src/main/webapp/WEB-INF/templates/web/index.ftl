@@ -13,6 +13,16 @@
 <body>
 
 <div id="header">
+    <div class="top">
+        <a href="${ctx}/login"><div class="img"></div></a>
+        <form action="#" class="form">
+            <input type="text" name="key" placeholder="搜索..."/>
+        </form>
+    </div>
+    <img src="${ctx}/static/app/images/005.png" class="bottom"/>
+</div>
+
+<div id="navbar">
     <ul>
         <li class="active"><a href="${ctx}/">首页</a></li>
         <li><a href="#">博文</a></li>
@@ -24,14 +34,20 @@
         <li><a href="#">关于我</a></li>
         <li><a href="#">留言板</a></li>
     </ul>
+    <div class="breadcrumbs">
+        您的当前位置：<a href="${ctx}/">首页</a> > <a href="#" class="active">新闻通告</a>
+    </div>
 </div>
 
 <div id="main">
-    main
+main
+</div>
+
+<div id="link">
+    友情链接： <a href="#" target="_blank">相关重要链接</a> | <a href="#" target="_blank">其他链接</a> | <a href="#" target="_blank">使用手册</a>
 </div>
 
 <div id="footer">
-    footer
 </div>
 
 </body>
