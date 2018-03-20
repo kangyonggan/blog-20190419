@@ -111,6 +111,28 @@
             </ul>
         </div>
     </div>
+
+    <div class="space-20"></div>
+
+    <div class="novel">
+        <div class="head">
+            热门小说
+        </div>
+        <div class="category">
+            <ul>
+                <li class="first"><a href="#">小说分类</a></li>
+                <li class="active"><a href="#">玄幻</a></li>
+                <li><a href="#">都市</a></li>
+                <li><a href="#">修真</a></li>
+                <li><a href="#">历史</a></li>
+                <li><a href="#">言情</a></li>
+                <li><a href="#">网游</a></li>
+                <li><a href="#">科幻</a></li>
+                <li><a href="#">其他</a></li>
+            </ul>
+            <a href="#" class="more"><span class="icon">+</span>更多</a>
+        </div>
+    </div>
 </div>
 
 <div id="link">

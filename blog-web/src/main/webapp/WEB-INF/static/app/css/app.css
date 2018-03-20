@@ -201,7 +201,11 @@ body {
 }
 
 #life-thing .list ul li a:hover {
-    color: #831111;
+    color: #fcae42;
+}
+
+#life-thing .list ul li a:hover:before {
+    background: #fcae42;
 }
 
 #life-thing .list ul li a span {
@@ -303,7 +307,6 @@ body {
     color: #fff;
 }
 
-
 .panel .list ul li a:hover:before {
     position: absolute;
     top: 16px;
@@ -333,6 +336,76 @@ body {
     border-radius: 4px;
     background: #d4d4d4;
     content: '';
+}
+
+.novel {
+    height: 400px;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.novel .head {
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    background: #ae2901;
+    color: #fff;
+    font-size: 17px;
+}
+
+.novel .category {
+    height: 37px;
+    border-bottom: 1px solid #8a0e0c;
+}
+
+.novel .category ul {
+    list-style: none;
+}
+
+.novel .category ul .first a {
+    background: #8a0e0c;
+    color: #fff;
+}
+
+.novel .category ul .active a {
+    color: #8a0e0c;
+    height: 33px;
+    border-bottom: #8a0e0c 4px solid;
+}
+
+.novel .category ul li a {
+    display: inline-block;
+    height: 37px;
+    line-height: 37px;
+    width: 95px;
+    text-align: center;
+    float: left;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.novel .category ul li a:hover {
+    background: #8a0e0c;
+    color: #fff;
+}
+
+.novel .category .more {
+    height: 37px;
+    line-height: 37px;
+    float: right;
+    width: 53px;
+    color: #bb2c00;
+    text-decoration: none;
+}
+
+.novel .category .more .icon {
+    width: 18px;
+    height: 18px;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
 }
 
 #link {
