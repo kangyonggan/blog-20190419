@@ -75,6 +75,42 @@
             </div>
         </div>
     </div>
+
+    <div class="panel">
+        <div class="toolbar">
+            <div class="title">技术分享</div>
+            <a href="#" class="more"><span class="icon">+</span>更多</a>
+        </div>
+
+        <div class="list">
+            <ul>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="toolbar">
+            <div class="title">常用工具</div>
+            <a href="#" class="more"><span class="icon">+</span>更多</a>
+        </div>
+
+        <div class="list">
+            <ul>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <div id="link">
