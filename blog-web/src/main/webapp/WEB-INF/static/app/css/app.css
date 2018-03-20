@@ -83,8 +83,8 @@ body {
 }
 
 #navbar ul li.active {
-    height: 57px;
-    border-bottom: 3px solid #8a0e0c;
+    height: 56px;
+    border-bottom: 4px solid #8a0e0c;
 }
 
 #navbar ul li:hover a {
@@ -116,7 +116,7 @@ body {
     width: 1080px;
     margin: 0 auto;
     margin-top: 5px;
-    min-height: 800px;
+    min-height: 300px;
     background: #fff;
 }
 
@@ -339,7 +339,7 @@ body {
 }
 
 .novel {
-    height: 400px;
+    height: 325px;
     margin-left: 13px;
     margin-right: 13px;
 }
@@ -405,6 +405,32 @@ body {
     height: 18px;
     font-size: 16px;
     display: inline-block;
+    text-align: center;
+}
+
+.book-list {
+    height: 160px;
+    margin-top: 10px;
+}
+
+.book-list a dl {
+    float: left;
+    height: 160px;
+    width: 120px;
+    margin: 8px 25px 0 25px;
+}
+
+.book-list a dl dd {
+    margin: 0;
+    background: #fff;
+    padding: 6px;
+    border: 1px solid #dfd9ce;
+    box-shadow: 0px 1px 2px #adaca9;
+    display: inline-block;
+}
+
+.book-list a dl dt {
+    margin-top: 5px;
     text-align: center;
 }
 

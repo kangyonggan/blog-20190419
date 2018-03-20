@@ -132,6 +132,56 @@
             </ul>
             <a href="#" class="more"><span class="icon">+</span>更多</a>
         </div>
+        <div class="book-list">
+            <a href="#">
+                <dl>
+                    <dd>
+                        <img src="${ctx}/static/app/images/111s.jpg">
+                    </dd>
+                    <dt>武炼巅峰</dt>
+                </dl>
+            </a>
+            <a href="#">
+                <dl>
+                    <dd>
+                        <img src="${ctx}/static/app/images/111s.jpg">
+                    </dd>
+                    <dt>武炼巅峰</dt>
+                </dl>
+            </a>
+            <a href="#">
+                <dl>
+                    <dd>
+                        <img src="${ctx}/static/app/images/111s.jpg">
+                    </dd>
+                    <dt>武炼巅峰</dt>
+                </dl>
+            </a>
+            <a href="#">
+                <dl>
+                    <dd>
+                        <img src="${ctx}/static/app/images/111s.jpg">
+                    </dd>
+                    <dt>武炼巅峰</dt>
+                </dl>
+            </a>
+            <a href="#">
+                <dl>
+                    <dd>
+                        <img src="${ctx}/static/app/images/111s.jpg">
+                    </dd>
+                    <dt>武炼巅峰</dt>
+                </dl>
+            </a>
+            <a href="#">
+                <dl>
+                    <dd>
+                        <img src="${ctx}/static/app/images/111s.jpg">
+                    </dd>
+                    <dt>武炼巅峰</dt>
+                </dl>
+            </a>
+        </div>
     </div>
 </div>
 
