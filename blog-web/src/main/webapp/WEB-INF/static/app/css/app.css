@@ -140,7 +140,7 @@ body {
     float: left;
 }
 
-#life-thing .head-name {
+#life-thing .head-name div {
     background: #831111;
     width: 104px;
     height: 34px;
@@ -150,10 +150,19 @@ body {
     text-shadow: 2px 2px 4px #270000;
     color: #FFFFFF;
     text-align: center;
+    float: left;
+}
+
+#life-thing .head-name a {
+    float: right;
+    height: 37px;
+    line-height: 37px;
+    width: 53px;
+    color: #bb2c00;
+    text-decoration: none;
 }
 
 #life-thing .title {
-    margin-top: 5px;
     color: #831111;
     font-size: 18px;
     font-weight: bold;
@@ -180,6 +189,10 @@ body {
 
 #life-thing .list ul li {
     border-bottom: 1px dotted #ebebeb;
+}
+
+#life-thing .list ul li:last-child {
+    border-bottom: none;
 }
 
 #life-thing .list ul li a {
@@ -517,6 +530,10 @@ body {
     color: #666;
 }
 
+#main .left .category-nav li.active a {
+    color: #0285e1;
+}
+
 #main .left .category-nav li a:before {
     display: inline-block;
     vertical-align: middle;
@@ -598,6 +615,28 @@ body {
 
 #main .right .title {
     border-bottom: 1px solid #ccc;
+}
+
+#main .right .article-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#main .right .article-date {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+#main .right .article-content {
+    margin: 30px;
+    border-top: 1px dashed #e2e2e2;
+    line-height: 1.8;
+    text-indent: 2em;
+    font-size: 14px;
+    font-family: "microsoft yahei";
 }
 
 #main .right .title span {

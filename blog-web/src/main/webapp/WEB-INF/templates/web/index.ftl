@@ -24,7 +24,11 @@
             </a>
         </div>
         <div id="life-thing">
-            <div class="head-name">生活动态</div>
+            <div class="head-name">
+                <div>生活动态</div>
+                <a href="#">+ 更多</a>
+            </div>
+            <div class="space-10"></div>
             <div class="title">今天上班路上看到两个电瓶车追尾了</div>
             <div class="desc">2018年11月5-10日，首届中国国际进口博览会将在上海国家会展中心举行。闵行区毗邻国家会展中心，城市保障任务艰巨，为抓好各项组织筹备和服务保障工作...</div>
 
