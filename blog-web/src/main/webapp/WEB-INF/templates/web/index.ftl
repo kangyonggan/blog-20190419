@@ -53,14 +53,27 @@
                 <li><img src="${ctx}/static/app/images/04.jpg" alt="" width="519" height="280"></li>
                 <li><img src="${ctx}/static/app/images/05.jpg" alt="" width="519" height="280"></li>
             </ul>
-            <a href="javascript:void(0);" class="unslider-arrow04 prev"><img class="arrow" id="al"
-                                                                             src="${ctx}/static/app/images/arrowl.png"
-                                                                             alt="prev" width="20" height="35"></a>
-            <a href="javascript:void(0);" class="unslider-arrow04 next"><img class="arrow" id="ar"
-                                                                             src="${ctx}/static/app/images/arrowr.png"
-                                                                             alt="next" width="20" height="37"></a>
+            <a href="javascript:void(0);" class="unslider-arrow04 prev">
+                <img class="arrow" id="al" src="${ctx}/static/app/images/arrowl.png" alt="prev" width="20" height="35">
+            </a>
+            <a href="javascript:void(0);" class="unslider-arrow04 next">
+                <img class="arrow" id="ar" src="${ctx}/static/app/images/arrowr.png" alt="next" width="20" height="37">
+            </a>
         </div>
-        <div id="life-thing">生活动态</div>
+        <div id="life-thing">
+            <div class="head-name">生活动态</div>
+            <div class="title">今天上班路上看到两个电瓶车追尾了</div>
+            <div class="desc">2018年11月5-10日，首届中国国际进口博览会将在上海国家会展中心举行。闵行区毗邻国家会展中心，城市保障任务艰巨，为抓好各项组织筹备和服务保障工作...</div>
+
+            <div class="list">
+                <ul>
+                    <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                    <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                    <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                    <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
