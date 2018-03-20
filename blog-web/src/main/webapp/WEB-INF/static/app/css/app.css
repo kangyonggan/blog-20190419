@@ -461,7 +461,6 @@ body {
 
 #main .left {
     width: 310px;
-    height: 200px;
     float: left;
 }
 
@@ -536,9 +535,11 @@ body {
 }
 
 #main .right {
-    width: 768px;
-    height: 600px;
     float: left;
+}
+
+#main .right .content {
+    width: 768px;
     border: 1px solid #ccc;
 }
 
@@ -593,4 +594,90 @@ body {
     height: 5px;
     background: #333;
     content: "";
+}
+
+#main .right .title {
+    border-bottom: 1px solid #ccc;
+}
+
+#main .right .title span {
+    display: inline-block;
+    padding: 0 15px;
+    font-size: 16px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    color: #000;
+    border-bottom: #333 2px solid;
+}
+
+#main .right .list {
+    list-style: none;
+    padding: 0;
+    margin-left: 13px;
+}
+
+#main .right .list li {
+    border-bottom: #dcdcdc 1px dashed;
+    padding-bottom: 20px;
+}
+
+#main .right .list li:last-child {
+    border-bottom: none;
+    padding-bottom: 10px;
+}
+
+#main .right .list li a {
+    height: 40px;
+    line-height: 40px;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+
+#main .right .list li .desc {
+    max-height: 72px;
+    overflow: hidden;
+    text-align: left;
+    line-height: 1.7;
+    font-size: 14px;
+    color: #666;
+}
+
+#main .right .list li .date {
+    text-align: right;
+    color: #999;
+    margin-right: 13px;
+}
+
+#main .pagination {
+    display: block;
+    width: 768px;
+    clear: both;
+    float: right;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#main .pagination li {
+    display: inline-block;
+}
+
+#main .pagination li a {
+    display: inline-block;
+    margin: 0 0 0 6px;
+    padding: 0 6px;
+    line-height: 20px;
+    color: #666;
+    border: #cfcfcf 1px solid;
+    text-decoration: none;
+}
+
+#main .pagination li.active a {
+    color: #666;
+    border: #cfcfcf 1px solid;
+    background: #cfcfcf;
 }
