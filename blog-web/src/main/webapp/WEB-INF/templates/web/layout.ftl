@@ -30,8 +30,8 @@
     <ul>
         <li class="active"><a href="${ctx}/">首页</a></li>
         <li><a href="${ctx}/article">博文</a></li>
-        <li><a href="#">工具</a></li>
-        <li><a href="#">小说</a></li>
+        <li><a href="${ctx}/tool">工具</a></li>
+        <li><a href="${ctx}/novel">小说</a></li>
         <li><a href="#">音乐</a></li>
         <li><a href="#">生活</a></li>
         <li><a href="#">相册</a></li>
