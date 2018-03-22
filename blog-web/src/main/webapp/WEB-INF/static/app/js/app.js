@@ -34,6 +34,8 @@ $(function () {
 
     // 关闭时清除模态框的数据
     $(document).on('hidden.bs.modal', '.modal', function () {
+        $(this).find(".modal-header h3").html("正在加载...");
+        $(this).find(".modal-body").html("正在加载...");
         $(this).removeData('bs.modal');
     });
 
@@ -67,7 +69,17 @@ $(function () {
             hash = hash.substring(0, index);
         }
 
-        window.location.href = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname + "/" + hash + params;
+        window.location.href = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname + hash + params;
+        return false;
+    });
+
+    // 清空
+    $(document).on("click", "[data-toggle='form-reset']", function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $form = $this.parent("form");
+
+        $form.find("input").val("");
         return false;
     });
 });

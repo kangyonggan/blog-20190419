@@ -1,18 +1,26 @@
 package com.kangyonggan.blog.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.dto.ShiroUser;
+import com.kangyonggan.blog.mapper.RoleMapper;
+import com.kangyonggan.blog.mapper.UserMapper;
 import com.kangyonggan.blog.service.UserService;
 import com.kangyonggan.blog.util.Digests;
 import com.kangyonggan.blog.util.Encodes;
+import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.User;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -20,6 +28,12 @@ import tk.mybatis.mapper.entity.Example;
  */
 @Service
 public class UserServiceImpl extends BaseService<User> implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Override
     @Cache(key = "user:username:${username}")
@@ -55,6 +69,74 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         entryptPassword(tUser);
 
         updateUserByUsername(tUser);
+    }
+
+    @Override
+    @Log
+    @CacheDel(key = {"role:username:${username}", "menu:username:${username}"})
+    public void updateUserRoles(String username, String roleCodes) {
+        roleMapper.deleteAllRolesByUsername(username);
+
+        if (StringUtils.isNotEmpty(roleCodes)) {
+            saveUserRoles(username, roleCodes);
+        }
+    }
+
+    @Override
+    @Log
+    @CacheDel(key = {"role:username:${username}", "menu:username:${username}"})
+    public void deleteUserByUsername(String username) {
+        User user = new User();
+        user.setUsername(username);
+        myMapper.delete(user);
+    }
+
+    @Override
+    @Log
+    public boolean existsUsername(String username) {
+        User user = new User();
+        user.setUsername(username);
+        return super.exists(user);
+    }
+
+    @Override
+    @Log
+    public List<User> searchUsers(int pageNum, String username, String realname) {
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+
+        if (StringUtils.isNotEmpty(username)) {
+            criteria.andLike("username", StringUtil.toLikeString(username));
+        }
+
+        if (StringUtils.isNotEmpty(realname)) {
+            criteria.andLike("realname", StringUtil.toLikeString(realname));
+        }
+
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
+        return myMapper.selectByExample(example);
+    }
+
+    @Override
+    @Log
+    public void saveUserWithDefaultRole(User user) {
+        entryptPassword(user);
+
+        myMapper.insertSelective(user);
+
+        saveUserRoles(user.getUsername(), AppConstants.DEFAULT_ROLE_CODE);
+    }
+
+    /**
+     * 批量保存用户角色
+     *
+     * @param username
+     * @param roleCodes
+     */
+    private void saveUserRoles(String username, String roleCodes) {
+        userMapper.insertUserRoles(username, Arrays.asList(roleCodes.split(",")));
     }
 
     /**

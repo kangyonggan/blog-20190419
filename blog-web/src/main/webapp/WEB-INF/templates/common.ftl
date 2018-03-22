@@ -91,6 +91,18 @@
     </#if>
 </#macro>
 
+<#macro search_form_tool>
+<button class="btn btn-sm btn-purple" data-toggle="search-submit">
+    搜索
+    <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+</button>
+
+<button class="btn btn-sm btn-danger" data-toggle="form-reset">
+    清空
+    <span class="ace-icon fa fa-undo icon-on-right bigger-110"></span>
+</button>
+</#macro>
+
 <#--计算时间-->
 <#macro relative_date datetime=.now>
     <#assign ct = (.now?long-datetime?long)/1000>
