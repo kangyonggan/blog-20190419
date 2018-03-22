@@ -8,14 +8,14 @@
         <input type="hidden" name="id" value="${menu.id}"/>
     </#if>
     <div class="row">
-        <#if parent_menu??>
-            <input type="hidden" name="pcode" value="${(parent_menu.code)!''}">
+        <#if parentMenu??>
+            <input type="hidden" name="pcode" value="${(parentMenu.code)!''}">
             <div class="row form-group">
                 <div class="col-md-3 control-label">
                     <label for="id">上级菜单</label>
                 </div>
                 <div class="col-md-7 controls">
-                    <input value="${parent_menu.name}" class="form-control readonly" readonly />
+                    <input value="${parentMenu.name}" class="form-control readonly" readonly />
                 </div>
             </div>
         </#if>

@@ -3,35 +3,34 @@ $(function () {
 
     var $form_delete = $('#menus-form-delete');
 
-    var showRemoveNotify = function (response) {
-        if (!response) {
-            Message.error("菜单删除失败。");
-        } else {
-            Message.success("菜单删除成功。");
-        }
-    };
-
     var beforeEditName = function () {
         return false;
     };
 
     var beforeRemove = function (treeId, treeNode) {
-        if (confirm("确认删除节点 " + treeNode.name + " 吗？")) {
+        $.messager.confirm("提示", "确定删除" + treeNode.name + "吗?", function () {
             $form_delete.ajaxSubmit({
                 beforeSubmit: function (arr) {
                     arr[0].value = treeNode.id;
                 },
                 dataType: 'json',
-                success: function () {
-                    return true;
+                success: function (response) {
+                    if (response.respCo == '0000') {
+                        var treeObj = $.fn.zTree.getZTreeObj("menu-tree");
+                        treeObj.removeNode(treeNode);
+                        Message.success(response.respMsg);
+                    } else {
+                        Message.error(response.respMsg);
+                    }
                 },
                 error: function () {
-                    return false;
+                    Message.error("服务器内部错误，请稍后再试。");
+                    $btn.button('reset');
                 }
             });
-        } else {
-            return false;
-        }
+        });
+
+        return false;
     };
 
     var addHoverDom = function (treeId, treeNode) {
@@ -81,8 +80,7 @@ $(function () {
         },
         callback: {
             beforeEditName: beforeEditName,
-            beforeRemove: beforeRemove,
-            onRemove: showRemoveNotify
+            beforeRemove: beforeRemove
         }
     };
 
