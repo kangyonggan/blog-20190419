@@ -45,7 +45,7 @@
 
     <div class="panel">
         <div class="toolbar">
-            <div class="title">博文</div>
+            <div class="title">文章</div>
             <a href="${ctx}/article" class="more"><span class="icon">+</span>更多</a>
         </div>
 

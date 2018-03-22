@@ -1,4 +1,4 @@
-package com.kangyonggan.blog.controller.dashboard;
+package com.kangyonggan.blog.controller.dashboard.system;
 
 import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.service.RedisService;

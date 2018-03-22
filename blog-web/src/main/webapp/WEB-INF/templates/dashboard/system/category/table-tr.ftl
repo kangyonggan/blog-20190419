@@ -19,7 +19,7 @@
             <ul class="dropdown-menu dropdown-menu-right dropdown-inverse">
                 <#if category.isDeleted==1>
                     <li>
-                        <a href="javascript:" data-category="category-remove" title="彻底删除角色"
+                        <a href="javascript:" data-category="category-remove" title="彻底删除栏目"
                            data-url="${ctx}/dashboard/system/category/${category.code}/remove">
                             彻底删除
                         </a>

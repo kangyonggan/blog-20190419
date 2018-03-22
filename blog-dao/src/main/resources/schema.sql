@@ -157,6 +157,37 @@ CREATE UNIQUE INDEX id_UNIQUE
   ON tb_category (id);
 CREATE UNIQUE INDEX code_type_UNIQUE
   ON tb_category (code, type);
+CREATE INDEX id_type
+  ON tb_category (type);
+
+-- ----------------------------
+--  Table structure for tb_article
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_article;
+
+CREATE TABLE tb_article
+(
+  id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  title         VARCHAR(64)                           NOT NULL
+  COMMENT '文章标题',
+  summary       VARCHAR(64)                           NOT NULL
+  COMMENT '摘要',
+  category_code VARCHAR(32)                           NOT NULL
+  COMMENT '栏目代码',
+  content       LONGTEXT                              NOT NULL
+  COMMENT '文章内容',
+  is_deleted    TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '文章表';
+CREATE INDEX id_category_code
+  ON tb_article (category_code);
 
 #====================初始数据====================#
 
@@ -194,7 +225,7 @@ VALUES
   ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 4, ''),
 
   ('MANAGE', '管理', 'DASHBOARD', 'manage', 2, 'menu-icon fa fa-desktop'),
-  ('MANAGE_ARTICLE', '博文管理', 'MANAGE', 'manage/article', 0, ''),
+  ('MANAGE_ARTICLE', '文章管理', 'MANAGE', 'manage/article', 0, ''),
   ('MANAGE_TOOL', '工具管理', 'MANAGE', 'manage/tool', 1, ''),
   ('MANAGE_NOVEL', '小说管理', 'MANAGE', 'manage/novel', 2, ''),
   ('MANAGE_MUSIC', '音乐管理', 'MANAGE', 'manage/music', 3, ''),

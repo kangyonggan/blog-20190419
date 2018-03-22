@@ -1,4 +1,4 @@
-package com.kangyonggan.blog.controller.dashboard;
+package com.kangyonggan.blog.controller.dashboard.user;
 
 import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.dto.ShiroUser;

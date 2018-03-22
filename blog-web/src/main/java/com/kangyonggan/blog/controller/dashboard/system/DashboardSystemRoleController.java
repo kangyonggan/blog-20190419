@@ -1,4 +1,4 @@
-package com.kangyonggan.blog.controller.dashboard;
+package com.kangyonggan.blog.controller.dashboard.system;
 
 import com.github.pagehelper.PageInfo;
 import com.kangyonggan.blog.controller.BaseController;
