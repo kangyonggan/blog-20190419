@@ -32,9 +32,14 @@
 
 //下面是自定义校验
 $.extend($.validator.addMethod("isPassword", function (value) {
-    var str = /[a-zA-Z0-9]{8,20}$/;
+    var str = /[a-zA-Z0-9]{6,20}$/;
     return str.test(value);
-}, "请输入8至20位字母和数字的组合"));
+}, "请输入6至20位字母和数字的组合"));
+
+$.extend($.validator.addMethod("isUsername", function (value) {
+    var str = /[a-zA-Z0-9]{5,20}$/;
+    return str.test(value);
+}, "请输入5至20位字母和数字的组合"));
 
 $.extend($.validator.addMethod("isCaptcha", function (value) {
     var str = /^[0-9]{4}$/;
@@ -76,9 +81,3 @@ $.extend($.validator.addMethod("isMenuUrl", function (value) {
     var str = /^[a-z\/]{1,32}$/;
     return str.test(value);
 }, "纯小写,可带斜杠,不超过32位"));
-
-$.extend($.validator.addMethod("isMobile", function(value, element) {
-    var length = value.length;
-    var mobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
-    return this.optional(element) || (length == 11 && mobile.test(value));
-}, "请正确填写您的手机号码"));

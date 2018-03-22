@@ -12,7 +12,7 @@
 
                 <div class="space-6"></div>
 
-                <form id="login-form" action="${ctx}/dashboard/login" method="post" novalidate="novalidate">
+                <form id="login-form" action="${ctx}/auth/login" method="post" novalidate="novalidate">
                     <div>
                         <label for="username">用户名<span class="red">*</span></label>
                         <div class="input-icon input-icon-right">
@@ -48,7 +48,7 @@
                     <div class="space-14"></div>
 
                     <div class="clearfix">
-                        <button id="reset" type="reset" class="width-30 pull-left btn btn-sm">
+                        <button type="reset" class="width-30 pull-left btn btn-sm">
                             <i class="ace-icon fa fa-refresh"></i>
                             重置
                         </button>
@@ -63,3 +63,5 @@
         </div>
     </div>
 </div>
+
+<script src="${ctx}/static/app/js/web/auth/index.js"></script>

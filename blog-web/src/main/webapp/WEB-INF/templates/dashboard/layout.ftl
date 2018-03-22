@@ -79,6 +79,29 @@
     </a>
 </div>
 
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../assets/js/jquery.js'>" + "<" + "/script>");
+</script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='/static/ace/dist/js/jquery1x.min.js'>" + "<" + "/script>");
+</script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='${ctx}/static/ace/dist/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+
+<!--[if lte IE 8]>
+<script src="${ctx}/static/ace/dist/js/excanvas.min.js"></script>
+<![endif]-->
+
 <script>var ctx = '${ctx}';</script>
 <script src="${ctx}/static/ace/dist/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.bootstrap.min.js"></script>
@@ -86,6 +109,9 @@
 <script src="${ctx}/static/ace/dist/js/ace-extra.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace-elements.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace.min.js"></script>
+<script src="${ctx}/static/libs/jquery/jquery.form.min.js"></script>
+<script src="${ctx}/static/libs/jquery/jquery.validate.min.js"></script>
+<script src="${ctx}/static/libs/jquery/jquery.validate.extends.js"></script>
 <script src="${ctx}/static/app/js/app.js"></script>
 <@block name="app-script"/>
 </body>

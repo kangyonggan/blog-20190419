@@ -16,8 +16,10 @@
 
 <div id="header">
     <div class="top">
-        <a href="${ctx}/dashboard/#login">
-            <div class="img"></div>
+        <a href="${ctx}/dashboard">
+            <div class="img">
+                <span>工作台</span>
+            </div>
         </a>
         <form action="#" class="form">
             <input type="text" name="key" placeholder="搜索..."/>

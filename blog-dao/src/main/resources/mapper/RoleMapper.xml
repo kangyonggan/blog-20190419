@@ -15,7 +15,7 @@
 
     <select id="selectRolesByUsername" resultMap="BaseResultMap">
         SELECT r.*
-        FROM role r, user_role ur
+        FROM tb_role r, tb_user_role ur
         <where>
             r.code = ur.role_code
             AND ur.username = #{username}

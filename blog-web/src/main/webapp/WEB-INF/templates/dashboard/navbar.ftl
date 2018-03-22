@@ -22,42 +22,34 @@
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
 
         <@shiro.user>
-            <#if user??>
-                <ul class="nav ace-nav">
-                    <li class="dark">
-                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <img class="nav-user-photo" id="userAvatar" src="${ctx}/static/ace/dist/avatars/user.jpg">
-                            <span class="user-info">
-									<small>欢迎,</small>
-                            <span id="navFullname">${(user.realname!='')?string('${user.realname}', '${user.username}')}</span>
-								</span>
+            <ul class="nav ace-nav">
+                <li class="dark">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="background: #c6487e;">
+                        <img class="nav-user-photo" id="userAvatar" src="${ctx}/static/ace/dist/avatars/user.jpg">
+                        <span class="user-info">
+                            <small>欢迎,</small>
+                            <span id="navFullname">管理员</span>
+                        </span>
 
-                            <i class="ace-icon fa fa-caret-down"></i>
-                        </a>
+                        <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
 
-                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                            <li>
-                                <a href="${ctx}/dashboard/#logout">
-                                    <i class="ace-icon fa fa-power-off"></i>
-                                    安全退出
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            <#else>
-                <ul class="nav navbar-nav hidden-xs">
-                    <li>
-                        <a href="${ctx}/dashboard/#index">工作台</a>
-                    </li>
-                </ul>
-            </#if>
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="${ctx}/auth/logout">
+                                <i class="ace-icon fa fa-power-off"></i>
+                                安全退出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </@shiro.user>
 
         <@shiro.guest>
             <ul class="nav navbar-nav hidden-xs">
                 <li>
-                    <a href="${ctx}/dashboard/#login">登录</a>
+                    <a href="${ctx}/auth#index">登录</a>
                 </li>
             </ul>
         </@shiro.guest>

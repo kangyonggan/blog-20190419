@@ -22,6 +22,13 @@ body {
     background: url(../images/001.png) left 4px no-repeat;
 }
 
+#header .top a .img span {
+    color: #fff;
+    padding-left: 86px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
 #header .top .form {
     display: inline-block;
     float: right;

@@ -1,4 +1,4 @@
-<@shiro.user>
+<#if !noSidebar??>
 <div id="sidebar" class="sidebar responsive">
     <div class="sidebar-shortcuts" id="sidebar-shortcuts">
         <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
@@ -31,12 +31,17 @@
     </div>
 
     <ul class="nav nav-list">
-        <li>
-            <a data-url="index" href="${ctx}/dashboard/#index">
-                <i class="menu-icon fa fa-dashboard"></i>
-                <span class="menu-text">工作台</span>
-            </a>
-        </li>
+        <#if _menus?size gt 0>
+            <li>
+                <a data-url="index" href="${ctx}/dashboard#index">
+                    <i class="menu-icon fa fa-dashboard"></i>
+                    <span class="menu-text">工作台</span>
+                </a>
+            </li>
+            <#list _menus[0].leaf as menu>
+                <#include "menu.ftl"/>
+            </#list>
+        </#if>
     </ul>
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -44,4 +49,4 @@
            data-icon2="ace-icon fa fa-angle-double-right"></i>
     </div>
 </div>
-</@shiro.user>
+</#if>
