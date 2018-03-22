@@ -23,4 +23,18 @@ public interface UserService {
      * @return
      */
     ShiroUser getShiroUser();
+
+    /**
+     * 根据用户名更新用户信息
+     *
+     * @param user
+     */
+    void updateUserByUsername(User user);
+
+    /**
+     * 更新用户密码
+     *
+     * @param user
+     */
+    void updateUserPassword(User user);
 }

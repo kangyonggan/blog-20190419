@@ -13,6 +13,7 @@ $(function () {
     $ajaxContent.ace_ajax({
         'default_url': '#index',
         'content_url': function (hash) {
+            // return window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/" + window.location.pathname + hash;
             return window.location.origin + window.location.pathname + "/" + hash;
         },
         'update_active': updateMenuActive,
@@ -23,7 +24,7 @@ $(function () {
 
     // 监听异步加载失败事件
     $ajaxContent.on("ajaxloaderror", function (e, data) {
-        window.location.href = ctx + '/#404';
+        window.location.href = ctx + '/404';
     });
 
     // 提示框
@@ -119,6 +120,7 @@ function updateMenuActive(hash) {
     // 清除所有菜单状态
     $all_menus.removeClass("open");
     $all_menus.removeClass("active");
+    $(".submenu").css("display", "");
 
     // 父菜单
     var $parent = $menu.parents("li");
