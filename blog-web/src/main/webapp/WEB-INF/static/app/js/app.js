@@ -13,8 +13,7 @@ $(function () {
     $ajaxContent.ace_ajax({
         'default_url': '#index',
         'content_url': function (hash) {
-            // return window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/" + window.location.pathname + hash;
-            return window.location.origin + window.location.pathname + "/" + hash;
+            return window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname + "/" + hash;
         },
         'update_active': updateMenuActive,
         'update_breadcrumbs': updateBreadcrumbs,
@@ -68,7 +67,7 @@ $(function () {
             hash = hash.substring(0, index);
         }
 
-        window.location.href = window.location.origin + window.location.pathname + hash + params;
+        window.location.href = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname + "/" + hash + params;
         return false;
     });
 });
