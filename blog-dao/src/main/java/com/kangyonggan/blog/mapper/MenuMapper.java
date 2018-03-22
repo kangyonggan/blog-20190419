@@ -1,20 +1,19 @@
 package com.kangyonggan.blog.mapper;
 
-import com.kangyonggan.blog.vo.Role;
+import com.kangyonggan.blog.vo.Menu;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface RoleMapper extends MyMapper<Role> {
+public interface MenuMapper extends MyMapper<Menu> {
 
     /**
-     * 查找用户角色
+     * 查找用户菜单
      *
      * @param username
      * @return
      */
-    List<Role> selectRolesByUsername(@Param("username") String username);
-
+    List<Menu> selectMenusByUsername(@Param("username") String username);
 }

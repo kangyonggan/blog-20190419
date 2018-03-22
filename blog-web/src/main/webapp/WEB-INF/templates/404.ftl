@@ -1,0 +1,1 @@
+<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8" homePageUrl="http://localhost:8080" homePageName="回到我的首页"></script>

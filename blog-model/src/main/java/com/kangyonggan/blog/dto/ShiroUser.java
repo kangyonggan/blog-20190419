@@ -1,0 +1,17 @@
+package com.kangyonggan.blog.dto;
+
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * @author kangyonggan
+ * @since 3/22/18
+ */
+@Data
+public class ShiroUser implements Serializable {
+
+    private Long id;
+
+    private String username;
+}

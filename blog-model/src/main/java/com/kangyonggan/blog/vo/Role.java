@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
-@Table(name = "tb_menu")
+@Table(name = "tb_role")
 @Data
 public class Role implements Serializable {
     /**
@@ -16,34 +16,14 @@ public class Role implements Serializable {
     private Long id;
 
     /**
-     * 菜单代码
+     * 角色代码
      */
     private String code;
 
     /**
-     * 菜单名称
+     * 角色名称
      */
     private String name;
-
-    /**
-     * 父菜单代码
-     */
-    private String pcode;
-
-    /**
-     * 菜单地址
-     */
-    private String url;
-
-    /**
-     * 菜单排序(从0开始)
-     */
-    private Integer sort;
-
-    /**
-     * 菜单图标的样式
-     */
-    private String icon;
 
     /**
      * 逻辑删除:{0:未删除, 1:已删除}

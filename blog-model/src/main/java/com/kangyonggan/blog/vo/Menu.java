@@ -2,12 +2,13 @@ package com.kangyonggan.blog.vo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 
-@Table(name = "tb_user")
+@Table(name = "tb_menu")
 @Data
-public class User implements Serializable {
+public class Menu implements Serializable {
     /**
      * 主键, 自增
      */
@@ -16,24 +17,34 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 用户名
+     * 菜单代码
      */
-    private String username;
+    private String code;
 
     /**
-     * 真实姓名
+     * 菜单名称
      */
-    private String realname;
+    private String name;
 
     /**
-     * 密码
+     * 父菜单代码
      */
-    private String password;
+    private String pcode;
 
     /**
-     * 密码盐
+     * 菜单地址
      */
-    private String salt;
+    private String url;
+
+    /**
+     * 菜单排序(从0开始)
+     */
+    private Integer sort;
+
+    /**
+     * 菜单图标的样式
+     */
+    private String icon;
 
     /**
      * 逻辑删除:{0:未删除, 1:已删除}
@@ -52,6 +63,18 @@ public class User implements Serializable {
      */
     @Column(name = "updated_time")
     private Date updatedTime;
+
+    /**
+     * 子菜单
+     */
+    @Transient
+    private List<Menu> leaf;
+
+    /**
+     * 父菜单ID
+     */
+    @Transient
+    private Long pid;
 
     private static final long serialVersionUID = 1L;
 }

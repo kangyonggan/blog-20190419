@@ -6,7 +6,7 @@
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <!--<property name="realm" ref="myShiroRealm"/>-->
+        <property name="realm" ref="myShiroRealm"/>
         <property name="sessionManager" ref="sessionManager"/>
         <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>
@@ -72,12 +72,13 @@
     <!-- Shiro Filter -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="/user#index"/>
-        <property name="unauthorizedUrl" value="/user#403"/>
+        <property name="loginUrl" value="/"/>
+        <property name="unauthorizedUrl" value="/dashboard/#403"/>
         <property name="filterChainDefinitions">
             <value>
-                /dashboard/** = authc
-                /validate* = anon
+                <!--/dashboard/login = anon-->
+                <!--/dashboard/403 = anon-->
+                <!--/dashboard/** = authc-->
             </value>
         </property>
     </bean>

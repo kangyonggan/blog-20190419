@@ -16,7 +16,7 @@
 
 <div id="header">
     <div class="top">
-        <a href="${ctx}/login">
+        <a href="${ctx}/dashboard/#login">
             <div class="img"></div>
         </a>
         <form action="#" class="form">

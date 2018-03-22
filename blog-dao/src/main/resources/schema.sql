@@ -14,36 +14,24 @@ IF EXISTS tb_user;
 
 CREATE TABLE tb_user
 (
-  id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '主键, 自增',
-  username      VARCHAR(20)                           NOT NULL
-  COMMENT '用户名（手机号）',
-  realname      VARCHAR(32)                           NOT NULL                    DEFAULT ''
+  username     VARCHAR(32)                           NOT NULL
+  COMMENT '用户名',
+  realname     VARCHAR(32)                           NOT NULL                    DEFAULT ''
   COMMENT '真实姓名',
-  password      VARCHAR(64)                           NOT NULL
+  password     VARCHAR(64)                           NOT NULL
   COMMENT '密码',
-  salt          VARCHAR(64)                           NOT NULL
+  salt         VARCHAR(64)                           NOT NULL
   COMMENT '密码盐',
-  small_avatar  VARCHAR(256)                          NOT NULL                    DEFAULT 'upload/default-user-small.jpg'
-  COMMENT '小头像',
-  medium_avatar VARCHAR(256)                          NOT NULL                    DEFAULT 'upload/default-user-medium.jpg'
-  COMMENT '中头像',
-  large_avatar  VARCHAR(256)                          NOT NULL                    DEFAULT 'upload/default-user-large.jpg'
-  COMMENT '大头像',
-  email         VARCHAR(64)                           NOT NULL                    DEFAULT ''
-  COMMENT '电子邮箱',
-  is_deleted    TINYINT                               NOT NULL                    DEFAULT 0
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
-  created_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  updated_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   COMMENT '更新时间'
 )
   COMMENT '用户表';
-CREATE UNIQUE INDEX id_UNIQUE
-  ON tb_user (id);
-CREATE INDEX created_time_ix
-  ON tb_user (created_time);
 CREATE UNIQUE INDEX username_UNIQUE
   ON tb_user (username);
 
@@ -69,10 +57,6 @@ CREATE TABLE tb_role
   COMMENT '更新时间'
 )
   COMMENT '角色表';
-CREATE UNIQUE INDEX id_UNIQUE
-  ON tb_role (id);
-CREATE INDEX created_time_ix
-  ON tb_role (created_time);
 CREATE UNIQUE INDEX code_UNIQUE
   ON tb_role (code);
 
@@ -106,10 +90,6 @@ CREATE TABLE tb_menu
   COMMENT '更新时间'
 )
   COMMENT '菜单表';
-CREATE UNIQUE INDEX id_UNIQUE
-  ON tb_menu (id);
-CREATE INDEX created_time_ix
-  ON tb_menu (created_time);
 CREATE INDEX sort_ix
   ON tb_menu (sort);
 CREATE UNIQUE INDEX code_UNIQUE
@@ -123,7 +103,7 @@ IF EXISTS tb_user_role;
 
 CREATE TABLE tb_user_role
 (
-  username  VARCHAR(15) NOT NULL
+  username  VARCHAR(32) NOT NULL
   COMMENT '用户名',
   role_code VARCHAR(32) NOT NULL
   COMMENT '角色代码',
@@ -153,10 +133,10 @@ CREATE TABLE tb_role_menu
 --  data for tb_user
 -- ----------------------------
 INSERT INTO tb_user
-(username, realname, password, salt, email)
+(username, realname, password, salt)
 VALUES
   # 用户 admin 密码 111111
-  ('admin', '管理员', '25500f5b85a66895e0b99117a12cd51b6d07eb13', '93fab0ba521763fc', 'java@kangyonggan.com');
+  ('admin', '管理员', '25500f5b85a66895e0b99117a12cd51b6d07eb13', '93fab0ba521763fc');
 
 -- ----------------------------
 --  data for tb_role
@@ -189,18 +169,18 @@ VALUES
 -- ----------------------------
 INSERT INTO tb_user_role
 VALUES
-  ('15121149571', 'ROLE_ADMIN');
+  ('admin', 'ROLE_ADMIN');
 
 -- ----------------------------
 --  data for tb_role_menu
 -- ----------------------------
 INSERT INTO tb_role_menu SELECT
-                        'ROLE_ADMIN',
-                        code
-                      FROM tb_menu;
+                           'ROLE_ADMIN',
+                           code
+                         FROM tb_menu;
 
 INSERT INTO tb_role_menu SELECT
-                        'ROLE_USER',
-                        code
-                      FROM tb_menu
-                      WHERE code LIKE 'USER%' OR code = 'DASHBOARD';
+                           'ROLE_USER',
+                           code
+                         FROM tb_menu
+                         WHERE code LIKE 'USER%' OR code = 'DASHBOARD';
