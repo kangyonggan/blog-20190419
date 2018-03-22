@@ -18,7 +18,7 @@ CREATE TABLE tb_user
   COMMENT '主键, 自增',
   username     VARCHAR(32)                           NOT NULL
   COMMENT '用户名',
-  realname     VARCHAR(32)                           NOT NULL                    DEFAULT ''
+  realname     VARCHAR(32)                           NOT NULL
   COMMENT '真实姓名',
   password     VARCHAR(64)                           NOT NULL
   COMMENT '密码',
@@ -160,6 +160,15 @@ VALUES
   ('SYSTEM_ROLE', '角色管理', 'SYSTEM', 'system/role', 1, ''),
   ('SYSTEM_MENU', '菜单管理', 'SYSTEM', 'system/menu', 2, ''),
   ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 3, ''),
+
+  ('MANAGE', '管理', 'DASHBOARD', 'manage', 2, 'menu-icon fa fa-desktop'),
+  ('MANAGE_ARTICLE', '博文管理', 'MANAGE', 'manage/article', 0, ''),
+  ('MANAGE_TOOL', '工具管理', 'MANAGE', 'manage/tool', 1, ''),
+  ('MANAGE_NOVEL', '小说管理', 'MANAGE', 'manage/novel', 2, ''),
+  ('MANAGE_MUSIC', '音乐管理', 'MANAGE', 'manage/music', 3, ''),
+  ('MANAGE_PHOTO', '相册管理', 'MANAGE', 'manage/photo', 4, ''),
+  ('MANAGE_LIFE', '生活动态', 'MANAGE', 'manage/life', 5, ''),
+  ('MANAGE_GUEST', '留言管理', 'MANAGE', 'manage/guest', 6, ''),
 
   ('USER', '我的', 'DASHBOARD', 'user', 3, 'menu-icon fa fa-user'),
   ('USER_INFO', '基本信息', 'USER', 'user/info', 0, '');

@@ -53,12 +53,12 @@
 
     <div class="main-content">
         <div class="main-content-inner">
-        <#if home_name?? && home_name!=''>
+        <#if !noBreadcrumbs??>
             <div class="breadcrumbs" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-tachometer home-icon"></i>
-                        <a data-url="index" href="#index">${home_name}</a>
+                        <a data-url="index" href="${ctx}/dashboard#index">工作台</a>
                     </li>
                 </ul>
             </div>

@@ -28,7 +28,7 @@
                         <img class="nav-user-photo" id="userAvatar" src="${ctx}/static/ace/dist/avatars/user.jpg">
                         <span class="user-info">
                             <small>欢迎,</small>
-                            <span id="navFullname">管理员</span>
+                            <span id="navFullname">${_user.realname!''}</span>
                         </span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
