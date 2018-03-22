@@ -80,6 +80,7 @@ $(function () {
         var $form = $this.parent("form");
 
         $form.find("input").val("");
+        $form.find("select").val("");
         return false;
     });
 });

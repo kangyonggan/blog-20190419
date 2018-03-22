@@ -3,8 +3,11 @@ package com.kangyonggan.blog.controller;
 import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.Resp;
 import com.kangyonggan.blog.util.StringUtil;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -12,6 +15,7 @@ import java.util.Map;
  * @author kangyonggan
  * @since 2016/12/10
  */
+@Log4j2
 public class BaseController {
 
     private String PATH_ROOT;
@@ -87,6 +91,26 @@ public class BaseController {
     protected void setResultMapFailure(Map<String, Object> resultMap, String msg) {
         resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
         resultMap.put(AppConstants.RESP_MSG, StringUtils.isEmpty(msg) ? Resp.FAILURE.getRespMsg() : msg);
+    }
+
+    /**
+     * 统一处理异常
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler
+    @ResponseBody
+    public Map<String, Object> exceptionHandler(Exception e) {
+        Map<String, Object> resultMap = new HashedMap();
+        resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
+        resultMap.put(AppConstants.RESP_MSG, e == null ? Resp.FAILURE.getRespMsg() : e.getMessage());
+
+        if (e != null) {
+            log.error("控制器异常", e);
+        }
+
+        return resultMap;
     }
 }
 

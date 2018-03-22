@@ -17,7 +17,10 @@
 
 <form class="form-inline" method="get">
     <div class="form-group">
-        <input type="text" class="form-control" name="code" value="${code}" placeholder="角色编码"/>
+        <input type="text" class="form-control" name="code" value="${code}" placeholder="角色代码"/>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="name" value="${name}" placeholder="角色名称"/>
     </div>
 
 <@c.search_form_tool/>
@@ -28,7 +31,7 @@
 <table id="role-table" class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
-        <th>角色编码</th>
+        <th>角色代码</th>
         <th>角色名称</th>
         <th>逻辑删除</th>
         <th>创建时间</th>

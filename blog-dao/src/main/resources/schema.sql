@@ -127,6 +127,37 @@ CREATE TABLE tb_role_menu
 )
   COMMENT '角色菜单表';
 
+-- ----------------------------
+--  Table structure for tb_category
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_category;
+
+CREATE TABLE tb_category
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  code         VARCHAR(32)                           NOT NULL
+  COMMENT '栏目代码',
+  name         VARCHAR(32)                           NOT NULL
+  COMMENT '栏目名称',
+  type         VARCHAR(16)                           NOT NULL
+  COMMENT '栏目类型',
+  sort         INT(11)                               NOT NULL                    DEFAULT 0
+  COMMENT '栏目排序(从0开始)',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '栏目表';
+CREATE UNIQUE INDEX id_UNIQUE
+  ON tb_category (id);
+CREATE UNIQUE INDEX code_type_UNIQUE
+  ON tb_category (code, type);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -194,3 +225,14 @@ INSERT INTO tb_role_menu SELECT
                            code
                          FROM tb_menu
                          WHERE code LIKE 'USER%' OR code = 'DASHBOARD';
+
+INSERT INTO tb_category
+(code, name, type, sort)
+VALUES
+  ('db', '数据库', 'ARTICLE', 0),
+  ('server', '后台', 'ARTICLE', 1),
+  ('web', '前端', 'ARTICLE', 2),
+  ('linux', 'Linux', 'ARTICLE', 3),
+  ('architect', '架构', 'ARTICLE', 4),
+  ('code', '代码片段', 'ARTICLE', 5),
+  ('other', '其他', 'ARTICLE', 5);

@@ -25,7 +25,7 @@
     <div class="row">
         <div class="row form-group">
             <div class="col-md-3 control-label">
-                <label>新密码<span class="red">*</span></label>
+                <label class="required">新密码</label>
             </div>
             <div class="col-md-7 controls">
                 <input type="password" id="password" name="password" class="form-control" placeholder="密码:8至20位的字母数字组合" autocomplete="off"/>
@@ -35,7 +35,7 @@
     <div class="row">
         <div class="row form-group">
             <div class="col-md-3 control-label">
-                <label>确认密码<span class="red">*</span></label>
+                <label class="required">确认密码</label>
             </div>
             <div class="col-md-7 controls">
                 <input type="password" name="rePassword" class="form-control" placeholder="密码:8至20位的字母数字组合" autocomplete="off"/>

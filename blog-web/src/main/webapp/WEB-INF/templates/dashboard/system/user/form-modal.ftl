@@ -7,7 +7,7 @@
     <div class="row">
         <div class="row form-group">
             <div class="col-md-3 control-label">
-                <label>用户名<span class="red">*</span></label>
+                <label class="required">用户名</label>
             </div>
             <div class="col-md-7 controls">
                 <#if user.username??>
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="row form-group">
                 <div class="col-md-3 control-label">
-                    <label>密码<span class="red">*</span></label>
+                    <label class="required">密码</label>
                 </div>
                 <div class="col-md-7 controls">
                     <input type="password" id="password" name="password" class="form-control" placeholder="密码：6至20位的字母数字组合"/>
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="row form-group">
                 <div class="col-md-3 control-label">
-                    <label>确认密码<span class="red">*</span></label>
+                    <label class="required">确认密码</label>
                 </div>
                 <div class="col-md-7 controls">
                     <input type="password" name="rePassword" class="form-control" placeholder="确认密码：6至20位的字母数字组合"/>
@@ -44,7 +44,7 @@
     <div class="row">
         <div class="row form-group">
             <div class="col-md-3 control-label">
-                <label>真实姓名<span class="red">*</span></label>
+                <label class="required">真实姓名</label>
             </div>
             <div class="col-md-7 controls">
                 <@s.formInput "user.realname" 'class="form-control" placeholder="真实姓名：最多12个汉字"'/>

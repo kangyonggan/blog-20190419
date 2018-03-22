@@ -22,7 +22,7 @@
 
         <div class="row form-group">
             <div class="col-md-3 control-label">
-                <label for="description">菜单名称</label>
+                <label class="required">菜单名称</label>
             </div>
             <div class="col-md-7 controls">
                 <@s.formInput "menu.name" 'class="form-control" placeholder="菜单名称:2至12个汉字"'/>
@@ -31,7 +31,7 @@
 
         <div class="row form-group">
             <div class="col-md-3 control-label">
-                <label for="name">菜单代码</label>
+                <label class="required">菜单代码</label>
             </div>
             <div class="col-md-7 controls">
                 <@s.formInput "menu.code" 'class="form-control" placeholder="格式参考:SYSTEM_USER"'/>
@@ -41,7 +41,7 @@
 
         <div class="row form-group">
             <div class="col-md-3 control-label">
-                <label for="url">菜单地址</label>
+                <label class="required">菜单地址</label>
             </div>
             <div class="col-md-7 controls">
                 <@s.formInput "menu.url" 'class="form-control" placeholder="格式参考:system/user"'/>
@@ -50,7 +50,7 @@
 
         <div class="row form-group">
             <div class="col-md-3 control-label">
-                <label for="sort">排序</label>
+                <label class="required">排序</label>
             </div>
             <div class="col-md-7 controls">
                 <@s.formInput "menu.sort" 'class="form-control" placeholder="0排在最上面"'/>
@@ -59,7 +59,7 @@
 
         <div class="row form-group">
             <div class="col-md-3 control-label">
-                <label for="icon">图标</label>
+                <label>图标</label>
             </div>
             <div class="col-md-7 controls">
                 <@s.formInput "menu.icon" 'class="form-control" placeholder="格式参考:menu-icon fa fa-dashboard"'/>

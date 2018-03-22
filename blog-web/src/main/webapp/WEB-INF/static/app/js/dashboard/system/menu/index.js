@@ -46,6 +46,7 @@ $(function () {
         if (addBtn) {
             addBtn.bind("click", function () {
                 $("#myModal").modal({
+                    backdrop: 'static',
                     remote: ctx + '/dashboard/system/menu/create?pcode=' + treeNode.code
                 });
             });
