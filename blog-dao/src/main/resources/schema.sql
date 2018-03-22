@@ -159,7 +159,8 @@ VALUES
   ('SYSTEM_USER', '用户管理', 'SYSTEM', 'system/user', 0, ''),
   ('SYSTEM_ROLE', '角色管理', 'SYSTEM', 'system/role', 1, ''),
   ('SYSTEM_MENU', '菜单管理', 'SYSTEM', 'system/menu', 2, ''),
-  ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 3, ''),
+  ('SYSTEM_CATEGORY', '栏目管理', 'SYSTEM', 'system/category', 3, ''),
+  ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 4, ''),
 
   ('MANAGE', '管理', 'DASHBOARD', 'manage', 2, 'menu-icon fa fa-desktop'),
   ('MANAGE_ARTICLE', '博文管理', 'MANAGE', 'manage/article', 0, ''),
