@@ -318,6 +318,19 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
+.panel .list ul li a span {
+    display: block;
+    float: left;
+    height: 37px;
+    max-width: 350px;
+}
+
+.nowrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .panel .list ul li:nth-child(2n+1) a {
     background: #fff;
 }
@@ -340,7 +353,7 @@ body {
     content: '';
 }
 
-.panel .list ul li a span {
+.panel .list ul li a div {
     float: right;
     margin-right: 10px;
 }
@@ -638,12 +651,12 @@ body {
 }
 
 #main .right .article-content {
-    margin: 30px;
+    margin: 25px;
     border-top: 1px dashed #e2e2e2;
     line-height: 1.8;
     text-indent: 2em;
     font-size: 14px;
-    font-family: "microsoft yahei";
+    padding-top: 10px;
 }
 
 #main .right .title span {
@@ -813,3 +826,56 @@ body {
     font-size: 13px;
 }
 
+.markdown blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-color: #e5eaf1;
+    border-left: 5px solid #eee;
+}
+
+.hr-double {
+    margin-left: 13px;
+    margin-right: 13px;
+    height: 3px;
+    border-top: 1px solid #E3E3E3;
+    border-bottom: 1px solid #E3E3E3;
+    border-top-color: rgba(0, 0, 0, .11);
+    border-bottom-color: rgba(0, 0, 0, .11)
+}
+
+.attachments-title {
+    margin-left: 13px;
+}
+
+.attachments {
+    list-style: none;
+    margin: 0 13px 0 13px;
+    padding: 0;
+}
+
+.attachments li a {
+    display: block;
+    height: 34px;
+    line-height: 34px;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #c33b00;
+    border-bottom: 1px dotted #ccc;
+}
+
+.attachments li a span {
+    float: right;
+    color: #929292;
+}
+
+.article-summary {
+    margin-left: 13px;
+    margin-right:13px;
+    margin-top: 20px;
+}
+
+.markdown ul,ol {
+    margin: 0;
+    padding: 0;
+}

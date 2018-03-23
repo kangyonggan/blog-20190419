@@ -1,6 +1,7 @@
 package com.kangyonggan.blog.controller.dashboard.manage;
 
 import com.github.pagehelper.PageInfo;
+import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.AttachmentType;
 import com.kangyonggan.blog.constants.CategoryType;
 import com.kangyonggan.blog.controller.BaseController;
@@ -53,7 +54,7 @@ public class DashboardManageArticleController extends BaseController {
                         @RequestParam(value = "title", required = false, defaultValue = "") String title,
                         @RequestParam(value = "categoryCode", required = false, defaultValue = "") String categoryCode,
                         Model model) {
-        List<Article> articles = articleService.searchArticles(pageNum, title, categoryCode);
+        List<Article> articles = articleService.searchArticles(pageNum, AppConstants.PAGE_SIZE, title, categoryCode);
         PageInfo<Article> page = new PageInfo(articles);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
 

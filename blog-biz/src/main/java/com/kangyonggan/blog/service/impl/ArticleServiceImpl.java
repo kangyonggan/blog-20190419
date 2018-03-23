@@ -29,7 +29,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     private AttachmentMapper attachmentMapper;
 
     @Override
-    public List<Article> searchArticles(int pageNum, String title, String categoryCode) {
+    public List<Article> searchArticles(int pageNum, int pageSize, String title, String categoryCode) {
         Example example = new Example(Article.class);
 
         Example.Criteria criteria = example.createCriteria();
@@ -40,9 +40,9 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
             criteria.andEqualTo("categoryCode", StringUtil.toLikeString(categoryCode));
         }
 
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("is_top desc");
 
-        PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
+        PageHelper.startPage(pageNum, pageSize);
         return myMapper.selectByExample(example);
     }
 

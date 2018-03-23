@@ -12,11 +12,12 @@ public interface ArticleService {
      * 搜索文章
      *
      * @param pageNum
+     * @param pageSize
      * @param title
      * @param categoryCode
      * @return
      */
-    List<Article> searchArticles(int pageNum, String title, String categoryCode);
+    List<Article> searchArticles(int pageNum, int pageSize, String title, String categoryCode);
 
     /**
      * 保存文章

@@ -51,12 +51,14 @@
 
         <div class="list">
             <ul>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <#list articles as article>
+                    <li>
+                        <a href="${ctx}/article/${article.id}">
+                            <span class="nowrap">${article.title}</span>
+                            <div>[${article.createdTime?date}]</div>
+                        </a>
+                    </li>
+                </#list>
             </ul>
         </div>
     </div>
