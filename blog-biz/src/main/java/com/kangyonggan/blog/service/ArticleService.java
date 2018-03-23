@@ -39,8 +39,10 @@ public interface ArticleService {
      * 更新文章
      *
      * @param article
+     * @param files
+     * @throws FileUploadException
      */
-    void updateArticle(Article article);
+    void updateArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException;
 
     /**
      * 删除文章
@@ -49,4 +51,10 @@ public interface ArticleService {
      */
     void deleteArticle(Long id);
 
+    /**
+     * 更新文章
+     *
+     * @param article
+     */
+    void updateArticle(Article article);
 }

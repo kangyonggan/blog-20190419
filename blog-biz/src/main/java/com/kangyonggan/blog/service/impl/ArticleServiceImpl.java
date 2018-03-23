@@ -51,21 +51,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         myMapper.insertSelective(article);
 
         if (files.length > 0) {
-            List<Attachment> attachments = new ArrayList<>();
-            for (int i = 0; i < files.length; i++) {
-                Attachment attachment = new Attachment();
-                String url = FileUpload.upload(files[i]);
-                String originalFilename = files[i].getOriginalFilename();
-
-                attachment.setType(AttachmentType.ARTICLE.getType());
-                attachment.setSourceId(article.getId());
-                attachment.setUrl(url);
-                attachment.setOriginalFilename(originalFilename);
-                attachments.add(attachment);
-            }
-
-            // 批量保存附件
-            attachmentMapper.insertAttachments(attachments);
+            saveAttachments(article, files);
         }
     }
 
@@ -77,10 +63,13 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
-    @Log
     @CacheDel(key = "article:id:${article.id}")
-    public void updateArticle(Article article) {
+    public void updateArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException {
         myMapper.updateByPrimaryKeySelective(article);
+
+        if (files.length > 0) {
+            saveAttachments(article, files);
+        }
     }
 
     @Override
@@ -88,5 +77,37 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     @CacheDel(key = "article:id:${id}")
     public void deleteArticle(Long id) {
         myMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    @Log
+    @CacheDel(key = "article:id:${article.id}")
+    public void updateArticle(Article article) {
+        myMapper.updateByPrimaryKeySelective(article);
+    }
+
+    /**
+     * 批量保存附件
+     *
+     * @param article
+     * @param files
+     * @throws FileUploadException
+     */
+    private void saveAttachments(Article article, MultipartFile[] files) throws FileUploadException {
+        List<Attachment> attachments = new ArrayList<>();
+        for (int i = 0; i < files.length; i++) {
+            Attachment attachment = new Attachment();
+            String url = FileUpload.upload(files[i]);
+            String originalFilename = files[i].getOriginalFilename();
+
+            attachment.setType(AttachmentType.ARTICLE.getType());
+            attachment.setSourceId(article.getId());
+            attachment.setUrl(url);
+            attachment.setOriginalFilename(originalFilename);
+            attachments.add(attachment);
+        }
+
+        // 批量保存附件
+        attachmentMapper.insertAttachments(attachments);
     }
 }

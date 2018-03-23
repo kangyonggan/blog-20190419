@@ -43,14 +43,34 @@
             </div>
         </div>
 
-            <div class="form-group">
-                <div class="col-xs-12">
-                    <label class="col-sm-3 control-label no-padding-right">附件</label>
-                    <div class="col-xs-12 col-sm-5">
-                        <input multiple="" type="file" id="files" name="files" />
-                    </div>
+    <#if article.id?? && attachments?size gt 0>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label class="col-sm-3 control-label no-padding-right">老附件</label>
+                <div class="col-xs-12 col-sm-5">
+                    <#list attachments as attachment>
+                        <div class="attachment">
+                            <a class="form-control" href="${ctx}/${attachment.url}" target="_blank">
+                            ${attachment.originalFilename}
+                            </a>
+                            <a class="remove" href="javascript:" data-name="${attachment.originalFilename}">
+                                <i class=" ace-icon fa fa-times"></i>
+                            </a>
+                        </div>
+                    </#list>
                 </div>
             </div>
+        </div>
+    </#if>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label class="col-sm-3 control-label no-padding-right"><#if article.id??>新</#if>附件</label>
+                <div class="col-xs-12 col-sm-5">
+                    <input multiple="" type="file" id="files" name="files"/>
+                </div>
+            </div>
+        </div>
 
         <div class="clearfix form-actions">
             <div class="col-xs-10 align-center">

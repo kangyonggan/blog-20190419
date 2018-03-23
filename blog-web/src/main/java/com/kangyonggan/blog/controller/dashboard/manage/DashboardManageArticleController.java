@@ -1,11 +1,14 @@
 package com.kangyonggan.blog.controller.dashboard.manage;
 
 import com.github.pagehelper.PageInfo;
+import com.kangyonggan.blog.constants.AttachmentType;
 import com.kangyonggan.blog.constants.CategoryType;
 import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.service.ArticleService;
+import com.kangyonggan.blog.service.AttachmentService;
 import com.kangyonggan.blog.service.CategoryService;
 import com.kangyonggan.blog.vo.Article;
+import com.kangyonggan.blog.vo.Attachment;
 import com.kangyonggan.blog.vo.Category;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -30,6 +33,9 @@ public class DashboardManageArticleController extends BaseController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private AttachmentService attachmentService;
 
     /**
      * 文章管理
@@ -106,8 +112,10 @@ public class DashboardManageArticleController extends BaseController {
     @RequiresPermissions("MANAGE_ARTICLE")
     public String create(@PathVariable("id") Long id, Model model) {
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
+        List<Attachment> attachments = attachmentService.findAttachmentsByTypeAndSourceId(AttachmentType.ARTICLE.getType(), id);
 
         model.addAttribute("categories", categories);
+        model.addAttribute("attachments", attachments);
         model.addAttribute("article", articleService.findArticleById(id));
         return getPathForm();
     }
@@ -117,15 +125,18 @@ public class DashboardManageArticleController extends BaseController {
      *
      * @param article
      * @param result
+     * @param files
      * @return
+     * @throws FileUploadException
      */
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("MANAGE_ARTICLE")
-    public Map<String, Object> update(@ModelAttribute("article") @Valid Article article, BindingResult result) {
+    public Map<String, Object> update(@ModelAttribute("article") @Valid Article article, BindingResult result,
+                                      @RequestParam(value = "files", required = false) MultipartFile[] files) throws FileUploadException {
         Map<String, Object> resultMap = getResultMap();
         if (!result.hasErrors()) {
-            articleService.updateArticle(article);
+            articleService.updateArticleWithAttachments(article, files);
         } else {
             setResultMapFailure(resultMap);
         }

@@ -45,7 +45,7 @@
         <!-- log4j2 -->
         <property name="blog.log4j2.home" description="log4j2日志的文件主目录" defaultValue="/Users/kyg/logs/blog"/>
 
-        <property name="blog.file.root.path" description="文件根目录" defaultValue="/Users/kyg/code/blog/blog-web/src/main/webapp/WEB-INF/"/>
+        <property name="blog.file.root.path" description="文件根目录" defaultValue="/Users/kyg/code/kyg/blog/blog-web/src/main/webapp/WEB-INF/"/>
         <property name="blog.slow.method.time" description="慢方法时间(秒)" defaultValue="2"/>
         <property name="blog.slow.interface.time" description="慢接口时间(秒)" defaultValue="2"/>
         <property name="blog.cache.open" description="是否开启缓存,Y:开启,N:不开启" defaultValue="Y"/>

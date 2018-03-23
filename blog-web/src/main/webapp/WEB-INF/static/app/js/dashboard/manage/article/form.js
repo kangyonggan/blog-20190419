@@ -61,4 +61,10 @@ $(function () {
         errorElement: "div",
         errorClass: "error"
     });
+
+    $(".attachment .remove").click(function () {
+        $.messager.confirm("提示", "确定删除[" + $(this).attr("data-name") + "]吗?", function () {
+
+        });
+    });
 });
