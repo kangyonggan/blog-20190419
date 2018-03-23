@@ -4,7 +4,9 @@ import com.github.pagehelper.PageInfo;
 import com.kangyonggan.blog.constants.CategoryType;
 import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.service.ArticleService;
+import com.kangyonggan.blog.service.CategoryService;
 import com.kangyonggan.blog.vo.Article;
+import com.kangyonggan.blog.vo.Category;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,6 +26,9 @@ public class DashboardManageArticleController extends BaseController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     /**
      * 文章管理
      *
@@ -41,9 +46,10 @@ public class DashboardManageArticleController extends BaseController {
                         Model model) {
         List<Article> articles = articleService.searchArticles(pageNum, title, categoryCode);
         PageInfo<Article> page = new PageInfo(articles);
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
 
         model.addAttribute("page", page);
-        model.addAttribute("types", CategoryType.values());
+        model.addAttribute("categories", categories);
         return getPathList();
     }
 
@@ -56,8 +62,10 @@ public class DashboardManageArticleController extends BaseController {
     @RequestMapping(value = "create", method = RequestMethod.GET)
     @RequiresPermissions("MANAGE_ARTICLE")
     public String create(Model model) {
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
+
+        model.addAttribute("categories", categories);
         model.addAttribute("article", new Article());
-        model.addAttribute("types", CategoryType.values());
         return getPathForm();
     }
 
@@ -92,7 +100,9 @@ public class DashboardManageArticleController extends BaseController {
     @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
     @RequiresPermissions("MANAGE_ARTICLE")
     public String create(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("types", CategoryType.values());
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
+
+        model.addAttribute("categories", categories);
         model.addAttribute("article", articleService.findArticleById(id));
         return getPathForm();
     }
@@ -132,9 +142,10 @@ public class DashboardManageArticleController extends BaseController {
         Article article = articleService.findArticleById(id);
         article.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
         articleService.updateArticle(article);
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
 
+        model.addAttribute("categories", categories);
         model.addAttribute("article", article);
-        model.addAttribute("types", CategoryType.values());
         return getPathTableTr();
     }
 

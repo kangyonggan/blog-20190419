@@ -15,15 +15,15 @@
 
 <form class="form-inline" method="get">
     <div class="form-group">
-        <input type="text" class="form-control" name="title" value="${title}" placeholder="标题"/>
-    </div>
-    <div class="form-group">
         <select name="categoryCode" class="form-control" style="min-width: 162px;">
             <option value="">-- 全部栏目 --</option>
-        <#list types as t>
-            <option value="${t.getType()}" <#if categoryCode=='${t.getType()}'>selected</#if>>${t.getName()}</option>
+        <#list categories as category>
+            <option value="${category.code}" <#if categoryCode==category.code>selected</#if>>${category.name}</option>
         </#list>
         </select>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="title" value="${title}" placeholder="标题"/>
     </div>
 
 <@c.search_form_tool/>
