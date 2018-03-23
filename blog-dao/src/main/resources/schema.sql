@@ -189,6 +189,36 @@ CREATE TABLE tb_article
 CREATE INDEX id_category_code
   ON tb_article (category_code);
 
+-- ----------------------------
+--  Table structure for tb_attachment
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_attachment;
+
+CREATE TABLE tb_attachment
+(
+  id                BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  type              VARCHAR(16)                           NOT NULL
+  COMMENT '附件类型',
+  source_id         BIGINT(20)                            NOT NULL
+  COMMENT '附件来源',
+  url               VARCHAR(256)                          NOT NULL
+  COMMENT '附件地址',
+  original_filename VARCHAR(128)                          NOT NULL                    DEFAULT ''
+  COMMENT '附件原名',
+  is_deleted        TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time      TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time      TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '附件表';
+CREATE UNIQUE INDEX id_UNIQUE
+  ON tb_attachment (id);
+CREATE INDEX id_type_source_id
+  ON tb_attachment (type, source_id);
 #====================初始数据====================#
 
 -- ----------------------------

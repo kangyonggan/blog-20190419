@@ -1,17 +1,16 @@
 package com.kangyonggan.blog.constants;
 
 /**
- * 栏目类型
+ * 附件类型
  */
-public enum CategoryType {
+public enum AttachmentType {
 
-    ARTICLE("ARTICLE", "文章"),
-    NOVEL("NOVEL", "小说");
+    ARTICLE("ARTICLE", "文章");
 
     private String type;
     private String name;
 
-    CategoryType(String type, String name) {
+    AttachmentType(String type, String name) {
         this.type = type;
         this.name = name;
     }

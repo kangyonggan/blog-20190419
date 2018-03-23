@@ -2,20 +2,31 @@ package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.AttachmentType;
+import com.kangyonggan.blog.mapper.AttachmentMapper;
 import com.kangyonggan.blog.service.ArticleService;
+import com.kangyonggan.blog.util.FileUpload;
 import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.Article;
+import com.kangyonggan.blog.vo.Attachment;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ArticleServiceImpl extends BaseService<Article> implements ArticleService {
+
+    @Autowired
+    private AttachmentMapper attachmentMapper;
 
     @Override
     public List<Article> searchArticles(int pageNum, String title, String categoryCode) {
@@ -36,9 +47,26 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
-    @Log
-    public void saveArticle(Article article) {
+    public void saveArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException {
         myMapper.insertSelective(article);
+
+        if (files.length > 0) {
+            List<Attachment> attachments = new ArrayList<>();
+            for (int i = 0; i < files.length; i++) {
+                Attachment attachment = new Attachment();
+                String url = FileUpload.upload(files[i]);
+                String originalFilename = files[i].getOriginalFilename();
+
+                attachment.setType(AttachmentType.ARTICLE.getType());
+                attachment.setSourceId(article.getId());
+                attachment.setUrl(url);
+                attachment.setOriginalFilename(originalFilename);
+                attachments.add(attachment);
+            }
+
+            // 批量保存附件
+            attachmentMapper.insertAttachments(attachments);
+        }
     }
 
     @Override

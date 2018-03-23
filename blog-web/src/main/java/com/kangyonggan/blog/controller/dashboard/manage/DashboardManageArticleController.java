@@ -7,6 +7,7 @@ import com.kangyonggan.blog.service.ArticleService;
 import com.kangyonggan.blog.service.CategoryService;
 import com.kangyonggan.blog.vo.Article;
 import com.kangyonggan.blog.vo.Category;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -74,15 +76,18 @@ public class DashboardManageArticleController extends BaseController {
      *
      * @param article
      * @param result
+     * @param files
      * @return
+     * @throws FileUploadException
      */
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("MANAGE_ARTICLE")
-    public Map<String, Object> save(@ModelAttribute("article") @Valid Article article, BindingResult result) {
+    public Map<String, Object> save(@ModelAttribute("article") @Valid Article article, BindingResult result,
+                                    @RequestParam(value = "files", required = false) MultipartFile[] files) throws FileUploadException {
         Map<String, Object> resultMap = getResultMap();
         if (!result.hasErrors()) {
-            articleService.saveArticle(article);
+            articleService.saveArticleWithAttachments(article, files);
         } else {
             setResultMapFailure(resultMap);
         }

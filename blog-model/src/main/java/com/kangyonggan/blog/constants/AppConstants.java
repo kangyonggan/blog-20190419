@@ -44,4 +44,14 @@ public interface AppConstants {
      */
     String KEY_CAPTCHA = "key-captcha";
 
+    /**
+     * 文件根路径的key
+     */
+    String FILE_PATH_ROOT = "file.root.path";
+
+    /**
+     * 文件上传路径
+     */
+    String FILE_UPLOAD = "upload/";
+
 }

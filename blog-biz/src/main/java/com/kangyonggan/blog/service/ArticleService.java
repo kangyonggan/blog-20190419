@@ -1,6 +1,8 @@
 package com.kangyonggan.blog.service;
 
 import com.kangyonggan.blog.vo.Article;
+import org.apache.commons.fileupload.FileUploadException;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -20,8 +22,10 @@ public interface ArticleService {
      * 保存文章
      *
      * @param article
+     * @param files
+     * @throws FileUploadException
      */
-    void saveArticle(Article article);
+    void saveArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException;
 
     /**
      * 查找文章

@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="${ctx}/static/libs/bootstrap/css/bootstrap-markdown.min.css"/>
 
 <div class="col-xs-12">
-    <form id="article-form" method="post" class="form-horizontal"
+    <form id="article-form" method="post" class="form-horizontal" enctype="multipart/form-data"
           action="${ctx}/dashboard/manage/article/${article.id???string('update', 'save')}">
 
     <#if article.id??>
@@ -43,25 +43,14 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-xs-12">
-                <label class="col-sm-3 control-label no-padding-right required">附件</label>
-                <div class="col-xs-12 col-sm-5">
-                    <input type="file" name="file" id="file"/>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <label class="col-sm-3 control-label no-padding-right">附件</label>
+                    <div class="col-xs-12 col-sm-5">
+                        <input multiple="" type="file" id="files" name="files" />
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-xs-12">
-                <div class="col-xs-12 col-sm-5 col-sm-offset-3 text-right">
-                    <button class="btn btn-sm btn-danger">
-                        <i class="ace-icon fa fa-cloud-upload"></i>
-                        更多附件
-                    </button>
-                </div>
-            </div>
-        </div>
 
         <div class="clearfix form-actions">
             <div class="col-xs-10 align-center">

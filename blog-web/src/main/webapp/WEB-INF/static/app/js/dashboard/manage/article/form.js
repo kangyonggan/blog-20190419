@@ -6,13 +6,13 @@ $(function () {
      */
     $("#content").markdown({resize: 'vertical'});
 
-    $('#file').ace_file_input({
-        no_file: '请选择文件 ...',
-        btn_choose: '选择',
-        btn_change: '重新选择',
-        droppable: false,
-        before_change: null,
-        thumbnail: false
+    $('#files').ace_file_input({
+        style: 'well',
+        btn_choose: '点击此处或拖拽文件到这里（支持多选）',
+        btn_change: null,
+        no_icon: 'ace-icon fa fa-cloud-upload',
+        droppable: true,
+        thumbnail: 'small'
     });
 
     var $form = $('#article-form');
