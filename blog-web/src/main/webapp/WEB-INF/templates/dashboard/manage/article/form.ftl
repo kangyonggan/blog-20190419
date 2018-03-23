@@ -2,6 +2,14 @@
 
 <link rel="stylesheet" href="${ctx}/static/libs/bootstrap/css/bootstrap-markdown.min.css"/>
 
+<div class="page-header">
+    <h1>
+        ${article.id???string('编辑', '添加')}文章
+    </h1>
+</div>
+
+<div class="space-10"></div>
+
 <div class="col-xs-12">
     <form id="article-form" method="post" class="form-horizontal" enctype="multipart/form-data"
           action="${ctx}/dashboard/manage/article/${article.id???string('update', 'save')}">
