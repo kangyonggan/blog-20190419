@@ -1,33 +1,19 @@
 <#assign title="博文"/>
+<#assign categoryCode="${article.categoryCode}"/>
 
 <@override name="style">
 <link rel="stylesheet" href="${ctx}/static/ace/dist/css/prettify.min.css"/>
 </@override>
 
+<@override name="breadcrumbs">
+    <#include "breadcrumbs.ftl"/>
+</@override>
+
 <@override name="main">
 <div id="main">
     <div class="left">
-        <div class="category-name">
-            <span>栏目中心</span>
-        </div>
-        <ul class="category-nav">
-            <#list categories as category>
-                <li <#if article.categoryCode==category.code>class="active"</#if>><a
-                        href="${ctx}/article/category/${category.code}">${category.name}</a></li>
-            </#list>
-        </ul>
-        <div class="hot">
-            <div class="title">
-                <span>推荐内容</span>
-            </div>
-            <ul class="list">
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-            </ul>
-        </div>
+        <#include "categories.ftl"/>
+        <#include "top-articles.ftl"/>
     </div>
 
     <div class="right">

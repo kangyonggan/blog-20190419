@@ -58,4 +58,12 @@ public interface ArticleService {
      * @param article
      */
     void updateArticle(Article article);
+
+    /**
+     * 查找推荐文章
+     *
+     * @return
+     */
+    List<Article> findTopArticles();
+
 }

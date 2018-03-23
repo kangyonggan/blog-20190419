@@ -37,8 +37,9 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
             criteria.andLike("title", StringUtil.toLikeString(title));
         }
         if (StringUtils.isNotEmpty(categoryCode)) {
-            criteria.andEqualTo("categoryCode", StringUtil.toLikeString(categoryCode));
+            criteria.andEqualTo("categoryCode", categoryCode);
         }
+        criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
 
         example.setOrderByClause("is_top desc");
 
@@ -84,6 +85,15 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     @CacheDel(key = "article:id:${article.id}")
     public void updateArticle(Article article) {
         myMapper.updateByPrimaryKeySelective(article);
+    }
+
+    @Override
+    public List<Article> findTopArticles() {
+        Article article = new Article();
+        article.setIsDeleted(AppConstants.IS_DELETED_NO);
+        article.setIsTop((byte) 1);
+
+        return myMapper.select(article);
     }
 
     /**

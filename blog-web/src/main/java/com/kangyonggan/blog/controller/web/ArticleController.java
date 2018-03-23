@@ -1,5 +1,7 @@
 package com.kangyonggan.blog.controller.web;
 
+import com.github.pagehelper.PageInfo;
+import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.AttachmentType;
 import com.kangyonggan.blog.constants.CategoryType;
 import com.kangyonggan.blog.controller.BaseController;
@@ -42,11 +44,21 @@ public class ArticleController extends BaseController {
      *
      * @param pageNum
      * @param categoryCode
+     * @param model
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
     public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
-                       @RequestParam(value = "categoryCode", required = false, defaultValue = "") String categoryCode) {
+                       @RequestParam(value = "categoryCode", required = false, defaultValue = "") String categoryCode,
+                       Model model) {
+        List<Article> articles = articleService.searchArticles(pageNum, AppConstants.PAGE_SIZE / 2, null, categoryCode);
+        PageInfo<Article> page = new PageInfo<>(articles);
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
+        List<Article> topArticles = articleService.findTopArticles();
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("topArticles", topArticles);
+        model.addAttribute("page", page);
         return getPathList();
     }
 
@@ -63,9 +75,11 @@ public class ArticleController extends BaseController {
         article.setContent(MarkdownUtil.markdownToHtml(article.getContent()));
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
         List<Attachment> attachments = attachmentService.findAttachmentsByTypeAndSourceId(AttachmentType.ARTICLE.getType(), id);
+        List<Article> topArticles = articleService.findTopArticles();
 
         model.addAttribute("article", article);
         model.addAttribute("categories", categories);
+        model.addAttribute("topArticles", topArticles);
         model.addAttribute("attachments", attachments);
         return getPathDetail();
     }

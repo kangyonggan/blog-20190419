@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="${ctx}/static/app/css/unslider.css"/>
 </@override>
 
+<@override name="breadcrumbs">
+<a href="javascript:" class="active">首页</a>
+</@override>
+
 <@override name="main">
 <div id="main">
     <div id="top1">

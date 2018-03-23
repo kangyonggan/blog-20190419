@@ -41,7 +41,7 @@
         <li><a href="#">留言板</a></li>
     </ul>
     <div class="breadcrumbs">
-        您的当前位置：<a href="${ctx}/">首页</a> &gt; <a href="#" class="active">新闻通告</a>
+        您的当前位置：<@block name="breadcrumbs"/>
     </div>
 </div>
 

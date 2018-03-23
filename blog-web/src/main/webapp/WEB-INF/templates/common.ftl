@@ -91,6 +91,41 @@
     </#if>
 </#macro>
 
+<#--web分页组件-->
+<#macro web_pagination url param="">
+    <#if (page.list)?? && page.pages gt 1>
+    <ul class="pagination">
+        <#if page.hasPreviousPage>
+            <li><a href="${url}?p=1<#if param?has_content>&${param}</#if>">首页</a></li>
+            <li><a href="${url}?p=${page.prePage}<#if param?has_content>&${param}</#if>">上一页</a></li>
+        <#else>
+            <li><a href="javascript:">首页</a></li>
+            <li><a href="javascript:">上一页</a></li>
+        </#if>
+
+        <#list page.navigatepageNums as nav>
+            <#if nav == page.pageNum>
+                <li class="active">
+                    <a href="javascript:">${nav}</a>
+                </li>
+            <#else>
+                <li>
+                    <a href="${url}?p=${nav}<#if param?has_content>&${param}</#if>">${nav}</a>
+                </li>
+            </#if>
+        </#list>
+
+        <#if page.hasNextPage>
+            <li><a href="${url}?p=${page.nextPage}<#if param?has_content>&${param}</#if>">下一页</a></li>
+            <li><a href="${url}?p=${page.pages}<#if param?has_content>&${param}</#if>">尾页</a></li>
+        <#else>
+            <li><a href="javascript:">下一页</a></li>
+            <li><a href="javascript:">尾页</a></li>
+        </#if>
+    </ul>
+    </#if>
+</#macro>
+
 <#macro search_form_tool>
 <button class="btn btn-sm btn-purple" data-toggle="search-submit">
     搜索

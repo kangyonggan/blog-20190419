@@ -44,7 +44,7 @@
         </Async>
     </Appenders>
     <Loggers>
-        <Logger name="com.kangyonggan.app.blog.mapper" level="debug" additivity="false">
+        <Logger name="com.kangyonggan.blog.mapper" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="AsyncAll"></AppenderRef>
             <AppenderRef ref="AsyncError"></AppenderRef>
