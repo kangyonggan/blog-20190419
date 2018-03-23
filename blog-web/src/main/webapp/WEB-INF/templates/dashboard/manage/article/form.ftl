@@ -10,6 +10,18 @@
         <input type="hidden" name="id" value="${article.id}"/>
     </#if>
 
+        <div class="form-group" style="position: relative;">
+            <label class="col-sm-3 control-label no-padding-right required">所属栏目</label>
+            <div class="col-xs-12 col-sm-5">
+                <select name="categoryCode" class="form-control">
+                <#list categories as category>
+                    <option value="${category.code}"
+                            <#if article.id?? && article.categoryCode=='${category.code}'>selected</#if>>${category.name}</option>
+                </#list>
+                </select>
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="title" class="col-sm-3 control-label no-padding-right required">文章标题</label>
             <div class="col-xs-12 col-sm-5">
@@ -25,13 +37,11 @@
         </div>
 
         <div class="form-group" style="position: relative;">
-            <label class="col-sm-3 control-label no-padding-right required">所属栏目</label>
+            <label class="col-sm-3 control-label no-padding-right required">是否推荐</label>
             <div class="col-xs-12 col-sm-5">
-                <select name="categoryCode" class="form-control">
-                <#list categories as category>
-                    <option value="${category.code}"
-                            <#if article.id?? && article.categoryCode=='${category.code}'>selected</#if>>${category.name}</option>
-                </#list>
+                <select name="isTop" class="form-control">
+                    <option value="0">不推荐</option>
+                    <option value="1" <#if article.id?? && article.isTop==1>selected</#if>>推荐</option>
                 </select>
             </div>
         </div>
@@ -53,7 +63,8 @@
                             <a class="form-control" href="${ctx}/${attachment.url}" target="_blank">
                             ${attachment.originalFilename}
                             </a>
-                            <a class="remove" href="javascript:" data-url="${ctx}/dashboard/manage/article/deleteAttachment/${attachment.id}"
+                            <a class="remove" href="javascript:"
+                               data-url="${ctx}/dashboard/manage/article/deleteAttachment/${attachment.id}"
                                data-name="${attachment.originalFilename}" data-article-id="${article.id}">
                                 <i class=" ace-icon fa fa-times"></i>
                             </a>

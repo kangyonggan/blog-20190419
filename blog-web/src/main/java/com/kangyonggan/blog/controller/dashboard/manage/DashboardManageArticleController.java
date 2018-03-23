@@ -203,6 +203,27 @@ public class DashboardManageArticleController extends BaseController {
     }
 
     /**
+     * 推荐/取消推荐
+     *
+     * @param id
+     * @param isTop
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{id:[\\d]+}/{isTop:\\buntop\\b|\\btop\\b}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    @RequiresPermissions("MANAGE_ARTICLE")
+    public String top(@PathVariable("id") Long id, @PathVariable("isTop") String isTop, Model model) {
+        Article article = articleService.findArticleById(id);
+        article.setIsTop((byte) (isTop.equals("top") ? 1 : 0));
+        articleService.updateArticle(article);
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("article", article);
+        return getPathTableTr();
+    }
+
+    /**
      * 物理删除
      *
      * @param id

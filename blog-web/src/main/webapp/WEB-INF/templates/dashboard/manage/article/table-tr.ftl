@@ -5,6 +5,7 @@
         <a href="${ctx}/dashboard#manage/article/${article.id}">${article.title}</a>
     </td>
     <td><#include "category.ftl"></td>
+    <td><#include "top.ftl"></td>
     <td><#include "delete.ftl"></td>
     <td><@c.relative_date datetime=article.createdTime/></td>
     <td>

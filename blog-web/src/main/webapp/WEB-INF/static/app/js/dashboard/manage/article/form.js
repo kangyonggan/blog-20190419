@@ -31,6 +31,9 @@ $(function () {
             categoryCode: {
                 required: true
             },
+            isTop: {
+                required: true
+            },
             content: {
                 required: true
             }

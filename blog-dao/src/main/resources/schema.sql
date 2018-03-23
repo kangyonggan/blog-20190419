@@ -178,6 +178,8 @@ CREATE TABLE tb_article
   COMMENT '栏目代码',
   content       LONGTEXT                              NOT NULL
   COMMENT '文章内容',
+  is_top        TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '是否推荐:{0:不推荐, 1:推荐}',
   is_deleted    TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
   created_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
