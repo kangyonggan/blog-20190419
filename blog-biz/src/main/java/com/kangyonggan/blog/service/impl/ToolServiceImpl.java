@@ -1,27 +1,34 @@
 package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.google.zxing.WriterException;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.Resp;
+import com.kangyonggan.blog.dto.ToolDto;
 import com.kangyonggan.blog.service.ToolService;
-import com.kangyonggan.blog.util.FileUpload;
-import com.kangyonggan.blog.util.StringUtil;
+import com.kangyonggan.blog.util.*;
 import com.kangyonggan.blog.vo.Tool;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author kangyonggan
  * @since 3/23/18
  */
 @Service
+@Log4j2
 public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
     @Override
@@ -106,5 +113,45 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
         PageHelper.startPage(1, size);
         return myMapper.selectByExample(example);
+    }
+
+    @Override
+    @Log
+    public Map<String, Object> handle(Tool tool, ToolDto toolDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put(AppConstants.RESP_CO, Resp.SUCCESS.getRespCo());
+        resultMap.put(AppConstants.RESP_MSG, Resp.SUCCESS.getRespMsg());
+
+        try {
+            if (tool.getCode().equals("qr")) {
+                // 生成二维码
+                qrHandle(toolDto, resultMap);
+            } else {
+                resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
+                resultMap.put(AppConstants.RESP_MSG, "暂不支持此工具");
+            }
+        } catch (Exception e) {
+            log.error("工具调用异常", e);
+            resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
+            resultMap.put(AppConstants.RESP_MSG, e.getMessage());
+        }
+
+        return resultMap;
+    }
+
+    /**
+     * 处理二维码
+     *
+     * @param toolDto
+     * @param resultMap
+     * @throws IOException
+     * @throws WriterException
+     */
+    private void qrHandle(ToolDto toolDto, Map<String, Object> resultMap) throws IOException, WriterException {
+        String qrName = RandomUtil.getRandomString("QR") + ".png";
+        String name = PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + AppConstants.FILE_UPLOAD + qrName;
+        QrCodeUtil.genQrCode(name, toolDto.getData(), toolDto.getSize());
+        log.info("二维码生成成功，路径： {}", qrName);
+        resultMap.put("result", AppConstants.FILE_UPLOAD + qrName);
     }
 }

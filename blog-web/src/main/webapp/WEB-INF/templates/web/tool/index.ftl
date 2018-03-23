@@ -34,8 +34,4 @@
 </div>
 </@override>
 
-<@override name="script">
-
-</@override>
-
 <@extends name="../layout.ftl"/>

@@ -1,10 +1,12 @@
 package com.kangyonggan.blog.service;
 
+import com.kangyonggan.blog.dto.ToolDto;
 import com.kangyonggan.blog.vo.Tool;
 import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -76,4 +78,13 @@ public interface ToolService {
      * @return
      */
     List<Tool> findSomeTools(int size);
+
+    /**
+     * 处理请求
+     *
+     * @param tool
+     * @param toolDto
+     * @return
+     */
+    Map<String,Object> handle(Tool tool, ToolDto toolDto);
 }

@@ -324,3 +324,8 @@ VALUES
   ('architect', '架构', 'ARTICLE', 4),
   ('code', '代码片段', 'ARTICLE', 5),
   ('other', '其他', 'ARTICLE', 5);
+
+INSERT INTO tb_tool
+(code, name, icon)
+VALUES
+  ('qr', '生成二维码', 'static/app/images/tools/qr.png')

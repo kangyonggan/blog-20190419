@@ -177,13 +177,8 @@ public class FileUpload {
      * @return
      */
     private static String extractFilePathByExtension(String extension, String prefix) {
-        byte[] salt = Digests.generateSalt(AppConstants.SALT_SIZE);
-        byte[] hashPassword = Digests.sha1(StringUtils.EMPTY.getBytes(), salt, AppConstants.HASH_INTERATIONS);
-
         StringBuilder tempPath = new StringBuilder();
-        tempPath.append(AppConstants.FILE_UPLOAD).append(prefix).append("_");
-        tempPath.append(DateUtil.getDate()).append("_").append(Encodes.encodeHex(hashPassword));
-
+        tempPath.append(AppConstants.FILE_UPLOAD).append(RandomUtil.getRandomString(prefix));
         tempPath.append(".").append(extension);
         return tempPath.toString();
     }
