@@ -39,7 +39,6 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         if (StringUtils.isNotEmpty(categoryCode)) {
             criteria.andEqualTo("categoryCode", categoryCode);
         }
-        criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
 
         example.setOrderByClause("is_top desc");
 
@@ -48,6 +47,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
+    @CacheDel(key = "article:tops")
     public void saveArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException {
         myMapper.insertSelective(article);
 
@@ -60,15 +60,11 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     @Log
     @Cache(key = "article:id:${id}")
     public Article findArticleById(Long id) {
-        Article article = new Article();
-        article.setId(id);
-        article.setIsDeleted(AppConstants.IS_DELETED_NO);
-
-        return myMapper.selectOne(article);
+        return myMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    @CacheDel(key = "article:id:${article.id}")
+    @CacheDel(key = {"article:id:${article.id}", "article:tops"})
     public void updateArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException {
         myMapper.updateByPrimaryKeySelective(article);
 
@@ -79,25 +75,44 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
     @Override
     @Log
-    @CacheDel(key = "article:id:${id}")
+    @CacheDel(key = {"article:id:${id}", "article:tops"})
     public void deleteArticle(Long id) {
         myMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     @Log
-    @CacheDel(key = "article:id:${article.id}")
+    @CacheDel(key = {"article:id:${article.id}", "article:tops"})
     public void updateArticle(Article article) {
         myMapper.updateByPrimaryKeySelective(article);
     }
 
     @Override
+    @Cache(key = "article:tops")
     public List<Article> findTopArticles() {
         Article article = new Article();
         article.setIsDeleted(AppConstants.IS_DELETED_NO);
         article.setIsTop((byte) 1);
 
         return myMapper.select(article);
+    }
+
+    @Override
+    @Log
+    public List<Article> findSomeArticles(int pageNum, int pageSize, String categoryCode) {
+        Example example = new Example(Article.class);
+
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            criteria.andEqualTo("categoryCode", categoryCode);
+        }
+
+        example.setOrderByClause("is_top desc");
+
+        PageHelper.startPage(pageNum, pageSize);
+        return myMapper.selectByExample(example);
     }
 
     /**
@@ -111,7 +126,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         List<Attachment> attachments = new ArrayList<>();
         for (int i = 0; i < files.length; i++) {
             Attachment attachment = new Attachment();
-            String url = FileUpload.upload(files[i]);
+            String url = FileUpload.upload(files[i], "ARTICLE");
             String originalFilename = files[i].getOriginalFilename();
 
             attachment.setType(AttachmentType.ARTICLE.getType());

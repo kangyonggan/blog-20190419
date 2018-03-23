@@ -66,4 +66,13 @@ public interface ArticleService {
      */
     List<Article> findTopArticles();
 
+    /**
+     * 查找一些文章
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param categoryCode
+     * @return
+     */
+    List<Article> findSomeArticles(int pageNum, int pageSize, String categoryCode);
 }

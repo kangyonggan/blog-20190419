@@ -51,7 +51,7 @@ public class ArticleController extends BaseController {
     public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
                        @RequestParam(value = "categoryCode", required = false, defaultValue = "") String categoryCode,
                        Model model) {
-        List<Article> articles = articleService.searchArticles(pageNum, AppConstants.PAGE_SIZE / 2, null, categoryCode);
+        List<Article> articles = articleService.findSomeArticles(pageNum, AppConstants.PAGE_SIZE / 2, categoryCode);
         PageInfo<Article> page = new PageInfo<>(articles);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
         List<Article> topArticles = articleService.findTopArticles();

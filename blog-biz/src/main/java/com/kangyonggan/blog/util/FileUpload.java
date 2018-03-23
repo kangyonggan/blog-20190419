@@ -110,14 +110,15 @@ public class FileUpload {
      * 上传文件
      *
      * @param file
+     * @param prefix
      * @return
      * @throws Exception
      */
-    public static String upload(MultipartFile file) throws FileUploadException {
+    public static String upload(MultipartFile file, String prefix) throws FileUploadException {
         String fileName = "";
         if (file.getSize() != 0) {
             try {
-                fileName = extractFilePath(file);
+                fileName = extractFilePath(file, prefix);
                 File desc = getAbsolutePath(fileName);
                 file.transferTo(desc);
             } catch (Exception e) {
@@ -163,28 +164,25 @@ public class FileUpload {
      * @param file
      * @return
      */
-    public static String extractFilePath(MultipartFile file) {
+    public static String extractFilePath(MultipartFile file, String prefix) {
         String fileExt = FilenameUtils.getExtension(file.getOriginalFilename());
-        return extractFilePathByExtension(fileExt, "");
+        return extractFilePathByExtension(fileExt, prefix);
     }
 
     /**
      * 根据根据扩展名和后缀得到新的文件路径
      *
      * @param extension
-     * @param suffix
+     * @param prefix
      * @return
      */
-    private static String extractFilePathByExtension(String extension, String suffix) {
-        StringBuilder tempPath = new StringBuilder();
-        tempPath.append(AppConstants.FILE_UPLOAD);
+    private static String extractFilePathByExtension(String extension, String prefix) {
         byte[] salt = Digests.generateSalt(AppConstants.SALT_SIZE);
         byte[] hashPassword = Digests.sha1(StringUtils.EMPTY.getBytes(), salt, AppConstants.HASH_INTERATIONS);
-        tempPath.append(DateUtil.getDate()).append("_").append(Encodes.encodeHex(hashPassword));
 
-        if (StringUtils.isNoneBlank(suffix)) {
-            tempPath.append("_").append(suffix);
-        }
+        StringBuilder tempPath = new StringBuilder();
+        tempPath.append(AppConstants.FILE_UPLOAD).append(prefix).append("_");
+        tempPath.append(DateUtil.getDate()).append("_").append(Encodes.encodeHex(hashPassword));
 
         tempPath.append(".").append(extension);
         return tempPath.toString();

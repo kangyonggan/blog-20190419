@@ -85,7 +85,10 @@
                 <#if tools?size gt 0>
                     <#list tools as tool>
                         <li>
-                            <a href="${ctx}/tool/${tool.code}">${tool.name}<span>[${tool.createdTime?date}]</span></a>
+                            <a href="${ctx}/tool/${tool.id}">
+                                <span class="nowrap">${tool.name}</span>
+                                <div>[${tool.createdTime?date}]</div>
+                            </a>
                         </li>
                     </#list>
                 <#else>

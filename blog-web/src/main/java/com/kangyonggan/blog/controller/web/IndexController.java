@@ -35,8 +35,8 @@ public class IndexController extends BaseController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
-        List<Article> articles = articleService.searchArticles(1, 6, null, null);
-        List<Tool> tools = toolService.findTopTools(6);
+        List<Article> articles = articleService.findSomeArticles(1, 6, null);
+        List<Tool> tools = toolService.findSomeTools(6);
 
         model.addAttribute("articles", articles);
         model.addAttribute("tools", tools);

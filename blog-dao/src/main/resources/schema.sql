@@ -232,7 +232,7 @@ CREATE TABLE tb_tool
   COMMENT '工具代码',
   name         VARCHAR(32)                           NOT NULL
   COMMENT '工具名称',
-  icon         VARCHAR(64)                           NOT NULL
+  icon         VARCHAR(128)                          NOT NULL                    DEFAULT ''
   COMMENT '图标',
   is_top       TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '是否推荐:{0:不推荐, 1:推荐}',

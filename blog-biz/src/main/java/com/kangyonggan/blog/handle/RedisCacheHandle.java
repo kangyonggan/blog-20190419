@@ -28,7 +28,7 @@ public class RedisCacheHandle implements CacheHandle {
     @Override
     public void delete(String... keys) {
         for (String key : keys) {
-            getRedisService().delete(key);
+            getRedisService().deleteAll(key);
         }
     }
 

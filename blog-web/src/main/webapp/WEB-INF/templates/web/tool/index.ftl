@@ -13,8 +13,12 @@
         <#if tools?size gt 0>
             <#list tools as tool>
                 <div class="item">
-                    <a href="${ctx}/tool/${tool.code}">
-                        <img src="${ctx}/${tool.icon}"/>
+                    <a href="${ctx}/tool/${tool.id}">
+                        <#if tool.icon==''>
+                            <img src="${ctx}/static/app/images/default-tool.png"/>
+                        <#else>
+                            <img src="${ctx}/${tool.icon}"/>
+                        </#if>
                         <p>${tool.name}</p>
                     </a>
                 </div>
