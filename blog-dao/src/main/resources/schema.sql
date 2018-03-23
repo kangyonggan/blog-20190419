@@ -328,4 +328,5 @@ VALUES
 INSERT INTO tb_tool
 (code, name, icon)
 VALUES
-  ('qr', '生成二维码', 'static/app/images/tools/qr.png')
+  ('qr', '生成二维码', 'static/app/images/tools/qr.png'),
+  ('qr2', '解析二维码', 'static/app/images/tools/qr2.png');

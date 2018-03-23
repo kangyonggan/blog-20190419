@@ -116,8 +116,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
     }
 
     @Override
-    @Log
-    public Map<String, Object> handle(Tool tool, ToolDto toolDto) {
+    public Map<String, Object> handle(Tool tool, ToolDto toolDto, MultipartFile file) {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put(AppConstants.RESP_CO, Resp.SUCCESS.getRespCo());
         resultMap.put(AppConstants.RESP_MSG, Resp.SUCCESS.getRespMsg());
@@ -126,6 +125,9 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
             if (tool.getCode().equals("qr")) {
                 // 生成二维码
                 qrHandle(toolDto, resultMap);
+            } else if (tool.getCode().equals("qr2")) {
+                // 二维码解析
+                qr2Handle(file, resultMap);
             } else {
                 resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 resultMap.put(AppConstants.RESP_MSG, "暂不支持此工具");
@@ -133,14 +135,14 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         } catch (Exception e) {
             log.error("工具调用异常", e);
             resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
-            resultMap.put(AppConstants.RESP_MSG, e.getMessage());
+            resultMap.put(AppConstants.RESP_MSG, e.getMessage() == null ? Resp.FAILURE.getRespMsg() : e.getMessage());
         }
 
         return resultMap;
     }
 
     /**
-     * 处理二维码
+     * 生成二维码
      *
      * @param toolDto
      * @param resultMap
@@ -153,5 +155,19 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         QrCodeUtil.genQrCode(name, toolDto.getData(), toolDto.getSize());
         log.info("二维码生成成功，路径： {}", qrName);
         resultMap.put("result", AppConstants.FILE_UPLOAD + qrName);
+    }
+
+    /**
+     * 二维码解析
+     *
+     * @param file
+     * @param resultMap
+     * @throws IOException
+     * @throws WriterException
+     */
+    private void qr2Handle(MultipartFile file, Map<String, Object> resultMap) throws Exception {
+        String result = QrCodeUtil.decode(file.getInputStream());
+        log.info("二维码解析结果：{}", result);
+        resultMap.put("result", result);
     }
 }

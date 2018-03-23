@@ -84,7 +84,8 @@ public interface ToolService {
      *
      * @param tool
      * @param toolDto
+     * @param file
      * @return
      */
-    Map<String,Object> handle(Tool tool, ToolDto toolDto);
+    Map<String, Object> handle(Tool tool, ToolDto toolDto, MultipartFile file);
 }

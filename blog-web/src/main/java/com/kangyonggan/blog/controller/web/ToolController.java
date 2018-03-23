@@ -4,12 +4,15 @@ import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.dto.ToolDto;
 import com.kangyonggan.blog.service.ToolService;
 import com.kangyonggan.blog.vo.Tool;
+import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -56,13 +59,17 @@ public class ToolController extends BaseController {
      *
      * @param id
      * @param toolDto
+     * @param file
      * @param model
      * @return
+     * @throws FileUploadException
      */
     @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.POST)
-    public String submit(@PathVariable("id") Long id, ToolDto toolDto, Model model) {
+    public String submit(@PathVariable("id") Long id, ToolDto toolDto,
+                         @RequestParam(value = "file", required = false) MultipartFile file,
+                         Model model) throws FileUploadException {
         Tool tool = toolService.findToolById(id);
-        Map<String, Object> resultMap = toolService.handle(tool, toolDto);
+        Map<String, Object> resultMap = toolService.handle(tool, toolDto, file);
 
         model.addAttribute("tool", tool);
         model.addAttribute("resultMap", resultMap);
