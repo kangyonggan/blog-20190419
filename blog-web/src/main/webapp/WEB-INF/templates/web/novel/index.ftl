@@ -1,4 +1,5 @@
 <#assign title="工具"/>
+<#assign active_novel="active"/>
 
 <@override name="main">
 <div id="main">

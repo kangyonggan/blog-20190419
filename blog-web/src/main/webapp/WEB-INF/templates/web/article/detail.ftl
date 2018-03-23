@@ -1,4 +1,5 @@
-<#assign title="博文"/>
+<#assign title="${article.title}"/>
+<#assign active_article="active"/>
 <#assign categoryCode="${article.categoryCode}"/>
 
 <@override name="style">

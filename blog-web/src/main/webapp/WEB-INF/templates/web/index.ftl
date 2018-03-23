@@ -1,4 +1,5 @@
 <#assign title="首页"/>
+<#assign active_index="active"/>
 
 <@override name="style">
 <link rel="stylesheet" href="${ctx}/static/app/css/unslider.css"/>
@@ -55,14 +56,20 @@
 
         <div class="list">
             <ul>
-                <#list articles as article>
-                    <li>
-                        <a href="${ctx}/article/${article.id}">
-                            <span class="nowrap">${article.title}</span>
-                            <div>[${article.createdTime?date}]</div>
-                        </a>
-                    </li>
-                </#list>
+                <#if articles?size gt 0>
+                    <#list articles as article>
+                        <li>
+                            <a href="${ctx}/article/${article.id}">
+                                <span class="nowrap">${article.title}</span>
+                                <div>[${article.createdTime?date}]</div>
+                            </a>
+                        </li>
+                    </#list>
+                <#else>
+                    <div class="empty">
+                        没有文章
+                    </div>
+                </#if>
             </ul>
         </div>
     </div>
@@ -70,17 +77,22 @@
     <div class="panel">
         <div class="toolbar">
             <div class="title">常用工具</div>
-            <a href="#" class="more"><span class="icon">+</span>更多</a>
+            <a href="${ctx}/tool" class="more"><span class="icon">+</span>更多</a>
         </div>
 
         <div class="list">
             <ul>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                <#if tools?size gt 0>
+                    <#list tools as tool>
+                        <li>
+                            <a href="${ctx}/tool/${tool.code}">${tool.name}<span>[${tool.createdTime?date}]</span></a>
+                        </li>
+                    </#list>
+                <#else>
+                    <div class="empty">
+                        没有工具
+                    </div>
+                </#if>
             </ul>
         </div>
     </div>

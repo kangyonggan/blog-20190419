@@ -1,5 +1,11 @@
-<#assign title="博文"/>
+<#assign active_article="active"/>
 <#assign categoryCode = RequestParameters.categoryCode!'' />
+<#list categories as category>
+    <#if categoryCode==category.code>
+        <#assign title="${category.name}"/>
+    </#if>
+</#list>
+<#if categoryCode==''><#assign title="全部栏目"/></#if>
 
 <@override name="breadcrumbs">
 <#include "breadcrumbs.ftl"/>
@@ -15,12 +21,7 @@
     <div class="right">
         <div class="content">
             <div class="title">
-                <span>
-                    <#list categories as category>
-                        <#if categoryCode==category.code>${category.name}</#if>
-                    </#list>
-                    <#if categoryCode==''>全部栏目</#if>
-                </span>
+                <span>${title}</span>
             </div>
 
             <ul class="list">
@@ -37,7 +38,7 @@
                         </li>
                     </#list>
                 <#else>
-                    <div class="empty">没有内容</div>
+                    <div class="empty">没有文章</div>
                 </#if>
             </ul>
         </div>

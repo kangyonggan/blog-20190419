@@ -60,7 +60,11 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     @Log
     @Cache(key = "article:id:${id}")
     public Article findArticleById(Long id) {
-        return myMapper.selectByPrimaryKey(id);
+        Article article = new Article();
+        article.setId(id);
+        article.setIsDeleted(AppConstants.IS_DELETED_NO);
+
+        return myMapper.selectOne(article);
     }
 
     @Override

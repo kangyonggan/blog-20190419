@@ -153,8 +153,6 @@ CREATE TABLE tb_category
   COMMENT '更新时间'
 )
   COMMENT '栏目表';
-CREATE UNIQUE INDEX id_UNIQUE
-  ON tb_category (id);
 CREATE UNIQUE INDEX code_type_UNIQUE
   ON tb_category (code, type);
 CREATE INDEX id_type
@@ -217,10 +215,37 @@ CREATE TABLE tb_attachment
   COMMENT '更新时间'
 )
   COMMENT '附件表';
-CREATE UNIQUE INDEX id_UNIQUE
-  ON tb_attachment (id);
 CREATE INDEX id_type_source_id
   ON tb_attachment (type, source_id);
+
+-- ----------------------------
+--  Table structure for tb_tool
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_tool;
+
+CREATE TABLE tb_tool
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  code         VARCHAR(32)                           NOT NULL
+  COMMENT '工具代码',
+  name         VARCHAR(32)                           NOT NULL
+  COMMENT '工具名称',
+  icon         VARCHAR(64)                           NOT NULL
+  COMMENT '图标',
+  is_top       TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '是否推荐:{0:不推荐, 1:推荐}',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '工具表';
+CREATE UNIQUE INDEX code_UNIQUE
+  ON tb_tool (code);
 #====================初始数据====================#
 
 -- ----------------------------

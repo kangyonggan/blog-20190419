@@ -30,15 +30,15 @@
 
 <div id="navbar">
     <ul>
-        <li class="active"><a href="${ctx}/">首页</a></li>
-        <li><a href="${ctx}/article">文章</a></li>
-        <li><a href="${ctx}/tool">工具</a></li>
-        <li><a href="${ctx}/novel">小说</a></li>
-        <li><a href="#">音乐</a></li>
-        <li><a href="#">生活</a></li>
-        <li><a href="#">相册</a></li>
-        <li><a href="#">关于我</a></li>
-        <li><a href="#">留言板</a></li>
+        <li class="${active_index!''}"><a href="${ctx}/">首页</a></li>
+        <li class="${active_article!''}"><a href="${ctx}/article">文章</a></li>
+        <li class="${active_tool!''}"><a href="${ctx}/tool">工具</a></li>
+        <li class="${active_novel!''}"><a href="${ctx}/novel">小说</a></li>
+        <li class="${active_music!''}"><a href="#">音乐</a></li>
+        <li class="${active_life!''}"><a href="#">生活</a></li>
+        <li class="${active_photo!''}"><a href="#">相册</a></li>
+        <li class="${active_about!''}"><a href="#">关于我</a></li>
+        <li class="${active_guest!''}"><a href="#">留言板</a></li>
     </ul>
     <div class="breadcrumbs">
         您的当前位置：<@block name="breadcrumbs"/>
