@@ -7,6 +7,7 @@ import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.service.ArticleService;
 import com.kangyonggan.blog.service.AttachmentService;
 import com.kangyonggan.blog.service.CategoryService;
+import com.kangyonggan.blog.util.MarkdownUtil;
 import com.kangyonggan.blog.vo.Article;
 import com.kangyonggan.blog.vo.Attachment;
 import com.kangyonggan.blog.vo.Category;
@@ -110,7 +111,7 @@ public class DashboardManageArticleController extends BaseController {
      */
     @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
     @RequiresPermissions("MANAGE_ARTICLE")
-    public String create(@PathVariable("id") Long id, Model model) {
+    public String edit(@PathVariable("id") Long id, Model model) {
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
         List<Attachment> attachments = attachmentService.findAttachmentsByTypeAndSourceId(AttachmentType.ARTICLE.getType(), id);
 
@@ -118,6 +119,27 @@ public class DashboardManageArticleController extends BaseController {
         model.addAttribute("attachments", attachments);
         model.addAttribute("article", articleService.findArticleById(id));
         return getPathForm();
+    }
+
+    /**
+     * 文章详情
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.GET)
+    @RequiresPermissions("MANAGE_ARTICLE")
+    public String detail(@PathVariable("id") Long id, Model model) {
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
+        List<Attachment> attachments = attachmentService.findAttachmentsByTypeAndSourceId(AttachmentType.ARTICLE.getType(), id);
+        Article article = articleService.findArticleById(id);
+        article.setContent(MarkdownUtil.markdownToHtml(article.getContent()));
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("attachments", attachments);
+        model.addAttribute("article", article);
+        return getPathDetail();
     }
 
     /**
@@ -142,6 +164,21 @@ public class DashboardManageArticleController extends BaseController {
         }
 
         return resultMap;
+    }
+
+    /**
+     * 删除附件
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "deleteAttachment/{id:[\\d]+}", method = RequestMethod.GET)
+    @ResponseBody
+    @RequiresPermissions("MANAGE_ARTICLE")
+    public Map<String, Object> deleteAttachment(@PathVariable("id") Long id) {
+        attachmentService.deleteAttachment(id);
+
+        return getResultMap();
     }
 
     /**

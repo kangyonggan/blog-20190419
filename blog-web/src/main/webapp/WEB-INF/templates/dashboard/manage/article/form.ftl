@@ -20,7 +20,7 @@
         <div class="form-group">
             <label for="summary" class="col-sm-3 control-label no-padding-right required">文章摘要</label>
             <div class="col-xs-12 col-sm-5">
-            <@s.formInput "article.summary" 'class="form-control" placeholder="请输入文章摘要，最多64个字符"' />
+            <@s.formInput "article.summary" 'class="form-control" placeholder="请输入文章摘要，最多128个字符"' />
             </div>
         </div>
 
@@ -53,7 +53,8 @@
                             <a class="form-control" href="${ctx}/${attachment.url}" target="_blank">
                             ${attachment.originalFilename}
                             </a>
-                            <a class="remove" href="javascript:" data-name="${attachment.originalFilename}">
+                            <a class="remove" href="javascript:" data-url="${ctx}/dashboard/manage/article/deleteAttachment/${attachment.id}"
+                               data-name="${attachment.originalFilename}" data-article-id="${article.id}">
                                 <i class=" ace-icon fa fa-times"></i>
                             </a>
                         </div>

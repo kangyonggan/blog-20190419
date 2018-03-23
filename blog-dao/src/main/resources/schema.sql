@@ -172,7 +172,7 @@ CREATE TABLE tb_article
   COMMENT '主键, 自增',
   title         VARCHAR(64)                           NOT NULL
   COMMENT '文章标题',
-  summary       VARCHAR(64)                           NOT NULL
+  summary       VARCHAR(128)                          NOT NULL
   COMMENT '摘要',
   category_code VARCHAR(32)                           NOT NULL
   COMMENT '栏目代码',

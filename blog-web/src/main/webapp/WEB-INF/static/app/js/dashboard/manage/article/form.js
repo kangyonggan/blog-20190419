@@ -26,7 +26,7 @@ $(function () {
             },
             summary: {
                 required: true,
-                rangelength: [1, 64]
+                rangelength: [1, 128]
             },
             categoryCode: {
                 required: true
@@ -62,9 +62,19 @@ $(function () {
         errorClass: "error"
     });
 
+    /**
+     * 删除附件
+     */
     $(".attachment .remove").click(function () {
+        var articleId = $(this).attr("data-article-id");
+        var url = $(this).attr("data-url");
         $.messager.confirm("提示", "确定删除[" + $(this).attr("data-name") + "]吗?", function () {
-
+            $.get(url).success(function () {
+                window.location.hash = "manage/article/" + articleId + "/edit?r=" + Math.random();
+                Message.success("操作成功");
+            }).error(function () {
+                Message.error("网络错误，请稍后重试");
+            })
         });
     });
 });
