@@ -61,4 +61,29 @@ public class ToolDto implements Serializable {
      */
     private String charset;
 
+    /**
+     * 0: 阴历 / 1: 阳历
+     */
+    private String lunar;
+
+    /**
+     * 年份
+     */
+    private int year;
+
+    /**
+     * 月份
+     */
+    private int month;
+
+    /**
+     * 日期
+     */
+    private int day;
+
+    /**
+     * 时辰
+     */
+    private int hour;
+
 }

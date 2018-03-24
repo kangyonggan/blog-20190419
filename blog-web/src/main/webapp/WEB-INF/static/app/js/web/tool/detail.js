@@ -41,11 +41,11 @@ $(function () {
             },
             startAge: {
                 required: true,
-                rangelength: [1, 100]
+                range: [1, 100]
             },
             endAge: {
                 required: true,
-                rangelength: [1, 100]
+                range: [1, 100]
             },
             sex: {
                 required: true
@@ -55,7 +55,22 @@ $(function () {
             },
             count: {
                 required: true,
-                rangelength: [1, 100]
+                range: [1, 100]
+            },
+            lunar: {
+                required: true
+            },
+            year: {
+                required: true,
+                range: [1900, 2049]
+            },
+            month: {
+                required: true,
+                range: [1, 12]
+            },
+            hour: {
+                required: true,
+                range: [0, 23]
             },
             charset: {
                 required: true

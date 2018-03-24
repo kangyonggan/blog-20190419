@@ -26,6 +26,8 @@ import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -156,6 +158,8 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
                 model.addAttribute(RESULT, IDCardUtil.genIdCard(toolDto.getProv(), toolDto.getStartAge(), toolDto.getEndAge(), toolDto.getSex(), toolDto.getLen(), toolDto.getCount()));
             } else if (tool.getCode().equals("charset")) {
                 model.addAttribute(RESULT, CharsetUtil.convert(toolDto.getData(), toolDto.getCharset()));
+            } else if (tool.getCode().equals("bazi")) {
+                bazihandle(toolDto, model);
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 model.addAttribute(AppConstants.RESP_MSG, "暂不支持此工具");
@@ -165,6 +169,42 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
             model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
             model.addAttribute(AppConstants.RESP_MSG, e.getMessage() == null ? Resp.FAILURE.getRespMsg() : e.getMessage());
         }
+    }
+
+    /**
+     * 八字、五行
+     *
+     * @param toolDto
+     * @param model
+     * @throws Exception
+     */
+    private void bazihandle(ToolDto toolDto, Model model) throws Exception {
+        String bazi;
+        String yinli;
+        String yangli;
+        if (toolDto.getLunar().equals("0")) {
+            bazi = DestinyUtil.getEightWord4Lunar(toolDto.getYear(), toolDto.getMonth(), toolDto.getDay(), toolDto.getHour());
+            yinli = LocalDate.of(toolDto.getYear(), toolDto.getMonth(), toolDto.getDay()).format(DateTimeFormatter.BASIC_ISO_DATE);
+            yangli = CalendarUtil.lunarToSolar(yinli);
+        } else {
+            bazi = DestinyUtil.getEightWord(toolDto.getYear(), toolDto.getMonth(), toolDto.getDay(), toolDto.getHour());
+            yangli = LocalDate.of(toolDto.getYear(), toolDto.getMonth(), toolDto.getDay()).format(DateTimeFormatter.BASIC_ISO_DATE);
+            yinli = CalendarUtil.solarToLunar(yangli);
+        }
+        String wuxing = DestinyUtil.getWuXing(bazi);
+        String shengxiao = DestinyUtil.getShengXiao(Integer.parseInt(yangli.substring(0, 4)));
+        String yunshi = DestinyUtil.getYunShi(wuxing.substring(4, 5), Integer.parseInt(yangli.substring(4, 6)));
+
+        StringBuilder result = new StringBuilder();
+        result.append("阴历出生年月：").append(yinli).append("\n");
+        result.append("阳历出生年月：").append(yangli).append("\n");
+        result.append("生辰八字：").append(bazi).append("\n");
+        result.append("五行：").append(wuxing).append("\n");
+        result.append(DestinyUtil.wuxing(wuxing));
+        result.append("生肖：").append(shengxiao).append("\n");
+        result.append("运势：").append(yunshi).append("\n");
+
+        model.addAttribute("result", result.toString());
     }
 
     /**
