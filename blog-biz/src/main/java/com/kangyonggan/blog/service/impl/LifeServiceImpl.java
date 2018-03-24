@@ -1,6 +1,7 @@
 package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.AttachmentType;
 import com.kangyonggan.blog.mapper.AttachmentMapper;
 import com.kangyonggan.blog.service.LifeService;
@@ -80,6 +81,22 @@ public class LifeServiceImpl extends BaseService<Life> implements LifeService {
     @Log
     public void deleteLife(Long id) {
         myMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Life> findSomeLife(int pageNum, int pageSize, String categoryCode) {
+        Example example = new Example(Life.class);
+        Example.Criteria criteria = example.createCriteria();
+
+        criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            criteria.andEqualTo("categoryCode", categoryCode);
+        }
+
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(pageNum, pageSize);
+        return myMapper.selectByExample(example);
     }
 
     /**

@@ -12,7 +12,6 @@
 <@override name="main">
 <div id="main">
     <div id="top1">
-        <!-- 把要轮播的地方写上来 -->
         <div class="banner" id="banner">
             <ul>
                 <li><img src="${ctx}/static/app/images/01.jpg" alt="" width="519" height="280"></li>
@@ -31,18 +30,26 @@
         <div id="life-thing">
             <div class="head-name">
                 <div>生活动态</div>
-                <a href="#">+ 更多</a>
+                <a href="${ctx}/life">+ 更多</a>
             </div>
-            <div class="space-10"></div>
-            <div class="title">今天上班路上看到两个电瓶车追尾了</div>
-            <div class="desc">2018年11月5-10日，首届中国国际进口博览会将在上海国家会展中心举行。闵行区毗邻国家会展中心，城市保障任务艰巨，为抓好各项组织筹备和服务保障工作...</div>
+            <div class="space-6"></div>
+            <a class="title" href="${ctx}/life/${lifes[0].id}">
+            ${lifes[0].title}
+            </a>
+            <div class="desc">${lifes[0].summary}</div>
 
             <div class="list">
                 <ul>
-                    <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                    <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                    <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
-                    <li><a href="#">今天上班路上看到两个电瓶车追尾了<span>[2018-03-12]</span></a></li>
+                    <#list lifes as life>
+                        <#if life_index gt 0>
+                            <li>
+                                <a href="${ctx}/life/${life.id}">
+                                    <span class="nowrap">${life.title}</span>
+                                    <span class="date">[${life.createdTime?date}]</span>
+                                </a>
+                            </li>
+                        </#if>
+                    </#list>
                 </ul>
             </div>
         </div>

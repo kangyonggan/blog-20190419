@@ -62,4 +62,14 @@ public interface LifeService {
      * @param id
      */
     void deleteLife(Long id);
+
+    /**
+     * 查找一些生活动态
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param categoryCode
+     * @return
+     */
+    List<Life> findSomeLife(int pageNum, int pageSize, String categoryCode);
 }

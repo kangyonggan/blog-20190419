@@ -1,4 +1,4 @@
-<#assign active_article="active"/>
+<#assign active_life="active"/>
 <#assign categoryCode = RequestParameters.categoryCode!'' />
 <#list categories as category>
     <#if categoryCode==category.code>
@@ -26,24 +26,24 @@
 
             <ul class="list">
                 <#if page.list?size gt 0>
-                    <#list page.list as article>
+                    <#list page.list as life>
                         <li>
-                            <a href="${ctx}/article/${article.id}" class="nowrap">${article.title}</a>
+                            <a href="${ctx}/life/${life.id}" class="nowrap">${life.title}</a>
                             <div class="desc">
-                            ${article.summary}
+                            ${life.summary}
                             </div>
                             <div class="date">
-                            ${article.createdTime?date}
+                            ${life.createdTime?date}
                             </div>
                         </li>
                     </#list>
                 <#else>
-                    <div class="empty">没有文章</div>
+                    <div class="empty">没有生活动态</div>
                 </#if>
             </ul>
         </div>
 
-        <@c.web_pagination url="${ctx}/article" param="categoryCode=${categoryCode}"/>
+        <@c.web_pagination url="${ctx}/life" param="categoryCode=${categoryCode}"/>
     </div>
 
     <div class="space-10"></div>
