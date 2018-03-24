@@ -115,17 +115,12 @@
         </div>
         <div class="category">
             <ul>
-                <li class="first"><a href="#">小说分类</a></li>
-                <li class="active"><a href="#">玄幻</a></li>
-                <li><a href="#">都市</a></li>
-                <li><a href="#">修真</a></li>
-                <li><a href="#">历史</a></li>
-                <li><a href="#">言情</a></li>
-                <li><a href="#">网游</a></li>
-                <li><a href="#">科幻</a></li>
-                <li><a href="#">其他</a></li>
+                <li class="first"><a href="javascript:">小说分类</a></li>
+                <#list categories as category>
+                    <li <#if category_index==0>class="active"</#if>><a href="javascript:">${category.name}</a></li>
+                </#list>
             </ul>
-            <a href="#" class="more"><span class="icon">+</span>更多</a>
+            <a href="${ctx}/novel" class="more"><span class="icon">+</span>更多</a>
         </div>
         <div class="book-list">
             <a href="#">
@@ -181,7 +176,7 @@
 </div>
 
 <div id="link">
-    友情链接： <a href="#" target="_blank">相关重要链接</a> | <a href="#" target="_blank">其他链接</a> | <a href="#" target="_blank">使用手册</a>
+    友情链接： <a href="javascript:" target="_blank">相关重要链接</a> | <a href="javascript:" target="_blank">其他链接</a> | <a href="javascript:" target="_blank">使用手册</a>
 </div>
 </@override>
 

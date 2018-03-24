@@ -21,7 +21,7 @@
                 <span>工作台</span>
             </div>
         </a>
-        <form action="#" class="form">
+        <form action="${ctx}/search" class="form" method="get" novalidate>
             <input type="text" name="key" placeholder="搜索..."/>
         </form>
     </div>

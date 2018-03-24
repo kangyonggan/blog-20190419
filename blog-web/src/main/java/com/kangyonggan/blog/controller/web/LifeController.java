@@ -56,7 +56,7 @@ public class LifeController extends BaseController {
     public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
                        @RequestParam(value = "categoryCode", required = false, defaultValue = "") String categoryCode,
                        Model model) {
-        List<Life> lifes = lifeService.findSomeLife(pageNum, AppConstants.PAGE_SIZE / 2, categoryCode);
+        List<Life> lifes = lifeService.findSomeLife(pageNum, 8, categoryCode);
         PageInfo<Life> page = new PageInfo<>(lifes);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.LIFE.getType());
         List<Article> topArticles = articleService.findTopArticles();
