@@ -1,6 +1,3 @@
-<#assign data = RequestParameters.data!'' />
-<#assign size = RequestParameters.size!'200' />
-
 <div style="width: 600px;margin: 0 auto">
     <div class="form-group">
         <label class="required">上传二维码：</label>

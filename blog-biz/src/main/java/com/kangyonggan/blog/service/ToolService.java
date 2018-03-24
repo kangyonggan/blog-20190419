@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -84,11 +83,12 @@ public interface ToolService {
      * 处理请求
      *
      * @param tool
+     * @param model
      * @param toolDto
      * @param file
      * @return
      */
-    Map<String, Object> handle(Tool tool, ToolDto toolDto, MultipartFile file);
+    void handle(Tool tool, Model model, ToolDto toolDto, MultipartFile file);
 
     /**
      * 预处理请求

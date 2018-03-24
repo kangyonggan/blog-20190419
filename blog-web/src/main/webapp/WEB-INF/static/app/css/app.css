@@ -978,9 +978,7 @@ table.ascll-table {
 }
 
 .tool-result {
-    border: 1px dotted #c33b00;
     margin: 30px;
-    border-radius: 10px;
     padding: 10px;
 }
 

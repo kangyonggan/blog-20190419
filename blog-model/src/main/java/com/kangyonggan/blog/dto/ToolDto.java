@@ -21,4 +21,9 @@ public class ToolDto implements Serializable {
      */
     private int size;
 
+    /**
+     * 数据库方言
+     */
+    private String dialect;
+
 }

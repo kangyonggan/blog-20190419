@@ -71,10 +71,9 @@ public class ToolController extends BaseController {
                          @RequestParam(value = "file", required = false) MultipartFile file,
                          Model model) throws FileUploadException {
         Tool tool = toolService.findToolById(id);
-        Map<String, Object> resultMap = toolService.handle(tool, toolDto, file);
+        toolService.handle(tool, model, toolDto, file);
 
         model.addAttribute("tool", tool);
-        model.addAttribute("resultMap", resultMap);
         return getPathDetail();
     }
 }

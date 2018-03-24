@@ -2,6 +2,7 @@
 <#assign active_tool="active"/>
 
 <@override name="style">
+<link rel="stylesheet" href="${ctx}/static/ace/dist/css/prettify.min.css"/>
 <link rel="stylesheet" href="${ctx}/static/ace/dist/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="${ctx}/static/ace/dist/css/font-awesome.min.css"/>
 <link rel="stylesheet" href="${ctx}/static/ace/dist/css/ace.min.css" class="ace-main-stylesheet"
@@ -25,13 +26,9 @@
 
     <div class="space-20"></div>
 
-    <#if resultMap??>
+    <#if respCo??>
         <div class="tool-result">
-            <#if resultMap.respCo=='0000'>
-            <#include "result/${tool.code}.ftl"/>
-            <#else>
-            ${resultMap.respMsg}
-            </#if>
+            <pre><code><#if respCo=='0000'><#include "result/${tool.code}.ftl"/><#else>${respMsg}</#if></code></pre>
         </div>
         <div class="space-20"></div>
     </#if>
@@ -46,6 +43,7 @@
 <script src="${ctx}/static/libs/jquery/jquery.form.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.validate.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.validate.extends.js"></script>
+<script src="${ctx}/static/ace/dist/js/prettify.min.js"></script>
 <script src="${ctx}/static/app/js/web/tool/detail.js"></script>
 </@override>
 

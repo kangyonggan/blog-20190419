@@ -1,1 +1,1 @@
-<img src="${ctx}/${resultMap.result}"/>
+<img src="${ctx}/${result}"/>

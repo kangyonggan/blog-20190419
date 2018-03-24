@@ -1,1 +1,1 @@
-${resultMap.result}
+${result}

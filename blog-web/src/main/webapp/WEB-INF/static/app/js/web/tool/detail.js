@@ -46,4 +46,7 @@ $(function () {
         $form.find("input,textarea,select").val("");
         return false;
     });
+
+    $(".tool-result pre").addClass("prettyprint linenums");
+    prettyPrint();
 });

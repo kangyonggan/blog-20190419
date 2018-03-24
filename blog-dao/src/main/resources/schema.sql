@@ -367,4 +367,5 @@ VALUES
   ('qr2', '解析二维码', 'static/app/images/tools/qr2.png'),
   ('ascll', 'ASCLL码对照表', 'static/app/images/tools/ascll.png'),
   ('html', 'HTML转义字符', 'static/app/images/tools/html.png'),
-  ('xml', 'XML格式化', 'static/app/images/tools/xml.png');
+  ('xml', 'XML格式化', 'static/app/images/tools/xml.png'),
+  ('sql', 'SQL格式化', 'static/app/images/tools/sql.png');

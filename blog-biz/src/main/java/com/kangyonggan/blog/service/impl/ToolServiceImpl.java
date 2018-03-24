@@ -1,8 +1,10 @@
 package com.kangyonggan.blog.service.impl;
 
+import com.alibaba.druid.sql.SQLUtils;
 import com.github.pagehelper.PageHelper;
 import com.google.zxing.WriterException;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.Dialect;
 import com.kangyonggan.blog.constants.DictionaryType;
 import com.kangyonggan.blog.constants.Resp;
 import com.kangyonggan.blog.dto.ToolDto;
@@ -24,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -124,32 +125,52 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
     }
 
     @Override
-    public Map<String, Object> handle(Tool tool, ToolDto toolDto, MultipartFile file) {
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put(AppConstants.RESP_CO, Resp.SUCCESS.getRespCo());
-        resultMap.put(AppConstants.RESP_MSG, Resp.SUCCESS.getRespMsg());
+    public void handle(Tool tool, Model model, ToolDto toolDto, MultipartFile file) {
+        model.addAttribute(AppConstants.RESP_CO, Resp.SUCCESS.getRespCo());
+        model.addAttribute(AppConstants.RESP_MSG, Resp.SUCCESS.getRespMsg());
 
         try {
             if (tool.getCode().equals("qr")) {
                 // 生成二维码
-                qrHandle(toolDto, resultMap);
+                qrHandle(toolDto, model);
             } else if (tool.getCode().equals("qr2")) {
                 // 二维码解析
-                qr2Handle(file, resultMap);
+                qr2Handle(file, model);
             } else if (tool.getCode().equals("xml")) {
                 // xml格式化
-                resultMap.put("result", XmlUtil.format(toolDto.getData()));
+                model.addAttribute("result", XmlUtil.format(toolDto.getData()));
+            } else if (tool.getCode().equals("sql")) {
+                // sql格式化
+                sqlHandle(toolDto, model);
             } else {
-                resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
-                resultMap.put(AppConstants.RESP_MSG, "暂不支持此工具");
+                model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
+                model.addAttribute(AppConstants.RESP_MSG, "暂不支持此工具");
             }
         } catch (Exception e) {
             log.error("工具调用异常", e);
-            resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
-            resultMap.put(AppConstants.RESP_MSG, e.getMessage() == null ? Resp.FAILURE.getRespMsg() : e.getMessage());
+            model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
+            model.addAttribute(AppConstants.RESP_MSG, e.getMessage() == null ? Resp.FAILURE.getRespMsg() : e.getMessage());
+        }
+    }
+
+    /**
+     * SQL格式化
+     *
+     * @param toolDto
+     * @param model
+     */
+    private void sqlHandle(ToolDto toolDto, Model model) {
+        String result = "不支持的方言";
+        if (Dialect.MySQL.getDialect().equals(toolDto.getDialect())) {
+            result = SQLUtils.formatMySql(toolDto.getData());
+        } else if (Dialect.Oracle.getDialect().equals(toolDto.getDialect())) {
+            result = SQLUtils.formatOracle(toolDto.getData());
+        } else if (Dialect.SQLServer.getDialect().equals(toolDto.getDialect())) {
+            result = SQLUtils.formatSQLServer(toolDto.getData());
         }
 
-        return resultMap;
+        model.addAttribute("dialects", Dialect.values());
+        model.addAttribute("result", result);
     }
 
     @Override
@@ -160,6 +181,8 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         } else if (tool.getCode().equals("html")) {
             List<Dictionary> htmls = dictionaryService.findDictionariesByType(DictionaryType.HTML.getType());
             model.addAttribute("htmls", htmls);
+        } else if (tool.getCode().equals("sql")) {
+            model.addAttribute("dialects", Dialect.values());
         }
     }
 
@@ -167,29 +190,29 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
      * 生成二维码
      *
      * @param toolDto
-     * @param resultMap
+     * @param model
      * @throws IOException
      * @throws WriterException
      */
-    private void qrHandle(ToolDto toolDto, Map<String, Object> resultMap) throws IOException, WriterException {
+    private void qrHandle(ToolDto toolDto, Model model) throws IOException, WriterException {
         String qrName = RandomUtil.getRandomString("QR") + ".png";
         String name = PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + AppConstants.FILE_UPLOAD + qrName;
         QrCodeUtil.genQrCode(name, toolDto.getData(), toolDto.getSize());
-        log.info("二维码生成成功，路径： {}", qrName);
-        resultMap.put("result", AppConstants.FILE_UPLOAD + qrName);
+        log.info("二维码生成成功，路径： {}", name);
+        model.addAttribute("result", AppConstants.FILE_UPLOAD + qrName);
     }
 
     /**
      * 二维码解析
      *
      * @param file
-     * @param resultMap
+     * @param model
      * @throws IOException
      * @throws WriterException
      */
-    private void qr2Handle(MultipartFile file, Map<String, Object> resultMap) throws Exception {
+    private void qr2Handle(MultipartFile file, Model model) throws Exception {
         String result = QrCodeUtil.decode(file.getInputStream());
         log.info("二维码解析结果：{}", result);
-        resultMap.put("result", result);
+        model.addAttribute("result", result);
     }
 }
