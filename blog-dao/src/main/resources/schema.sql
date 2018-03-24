@@ -368,4 +368,5 @@ VALUES
   ('ascll', 'ASCLL码对照表', 'static/app/images/tools/ascll.png'),
   ('html', 'HTML转义字符', 'static/app/images/tools/html.png'),
   ('xml', 'XML格式化', 'static/app/images/tools/xml.png'),
-  ('sql', 'SQL格式化', 'static/app/images/tools/sql.png');
+  ('sql', 'SQL格式化', 'static/app/images/tools/sql.png'),
+  ('json', 'JSON格式化', 'static/app/images/tools/json.png');

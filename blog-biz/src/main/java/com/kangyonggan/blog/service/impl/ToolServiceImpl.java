@@ -142,6 +142,8 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
             } else if (tool.getCode().equals("sql")) {
                 // sql格式化
                 sqlHandle(toolDto, model);
+            } else if (tool.getCode().equals("json")) {
+                model.addAttribute("result", GsonUtil.format(toolDto.getData()));
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 model.addAttribute(AppConstants.RESP_MSG, "暂不支持此工具");
