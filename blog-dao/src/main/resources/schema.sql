@@ -319,6 +319,35 @@ CREATE TABLE tb_guest
 CREATE INDEX id_status
   ON tb_guest (status);
 
+-- ----------------------------
+--  Table structure for tb_life
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_life;
+
+CREATE TABLE tb_life
+(
+  id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  title         VARCHAR(64)                           NOT NULL
+  COMMENT '生活标题',
+  summary       VARCHAR(128)                          NOT NULL
+  COMMENT '摘要',
+  category_code VARCHAR(32)                           NOT NULL
+  COMMENT '栏目代码',
+  content       LONGTEXT                              NOT NULL
+  COMMENT '内容',
+  is_deleted    TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '生活表';
+CREATE INDEX id_category_code
+  ON tb_life (category_code);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -397,10 +426,25 @@ VALUES
   ('linux', 'Linux', 'ARTICLE', 3),
   ('architect', '架构', 'ARTICLE', 4),
   ('code', '代码片段', 'ARTICLE', 5),
-  ('other', '其他', 'ARTICLE', 5);
+  ('other', '其他', 'ARTICLE', 5),
+
+  ('mood', '每日心情', 'LIFE', 0),
+  ('trifle', '生活琐事', 'LIFE', 1),
+  ('goal', '小目标', 'LIFE', 2),
+  ('history', '历史事件', 'LIFE', 3),
+  ('shit', '我的吐槽', 'LIFE', 4),
+
+  ('xuanhuan', '玄幻', 'NOVEL', 0),
+  ('dushi', '都市', 'NOVEL', 1),
+  ('xiuzhen', '修真', 'NOVEL', 2),
+  ('lishi', '历史', 'NOVEL', 3),
+  ('yanqing', '言情', 'NOVEL', 4),
+  ('wangyou', '网友', 'NOVEL', 5),
+  ('kehuan', '科幻', 'NOVEL', 6),
+  ('qita', '其他', 'NOVEL', 7);
 
 INSERT INTO tb_tool
-(code, is_top, name, icon)
+(CODE, is_top, NAME, icon)
 VALUES
   ('qr', 1, '生成二维码', 'static/app/images/tools/qr.png'),
   ('qr2', 1, '解析二维码', 'static/app/images/tools/qr2.png'),

@@ -7,7 +7,8 @@ import lombok.Getter;
  */
 public enum AttachmentType {
 
-    ARTICLE("ARTICLE", "文章");
+    ARTICLE("ARTICLE", "文章"),
+    LIFE("LIFE", "生活");
 
     /**
      * 附件类型

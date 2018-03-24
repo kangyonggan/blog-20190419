@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum CategoryType {
 
     ARTICLE("ARTICLE", "文章"),
-    NOVEL("NOVEL", "小说");
+    NOVEL("NOVEL", "小说"),
+    LIFE("LIFE", "生活");
 
     /**
      * 栏目类型
