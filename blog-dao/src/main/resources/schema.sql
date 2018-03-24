@@ -370,4 +370,5 @@ VALUES
   ('xml', 'XML格式化', 'static/app/images/tools/xml.png'),
   ('sql', 'SQL格式化', 'static/app/images/tools/sql.png'),
   ('json', 'JSON格式化', 'static/app/images/tools/json.png'),
-  ('js', 'JS压缩', 'static/app/images/tools/js.png');
+  ('js', 'JS压缩', 'static/app/images/tools/js.png'),
+  ('css', 'CSS压缩', 'static/app/images/tools/css.png');

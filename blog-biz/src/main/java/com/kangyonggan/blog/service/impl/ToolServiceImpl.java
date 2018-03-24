@@ -145,6 +145,8 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
                 model.addAttribute("result", GsonUtil.format(toolDto.getData()));
             } else if (tool.getCode().equals("js")) {
                 model.addAttribute("result", CompressorUtil.compressJS(toolDto.getData()));
+            } else if (tool.getCode().equals("css")) {
+                model.addAttribute("result", CompressorUtil.compressCSS(toolDto.getData()));
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 model.addAttribute(AppConstants.RESP_MSG, "暂不支持此工具");
