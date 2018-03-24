@@ -375,4 +375,5 @@ VALUES
   ('idcard', '身份证查询', 'static/app/images/tools/idcard.png'),
   ('gencard', '生成身份证', 'static/app/images/tools/gencard.png'),
   ('charset', '编码转换', 'static/app/images/tools/charset.png'),
-  ('bazi', '八字、五行', 'static/app/images/tools/bazi.png');
+  ('bazi', '八字、五行', 'static/app/images/tools/bazi.png'),
+  ('compare', 'properties文件对比', 'static/app/images/tools/compare.png');

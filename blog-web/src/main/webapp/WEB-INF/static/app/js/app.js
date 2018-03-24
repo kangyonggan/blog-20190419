@@ -98,6 +98,7 @@ var showMessage = function (type, message) {
         class_name: type
     });
 };
+
 var Message = {
     success: function (message) {
         showMessage('gritter-success', message);

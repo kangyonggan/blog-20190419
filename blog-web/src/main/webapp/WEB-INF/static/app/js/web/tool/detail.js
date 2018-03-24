@@ -2,7 +2,7 @@ $(function () {
     var $form = $('#tool-form');
     var $btn = $form.find("button");
 
-    var file_input = $form.find('input[type=file]');
+    var file_input = $("#file");
     file_input.ace_file_input({
         style: 'well',
         btn_choose: '点击这里添加图片',
@@ -21,6 +21,24 @@ $(function () {
         event.preventDefault();
     });
 
+    var $props = $("#props");
+    $props.ace_file_input({
+        style: 'well',
+        btn_choose: '点击这里添加两个properties文件',
+        btn_change: null,
+        no_icon: 'ace-icon fa fa-file',
+        droppable: false,
+        allowExt: ["properties"],
+        maxSize: 2097152,//bytes
+        thumbnail: 'fit'
+    });
+
+    $props.on('file.error.ace', function (event, info) {
+        if (info.error_count['size']) Message.warning('超出最大上传限制。');
+        if (info.error_count['ext']) Message.warning('不合法的文件类型。');
+        event.preventDefault();
+    });
+
     $form.validate({
         ignore: '',
         rules: {
@@ -28,6 +46,9 @@ $(function () {
                 required: true
             },
             file: {
+                required: true
+            },
+            props: {
                 required: true
             },
             size: {
@@ -95,3 +116,35 @@ $(function () {
     $(".tool-result pre").addClass("prettyprint linenums");
     prettyPrint();
 });
+
+// 提示信息
+var last_gritter;
+var showMessage = function (type, message) {
+    if (last_gritter) {
+        $.gritter.remove(last_gritter);
+    }
+    last_gritter = $.gritter.add({
+        title: '消息',
+        text: message,
+        time: 1500,
+        class_name: type
+    });
+};
+
+var Message = {
+    success: function (message) {
+        showMessage('gritter-success', message);
+    },
+
+    warning: function (message) {
+        showMessage('gritter-warning', message);
+    },
+
+    error: function (message) {
+        showMessage('gritter-error', message);
+    },
+
+    info: function (message) {
+        showMessage('gritter-info', message);
+    }
+};

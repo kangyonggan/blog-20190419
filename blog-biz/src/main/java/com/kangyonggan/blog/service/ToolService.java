@@ -86,9 +86,10 @@ public interface ToolService {
      * @param model
      * @param toolDto
      * @param file
+     * @param props
      * @return
      */
-    void handle(Tool tool, Model model, ToolDto toolDto, MultipartFile file);
+    void handle(Tool tool, Model model, ToolDto toolDto, MultipartFile file, MultipartFile[] props);
 
     /**
      * 预处理请求

@@ -62,6 +62,7 @@ public class ToolController extends BaseController {
      * @param id
      * @param toolDto
      * @param file
+     * @param props
      * @param model
      * @return
      * @throws FileUploadException
@@ -69,9 +70,10 @@ public class ToolController extends BaseController {
     @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.POST)
     public String submit(@PathVariable("id") Long id, ToolDto toolDto,
                          @RequestParam(value = "file", required = false) MultipartFile file,
+                         @RequestParam(value = "props", required = false) MultipartFile[] props,
                          Model model) throws FileUploadException {
         Tool tool = toolService.findToolById(id);
-        toolService.handle(tool, model, toolDto, file);
+        toolService.handle(tool, model, toolDto, file, props);
 
         model.addAttribute("tool", tool);
         return getPathDetail();

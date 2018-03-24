@@ -3,6 +3,7 @@
 
 <@override name="style">
 <link rel="stylesheet" href="${ctx}/static/ace/dist/css/prettify.min.css"/>
+<link rel="stylesheet" href="${ctx}/static/ace/dist/css/jquery.gritter.min.css"/>
 <link rel="stylesheet" href="${ctx}/static/ace/dist/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="${ctx}/static/ace/dist/css/font-awesome.min.css"/>
 <link rel="stylesheet" href="${ctx}/static/ace/dist/css/ace.min.css" class="ace-main-stylesheet"
@@ -39,6 +40,7 @@
 <script src="${ctx}/static/ace/dist/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace-extra.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace-elements.min.js"></script>
+<script src="${ctx}/static/ace/dist/js/jquery.gritter.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.form.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.validate.min.js"></script>

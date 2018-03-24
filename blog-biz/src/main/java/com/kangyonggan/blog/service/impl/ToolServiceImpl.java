@@ -28,7 +28,10 @@ import tk.mybatis.mapper.entity.Example;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.util.Set;
 
 /**
  * @author kangyonggan
@@ -128,7 +131,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
     }
 
     @Override
-    public void handle(Tool tool, Model model, ToolDto toolDto, MultipartFile file) {
+    public void handle(Tool tool, Model model, ToolDto toolDto, MultipartFile file, MultipartFile[] props) {
         model.addAttribute(AppConstants.RESP_CO, Resp.SUCCESS.getRespCo());
         model.addAttribute(AppConstants.RESP_MSG, Resp.SUCCESS.getRespMsg());
 
@@ -160,6 +163,8 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
                 model.addAttribute(RESULT, CharsetUtil.convert(toolDto.getData(), toolDto.getCharset()));
             } else if (tool.getCode().equals("bazi")) {
                 bazihandle(toolDto, model);
+            } else if (tool.getCode().equals("compare")) {
+                compareHandle(props, model);
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 model.addAttribute(AppConstants.RESP_MSG, "暂不支持此工具");
@@ -169,6 +174,67 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
             model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
             model.addAttribute(AppConstants.RESP_MSG, e.getMessage() == null ? Resp.FAILURE.getRespMsg() : e.getMessage());
         }
+    }
+
+    /**
+     * properties文件对比
+     *
+     * @param files
+     * @param model
+     * @throws Exception
+     */
+    private void compareHandle(MultipartFile[] files, Model model) throws Exception {
+        StringBuilder result = new StringBuilder();
+        if (files.length != 2) {
+            result.append("请选择两个properties文件");
+            model.addAttribute(RESULT, result.toString());
+            return;
+        }
+
+        Properties propLeft = PropertiesUtil.readProperties(files[0].getInputStream());
+        Properties propRight = PropertiesUtil.readProperties(files[1].getInputStream());
+
+        // 文件1中有但是文件2中没有的key
+        List<String> leftHasOnly = compare(propLeft, propRight);
+
+        // 文件2中有但是文件1中没有的key
+        List<String> rightHasOnly = compare(propRight, propLeft);
+
+        // 两个文件中都有，但是值不一样的key
+        List<String> diff = diff(propLeft, propRight);
+
+        if (!leftHasOnly.isEmpty()) {
+            result.append("================================================================\n");
+            result.append("文件一独有的key：\n");
+            for (String key : leftHasOnly) {
+                result.append(key).append("\n");
+            }
+            result.append("================================================================\n\n\n\n");
+        }
+
+        if (!rightHasOnly.isEmpty()) {
+            result.append("================================================================\n");
+            result.append("文件二独有的key：\n");
+            for (String key : rightHasOnly) {
+                result.append(key).append("\n");
+            }
+            result.append("================================================================\n\n\n\n");
+        }
+
+        if (!diff.isEmpty()) {
+            result.append("================================================================\n");
+            result.append("key一样但是值不一样的：\n");
+            for (String key : diff) {
+                result.append(key).append("\n");
+            }
+            result.append("================================================================\n\n\n\n");
+        }
+
+        if (result.length() == 0) {
+            result.append("两个文件key和value都是一样的");
+        }
+
+        model.addAttribute(RESULT, result.toString());
     }
 
     /**
@@ -304,5 +370,68 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         String result = QrCodeUtil.decode(file.getInputStream());
         log.info("二维码解析结果：{}", result);
         model.addAttribute(RESULT, result);
+    }
+
+    /**
+     * 查找first中有的，但是second中没有的
+     *
+     * @param first
+     * @param second
+     * @return
+     */
+    private List<String> compare(Properties first, Properties second) {
+        List<String> list = new ArrayList();
+
+        Set<Object> keys = first.keySet();
+        for (Object keyObj : keys) {
+            String key = (String) keyObj;
+            boolean exist = false;
+            Set<Object> keys2 = second.keySet();
+            for (Object keyObj2 : keys2) {
+                String key2 = (String) keyObj2;
+                if (key.equals(key2)) {
+                    exist = true;
+                }
+            }
+            if (!exist) {
+                list.add(key);
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * 查找key一样，但是值不一样的
+     *
+     * @param first
+     * @param second
+     * @return
+     */
+    private List<String> diff(Properties first, Properties second) {
+        List<String> list = new ArrayList();
+
+        Set<Object> keys = first.keySet();
+        for (Object keyObj : keys) {
+            String key = (String) keyObj;
+            boolean flag = false;
+            Set<Object> keys2 = second.keySet();
+            for (Object keyObj2 : keys2) {
+                String key2 = (String) keyObj2;
+                if (key.equals(key2)) {
+                    if (!first.get(key).equals(second.get(key2))) {
+                        // key一样，但是值不一样
+                        flag = true;
+                    } else {
+                        // 值也一样就pass
+                        break;
+                    }
+                }
+            }
+            if (flag) {
+                list.add(key);
+            }
+        }
+        return list;
     }
 }
