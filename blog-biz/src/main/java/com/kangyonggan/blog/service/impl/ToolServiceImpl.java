@@ -27,7 +27,6 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -144,6 +143,8 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
                 sqlHandle(toolDto, model);
             } else if (tool.getCode().equals("json")) {
                 model.addAttribute("result", GsonUtil.format(toolDto.getData()));
+            } else if (tool.getCode().equals("js")) {
+                model.addAttribute("result", CompressorUtil.compressJS(toolDto.getData()));
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 model.addAttribute(AppConstants.RESP_MSG, "暂不支持此工具");
