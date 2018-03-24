@@ -1046,3 +1046,21 @@ table.ascll-table {
     height: 10px;
     border-bottom: 1px solid #ccc;
 }
+
+.about {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-indent: 40px;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.about div {
+    margin-left: 700px;
+}
+
+.about div span {
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+}

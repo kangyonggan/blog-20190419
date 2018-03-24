@@ -34,9 +34,9 @@
         <li class="${active_article!''}"><a href="${ctx}/article">文章</a></li>
         <li class="${active_tool!''}"><a href="${ctx}/tool">工具</a></li>
         <li class="${active_novel!''}"><a href="${ctx}/novel">小说</a></li>
-        <li class="${active_music!''}"><a href="#">音乐</a></li>
-        <li class="${active_life!''}"><a href="#">生活</a></li>
-        <li class="${active_photo!''}"><a href="#">相册</a></li>
+        <li class="${active_music!''}"><a href="${ctx}/music">音乐</a></li>
+        <li class="${active_life!''}"><a href="${ctx}/life">生活</a></li>
+        <li class="${active_photo!''}"><a href="${ctx}/photo">相册</a></li>
         <li class="${active_about!''}"><a href="${ctx}/about">关于我</a></li>
         <li class="${active_guest!''}"><a href="${ctx}/guest">留言板</a></li>
     </ul>
