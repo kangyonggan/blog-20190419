@@ -33,6 +33,14 @@
         <property name="blog.mail.receiver" description="错误日志邮件接收人" defaultValue="java@kangyonggan.com"/>
         <property name="blog.mail.bufferSize" description="错误日志邮件缓冲区大小(单位:k)" defaultValue="50"/>
 
+        <!--mail-->
+        <property name="blog.mail.host" description="邮件服务器地址" defaultValue="smtp.163.com"/>
+        <property name="blog.mail.username" description="邮件服务器用户名" defaultValue="kangyg2017@163.com"/>
+        <property name="blog.mail.password" description="邮件服务器密码" defaultValue="123456"/>
+        <property name="blog.mail.timeout" description="邮件发送超时时间" defaultValue="25000"/>
+        <property name="blog.mail.receiver" description="错误日志邮件接收人" defaultValue="java@kangyonggan.com"/>
+        <property name="blog.mail.bufferSize" description="错误日志邮件缓冲区大小(单位:k)" defaultValue="50"/>
+        
         <!--sms-->
         <property name="blog.sms.regionId" description="短信服务器地区" defaultValue="cn-hangzhou"/>
         <property name="blog.sms.accessKeyId" description="邮件服务器用户名" defaultValue="xxx"/>
@@ -54,6 +62,7 @@
     <script>
         <generate template="applicationContext-datasource.xml" charset="UTF-8"/>
         <generate template="applicationContext-redis.xml" charset="UTF-8"/>
+        <generate template="applicationContext-mail.xml" charset="UTF-8"/>
         <generate template="messages_en_US.properties" charset="UTF-8"/>
         <generate template="messages_zh_CN.properties" charset="UTF-8"/>
         <generate template="log4j2.xml"/>

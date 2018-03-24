@@ -10,6 +10,8 @@
     <import resource="applicationContext-datasource.xml"/>
     <!--配置线程池-->
     <import resource="applicationContext-pool.xml"/>
+    <!--邮件-->
+    <import resource="applicationContext-mail.xml"/>
     <!--redis缓存-->
     <import resource="applicationContext-redis.xml"/>
     <!--Freemarker模板-->

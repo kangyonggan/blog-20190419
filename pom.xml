@@ -12,7 +12,6 @@
     <modules>
         <module>blog-model</module>
         <module>blog-dao</module>
-        <module>blog-service</module>
         <module>blog-biz</module>
         <module>blog-web</module>
     </modules>
@@ -193,11 +192,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>blog-model</artifactId>
-                <version>${project.build.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>blog-service</artifactId>
                 <version>${project.build.version}</version>
             </dependency>
 

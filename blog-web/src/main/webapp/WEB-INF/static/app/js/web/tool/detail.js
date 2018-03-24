@@ -1,4 +1,5 @@
 $(function () {
+    $("#navbar ul li.active").css("height", "60px");
     var $form = $('#tool-form');
     var $btn = $form.find("button");
 

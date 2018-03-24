@@ -20,8 +20,11 @@
 
 <@override name="main">
 <div id="main">
-    <div class="space-20"></div>
     <form id="tool-form" action="${ctx}/tool/${tool.id}" method="post" enctype="multipart/form-data" class="tool-form">
+        <div class="space-10"></div>
+        <div class="space-10"></div>
+        <div class="space-10"></div>
+
         <#include "${tool.code}.ftl"/>
     </form>
 

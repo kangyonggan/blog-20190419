@@ -280,6 +280,45 @@ CREATE INDEX type_ix
 CREATE INDEX sort_ix
   ON tb_dictionary (sort);
 
+-- ----------------------------
+--  Table structure for tb_guest_book
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_guest_book;
+
+CREATE TABLE tb_guest_book
+(
+  id              BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  realname        VARCHAR(32)                           NOT NULL
+  COMMENT '昵称',
+  email           VARCHAR(64)                           NOT NULL
+  COMMENT '邮箱',
+  content         VARCHAR(2048)                         NOT NULL
+  COMMENT '内容',
+  status          VARCHAR(16)                           NOT NULL                    DEFAULT 'WAITING'
+  COMMENT '状态:{"WAITING":"待审核", "REJECT":"拒绝", "COMPLETE":"审核通过"}',
+  adjust_username VARCHAR(16)                           NOT NULL                    DEFAULT ''
+  COMMENT '审核人',
+  ip              VARCHAR(32)                           NOT NULL                    DEFAULT ''
+  COMMENT 'IP',
+  ip_info         VARCHAR(32)                           NOT NULL                    DEFAULT ''
+  COMMENT 'IP信息',
+  reply_message   LONGTEXT                              NOT NULL
+  COMMENT '回复信息',
+  reply_username  VARCHAR(16)                           NOT NULL                    DEFAULT ''
+  COMMENT '回复人',
+  is_deleted      TINYINT                               NOT NULL                    DEFAULT '0'
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time    TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time    TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '留言表';
+CREATE INDEX id_status
+  ON tb_guest_book (status);
+
 #====================初始数据====================#
 
 -- ----------------------------
