@@ -31,8 +31,8 @@
                 <div class="form-group">
                     <input name="realname" class="form-control" placeholder="昵称"/>
                 </div>
-                <div class="form-group" style="margin-left: 20px;">
-                    <input name="email" class="form-control" style="width: 240px;" placeholder="邮箱 (审核后会发邮件通知您)"/>
+                <div class="form-group">
+                    <input name="email" class="form-control" style="min-width: 240px;" placeholder="邮箱 (审核后会发邮件通知您)"/>
                 </div>
                 <div class="form-group" style="margin-left: 20px;">
                     <button id="submit" class="btn btn-sm btn-danger"
@@ -119,6 +119,8 @@
                 </ul>
             </div>
         </#if>
+
+        <div class="space-20"></div>
     </div>
 </div>
 </@override>
