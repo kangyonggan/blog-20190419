@@ -36,6 +36,8 @@ import java.util.List;
 @Log4j2
 public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
+    private static final String RESULT = "result";
+
     @Autowired
     private DictionaryService dictionaryService;
 
@@ -142,16 +144,18 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
                 // sql格式化
                 sqlHandle(toolDto, model);
             } else if (tool.getCode().equals("json")) {
-                model.addAttribute("result", GsonUtil.format(toolDto.getData()));
+                model.addAttribute(RESULT, GsonUtil.format(toolDto.getData()));
             } else if (tool.getCode().equals("js")) {
-                model.addAttribute("result", CompressorUtil.compressJS(toolDto.getData()));
+                model.addAttribute(RESULT, CompressorUtil.compressJS(toolDto.getData()));
             } else if (tool.getCode().equals("css")) {
-                model.addAttribute("result", CompressorUtil.compressCSS(toolDto.getData()));
+                model.addAttribute(RESULT, CompressorUtil.compressCSS(toolDto.getData()));
             } else if (tool.getCode().equals("idcard")) {
                 idcardHandle(toolDto, model);
             } else if (tool.getCode().equals("gencard")) {
                 model.addAttribute("cityCodes", IDCardUtil.getCityCodes());
-                model.addAttribute("result", IDCardUtil.genIdCard(toolDto.getProv(), toolDto.getStartAge(), toolDto.getEndAge(), toolDto.getSex(), toolDto.getLen(), toolDto.getCount()));
+                model.addAttribute(RESULT, IDCardUtil.genIdCard(toolDto.getProv(), toolDto.getStartAge(), toolDto.getEndAge(), toolDto.getSex(), toolDto.getLen(), toolDto.getCount()));
+            } else if (tool.getCode().equals("charset")) {
+                model.addAttribute(RESULT, CharsetUtil.convert(toolDto.getData(), toolDto.getCharset()));
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 model.addAttribute(AppConstants.RESP_MSG, "暂不支持此工具");
@@ -214,7 +218,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         }
 
         model.addAttribute("dialects", Dialect.values());
-        model.addAttribute("result", result);
+        model.addAttribute(RESULT, result);
     }
 
     @Override
@@ -245,7 +249,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         String name = PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + AppConstants.FILE_UPLOAD + qrName;
         QrCodeUtil.genQrCode(name, toolDto.getData(), toolDto.getSize());
         log.info("二维码生成成功，路径： {}", name);
-        model.addAttribute("result", AppConstants.FILE_UPLOAD + qrName);
+        model.addAttribute(RESULT, AppConstants.FILE_UPLOAD + qrName);
     }
 
     /**
@@ -259,6 +263,6 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
     private void qr2Handle(MultipartFile file, Model model) throws Exception {
         String result = QrCodeUtil.decode(file.getInputStream());
         log.info("二维码解析结果：{}", result);
-        model.addAttribute("result", result);
+        model.addAttribute(RESULT, result);
     }
 }

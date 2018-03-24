@@ -56,6 +56,9 @@ $(function () {
             count: {
                 required: true,
                 rangelength: [1, 100]
+            },
+            charset: {
+                required: true
             }
         },
         submitHandler: function (form, event) {

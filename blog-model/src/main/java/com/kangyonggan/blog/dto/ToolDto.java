@@ -56,4 +56,9 @@ public class ToolDto implements Serializable {
      */
     private int count;
 
+    /**
+     * 字符集
+     */
+    private String charset;
+
 }
