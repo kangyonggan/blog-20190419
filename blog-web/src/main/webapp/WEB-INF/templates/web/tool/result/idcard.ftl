@@ -1,0 +1,1 @@
+<#if isIdCard??><#if !isIdCard>您输入的身份证号码无效<#else>省份: ${province!'不存在的省'}<br/>性别: ${(sex==0)?string('男', '女')}<br/>生日: ${year}年${month}月${day}日<br/>年龄: ${age}周岁<br/>地区: ${area!'不存在的地区'}<br/><#if data?length==15>转成18位<#else>转成15位</#if>: <#if data?length==15>${to18}<#else>${to15}</#if><br/>生肖: ${shengXiao}<br/>出生年份: ${ganZhi}年<br/>运势: ${yunshi}</#if></#if>

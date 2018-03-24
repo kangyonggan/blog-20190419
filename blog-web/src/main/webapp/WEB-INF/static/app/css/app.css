@@ -835,10 +835,6 @@ table.ascll-table {
     border-left: 5px solid #eee;
 }
 
-.markdown ul, ol {
-    text-indent: 5px;
-}
-
 .markdown p {
     color: #555;
     line-height: 2;

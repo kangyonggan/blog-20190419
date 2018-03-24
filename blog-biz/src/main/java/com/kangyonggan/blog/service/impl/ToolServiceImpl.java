@@ -147,6 +147,8 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
                 model.addAttribute("result", CompressorUtil.compressJS(toolDto.getData()));
             } else if (tool.getCode().equals("css")) {
                 model.addAttribute("result", CompressorUtil.compressCSS(toolDto.getData()));
+            } else if (tool.getCode().equals("idcard")) {
+                idcardHandle(toolDto, model);
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 model.addAttribute(AppConstants.RESP_MSG, "暂不支持此工具");
@@ -156,6 +158,40 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
             model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
             model.addAttribute(AppConstants.RESP_MSG, e.getMessage() == null ? Resp.FAILURE.getRespMsg() : e.getMessage());
         }
+    }
+
+    /**
+     * 身份证查询
+     *
+     * @param toolDto
+     * @param model
+     */
+    private void idcardHandle(ToolDto toolDto, Model model) {
+        String res[] = IDCardUtil.isIdCard(toolDto.getData());
+        if (res[0].equals("0")) {
+            String year = IDCardUtil.getYearFromIdCard(toolDto.getData());
+            model.addAttribute("province", IDCardUtil.getProvinceFromIdCard(toolDto.getData()));
+            model.addAttribute("age", IDCardUtil.getAgeFromIdCard(toolDto.getData()));
+            model.addAttribute("year", year);
+            String month = IDCardUtil.getMonthFromIdCard(toolDto.getData());
+            model.addAttribute("month", month);
+            String day = IDCardUtil.getDayFromIdCard(toolDto.getData());
+            model.addAttribute("day", day);
+            model.addAttribute("sex", IDCardUtil.getSexFromIdCard(toolDto.getData()));
+            model.addAttribute("area", IDCardUtil.getAreaFromIdCard(toolDto.getData()));
+            model.addAttribute("shengXiao", DestinyUtil.getShengXiao(Integer.parseInt(year)));
+            model.addAttribute("ganZhi", DestinyUtil.getYearColumn(Integer.parseInt(year)));
+            String tianGan = DestinyUtil.getDayColumn(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day)).substring(0, 1);
+            model.addAttribute("yunshi", DestinyUtil.getYunShi(DestinyUtil.getTianGanWuXing(tianGan), Integer.parseInt(month)));
+
+            if (toolDto.getData().length() == 15) {
+                model.addAttribute("to18", IDCardUtil.convert15To18(toolDto.getData()));
+            } else {
+                model.addAttribute("to15", IDCardUtil.convert18To15(toolDto.getData()));
+            }
+        }
+
+        model.addAttribute("isIdCard", res[0].equals("0"));
     }
 
     /**

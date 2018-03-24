@@ -28,7 +28,7 @@
 
     <#if respCo??>
         <div class="tool-result">
-            <pre><code><#if respCo=='0000'><#include "result/${tool.code}.ftl"/><#else>${respMsg}</#if></code></pre>
+<pre><code><#if respCo=='0000'><#include "result/${tool.code}.ftl"/><#else>${respMsg}</#if></code></pre>
         </div>
         <div class="space-20"></div>
     </#if>
