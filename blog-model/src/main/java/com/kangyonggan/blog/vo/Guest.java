@@ -5,9 +5,9 @@ import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
-@Table(name = "tb_guest_book")
+@Table(name = "tb_guest")
 @Data
-public class GuestBook implements Serializable {
+public class Guest implements Serializable {
     /**
      * 主键, 自增
      */

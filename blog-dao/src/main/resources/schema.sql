@@ -281,12 +281,12 @@ CREATE INDEX sort_ix
   ON tb_dictionary (sort);
 
 -- ----------------------------
---  Table structure for tb_guest_book
+--  Table structure for tb_guest
 -- ----------------------------
 DROP TABLE
-IF EXISTS tb_guest_book;
+IF EXISTS tb_guest;
 
-CREATE TABLE tb_guest_book
+CREATE TABLE tb_guest
 (
   id              BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '主键, 自增',
@@ -317,7 +317,7 @@ CREATE TABLE tb_guest_book
 )
   COMMENT '留言表';
 CREATE INDEX id_status
-  ON tb_guest_book (status);
+  ON tb_guest (status);
 
 #====================初始数据====================#
 

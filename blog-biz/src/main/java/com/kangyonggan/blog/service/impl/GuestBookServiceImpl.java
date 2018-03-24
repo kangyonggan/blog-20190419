@@ -3,11 +3,11 @@ package com.kangyonggan.blog.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.Status;
-import com.kangyonggan.blog.service.GuestBookService;
+import com.kangyonggan.blog.service.GuestService;
 import com.kangyonggan.blog.util.DateUtil;
 import com.kangyonggan.blog.util.IPUtil;
 import com.kangyonggan.blog.util.MarkdownUtil;
-import com.kangyonggan.blog.vo.GuestBook;
+import com.kangyonggan.blog.vo.Guest;
 import com.kangyonggan.extra.core.annotation.Log;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
@@ -23,27 +23,27 @@ import java.util.Map;
  */
 @Service
 @Log4j2
-public class GuestBookServiceImpl extends BaseService<GuestBook> implements GuestBookService {
+public class GuestBookServiceImpl extends BaseService<Guest> implements GuestService {
 
 
     @Override
-    public List<GuestBook> findGuestBooksByPage(int pageNum) {
-        Example example = new Example(GuestBook.class);
+    public List<Guest> findGuestsByPage(int pageNum) {
+        Example example = new Example(Guest.class);
         example.createCriteria().andEqualTo("status", Status.COMPLETE.getStatus())
                 .andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
 
         example.setOrderByClause("id desc");
 
         PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
-        List<GuestBook> guestBooks = myMapper.selectByExample(example);
+        List<Guest> guests = myMapper.selectByExample(example);
 
-        return processGuestbBooksReplyMessage(guestBooks);
+        return processGuestsReplyMessage(guests);
     }
 
     @Override
     @Log
     public boolean isQuickWrite(String ip) {
-        Example example = new Example(GuestBook.class);
+        Example example = new Example(Guest.class);
         example.createCriteria().andEqualTo("ip", ip).andGreaterThan("createdTime", DateUtil.plusMinutes(-3));
 
         return myMapper.selectCountByExample(example) > 0;
@@ -51,16 +51,16 @@ public class GuestBookServiceImpl extends BaseService<GuestBook> implements Gues
 
     @Override
     @Log
-    public void saveGuestBook(GuestBook guestBook) {
-        guestBook.setReplyMessage(StringUtils.EMPTY);
-        guestBook.setIpInfo("正在查地址");
+    public void saveGuest(Guest guest) {
+        guest.setReplyMessage(StringUtils.EMPTY);
+        guest.setIpInfo("正在查地址");
 
-        myMapper.insertSelective(guestBook);
+        myMapper.insertSelective(guest);
     }
 
     @Override
     @Log
-    public void updateGuestBookIpInfo(Long id, String ip) {
+    public void updateGuestIpInfo(Long id, String ip) {
         new Thread() {
             public void run() {
                 Map<String, String> resultMap = IPUtil.getIpInfo(ip);
@@ -71,7 +71,7 @@ public class GuestBookServiceImpl extends BaseService<GuestBook> implements Gues
                 }
                 city += "网友";
 
-                GuestBook guestbook = new GuestBook();
+                Guest guestbook = new Guest();
                 guestbook.setId(id);
                 guestbook.setIpInfo(city);
                 myMapper.updateByPrimaryKeySelective(guestbook);
@@ -80,16 +80,48 @@ public class GuestBookServiceImpl extends BaseService<GuestBook> implements Gues
         }.start();
     }
 
+    @Override
+    public List<Guest> searchGuest(int pageNum, String status) {
+        Example example = new Example(Guest.class);
+
+        if (StringUtils.isNotEmpty(status)) {
+            example.createCriteria().andEqualTo("status", status);
+        }
+
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
+        return myMapper.selectByExample(example);
+    }
+
+    @Override
+    @Log
+    public Guest findGuestById(Long id) {
+        return myMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    @Log
+    public void updateGuest(Guest guest) {
+        myMapper.updateByPrimaryKeySelective(guest);
+    }
+
+    @Override
+    @Log
+    public void deleteGuestById(Long id) {
+        myMapper.deleteByPrimaryKey(id);
+    }
+
     /**
      * 处理回复信息
      *
-     * @param guestBooks
+     * @param guests
      */
-    private List<GuestBook> processGuestbBooksReplyMessage(List<GuestBook> guestBooks) {
-        for (GuestBook guestBook : guestBooks) {
-            guestBook.setReplyMessage(MarkdownUtil.markdownToHtml(guestBook.getReplyMessage()));
+    private List<Guest> processGuestsReplyMessage(List<Guest> guests) {
+        for (Guest guest : guests) {
+            guest.setReplyMessage(MarkdownUtil.markdownToHtml(guest.getReplyMessage()));
         }
         
-        return guestBooks;
+        return guests;
     }
 }

@@ -19,7 +19,7 @@
 <@override name="main">
 <div id="main">
     <div style="width: 900px; margin: 0 auto;">
-        <form action="${ctx}/guestBook/save" method="post" id="guest-form">
+        <form action="${ctx}/guest/save" method="post" id="guest-form">
             <div class="space-10"></div>
             <div class="space-10"></div>
             <div class="form-group">
@@ -54,32 +54,32 @@
             </h3>
         </div>
 
-        <ul class="guestbook-list">
-            <#list page.list as guestbook>
+        <ul class="guest-list">
+            <#list page.list as guest>
                 <li class="item">
                     <div class="l pull-left">
                         <img class="avatar" src="${ctx}/static/app/images/default_avatar.png" width="36" height="36"/>
-                        <p class="ip-info">${guestbook.ipInfo}</p>
+                        <p class="ip-info">${guest.ipInfo}</p>
                     </div>
                     <div class="r pull-right">
                         <div class="t">
-                            <div class="pull-left name">${guestbook.realname}</div>
-                            <div class="pull-right"><@c.relative_date datetime=guestbook.createdTime/></div>
+                            <div class="pull-left name">${guest.realname}</div>
+                            <div class="pull-right"><@c.relative_date datetime=guest.createdTime/></div>
                         </div>
 
                         <div class="space-4"></div>
 
                         <div class="clearboth">
-                        ${guestbook.content}
+                        ${guest.content}
                         </div>
 
-                        <#if guestbook.replyMessage != ''>
+                        <#if guest.replyMessage != ''>
                             <div class="space-4"></div>
 
                             <div class="reply-user">站长回复:</div>
                             <div class="clearboth reply">
                                 <div class="markdown">
-                                ${guestbook.replyMessage}
+                                ${guest.replyMessage}
                                 </div>
                             </div>
                         </#if>
@@ -135,7 +135,7 @@
 <script src="${ctx}/static/libs/jquery/jquery.validate.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.validate.extends.js"></script>
 <script src="${ctx}/static/ace/dist/js/prettify.min.js"></script>
-<script src="${ctx}/static/app/js/web/guest/book/index.js"></script>
+<script src="${ctx}/static/app/js/web/guest/index.js"></script>
 </@override>
 
-<@extends name="../../layout.ftl"/>
+<@extends name="../layout.ftl"/>
