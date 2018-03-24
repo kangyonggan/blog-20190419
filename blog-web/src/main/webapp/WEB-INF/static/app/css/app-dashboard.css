@@ -72,3 +72,7 @@
 .markdown img {
     max-width: 100%;
 }
+
+.form-group select.form-control {
+    min-width: 158px;
+}

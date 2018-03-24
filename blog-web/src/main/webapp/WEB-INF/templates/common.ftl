@@ -126,6 +126,19 @@
     </#if>
 </#macro>
 
+<#macro modal_form_tool>
+<button class="btn btn-sm" data-dismiss="modal">
+    <i class="ace-icon fa fa-times"></i>
+    <@s.message "app.button.cancel"/>
+</button>
+
+<button class="btn btn-sm btn-success" id="submit"
+        data-loading-text="正在<@s.message "app.button.save"/>..." data-toggle="form-submit" data-target="#modal-form">
+    <i class="ace-icon fa fa-check"></i>
+    <@s.message "app.button.save"/>
+</button>
+</#macro>
+
 <#macro search_form_tool>
 <button class="btn btn-sm btn-purple" data-toggle="search-submit">
     搜索

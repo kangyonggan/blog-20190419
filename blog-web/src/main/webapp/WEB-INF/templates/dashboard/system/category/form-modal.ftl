@@ -57,15 +57,7 @@
 </@override>
 
 <@override name="modal-footer">
-    <button class="btn btn-sm" data-dismiss="modal">
-        <i class="ace-icon fa fa-times"></i>
-        <@s.message "app.button.cancel"/>
-    </button>
-
-<button class="btn btn-sm btn-success" id="submit" data-loading-text="正在<@s.message "app.button.save"/>..." data-toggle="form-submit"
-        data-target="#modal-form">
-    <i class="ace-icon fa fa-check"></i>
-    <@s.message "app.button.save"/>
+    <@c.modal_form_tool/>
 
     <script src="${ctx}/static/app/js/dashboard/system/category/form-modal.js"></script>
 </@override>

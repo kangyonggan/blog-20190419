@@ -1,8 +1,11 @@
 package com.kangyonggan.blog.controller.web;
 
+import com.kangyonggan.blog.constants.DictionaryType;
 import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.dto.ToolDto;
+import com.kangyonggan.blog.service.DictionaryService;
 import com.kangyonggan.blog.service.ToolService;
+import com.kangyonggan.blog.vo.Dictionary;
 import com.kangyonggan.blog.vo.Tool;
 import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +30,9 @@ public class ToolController extends BaseController {
 
     @Autowired
     private ToolService toolService;
+
+    @Autowired
+    private DictionaryService dictionaryService;
 
     /**
      * 常用工具
@@ -49,6 +56,12 @@ public class ToolController extends BaseController {
     @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.GET)
     public String detail(@PathVariable("id") Long id, Model model) {
         Tool tool = toolService.findToolById(id);
+
+        if (tool.getCode().equals("ascll")) {
+            List<Dictionary> asclls = dictionaryService.findDictionariesByType(DictionaryType.ASCLL.getType());
+
+            model.addAttribute("asclls", asclls);
+        }
 
         model.addAttribute("tool", tool);
         return getPathDetail();

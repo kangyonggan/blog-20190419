@@ -246,6 +246,40 @@ CREATE TABLE tb_tool
   COMMENT '工具表';
 CREATE UNIQUE INDEX code_UNIQUE
   ON tb_tool (code);
+
+-- ----------------------------
+--  Table structure for tb_dictionary
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_dictionary;
+
+CREATE TABLE tb_dictionary
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  code         VARCHAR(32)                           NOT NULL
+  COMMENT '字典代码',
+  value        VARCHAR(128)                          NOT NULL
+  COMMENT '字典的值',
+  type         VARCHAR(16)                           NOT NULL
+  COMMENT '字典类型',
+  sort         INT(11)                               NOT NULL                DEFAULT 0
+  COMMENT '排序(从0开始)',
+  is_deleted   TINYINT                               NOT NULL                DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '字典表';
+CREATE INDEX created_time_ix
+  ON tb_dictionary (created_time);
+CREATE INDEX type_ix
+  ON tb_dictionary (type);
+CREATE INDEX sort_ix
+  ON tb_dictionary (sort);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -279,7 +313,8 @@ VALUES
   ('SYSTEM_ROLE', '角色管理', 'SYSTEM', 'system/role', 1, ''),
   ('SYSTEM_MENU', '菜单管理', 'SYSTEM', 'system/menu', 2, ''),
   ('SYSTEM_CATEGORY', '栏目管理', 'SYSTEM', 'system/category', 3, ''),
-  ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 4, ''),
+  ('SYSTEM_DICTIONARY', '数据字典', 'SYSTEM', 'system/dictionary', 4, ''),
+  ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 5, ''),
 
   ('MANAGE', '管理', 'DASHBOARD', 'manage', 2, 'menu-icon fa fa-desktop'),
   ('MANAGE_ARTICLE', '文章管理', 'MANAGE', 'manage/article', 0, ''),
@@ -329,4 +364,5 @@ INSERT INTO tb_tool
 (code, name, icon)
 VALUES
   ('qr', '生成二维码', 'static/app/images/tools/qr.png'),
-  ('qr2', '解析二维码', 'static/app/images/tools/qr2.png');
+  ('qr2', '解析二维码', 'static/app/images/tools/qr2.png'),
+  ('ascll', 'ASCLL码对照表', 'static/app/images/tools/ascll.png');

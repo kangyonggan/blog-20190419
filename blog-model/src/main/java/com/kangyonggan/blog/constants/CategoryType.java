@@ -1,5 +1,7 @@
 package com.kangyonggan.blog.constants;
 
+import lombok.Getter;
+
 /**
  * 栏目类型
  */
@@ -8,7 +10,16 @@ public enum CategoryType {
     ARTICLE("ARTICLE", "文章"),
     NOVEL("NOVEL", "小说");
 
+    /**
+     * 栏目类型
+     */
+    @Getter
     private String type;
+
+    /**
+     * 类型名称
+     */
+    @Getter
     private String name;
 
     CategoryType(String type, String name) {
@@ -16,11 +27,4 @@ public enum CategoryType {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
 }

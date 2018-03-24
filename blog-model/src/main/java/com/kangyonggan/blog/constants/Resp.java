@@ -1,5 +1,7 @@
 package com.kangyonggan.blog.constants;
 
+import lombok.Getter;
+
 /**
  * 响应码枚举
  *
@@ -11,8 +13,16 @@ public enum Resp {
     SUCCESS("0000", "操作成功"),
     FAILURE("9999", "未知错误，请联系管理员！");
 
+    /**
+     * 响应码
+     */
+    @Getter
     String respCo;
 
+    /**
+     * 响应消息
+     */
+    @Getter
     String respMsg;
 
     Resp(String respCo, String respMsg) {
@@ -20,11 +30,4 @@ public enum Resp {
         this.respMsg = respMsg;
     }
 
-    public String getRespCo() {
-        return respCo;
-    }
-
-    public String getRespMsg() {
-        return respMsg;
-    }
 }

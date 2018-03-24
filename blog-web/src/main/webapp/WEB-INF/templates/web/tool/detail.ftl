@@ -21,11 +21,6 @@
     <div class="space-20"></div>
     <form id="tool-form" action="${ctx}/tool/${tool.id}" method="post" enctype="multipart/form-data" class="tool-form">
         <#include "${tool.code}.ftl"/>
-
-        <div class="space-10"></div>
-        <button id="submit" class="btn btn-danger" data-loading-text="正在<@s.message "app.button.save"/>...">
-            <@s.message "app.button.save"/>
-        </button>
     </form>
 
     <div class="space-20"></div>
