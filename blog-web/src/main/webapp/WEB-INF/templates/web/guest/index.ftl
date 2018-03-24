@@ -40,9 +40,6 @@
                         提 交
                     </button>
                 </div>
-                <div class="form-group" style="margin-left: 20px;">
-                    <div class="error">${respMsg!''}</div>
-                </div>
             </div>
         </form>
 
