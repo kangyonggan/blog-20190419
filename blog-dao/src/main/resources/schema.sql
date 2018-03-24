@@ -400,22 +400,22 @@ VALUES
   ('other', '其他', 'ARTICLE', 5);
 
 INSERT INTO tb_tool
-(code, name, icon)
+(code, is_top, name, icon)
 VALUES
-  ('qr', '生成二维码', 'static/app/images/tools/qr.png'),
-  ('qr2', '解析二维码', 'static/app/images/tools/qr2.png'),
-  ('ascll', 'ASCLL码对照表', 'static/app/images/tools/ascll.png'),
-  ('html', 'HTML转义字符', 'static/app/images/tools/html.png'),
-  ('xml', 'XML格式化', 'static/app/images/tools/xml.png'),
-  ('sql', 'SQL格式化', 'static/app/images/tools/sql.png'),
-  ('json', 'JSON格式化', 'static/app/images/tools/json.png'),
-  ('js', 'JS压缩', 'static/app/images/tools/js.png'),
-  ('css', 'CSS压缩', 'static/app/images/tools/css.png'),
-  ('idcard', '身份证查询', 'static/app/images/tools/idcard.png'),
-  ('gencard', '生成身份证', 'static/app/images/tools/gencard.png'),
-  ('charset', '编码转换', 'static/app/images/tools/charset.png'),
-  ('bazi', '八字、五行', 'static/app/images/tools/bazi.png'),
-  ('compare', 'properties文件对比', 'static/app/images/tools/compare.png');
+  ('qr', 1, '生成二维码', 'static/app/images/tools/qr.png'),
+  ('qr2', 1, '解析二维码', 'static/app/images/tools/qr2.png'),
+  ('bazi', 1, '八字、五行', 'static/app/images/tools/bazi.png'),
+  ('xml', 1, 'XML格式化', 'static/app/images/tools/xml.png'),
+  ('idcard', 1, '身份证查询', 'static/app/images/tools/idcard.png'),
+  ('gencard', 1, '生成身份证', 'static/app/images/tools/gencard.png'),
+  ('ascll', 0, 'ASCLL码对照表', 'static/app/images/tools/ascll.png'),
+  ('html', 0, 'HTML转义字符', 'static/app/images/tools/html.png'),
+  ('sql', 0, 'SQL格式化', 'static/app/images/tools/sql.png'),
+  ('json', 0, 'JSON格式化', 'static/app/images/tools/json.png'),
+  ('js', 0, 'JS压缩', 'static/app/images/tools/js.png'),
+  ('css', 0, 'CSS压缩', 'static/app/images/tools/css.png'),
+  ('charset', 0, '编码转换', 'static/app/images/tools/charset.png'),
+  ('compare', 0, 'properties文件对比', 'static/app/images/tools/compare.png');
 
 INSERT tb_guest
 (realname, email, ip_info, content, status, reply_message)
