@@ -26,4 +26,34 @@ public class ToolDto implements Serializable {
      */
     private String dialect;
 
+    /**
+     * 省份
+     */
+    private String prov;
+
+    /**
+     * 起始年龄
+     */
+    private int startAge;
+
+    /**
+     * 截止年龄
+     */
+    private int endAge;
+
+    /**
+     * 性别，{0：男，1：女}
+     */
+    private String sex;
+
+    /**
+     * 身份证长度
+     */
+    private int len;
+
+    /**
+     * 数量
+     */
+    private int count;
+
 }

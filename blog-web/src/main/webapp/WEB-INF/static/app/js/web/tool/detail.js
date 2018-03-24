@@ -29,6 +29,33 @@ $(function () {
             },
             file: {
                 required: true
+            },
+            size: {
+                required: true
+            },
+            dialect: {
+                required: true
+            },
+            prov: {
+                required: true
+            },
+            startAge: {
+                required: true,
+                rangelength: [1, 100]
+            },
+            endAge: {
+                required: true,
+                rangelength: [1, 100]
+            },
+            sex: {
+                required: true
+            },
+            len: {
+                required: true
+            },
+            count: {
+                required: true,
+                rangelength: [1, 100]
             }
         },
         submitHandler: function (form, event) {

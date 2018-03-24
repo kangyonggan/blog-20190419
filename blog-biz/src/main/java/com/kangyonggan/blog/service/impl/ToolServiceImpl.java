@@ -149,6 +149,9 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
                 model.addAttribute("result", CompressorUtil.compressCSS(toolDto.getData()));
             } else if (tool.getCode().equals("idcard")) {
                 idcardHandle(toolDto, model);
+            } else if (tool.getCode().equals("gencard")) {
+                model.addAttribute("cityCodes", IDCardUtil.getCityCodes());
+                model.addAttribute("result", IDCardUtil.genIdCard(toolDto.getProv(), toolDto.getStartAge(), toolDto.getEndAge(), toolDto.getSex(), toolDto.getLen(), toolDto.getCount()));
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 model.addAttribute(AppConstants.RESP_MSG, "暂不支持此工具");
@@ -224,6 +227,8 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
             model.addAttribute("htmls", htmls);
         } else if (tool.getCode().equals("sql")) {
             model.addAttribute("dialects", Dialect.values());
+        } else if (tool.getCode().equals("gencard")) {
+            model.addAttribute("cityCodes", IDCardUtil.getCityCodes());
         }
     }
 

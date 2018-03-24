@@ -372,4 +372,5 @@ VALUES
   ('json', 'JSON格式化', 'static/app/images/tools/json.png'),
   ('js', 'JS压缩', 'static/app/images/tools/js.png'),
   ('css', 'CSS压缩', 'static/app/images/tools/css.png'),
-  ('idcard', '身份证查询', 'static/app/images/tools/idcard.png');
+  ('idcard', '身份证查询', 'static/app/images/tools/idcard.png'),
+  ('gencard', '生成身份证', 'static/app/images/tools/gencard.png');
