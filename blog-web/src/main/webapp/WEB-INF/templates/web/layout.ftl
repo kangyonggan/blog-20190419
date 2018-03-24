@@ -50,7 +50,7 @@
 <div class="space-20"></div>
 
 <div id="footer">
-    Copyright © 2018 未来 | 皖ICP备16017743号
+    Copyright © 2018 <@s.message "app.name"/> | <@s.message "app.ba.no"/>
 </div>
 
 <script src="${ctx}/static/ace/dist/js/jquery.min.js"></script>

@@ -84,7 +84,7 @@
 
 <!--[if !IE]> -->
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='../assets/js/jquery.js'>" + "<" + "/script>");
+    window.jQuery || document.write("<script src='${ctx}/static/ace/dist/js/jquery.js'>" + "<" + "/script>");
 </script>
 
 <!-- <![endif]-->
