@@ -416,3 +416,8 @@ VALUES
   ('charset', '编码转换', 'static/app/images/tools/charset.png'),
   ('bazi', '八字、五行', 'static/app/images/tools/bazi.png'),
   ('compare', 'properties文件对比', 'static/app/images/tools/compare.png');
+
+INSERT tb_guest
+(realname, email, ip_info, content, status, reply_message)
+VALUES
+  ('康永敢', 'java@kangyonggan.com', '上海市网友', '新版博客出炉，老版本的留言没去保留。', 'COMPLETE', '');

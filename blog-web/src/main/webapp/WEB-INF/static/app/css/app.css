@@ -799,14 +799,14 @@ table.ascll-table {
 }
 
 #main .right .novel-list li .novel-title {
-    color: #0285e1;
+    color: #333;
     width: 165px;
     display: inline-block;
     text-decoration: none;
 }
 
 #main .right .novel-list li .new-section {
-    color: #0285e1;
+    color: #333;
     width: 350px;
     display: inline-block;
     text-decoration: none;

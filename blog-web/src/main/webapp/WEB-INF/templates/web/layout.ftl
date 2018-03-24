@@ -37,7 +37,7 @@
         <li class="${active_music!''}"><a href="#">音乐</a></li>
         <li class="${active_life!''}"><a href="#">生活</a></li>
         <li class="${active_photo!''}"><a href="#">相册</a></li>
-        <li class="${active_about!''}"><a href="#">关于我</a></li>
+        <li class="${active_about!''}"><a href="${ctx}/about">关于我</a></li>
         <li class="${active_guest!''}"><a href="${ctx}/guest">留言板</a></li>
     </ul>
     <div class="breadcrumbs">
