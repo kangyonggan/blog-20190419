@@ -3,10 +3,13 @@ package com.kangyonggan.blog.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.google.zxing.WriterException;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.DictionaryType;
 import com.kangyonggan.blog.constants.Resp;
 import com.kangyonggan.blog.dto.ToolDto;
+import com.kangyonggan.blog.service.DictionaryService;
 import com.kangyonggan.blog.service.ToolService;
 import com.kangyonggan.blog.util.*;
+import com.kangyonggan.blog.vo.Dictionary;
 import com.kangyonggan.blog.vo.Tool;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
@@ -14,7 +17,9 @@ import com.kangyonggan.extra.core.annotation.Log;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
@@ -30,6 +35,9 @@ import java.util.Map;
 @Service
 @Log4j2
 public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
+
+    @Autowired
+    private DictionaryService dictionaryService;
 
     @Override
     @Log
@@ -128,6 +136,9 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
             } else if (tool.getCode().equals("qr2")) {
                 // 二维码解析
                 qr2Handle(file, resultMap);
+            } else if (tool.getCode().equals("xml")) {
+                // xml格式化
+                resultMap.put("result", XmlUtil.format(toolDto.getData()));
             } else {
                 resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
                 resultMap.put(AppConstants.RESP_MSG, "暂不支持此工具");
@@ -139,6 +150,17 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         }
 
         return resultMap;
+    }
+
+    @Override
+    public void preHandle(Tool tool, Model model) {
+        if (tool.getCode().equals("ascll")) {
+            List<Dictionary> asclls = dictionaryService.findDictionariesByType(DictionaryType.ASCLL.getType());
+            model.addAttribute("asclls", asclls);
+        } else if (tool.getCode().equals("html")) {
+            List<Dictionary> htmls = dictionaryService.findDictionariesByType(DictionaryType.HTML.getType());
+            model.addAttribute("htmls", htmls);
+        }
     }
 
     /**

@@ -41,4 +41,9 @@ $(function () {
         errorElement: "div",
         errorClass: "error"
     });
+
+    $("#reset").click(function () {
+        $form.find("input,textarea,select").val("");
+        return false;
+    });
 });

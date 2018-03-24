@@ -365,4 +365,6 @@ INSERT INTO tb_tool
 VALUES
   ('qr', '生成二维码', 'static/app/images/tools/qr.png'),
   ('qr2', '解析二维码', 'static/app/images/tools/qr2.png'),
-  ('ascll', 'ASCLL码对照表', 'static/app/images/tools/ascll.png');
+  ('ascll', 'ASCLL码对照表', 'static/app/images/tools/ascll.png'),
+  ('html', 'HTML转义字符', 'static/app/images/tools/html.png'),
+  ('xml', 'XML格式化', 'static/app/images/tools/xml.png');

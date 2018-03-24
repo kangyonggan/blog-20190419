@@ -1,0 +1,1 @@
+<pre><code>${resultMap.result?html}</code></pre>

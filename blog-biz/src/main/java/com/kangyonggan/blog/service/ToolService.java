@@ -3,6 +3,7 @@ package com.kangyonggan.blog.service;
 import com.kangyonggan.blog.dto.ToolDto;
 import com.kangyonggan.blog.vo.Tool;
 import org.apache.commons.fileupload.FileUploadException;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -88,4 +89,12 @@ public interface ToolService {
      * @return
      */
     Map<String, Object> handle(Tool tool, ToolDto toolDto, MultipartFile file);
+
+    /**
+     * 预处理请求
+     *
+     * @param tool
+     * @param model
+     */
+    void preHandle(Tool tool, Model model);
 }
