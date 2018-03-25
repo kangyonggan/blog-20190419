@@ -147,9 +147,10 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         int currentCount = 0;
         List<String> categoryCodes = categoryService.findCategoryCodesByType(CategoryType.NOVEL.getType());
         while (true) {
-            Document document = HtmlUtil.parseUrl(BI_QU_GE_URL + "book/" + code++);
+            Document document = HtmlUtil.parseUrl(BI_QU_GE_URL + "book/" + code);
             if (document == null) {
                 currentCount++;
+                code++;
                 if (currentCount >= ERR_COUNT) {
                     log.info("小说连续{}本都解析不了，可能已经没有更多小说了", currentCount);
                     break;
@@ -158,7 +159,7 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
             }
 
             try {
-                parseNovel(document, code, categoryCodes);
+                parseNovel(document, code++, categoryCodes);
             } catch (Exception e) {
                 log.error("小说解析异常, 继续解析下一本", e);
             }

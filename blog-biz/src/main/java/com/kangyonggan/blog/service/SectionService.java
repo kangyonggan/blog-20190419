@@ -74,4 +74,10 @@ public interface SectionService {
      */
     void updateSections(Integer novelCode);
 
+    /**
+     * 清空章节
+     *
+     * @param novelCode
+     */
+    void deleteSections(Integer novelCode);
 }

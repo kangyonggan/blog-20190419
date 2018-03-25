@@ -194,4 +194,18 @@ public class DashboardManageNovelController extends BaseController {
         return super.getResultMap();
     }
 
+    /**
+     * 清空章节
+     *
+     * @param code
+     * @return
+     */
+    @RequestMapping(value = "{code:[\\d]+}/clear", method = RequestMethod.GET)
+    @RequiresPermissions("MANAGE_NOVEL")
+    @ResponseBody
+    public Map<String, Object> clear(@PathVariable("code") Integer code) {
+        sectionService.deleteSections(code);
+        return super.getResultMap();
+    }
+
 }

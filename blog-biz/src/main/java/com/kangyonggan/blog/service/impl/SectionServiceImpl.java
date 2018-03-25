@@ -123,6 +123,15 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         redisService.delete(prefix + SECTION_UPDATE_FLAG + novelCode);
     }
 
+    @Override
+    @Log
+    public void deleteSections(Integer novelCode) {
+        Section section = new Section();
+        section.setNovelCode(novelCode);
+
+        myMapper.delete(section);
+    }
+
     /**
      * 拉取小说章节
      *
