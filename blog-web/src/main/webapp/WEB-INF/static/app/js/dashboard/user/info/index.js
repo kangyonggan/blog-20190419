@@ -29,6 +29,7 @@ $(function () {
                         Message.success("修改成功");
                         var user = response.user;
                         $("#navFullname").html(user.realname);
+                        $form.find("input[type=password]").val("");
                     } else {
                         Message.error(response.respMsg);
                     }
