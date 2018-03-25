@@ -176,7 +176,7 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
             }
 
             log.info("从第{}章节开始更新", startNum);
-            for (int i = startNum; i < elements.size(); i++) {
+            for (int i = startNum + 1; i < elements.size(); i++) {
                 Element element = elements.get(i);
                 String scode = element.attr("href");
                 scode = scode.substring(scode.lastIndexOf("/") + 1, scode.lastIndexOf("."));
