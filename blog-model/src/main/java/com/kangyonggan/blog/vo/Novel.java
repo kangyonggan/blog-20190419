@@ -1,9 +1,10 @@
 package com.kangyonggan.blog.vo;
 
+import lombok.Data;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
-import lombok.Data;
 
 @Table(name = "tb_novel")
 @Data
@@ -64,6 +65,12 @@ public class Novel implements Serializable {
      */
     @Column(name = "updated_time")
     private Date updatedTime;
+
+    /**
+     * 最新章节
+     */
+    @Transient
+    private Section lastSection;
 
     private static final long serialVersionUID = 1L;
 }

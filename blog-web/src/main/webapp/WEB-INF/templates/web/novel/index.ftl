@@ -1,80 +1,48 @@
 <#assign title="工具"/>
 <#assign active_novel="active"/>
+<#assign categoryCode = RequestParameters.categoryCode!'' />
+<#list categories as category>
+    <#if categoryCode==category.code>
+        <#assign title="${category.name}"/>
+    </#if>
+</#list>
+<#if categoryCode==''><#assign title="全部栏目"/></#if>
+
+<@override name="breadcrumbs">
+    <#include "breadcrumbs.ftl"/>
+</@override>
 
 <@override name="main">
 <div id="main">
     <div class="left">
-        <div class="category-name">
-            <span>栏目中心</span>
-        </div>
-        <ul class="category-nav">
-            <li class="active"><a href="#">武侠</a></li>
-            <li><a href="#">玄幻</a></li>
-            <li><a href="#">修真</a></li>
-            <li><a href="#">都市</a></li>
-            <li><a href="#">言情</a></li>
-            <li><a href="#">同人</a></li>
-            <li><a href="#">穿越</a></li>
-            <li><a href="#">历史</a></li>
-            <li><a href="#">其他</a></li>
-        </ul>
-        <div class="hot">
-            <div class="title">
-                <span>推荐内容</span>
-            </div>
-            <ul class="list">
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-                <li><a href="#">热烈祝贺闵行88家企业获得上海市</a></li>
-            </ul>
-        </div>
+        <#include "categories.ftl"/>
+        <#include "top-articles.ftl"/>
     </div>
 
     <div class="right">
         <div class="content">
             <div class="title">
-                <span>玄幻</span>
+                <span>${title}</span>
             </div>
 
             <ul class="novel-list">
-                <li>
-                    <a href="#" class="novel-title">武炼巅峰</a>
-                    <a href="#" class="new-section">第五百四十二章:前往京城</a>
-                    <span class="author">小橘子</span>
-                    <span class="updated-time">2017-03-21</span>
-                </li>
-                <li>
-                    <a href="#" class="novel-title">武炼巅峰</a>
-                    <a href="#" class="new-section">第五百四十二章:前往京城</a>
-                    <span class="author">小橘子</span>
-                    <span class="updated-time">2017-03-21</span>
-                </li>
-                <li>
-                    <a href="#" class="novel-title">武炼巅峰</a>
-                    <a href="#" class="new-section">第五百四十二章:前往京城</a>
-                    <span class="author">小橘子</span>
-                    <span class="updated-time">2017-03-21</span>
-                </li>
-                <li>
-                    <a href="#" class="novel-title">武炼巅峰</a>
-                    <a href="#" class="new-section">第五百四十二章:前往京城</a>
-                    <span class="author">小橘子</span>
-                    <span class="updated-time">2017-03-21</span>
-                </li>
-                <li>
-                    <a href="#" class="novel-title">武炼巅峰</a>
-                    <a href="#" class="new-section">第五百四十二章:前往京城</a>
-                    <span class="author">小橘子</span>
-                    <span class="updated-time">2017-03-21</span>
-                </li>
-                <li>
-                    <a href="#" class="novel-title">武炼巅峰</a>
-                    <a href="#" class="new-section">第五百四十二章:前往京城</a>
-                    <span class="author">小橘子</span>
-                    <span class="updated-time">2017-03-21</span>
-                </li>
+                <#if page.list?size gt 0>
+                    <#list page.list as novel>
+                        <li>
+                            <a href="${ctx}/novel/${novel.code}" class="novel-title nowrap">${novel.name}</a>
+                            <#if novel.lastSection??>
+                                <a href="${ctx}/novel/${novel.code}/section/${novel.lastSection.code}"
+                                   class="new-section nowrap">${novel.lastSection.title}</a>
+                            <#else>
+                                <a href="javascript:" class="new-section nowrap">暂无最新章节</a>
+                            </#if>
+                            <span class="author nowrap">${novel.author}</span>
+                            <span class="updated-time nowrap">${novel.updatedTime?date}</span>
+                        </li>
+                    </#list>
+                <#else>
+                    <div class="empty">没有小说</div>
+                </#if>
             </ul>
 
             <div class="space-10"></div>

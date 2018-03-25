@@ -26,10 +26,10 @@ public class Section implements Serializable {
     private String title;
 
     /**
-     * 书籍代码
+     * 小说代码
      */
-    @Column(name = "book_code")
-    private Integer bookCode;
+    @Column(name = "novel_code")
+    private Integer novelCode;
 
     /**
      * 逻辑删除:{0:未删除, 1:已删除}

@@ -5,10 +5,12 @@ import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.CategoryType;
 import com.kangyonggan.blog.service.CategoryService;
 import com.kangyonggan.blog.service.NovelService;
+import com.kangyonggan.blog.service.SectionService;
 import com.kangyonggan.blog.util.FileUtil;
 import com.kangyonggan.blog.util.HtmlUtil;
 import com.kangyonggan.blog.util.PropertiesUtil;
 import com.kangyonggan.blog.vo.Novel;
+import com.kangyonggan.blog.vo.Section;
 import com.kangyonggan.extra.core.annotation.Log;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
@@ -30,6 +32,9 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private SectionService sectionService;
 
     @Override
     @Log
@@ -66,7 +71,24 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         }
 
         PageHelper.startPage(pageNum, pageSize);
-        return myMapper.select(novel);
+        List<Novel> novels = myMapper.select(novel);
+
+        // 查找最新章节
+        findNewSection(novels);
+
+        return novels;
+    }
+
+    /**
+     * 查找最新章节
+     *
+     * @param novels
+     */
+    private void findNewSection(List<Novel> novels) {
+        for (Novel novel : novels) {
+            Section section = sectionService.findLastSectionByNovelCode(novel.getCode());
+            novel.setLastSection(section);
+        }
     }
 
 

@@ -147,10 +147,11 @@
 </div>
 
 <div id="link">
-    友情链接： <a href="javascript:" target="_blank">相关重要链接</a> | <a href="javascript:" target="_blank">其他链接</a> | <a
-        href="javascript:" target="_blank">使用手册</a>
+    友情链接： <a href="https://houbb.github.io/" target="_blank">侯宾宾的博客</a> | <a href="http://batizhao.io/" target="_blank">赵彦斌的博客</a> | <a
+        href="${ctx}/guest">点此申请</a>
 </div>
 </@override>
+
 
 <@override name="script">
 <script src="${ctx}/static/libs/jquery/unslider.min.js"></script>

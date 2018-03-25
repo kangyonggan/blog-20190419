@@ -356,25 +356,25 @@ IF EXISTS tb_novel;
 
 CREATE TABLE tb_novel
 (
-  id                BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '主键, 自增',
-  name              VARCHAR(32)                           NOT NULL
+  name          VARCHAR(32)                           NOT NULL
   COMMENT '书名',
-  author            VARCHAR(32)                           NOT NULL
+  author        VARCHAR(32)                           NOT NULL
   COMMENT '作者',
-  category_code     VARCHAR(32)                           NOT NULL
+  category_code VARCHAR(32)                           NOT NULL
   COMMENT '分类代码',
-  pic_url           VARCHAR(256)                          NOT NULL                    DEFAULT '/upload/default-book.png'
+  pic_url       VARCHAR(256)                          NOT NULL                    DEFAULT '/upload/default-book.png'
   COMMENT '封面图片地址',
-  code              INT(11)                               NOT NULL
+  code          INT(11)                               NOT NULL
   COMMENT '书籍代码',
-  descp             VARCHAR(1024)                         NOT NULL
+  descp         VARCHAR(1024)                         NOT NULL
   COMMENT '描述',
-  is_deleted        TINYINT                               NOT NULL                    DEFAULT 0
+  is_deleted    TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
-  created_time      TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  created_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  updated_time      TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  updated_time  TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   COMMENT '更新时间'
 )
   COMMENT '书籍表';
@@ -397,8 +397,8 @@ CREATE TABLE tb_section
   COMMENT '标题',
   content      LONGTEXT                              NOT NULL
   COMMENT '内容',
-  book_code    INT(11)                               NOT NULL
-  COMMENT '书籍代码',
+  novel_code   INT(11)                               NOT NULL
+  COMMENT '小说代码',
   is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
   created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP

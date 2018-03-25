@@ -26,7 +26,7 @@ public interface NovelService {
     void updateNovels();
 
     /**
-     * 查找小说
+     * 根据栏目查找小说
      *
      * @param pageNum
      * @param pageSize
