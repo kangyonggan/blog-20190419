@@ -1,4 +1,3 @@
-<#assign title="工具"/>
 <#assign active_novel="active"/>
 <#assign categoryCode = RequestParameters.categoryCode!'' />
 <#list categories as category>
@@ -48,28 +47,11 @@
             <div class="space-10"></div>
         </div>
 
-        <ul class="pagination">
-            <li><a href="#">首页</a></li>
-            <li><a href="#">上一页</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">8</a></li>
-            <li><a href="#">下一页</a></li>
-            <li><a href="#">尾页</a></li>
-        </ul>
+        <@c.web_pagination url="${ctx}/novel" param="categoryCode=${categoryCode}"/>
     </div>
 
     <div class="space-10"></div>
 </div>
-</@override>
-
-<@override name="script">
-
 </@override>
 
 <@extends name="../layout.ftl"/>

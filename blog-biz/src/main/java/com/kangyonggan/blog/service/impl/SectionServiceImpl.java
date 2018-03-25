@@ -1,6 +1,7 @@
 package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.service.SectionService;
 import com.kangyonggan.blog.vo.Section;
 import com.kangyonggan.extra.core.annotation.Log;
@@ -29,5 +30,15 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
             return null;
         }
         return sections.get(0);
+    }
+
+    @Override
+    public List<Section> findSectionsByNovelCode(int pageNum, int pageSize, Integer code) {
+        Example example = new Example(Section.class);
+        example.createCriteria().andEqualTo("code", code).andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+
+        example.setOrderByClause("id desc");
+        PageHelper.startPage(pageNum, pageSize);
+        return myMapper.selectByExample(example);
     }
 }
