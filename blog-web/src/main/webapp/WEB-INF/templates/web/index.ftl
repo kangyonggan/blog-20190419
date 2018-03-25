@@ -117,37 +117,44 @@
             <ul>
                 <li class="first"><a href="javascript:">小说分类</a></li>
                 <#list novelsList as list>
-                    <#list categories as category>
-                        <#if category.code==list[0].categoryCode>
-                            <li <#if category_index==0>class="active"</#if>><a href="javascript:" data-code="${category.code}" class="category-btn">${category.name}</a>
-                            </li>
-                        </#if>
-                    </#list>
+                    <#if list?size gt 0>
+                        <#list categories as category>
+                            <#if category.code==list[0].categoryCode>
+                                <li <#if category_index==0>class="active"</#if>><a href="javascript:"
+                                                                                   data-code="${category.code}"
+                                                                                   class="category-btn">${category.name}</a>
+                                </li>
+                            </#if>
+                        </#list>
+                    </#if>
                 </#list>
             </ul>
             <a href="${ctx}/novel" class="more"><span class="icon">+</span>更多</a>
         </div>
         <div class="book-list">
             <#list novelsList as list>
-                <div class="novels <#if list_index gt 0>hidden</#if>" id="${list[0].categoryCode}-novels-list">
-                    <#list list as novel>
-                        <a href="${ctx}/novel/${novel.code}">
-                            <dl>
-                                <dd>
-                                    <img src="${ctx}/${novel.picUrl}">
-                                </dd>
-                                <dt>${novel.name}</dt>
-                            </dl>
-                        </a>
-                    </#list>
-                </div>
+                <#if list?size gt 0>
+                    <div class="novels <#if list_index gt 0>hidden</#if>" id="${list[0].categoryCode}-novels-list">
+                        <#list list as novel>
+                            <a href="${ctx}/novel/${novel.code}">
+                                <dl>
+                                    <dd>
+                                        <img src="${ctx}/${novel.picUrl}">
+                                    </dd>
+                                    <dt>${novel.name}</dt>
+                                </dl>
+                            </a>
+                        </#list>
+                    </div>
+                </#if>
             </#list>
         </div>
     </div>
 </div>
 
 <div id="link">
-    友情链接： <a href="https://houbb.github.io/" target="_blank">侯宾宾的博客</a> | <a href="http://batizhao.io/" target="_blank">赵彦斌的博客</a> | <a
+    友情链接： <a href="https://houbb.github.io/" target="_blank">侯宾宾的博客</a> | <a href="http://batizhao.io/" target="_blank">赵彦斌的博客</a>
+    | <a
         href="${ctx}/guest">点此申请</a>
 </div>
 </@override>
