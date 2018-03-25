@@ -1,4 +1,4 @@
-<#assign title="首页"/>
+<#assign title='康永敢的博客'/>
 <#assign active_index="active"/>
 
 <@override name="style">
