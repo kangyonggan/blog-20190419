@@ -16,14 +16,13 @@ public class RedisCacheHandle implements CacheHandle {
 
     @Override
     public Object set(String key, Object returnValue, Long expire) {
-//        getRedisService().set(key, returnValue, expire, TimeUnit.MILLISECONDS);
+        getRedisService().set(key, returnValue, expire, TimeUnit.MILLISECONDS);
         return returnValue;
     }
 
     @Override
     public Object get(String key) {
-//        return getRedisService().get(key);
-        return null;
+        return getRedisService().get(key);
     }
 
     @Override
