@@ -197,13 +197,6 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
     private void parseSection(int novelCode, int sectionCode) {
         Document doc = HtmlUtil.parseUrl(NovelService.BI_QU_GE_URL + "/book/" + novelCode + "/" + sectionCode + ".html");
 
-        Section s = new Section();
-        s.setCode(sectionCode);
-        if (super.exists(s)) {
-            log.info("章节已存在, code={}", sectionCode);
-            return;
-        }
-
         String title = doc.select(".bookname h1").html().trim();
         String content = doc.select("#content").html();
 
