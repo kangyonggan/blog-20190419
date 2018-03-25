@@ -2,7 +2,7 @@
 
 <tr id="tool-${tool.id}">
     <td>
-        <a href="${ctx}/dashboard#manage/tool/${tool.id}">${tool.name}</a>
+        <a href="${ctx}/tool/${tool.id}" target="_blank">${tool.name}</a>
     </td>
     <td>
         <#if tool.icon==''>
