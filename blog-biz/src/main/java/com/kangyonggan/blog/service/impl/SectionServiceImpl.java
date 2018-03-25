@@ -132,6 +132,19 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         myMapper.delete(section);
     }
 
+    @Override
+    @Log
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public void updateAllSections() {
+        int lastNovelCode = novelService.findLastNovelCode();
+        for (int novelCode = 1; novelCode <= lastNovelCode; novelCode++) {
+            Novel novel = novelService.findNovelByCode(novelCode);
+            if (novel != null) {
+                updateSections(novelCode);
+            }
+        }
+    }
+
     /**
      * 拉取小说章节
      *

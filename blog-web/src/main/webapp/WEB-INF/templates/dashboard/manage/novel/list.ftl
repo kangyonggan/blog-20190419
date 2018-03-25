@@ -12,6 +12,10 @@
                data-url="${ctx}/dashboard/manage/novel/update"  class="btn btn-sm btn-pink">
                 更新小说
             </a>
+            <a id="novel-update" href="javascript:" data-category="novel-update" title="更新全部章节"
+               data-url="${ctx}/dashboard/manage/novel/updateSections"  class="btn btn-sm btn-danger">
+                更新全部章节
+            </a>
         </small>
     </h1>
 </div>

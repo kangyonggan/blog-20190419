@@ -80,4 +80,10 @@ public interface SectionService {
      * @param novelCode
      */
     void deleteSections(Integer novelCode);
+
+    /**
+     * 更新所有章节
+     */
+    void updateAllSections();
+
 }
