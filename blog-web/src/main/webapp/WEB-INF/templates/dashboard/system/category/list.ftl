@@ -18,18 +18,18 @@
 
 <form class="form-inline" method="get">
     <div class="form-group">
-        <input type="text" class="form-control" name="code" value="${code}" placeholder="栏目代码"/>
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" name="name" value="${name}" placeholder="栏目名称"/>
-    </div>
-    <div class="form-group">
         <select name="type" class="form-control">
-            <option value="">-- 全部栏目 --</option>
+            <option value="">-- 全部类型 --</option>
         <#list types as t>
             <option value="${t.getType()}" <#if type=='${t.getType()}'>selected</#if>>${t.getName()}</option>
         </#list>
         </select>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="code" value="${code}" placeholder="栏目代码"/>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="name" value="${name}" placeholder="栏目名称"/>
     </div>
 
 <@c.search_form_tool/>

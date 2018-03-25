@@ -2,20 +2,15 @@ package com.kangyonggan.blog.controller.web;
 
 import com.kangyonggan.blog.constants.CategoryType;
 import com.kangyonggan.blog.controller.BaseController;
-import com.kangyonggan.blog.service.ArticleService;
-import com.kangyonggan.blog.service.CategoryService;
-import com.kangyonggan.blog.service.LifeService;
-import com.kangyonggan.blog.service.ToolService;
-import com.kangyonggan.blog.vo.Article;
-import com.kangyonggan.blog.vo.Category;
-import com.kangyonggan.blog.vo.Life;
-import com.kangyonggan.blog.vo.Tool;
+import com.kangyonggan.blog.service.*;
+import com.kangyonggan.blog.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +33,9 @@ public class IndexController extends BaseController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private NovelService novelService;
+
     /**
      * 首页
      *
@@ -50,11 +48,16 @@ public class IndexController extends BaseController {
         List<Tool> tools = toolService.findSomeTools(6);
         List<Life> lifes = lifeService.findSomeLife(1, 4, null);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.NOVEL.getType());
+        List<List<Novel>> novelsList = new ArrayList<>();
+        for (Category category : categories) {
+            novelsList.add(novelService.findNovelsByCategory(1, 6, category.getCode()));
+        }
 
         model.addAttribute("articles", articles);
         model.addAttribute("tools", tools);
         model.addAttribute("lifes", lifes);
         model.addAttribute("categories", categories);
+        model.addAttribute("novelsList", novelsList);
         return getPathRoot();
     }
 

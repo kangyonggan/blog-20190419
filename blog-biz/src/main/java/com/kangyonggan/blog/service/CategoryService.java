@@ -25,12 +25,12 @@ public interface CategoryService {
     void saveCategory(Category category);
 
     /**
-     * 根据栏目代码查找栏目
+     * 根据ID查找栏目
      *
-     * @param code
+     * @param id
      * @return
      */
-    Category findCategoryByCode(String code);
+    Category findCategoryById(Long id);
 
     /**
      * 根据类型查找栏目
@@ -41,7 +41,7 @@ public interface CategoryService {
     List<Category> findCategoriesByType(String type);
 
     /**
-     * 根据栏目代码更新栏目
+     * 根据ID更新栏目
      *
      * @param category
      */
@@ -50,7 +50,24 @@ public interface CategoryService {
     /**
      * 物理删除栏目
      *
-     * @param code
+     * @param id
      */
-    void deleteCategoryByCode(String code);
+    void deleteCategoryById(Long id);
+
+    /**
+     * 根据栏目类型和代码查找栏目
+     *
+     * @param type
+     * @param code
+     * @return
+     */
+    Category findCategoryByTypeAndCode(String type, String code);
+
+    /**
+     * 查找栏目代码
+     *
+     * @param type
+     * @return
+     */
+    List<String> findCategoryCodesByType(String type);
 }

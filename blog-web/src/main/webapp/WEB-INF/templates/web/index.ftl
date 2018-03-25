@@ -116,67 +116,39 @@
         <div class="category">
             <ul>
                 <li class="first"><a href="javascript:">小说分类</a></li>
-                <#list categories as category>
-                    <li <#if category_index==0>class="active"</#if>><a href="javascript:">${category.name}</a></li>
+                <#list novelsList as list>
+                    <#list categories as category>
+                        <#if category.code==list[0].categoryCode>
+                            <li <#if category_index==0>class="active"</#if>><a href="javascript:" data-code="${category.code}" class="category-btn">${category.name}</a>
+                            </li>
+                        </#if>
+                    </#list>
                 </#list>
             </ul>
             <a href="${ctx}/novel" class="more"><span class="icon">+</span>更多</a>
         </div>
         <div class="book-list">
-            <a href="#">
-                <dl>
-                    <dd>
-                        <img src="${ctx}/static/app/images/111s.jpg">
-                    </dd>
-                    <dt>武炼巅峰</dt>
-                </dl>
-            </a>
-            <a href="#">
-                <dl>
-                    <dd>
-                        <img src="${ctx}/static/app/images/111s.jpg">
-                    </dd>
-                    <dt>武炼巅峰</dt>
-                </dl>
-            </a>
-            <a href="#">
-                <dl>
-                    <dd>
-                        <img src="${ctx}/static/app/images/111s.jpg">
-                    </dd>
-                    <dt>武炼巅峰</dt>
-                </dl>
-            </a>
-            <a href="#">
-                <dl>
-                    <dd>
-                        <img src="${ctx}/static/app/images/111s.jpg">
-                    </dd>
-                    <dt>武炼巅峰</dt>
-                </dl>
-            </a>
-            <a href="#">
-                <dl>
-                    <dd>
-                        <img src="${ctx}/static/app/images/111s.jpg">
-                    </dd>
-                    <dt>武炼巅峰</dt>
-                </dl>
-            </a>
-            <a href="#">
-                <dl>
-                    <dd>
-                        <img src="${ctx}/static/app/images/111s.jpg">
-                    </dd>
-                    <dt>武炼巅峰</dt>
-                </dl>
-            </a>
+            <#list novelsList as list>
+                <div class="novels <#if list_index gt 0>hidden</#if>" id="${list[0].categoryCode}-novels-list">
+                    <#list list as novel>
+                        <a href="#">
+                            <dl>
+                                <dd>
+                                    <img src="${ctx}/${novel.picUrl}">
+                                </dd>
+                                <dt>${novel.name}</dt>
+                            </dl>
+                        </a>
+                    </#list>
+                </div>
+            </#list>
         </div>
     </div>
 </div>
 
 <div id="link">
-    友情链接： <a href="javascript:" target="_blank">相关重要链接</a> | <a href="javascript:" target="_blank">其他链接</a> | <a href="javascript:" target="_blank">使用手册</a>
+    友情链接： <a href="javascript:" target="_blank">相关重要链接</a> | <a href="javascript:" target="_blank">其他链接</a> | <a
+        href="javascript:" target="_blank">使用手册</a>
 </div>
 </@override>
 
@@ -191,6 +163,13 @@
     $('.unslider-arrow04').click(function () {
         var fn = this.className.split(' ')[1];
         data04[fn]();
+    });
+    $(".novel .category-btn").click(function () {
+        $(".category li").removeClass("active");
+        $(this).parent("li").addClass("active");
+
+        $(".book-list .novels").addClass("hidden");
+        $("#" + $(this).attr("data-code") + "-novels-list").removeClass("hidden");
     });
 </script>
 </@override>

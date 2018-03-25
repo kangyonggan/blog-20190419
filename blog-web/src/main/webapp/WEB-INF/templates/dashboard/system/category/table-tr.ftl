@@ -8,7 +8,7 @@
     <td><@c.relative_date datetime=category.createdTime/></td>
     <td>
         <div class="btn-group">
-            <a class="btn btn-xs btn-inverse" href="${ctx}/dashboard/system/category/${category.code}/edit"
+            <a class="btn btn-xs btn-inverse" href="${ctx}/dashboard/system/category/${category.id}/edit"
                data-toggle="modal" data-target="#myModal"
                data-backdrop="static">编辑</a>
 
@@ -20,14 +20,14 @@
                 <#if category.isDeleted==1>
                     <li>
                         <a href="javascript:" data-category="category-remove" title="彻底删除栏目"
-                           data-url="${ctx}/dashboard/system/category/${category.code}/remove">
+                           data-url="${ctx}/dashboard/system/category/${category.id}/remove">
                             彻底删除
                         </a>
                     </li>
                 <#else>
                     <li>
                         <a href="javascript:" data-category="category-delete" title="删除栏目"
-                           data-url="${ctx}/dashboard/system/category/${category.code}/delete">
+                           data-url="${ctx}/dashboard/system/category/${category.id}/delete">
                             删除
                         </a>
                     </li>

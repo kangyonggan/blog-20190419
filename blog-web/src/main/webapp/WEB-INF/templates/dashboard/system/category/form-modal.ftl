@@ -3,6 +3,11 @@
 <@override name="modal-body">
 <form class="form-horizontal" category="form" id="modal-form" method="post"
       action="${ctx}/dashboard/system/category/${category.code???string('update', 'save')}">
+
+    <#if category.id??>
+        <input type="hidden" name="id" value="${category.id}"/>
+    </#if>
+
     <div class="row">
         <div class="row form-group">
             <div class="col-md-3 control-label">
@@ -24,12 +29,7 @@
                 <label>栏目代码<span class="red">*</span></label>
             </div>
             <div class="col-md-7 controls">
-                <#if category.code??>
-                    <@s.formInput "category.code" 'class="form-control" readonly placeholder="请输入栏目代码"'/>
-                <#else>
-                    <@s.formInput "category.code" 'class="form-control" placeholder="请输入栏目代码"'/>
-                </#if>
-                <input type="hidden" id="old-code" value="${category.code!''}"/>
+                <@s.formInput "category.code" 'class="form-control" placeholder="请输入栏目代码"'/>
             </div>
         </div>
     </div>

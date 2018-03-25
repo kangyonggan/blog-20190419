@@ -91,15 +91,15 @@ public class DashboardSystemCategoryController extends BaseController {
     /**
      * 编辑栏目
      *
-     * @param code
+     * @param id
      * @param model
      * @return
      */
-    @RequestMapping(value = "{code:[\\w_]+}/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_CATEGORY")
-    public String create(@PathVariable("code") String code, Model model) {
+    public String create(@PathVariable("id") Long id, Model model) {
         model.addAttribute("types", CategoryType.values());
-        model.addAttribute("category", categoryService.findCategoryByCode(code));
+        model.addAttribute("category", categoryService.findCategoryById(id));
         return getPathFormModal();
     }
 
@@ -127,15 +127,15 @@ public class DashboardSystemCategoryController extends BaseController {
     /**
      * 删除/恢复
      *
-     * @param code
+     * @param id
      * @param isDeleted
      * @param model
      * @return
      */
-    @RequestMapping(value = "{code:[\\w_]+}/{isDeleted:\\bundelete\\b|\\bdelete\\b}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    @RequestMapping(value = "{id:[\\d]+}/{isDeleted:\\bundelete\\b|\\bdelete\\b}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     @RequiresPermissions("SYSTEM_CATEGORY")
-    public String delete(@PathVariable("code") String code, @PathVariable("isDeleted") String isDeleted, Model model) {
-        Category category = categoryService.findCategoryByCode(code);
+    public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
+        Category category = categoryService.findCategoryById(id);
         category.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
         categoryService.updateCategory(category);
 
@@ -147,14 +147,14 @@ public class DashboardSystemCategoryController extends BaseController {
     /**
      * 物理删除
      *
-     * @param code
+     * @param id
      * @return
      */
-    @RequestMapping(value = "{code:[\\w_]+}/remove", method = RequestMethod.GET)
+    @RequestMapping(value = "{id:[\\d]+}/remove", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_CATEGORY")
     @ResponseBody
-    public Map<String, Object> remove(@PathVariable("code") String code) {
-        categoryService.deleteCategoryByCode(code);
+    public Map<String, Object> remove(@PathVariable("id") Long id) {
+        categoryService.deleteCategoryById(id);
         return super.getResultMap();
     }
 
