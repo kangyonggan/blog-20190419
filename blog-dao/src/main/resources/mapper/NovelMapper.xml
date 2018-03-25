@@ -16,4 +16,11 @@
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
     </resultMap>
+
+    <select id="selectLastNovelCode" resultType="Integer">
+        SELECT code
+        FROM tb_novel
+        ORDER BY code DESC
+        limit 1
+    </select>
 </mapper>

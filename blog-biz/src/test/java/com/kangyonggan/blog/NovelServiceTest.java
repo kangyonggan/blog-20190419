@@ -19,8 +19,8 @@ public class NovelServiceTest extends AbstractServiceTest {
      * 测试更新小说
      */
     @Test
-    public void testUploadNovels() {
-        novelService.updateNovels();
+    public void testUploadNovelFromNow() {
+        novelService.updateNovelFromNow(novelService.findLastNovelCode());
     }
 
 }

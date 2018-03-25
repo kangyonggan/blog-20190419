@@ -3,12 +3,15 @@ package com.kangyonggan.blog.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.CategoryType;
+import com.kangyonggan.blog.mapper.NovelMapper;
 import com.kangyonggan.blog.service.CategoryService;
 import com.kangyonggan.blog.service.NovelService;
+import com.kangyonggan.blog.service.RedisService;
 import com.kangyonggan.blog.service.SectionService;
 import com.kangyonggan.blog.util.FileUtil;
 import com.kangyonggan.blog.util.HtmlUtil;
 import com.kangyonggan.blog.util.PropertiesUtil;
+import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.Novel;
 import com.kangyonggan.blog.vo.Section;
 import com.kangyonggan.extra.core.annotation.Log;
@@ -19,7 +22,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -31,35 +36,31 @@ import java.util.List;
 public class NovelServiceImpl extends BaseService<Novel> implements NovelService {
 
     @Autowired
+    private NovelMapper novelMapper;
+
+    @Autowired
     private CategoryService categoryService;
 
     @Autowired
     private SectionService sectionService;
 
+    @Autowired
+    private RedisService redisService;
+
+    private boolean isUpdatedFinished = true;
+
+    private String prefix = PropertiesUtil.getProperties("redis.prefix") + ":";
+
+    @PostConstruct
+    public void init() {
+        redisService.delete(prefix + NOVEL_UPDATE_FLAG);
+        log.info("小说更新标识已重置");
+    }
+
     @Override
     @Log
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    public void updateNovels() {
-        int novelCode = 1;
-        int currentCount = 0;
-        List<String> categoryCodes = categoryService.findCategoryCodesByType(CategoryType.NOVEL.getType());
-        while (true) {
-            Document document = HtmlUtil.parseUrl(BI_QU_GE_URL + "book/" + novelCode++);
-            if (document == null) {
-                currentCount++;
-                if (currentCount >= ERR_COUNT) {
-                    log.info("小说连续{}本都解析不了，可能已经没有更多小说了", currentCount);
-                    break;
-                }
-                continue;
-            }
-
-            try {
-                parseNovel(document, novelCode, categoryCodes);
-            } catch (Exception e) {
-                log.error("小说解析异常, 继续解析下一本", e);
-            }
-        }
+    public Integer findLastNovelCode() {
+        return novelMapper.selectLastNovelCode();
     }
 
     @Override
@@ -77,6 +78,95 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         findNewSection(novels);
 
         return novels;
+    }
+
+    @Override
+    public List<Novel> searchNovels(int pageNum, int pageSize, String code, String name, String author, String categoryCode) {
+        Example example = new Example(Novel.class);
+
+        Example.Criteria criteria = example.createCriteria();
+        if (StringUtils.isNotEmpty(code)) {
+            criteria.andEqualTo("code", code);
+        }
+        if (StringUtils.isNotEmpty(name)) {
+            criteria.andLike("name", StringUtil.toLikeString(name));
+        }
+        if (StringUtils.isNotEmpty(author)) {
+            criteria.andLike("author", StringUtil.toLikeString(author));
+        }
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            criteria.andEqualTo("categoryCode", categoryCode);
+        }
+
+        example.setOrderByClause("id desc");
+        PageHelper.startPage(pageNum, pageSize);
+        return myMapper.selectByExample(example);
+    }
+
+    @Override
+    @Log
+    public Novel findNovelByCode(Integer code) {
+        Novel novel = new Novel();
+        novel.setCode(code);
+
+        return myMapper.selectOne(novel);
+    }
+
+    @Override
+    @Log
+    public void updateNovel(Novel novel) {
+        Example example = new Example(Novel.class);
+        example.createCriteria().andEqualTo("code", novel.getCode());
+
+        myMapper.updateByConditionSelective(novel, example);
+    }
+
+    @Override
+    @Log
+    public void deleteNovel(Integer code) {
+        Novel novel = new Novel();
+        novel.setCode(code);
+
+        myMapper.delete(novel);
+    }
+
+    @Override
+    @Log
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public void updateNovelFromNow(Integer code) {
+        Object flag = redisService.get(prefix + NOVEL_UPDATE_FLAG);
+
+        if (flag != null) {
+            log.info("小说已经正在更新中,本次不再重复更新");
+            return;
+        }
+
+        redisService.set(prefix + NOVEL_UPDATE_FLAG, "1");
+
+        if (code == null) {
+            code = 1;
+        }
+        int currentCount = 0;
+        List<String> categoryCodes = categoryService.findCategoryCodesByType(CategoryType.NOVEL.getType());
+        while (true) {
+            Document document = HtmlUtil.parseUrl(BI_QU_GE_URL + "book/" + code++);
+            if (document == null) {
+                currentCount++;
+                if (currentCount >= ERR_COUNT) {
+                    log.info("小说连续{}本都解析不了，可能已经没有更多小说了", currentCount);
+                    break;
+                }
+                continue;
+            }
+
+            try {
+                parseNovel(document, code, categoryCodes);
+            } catch (Exception e) {
+                log.error("小说解析异常, 继续解析下一本", e);
+            }
+        }
+
+        redisService.delete(prefix + NOVEL_UPDATE_FLAG);
     }
 
     /**
@@ -130,7 +220,7 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         try {
             FileUtil.downloadFromUrl(picUrl, PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + filePath);
         } catch (Exception e) {
-            filePath = "cover/nocover.jpg";
+            filePath = "static/app/images/nocover.jpg";
         }
         novel.setPicUrl(filePath);
 

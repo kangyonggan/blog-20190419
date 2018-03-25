@@ -24,7 +24,7 @@ public class NovelEngine {
     @Scheduled(cron = "0 0 1 * * *")
     public void execute() {
         log.info("引擎自动更新小说开始...");
-        novelService.updateNovels();
+        novelService.updateNovelFromNow(novelService.findLastNovelCode());
         log.info("引擎自动更新小说结束!");
     }
 

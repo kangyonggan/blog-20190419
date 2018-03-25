@@ -131,7 +131,7 @@
             <#list novelsList as list>
                 <div class="novels <#if list_index gt 0>hidden</#if>" id="${list[0].categoryCode}-novels-list">
                     <#list list as novel>
-                        <a href="#">
+                        <a href="${ctx}/novel/${novel.code}">
                             <dl>
                                 <dd>
                                     <img src="${ctx}/${novel.picUrl}">
