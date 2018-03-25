@@ -76,3 +76,7 @@
 .form-group select.form-control {
     min-width: 158px;
 }
+
+.section {
+    margin-top: 5px;
+}

@@ -80,12 +80,39 @@ public class NovelController extends BaseController {
         PageInfo<Section> page = new PageInfo<>(sections);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.NOVEL.getType());
         List<Article> topArticles = articleService.findTopArticles();
+        Section lastSection = sectionService.findLastSectionByNovelCode(code);
 
         model.addAttribute("categories", categories);
         model.addAttribute("topArticles", topArticles);
         model.addAttribute("page", page);
         model.addAttribute("novel", novel);
+        model.addAttribute("lastSection", lastSection);
         return getPathDetail();
+    }
+
+    /**
+     * 章节详情
+     *
+     * @param novelCode
+     * @param sectionCode
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{novelCode:[\\d]+}/section/{sectionCode:[\\d]+}", method = RequestMethod.GET)
+    public String sectionDetail(@PathVariable("novelCode") Integer novelCode,
+                                @PathVariable("sectionCode") Integer sectionCode, Model model) {
+        Novel novel = novelService.findNovelByCode(novelCode);
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.NOVEL.getType());
+        Section section = sectionService.findSectionByCode(sectionCode);
+        Section prevSection = sectionService.findPrevSectionByCode(novelCode, sectionCode);
+        Section nextSection = sectionService.findNextSectionByCode(novelCode, sectionCode);
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("novel", novel);
+        model.addAttribute("section", section);
+        model.addAttribute("prevSection", prevSection);
+        model.addAttribute("nextSection", nextSection);
+        return getPathRoot() + "/section";
     }
 
 }

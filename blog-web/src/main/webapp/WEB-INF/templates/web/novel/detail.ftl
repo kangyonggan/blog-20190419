@@ -24,9 +24,40 @@
                 <span>${title}</span>
             </div>
 
+            <div class="novel-info">
+                <div class="img-border">
+                    <img src="${ctx}/${novel.picUrl}">
+                </div>
+                <div class="novel-desc">
+                    <div class="novel-name nowrap">${novel.name}</div>
+                    <div class="novel-author">
+                        <span>作者：${novel.author}</span>
+                        <#if lastSection??>
+                            <a href="${ctx}/novel/${novel.code}/section/${lastSection.code}">最新章节：${lastSection.title}</a>
+                        <#else>
+                            <a href="javascript:">暂无最新章节</a>
+                        </#if>
+                    </div>
+                    <p class="novel-descp">
+                        ${novel.descp}
+                    </p>
+                </div>
+            </div>
+
             <ul class="novel-list">
                 <#if page.list?size gt 0>
-                    xxx
+                    <#list page.list as section>
+                        <#if section_index % 2 == 0>
+                            <li>
+                                <a href="${ctx}/novel/${novel.code}/section/${section.code}"
+                                   class="section-title nowrap">${section.title}</a>
+                                <#if section_has_next>
+                                    <a href="${ctx}/novel/${novel.code}/section/${page.list[section_index + 1].code}"
+                                       class="section-title nowrap">${page.list[section_index + 1].title}</a>
+                                </#if>
+                            </li>
+                        </#if>
+                    </#list>
                 <#else>
                     <div class="empty">
                         <div>没有小说章节</div>
@@ -37,7 +68,7 @@
             <div class="space-10"></div>
         </div>
 
-        <@c.web_pagination url="${ctx}/novel/${categoryCode}"/>
+        <@c.web_pagination url="${ctx}/novel/${novel.code}"/>
     </div>
 
     <div class="space-10"></div>

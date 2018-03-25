@@ -47,8 +47,6 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
     @Autowired
     private RedisService redisService;
 
-    private boolean isUpdatedFinished = true;
-
     private String prefix = PropertiesUtil.getProperties("redis.prefix") + ":";
 
     @PostConstruct

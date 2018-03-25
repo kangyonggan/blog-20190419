@@ -11,7 +11,7 @@
     <td><@c.relative_date datetime=novel.createdTime/></td>
     <td>
         <div class="btn-group">
-            <a class="btn btn-xs btn-inverse" href="${ctx}/dashboard#manage/novel/${novel.code}/pull">拉取章节</a>
+            <a class="btn btn-xs btn-inverse" href="${ctx}/dashboard#manage/novel/${novel.code}">章节列表</a>
 
             <button data-toggle="dropdown" class="btn btn-xs btn-inverse dropdown-toggle">
                 <span class="ace-icon fa fa-caret-down icon-only"></span>
@@ -21,7 +21,13 @@
                 <li>
                     <a href="javascript:" data-category="novel-update" title="从此处更新小说"
                        data-url="${ctx}/dashboard/manage/novel/${novel.code}/update">
-                        从此处更新
+                        从此处更新小说
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" data-category="novel-update" title="拉取最新章节"
+                       data-url="${ctx}/dashboard/manage/novel/${novel.code}/pull">
+                        拉取最新章节
                     </a>
                 </li>
             <#if novel.isDeleted==1>
