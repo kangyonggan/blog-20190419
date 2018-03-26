@@ -71,7 +71,7 @@
             <li>4. 你的其他想法</li>
         </ul>
 
-        <div class="footer">
+        <div class="btm">
             一条龙服务，私我！
         </div>
     </div>
