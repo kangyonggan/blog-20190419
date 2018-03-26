@@ -1,5 +1,6 @@
 <#assign ctx="${(rca.contextPath)!''}">
 <#assign key = RequestParameters.key!'' />
+<#assign type = RequestParameters.type!'' />
 
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -24,6 +25,10 @@
         </a>
         <form action="${ctx}/search" class="form" method="get">
             <input type="text" name="key" placeholder="搜索..." value="${key}" required/>
+            <select name="type">
+                <option value="ARTICLE">文章</option>
+                <option value="NOVEL" <#if type=="NOVEL">selected</#if>>小说</option>
+            </select>
         </form>
     </div>
     <img src="${ctx}/static/app/images/2018.jpg" class="bottom"/>

@@ -130,13 +130,14 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
     }
 
     @Override
-    public List<Novel> searchNovels(String key) {
+    public List<Novel> searchNovels(int pageNum, int pageSize, String key) {
         Example example = new Example(Novel.class);
-        example.createCriteria().andEqualTo("name", key);
-        example.or(example.createCriteria().andEqualTo("author", key));
+        example.createCriteria().andLike("name", StringUtil.toLikeString(key));
+        example.or(example.createCriteria().andLike("author", StringUtil.toLikeString(key)));
 
         example.setOrderByClause("id desc");
 
+        PageHelper.startPage(pageNum, pageSize);
         return myMapper.selectByExample(example);
     }
 

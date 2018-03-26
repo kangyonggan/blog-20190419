@@ -30,6 +30,7 @@ body {
 }
 
 #header .top .form {
+    position: relative;
     display: inline-block;
     float: right;
     margin-top: 10px;
@@ -47,6 +48,17 @@ body {
     border-radius: 2px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+#header .top .form select {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 50px;
+    height: 32px;
+    outline: none;
+    border: none;
+    background: #fff;
 }
 
 #header .bottom {

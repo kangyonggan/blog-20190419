@@ -39,7 +39,7 @@ public class MobileNovelController {
         NovelsResponse response = new NovelsResponse();
 
         try {
-            List<Novel> novels = novelService.searchNovels(key);
+            List<Novel> novels = novelService.searchNovels(1, 100, key);
 
             response.setNovels(novels);
             response.setRespCo(Resp.SUCCESS.getRespCo());

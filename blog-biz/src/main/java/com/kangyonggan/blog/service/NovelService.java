@@ -90,5 +90,5 @@ public interface NovelService {
      * @param key
      * @return
      */
-    List<Novel> searchNovels(String key);
+    List<Novel> searchNovels(int pageNum, int pageSize, String key);
 }
