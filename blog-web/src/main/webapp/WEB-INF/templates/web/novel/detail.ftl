@@ -60,7 +60,7 @@
                     </#list>
                 <#else>
                     <div class="empty">
-                        <div>没有小说章节</div>
+                        <div>没有小说章节，请<a href="${ctx}/guest">联系站长</a>让他优先抓取《${novel.name}》</div>
                     </div>
                 </#if>
             </ul>
