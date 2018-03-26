@@ -99,8 +99,8 @@ public class CategoryServiceImpl extends BaseService<Category> implements Catego
 
     @Override
     @Log
-    public List<Category> findAllCategoryWithBookCount() {
-        return categoryMapper.selectAllCategoryWithBookCount();
+    public List<Category> findAllCategoryWithNovelCount() {
+        return categoryMapper.selectAllCategoryWithNovelCount();
     }
 
 }

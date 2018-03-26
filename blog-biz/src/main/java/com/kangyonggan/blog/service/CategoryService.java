@@ -76,5 +76,5 @@ public interface CategoryService {
      *
      * @return
      */
-    List<Category> findAllCategoryWithBookCount();
+    List<Category> findAllCategoryWithNovelCount();
 }

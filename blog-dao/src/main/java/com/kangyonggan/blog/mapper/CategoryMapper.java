@@ -13,5 +13,5 @@ public interface CategoryMapper extends MyMapper<Category> {
      *
      * @return
      */
-    List<Category> selectAllCategoryWithBookCount();
+    List<Category> selectAllCategoryWithNovelCount();
 }

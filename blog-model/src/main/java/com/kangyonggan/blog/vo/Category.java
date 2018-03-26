@@ -54,10 +54,10 @@ public class Category implements Serializable {
     private Date updatedTime;
 
     /**
-     * 书籍数量
+     * 小说数量
      */
     @Transient
-    private Integer bookCnt;
+    private Integer novelCnt;
 
     private static final long serialVersionUID = 1L;
 }

@@ -34,7 +34,7 @@ public class MobileCategoryController {
         CategoriesResponse response = new CategoriesResponse();
 
         try {
-            List<Category> categories = categoryService.findAllCategoryWithBookCount();
+            List<Category> categories = categoryService.findAllCategoryWithNovelCount();
             response.setCategories(categories);
             response.setRespCo(Resp.SUCCESS.getRespCo());
             response.setRespMsg(Resp.SUCCESS.getRespMsg());

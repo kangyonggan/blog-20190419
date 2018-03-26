@@ -15,15 +15,15 @@
         <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
     </resultMap>
 
-    <select id="selectAllCategoryWithBookCount" resultMap="BaseResultMap">
+    <select id="selectAllCategoryWithNovelCount" resultMap="BaseResultMap">
         SELECT
-          count(a.id) AS bookCnt, b.code, b.name
+          count(a.id) AS novelCnt, b.code, b.name
         FROM
           tb_novel a
           LEFT JOIN
           tb_category b
             ON a.category_code = b.code
         GROUP BY b.code, b.name
-        ORDER BY bookCnt DESC
+        ORDER BY b.code ASC
     </select>
 </mapper>
