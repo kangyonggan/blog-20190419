@@ -1104,8 +1104,8 @@ table.ascll-table {
     background: #fcfcfc;
     border-radius: 5px;
 
-    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-    transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .guest-list .line {
@@ -1301,4 +1301,52 @@ table.ascll-table {
 .photos dl dt {
     text-align: center;
     margin-top: 5px;
+}
+
+.ad {
+    position: fixed;
+    left: 5px;
+    top: 360px;
+    width: 130px;
+    height: 160px;
+    font-size: 14px;
+    z-index: -100;
+    background: #fff;
+    padding: 6px;
+    border: 1px solid #dfd9ce;
+    box-shadow: 0px 1px 2px #adaca9;
+    border-radius: 5px;
+}
+
+.ad .title {
+    display: block;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    height: 26px;
+    line-height: 26px;
+}
+
+.ad .content ul {
+    margin: 0;
+    margin-top: 3px;
+    padding: 0;
+    list-style: none;
+    font-size: 13px;
+}
+
+.ad .content ul li {
+    border-bottom: 1px dashed #eee;
+    height: 20px;
+
+}
+
+.ad .content .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
 }

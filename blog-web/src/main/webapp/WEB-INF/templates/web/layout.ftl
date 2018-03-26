@@ -59,6 +59,24 @@
     Copyright © 2018 <@s.message "app.name"/> | <@s.message "app.ba.no"/>
 </div>
 
+<div class="ad">
+    <div class="title">
+        接私活
+    </div>
+    <div class="content">
+        <ul>
+            <li>1. 个人博客</li>
+            <li>2. 个人门户网站</li>
+            <li>3. 企业门户网站</li>
+            <li>4. 你的其他想法</li>
+        </ul>
+
+        <div class="footer">
+            一条龙服务，私我！
+        </div>
+    </div>
+</div>
+
 <script src="${ctx}/static/ace/dist/js/jquery.min.js"></script>
 <@block name="script"/>
 </body>
