@@ -9,12 +9,12 @@
     <td><#include "category.ftl"></td>
     <td>
         <#if novel.lastSection??>
-            <a href="${ctx}/dashboard/manage/novel/${novel.code}/section/${novel.lastSection.code}">
+            <a href="${ctx}/dashboard#manage/novel/${novel.code}/section/${novel.lastSection.code}">
                 ${novel.lastSection.title}
             </a>
         <#else>
             <a href="javascript:" data-category="novel-update" title="拉取最新章节"
-               data-url="${ctx}/dashboard#manage/novel/${novel.code}/pull">
+               data-url="${ctx}/dashboard/manage/novel/${novel.code}/pull">
                 拉取最新章节
             </a>
         </#if>
