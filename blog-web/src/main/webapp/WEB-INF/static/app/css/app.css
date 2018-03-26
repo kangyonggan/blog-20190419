@@ -695,7 +695,7 @@ body {
 }
 
 #main .right .article-content {
-    margin: 25px 0 25px 25px;
+    margin: 25px;
     padding-right: 25px;
     border-top: 1px dashed #e2e2e2;
     line-height: 1.8;
