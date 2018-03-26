@@ -1360,8 +1360,9 @@ table.ascll-table {
     border: 1px solid #c33b00;
     border-left-color: #ccc;
     padding-top: 55px;
-    background: #fff;
+    background: #c33b00;
     cursor: pointer;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    color: #fff;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
