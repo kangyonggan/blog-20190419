@@ -21,9 +21,7 @@
 <@override name="main">
 <div id="main">
     <form id="tool-form" action="${ctx}/tool/${tool.id}" method="post" enctype="multipart/form-data" class="tool-form">
-        <div class="space-10"></div>
-        <div class="space-10"></div>
-        <div class="space-10"></div>
+        <div style="height: 30px"></div>
 
         <#include "${tool.code}.ftl"/>
     </form>
@@ -34,7 +32,7 @@
         <div class="tool-result">
             <pre><code><#if respCo=='0000'><#include "result/${tool.code}.ftl"/><#else>${respMsg}</#if></code></pre>
         </div>
-        <div class="space-20"></div>
+        <div style="height: 20px"></div>
     </#if>
 </div>
 </@override>

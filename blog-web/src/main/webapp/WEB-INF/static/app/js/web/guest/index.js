@@ -1,5 +1,6 @@
 $(function () {
     $("#navbar ul li.active").css("height", "60px");
+    $(".breadcrumbs").css("min-height", "32px").css("border-bottom", "none");
 
     var $form = $('#guest-form');
     var $btn = $form.find("button");

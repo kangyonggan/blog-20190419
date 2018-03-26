@@ -19,9 +19,8 @@
 <@override name="main">
 <div id="main">
     <div style="width: 900px; margin: 0 auto;">
+        <div style="height: 20px;"></div>
         <form action="${ctx}/guest/save" method="post" id="guest-form">
-            <div class="space-10"></div>
-            <div class="space-10"></div>
             <div class="form-group">
                 <div class="form-input">
                     <textarea class="form-control" name="content" rows="5" placeholder="相遇便是缘分，留句话吧..."></textarea>
@@ -42,8 +41,7 @@
                 </div>
             </div>
         </form>
-
-        <div class="space-32"></div>
+        <div style="height: 20px;"></div>
 
         <div class="guest-line">
             <h3>留言板
@@ -116,8 +114,7 @@
                 </ul>
             </div>
         </#if>
-
-        <div class="space-20"></div>
+        <div style="height: 20px;"></div>
     </div>
 </div>
 </@override>
