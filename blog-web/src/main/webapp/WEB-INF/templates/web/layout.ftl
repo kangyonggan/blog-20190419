@@ -22,8 +22,8 @@
                 <span>工作台</span>
             </div>
         </a>
-        <form action="${ctx}/search" class="form" method="get" novalidate>
-            <input type="text" name="key" placeholder="搜索..." value="${key}"/>
+        <form action="${ctx}/search" class="form" method="get">
+            <input type="text" name="key" placeholder="搜索..." value="${key}" required/>
         </form>
     </div>
     <img src="${ctx}/static/app/images/2018.jpg" class="bottom"/>

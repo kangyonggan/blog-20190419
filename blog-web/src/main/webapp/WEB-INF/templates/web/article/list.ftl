@@ -1,11 +1,18 @@
 <#assign active_article="active"/>
 <#assign categoryCode = RequestParameters.categoryCode!'' />
+<#assign key = RequestParameters.key!'' />
 <#list categories as category>
     <#if categoryCode==category.code>
         <#assign title="${category.name}"/>
     </#if>
 </#list>
-<#if categoryCode==''><#assign title="全部栏目"/></#if>
+<#if categoryCode==''>
+    <#if key != ''>
+        <#assign title="搜索结果"/>
+    <#else>
+        <#assign title="全部栏目"/>
+    </#if>
+</#if>
 
 <@override name="breadcrumbs">
 <#include "breadcrumbs.ftl"/>
@@ -43,7 +50,11 @@
             </ul>
         </div>
 
-        <@c.web_pagination url="${ctx}/article" param="categoryCode=${categoryCode}"/>
+        <#if key != ''>
+            <@c.web_pagination url="${ctx}/search" param="key=${key}"/>
+        <#else>
+            <@c.web_pagination url="${ctx}/article" param="categoryCode=${categoryCode}"/>
+        </#if>
     </div>
 
     <div class="space-10"></div>

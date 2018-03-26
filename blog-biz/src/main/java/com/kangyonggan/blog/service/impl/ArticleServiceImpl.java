@@ -115,6 +115,23 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         return myMapper.selectByExample(example);
     }
 
+    @Override
+    public List<Article> searchArticles(int pageNum, int pageSize, String key) {
+        Example example = new Example(Article.class);
+
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+        if (StringUtils.isNotEmpty(key)) {
+            criteria.andLike("title", StringUtil.toLikeString(key));
+            example.or(example.createCriteria().andLike("summary", StringUtil.toLikeString(key)));
+        }
+
+        example.setOrderByClause("is_top desc");
+
+        PageHelper.startPage(pageNum, pageSize);
+        return myMapper.selectByExample(example);
+    }
+
     /**
      * 批量保存附件
      *

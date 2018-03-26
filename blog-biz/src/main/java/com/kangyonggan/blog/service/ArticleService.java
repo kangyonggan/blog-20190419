@@ -75,4 +75,14 @@ public interface ArticleService {
      * @return
      */
     List<Article> findSomeArticles(int pageNum, int pageSize, String categoryCode);
+
+    /**
+     * 搜索文章
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param key
+     * @return
+     */
+    List<Article> searchArticles(int pageNum, int pageSize, String key);
 }

@@ -748,6 +748,7 @@ body {
     line-height: 1.7;
     font-size: 14px;
     color: #666;
+    margin-right: 5px;
 }
 
 #main .right .list li .date {
