@@ -205,10 +205,10 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void parseNovel(Document document, int code, List<String> categoryCodes) throws Exception {
         // 判断库中是否已存在
-        if (existNovel(code)) {
-            log.info("小说{}已存在，继续更新下一本", code);
-            return;
-        }
+//        if (existNovel(code)) {
+//            log.info("小说{}已存在，继续更新下一本", code);
+//            return;
+//        }
 
         String name = document.select("#maininfo #info h1").html().trim();
         String author = document.select("#maininfo #info p").get(0).html().trim();
