@@ -1,4 +1,5 @@
 $(function () {
+    window.document.title = "登录";
     var $form = $('#login-form');
     var $btn = $("#submit");
 
