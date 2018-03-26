@@ -19,7 +19,7 @@ import java.util.List;
  * @since 8/15/17
  */
 @RestController
-@RequestMapping("mobile/movel")
+@RequestMapping("mobile/novel")
 @Log4j2
 public class MobileNovelController {
 
