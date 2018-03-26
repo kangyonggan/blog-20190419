@@ -1,7 +1,11 @@
 <#assign ctx="${(rca.contextPath)!''}">
 
 <div class="col-lg-4 col-lg-offset-4 col-md-6 col-sm-6 col-sm-offset-3 col-xs-12">
-    <div class="space-30"></div>
+    <div class="space-20"></div>
+    <div class="red">
+        体验账号：kangyonggan/123456
+    </div>
+    <div class="space-10"></div>
     <div id="login-box" class="login-box visible widget-box">
         <div class="widget-body">
             <div class="widget-main">
