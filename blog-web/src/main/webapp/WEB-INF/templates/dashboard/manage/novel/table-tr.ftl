@@ -7,6 +7,18 @@
     </td>
     <td>${novel.author}</td>
     <td><#include "category.ftl"></td>
+    <td>
+        <#if novel.lastSection??>
+            <a href="${ctx}/dashboard/manage/novel/${novel.code}/section/${novel.lastSection.code}">
+                ${novel.lastSection.title}
+            </a>
+        <#else>
+            <a href="javascript:" data-category="novel-update" title="拉取最新章节"
+               data-url="${ctx}/dashboard/manage/novel/${novel.code}/pull">
+                拉取最新章节
+            </a>
+        </#if>
+    </td>
     <td><#include "delete.ftl"></td>
     <td><@c.relative_date datetime=novel.createdTime/></td>
     <td>

@@ -12,7 +12,6 @@ import com.kangyonggan.blog.util.FileUtil;
 import com.kangyonggan.blog.util.HtmlUtil;
 import com.kangyonggan.blog.util.PropertiesUtil;
 import com.kangyonggan.blog.util.StringUtil;
-import com.kangyonggan.blog.vo.Category;
 import com.kangyonggan.blog.vo.Novel;
 import com.kangyonggan.blog.vo.Section;
 import com.kangyonggan.extra.core.annotation.Log;
@@ -74,9 +73,7 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         List<Novel> novels = myMapper.select(novel);
 
         // 查找最新章节
-        findNewSection(novels);
-
-        return novels;
+        return findNewSection(novels);
     }
 
     @Override
@@ -99,7 +96,8 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
 
         example.setOrderByClause("id desc");
         PageHelper.startPage(pageNum, pageSize);
-        return myMapper.selectByExample(example);
+        List<Novel> novels = myMapper.selectByExample(example);
+        return findNewSection(novels);
     }
 
     @Override
@@ -186,11 +184,13 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
      *
      * @param novels
      */
-    private void findNewSection(List<Novel> novels) {
+    private List<Novel> findNewSection(List<Novel> novels) {
         for (Novel novel : novels) {
             Section section = sectionService.findLastSectionByNovelCode(novel.getCode());
             novel.setLastSection(section);
         }
+
+        return novels;
     }
 
 
