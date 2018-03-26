@@ -1,6 +1,10 @@
 $(function () {
     $("#navbar ul li.active").css("height", "60px");
     $(".breadcrumbs").css("min-height", "32px").css("border-bottom", "none");
+    $(".top .form input").css("height", "34px");
+    adOffset = "-130px";
+    $(".ad").css("left", "-130px");
+    $(".ad-btn").css("height", "160px");
 
     var $form = $('#guest-form');
     var $btn = $form.find("button");

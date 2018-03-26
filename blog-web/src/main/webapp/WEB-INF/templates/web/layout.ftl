@@ -24,7 +24,7 @@
             </div>
         </a>
         <form action="${ctx}/search" class="form" method="get">
-            <input type="text" name="key" placeholder="搜索..." value="${key}" required/>
+            <input type="text" name="key" placeholder="搜一搜..." value="${key}" required/>
             <select name="type">
                 <option value="ARTICLE">文章</option>
                 <option value="NOVEL" <#if type=="NOVEL">selected</#if>>小说</option>
@@ -79,11 +79,12 @@
 
 <script src="${ctx}/static/ace/dist/js/jquery.min.js"></script>
 <script>
+    var adOffset = "-142px";
     $(".ad").mouseenter(function () {
         $(this).css("left", "0");
     })
     $(".ad").mouseleave(function () {
-        $(this).css("left", "-142px");
+        $(this).css("left", adOffset);
     })
 </script>
 <@block name="script"/>
