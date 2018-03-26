@@ -56,6 +56,8 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         example.createCriteria().andEqualTo("novelCode", code);
         example.setOrderByClause("code desc");
 
+        example.selectProperties("id", "code", "title", "novelCode");
+
         PageHelper.startPage(1, 1);
         List<Section> sections = myMapper.selectByExample(example);
         if (sections.isEmpty()) {
