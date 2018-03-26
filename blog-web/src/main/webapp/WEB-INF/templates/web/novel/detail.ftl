@@ -69,6 +69,9 @@
         </div>
 
         <@c.web_pagination url="${ctx}/novel/${novel.code}"/>
+        <div style="text-align: center;margin-top: 10px">
+            本站所有小说为转载作品，转载至本站只是为了宣传本书让更多读者欣赏。
+        </div>
     </div>
 
     <div class="space-10"></div>
