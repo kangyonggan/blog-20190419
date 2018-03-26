@@ -53,5 +53,11 @@ public class Category implements Serializable {
     @Column(name = "updated_time")
     private Date updatedTime;
 
+    /**
+     * 书籍数量
+     */
+    @Transient
+    private Integer bookCnt;
+
     private static final long serialVersionUID = 1L;
 }

@@ -70,4 +70,11 @@ public interface CategoryService {
      * @return
      */
     List<String> findCategoryCodesByType(String type);
+
+    /**
+     * 查找所有分类，带有小说总数
+     *
+     * @return
+     */
+    List<Category> findAllCategoryWithBookCount();
 }

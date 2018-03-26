@@ -7,7 +7,7 @@ import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.Dialect;
 import com.kangyonggan.blog.constants.DictionaryType;
 import com.kangyonggan.blog.constants.Resp;
-import com.kangyonggan.blog.dto.ToolDto;
+import com.kangyonggan.blog.dto.request.ToolDto;
 import com.kangyonggan.blog.service.DictionaryService;
 import com.kangyonggan.blog.service.ToolService;
 import com.kangyonggan.blog.util.*;

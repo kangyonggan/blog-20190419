@@ -14,4 +14,10 @@
         <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
         <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
     </resultMap>
+
+    <select id="selectAllCategoryWithBookCount" resultType="BaseResultMap">
+        SELECT count(*) AS bookCnt, category_code AS code, category_name AS name
+        FROM tb_novel GROUP BY category_code
+        ORDER BY bookCnt DESC
+    </select>
 </mapper>

@@ -12,6 +12,7 @@ import com.kangyonggan.blog.util.FileUtil;
 import com.kangyonggan.blog.util.HtmlUtil;
 import com.kangyonggan.blog.util.PropertiesUtil;
 import com.kangyonggan.blog.util.StringUtil;
+import com.kangyonggan.blog.vo.Category;
 import com.kangyonggan.blog.vo.Novel;
 import com.kangyonggan.blog.vo.Section;
 import com.kangyonggan.extra.core.annotation.Log;
@@ -126,6 +127,17 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         novel.setCode(code);
 
         myMapper.delete(novel);
+    }
+
+    @Override
+    public List<Novel> searchNovels(String key) {
+        Example example = new Example(Novel.class);
+        example.createCriteria().andEqualTo("name", key);
+        example.or(example.createCriteria().andEqualTo("author", key));
+
+        example.setOrderByClause("id desc");
+
+        return myMapper.selectByExample(example);
     }
 
     @Override

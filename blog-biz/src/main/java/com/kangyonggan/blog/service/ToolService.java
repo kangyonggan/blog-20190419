@@ -1,6 +1,6 @@
 package com.kangyonggan.blog.service;
 
-import com.kangyonggan.blog.dto.ToolDto;
+import com.kangyonggan.blog.dto.request.ToolDto;
 import com.kangyonggan.blog.vo.Tool;
 import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.ui.Model;

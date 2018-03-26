@@ -145,6 +145,31 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         }
     }
 
+    @Override
+    @Log
+    public Section findFirstSection(int novelCode) {
+        Example example = new Example(Section.class);
+
+        example.createCriteria().andEqualTo("novelCode", novelCode);
+
+        example.setOrderByClause("code asc");
+        PageHelper.startPage(1, 1);
+        List<Section> sections = myMapper.selectByExample(example);
+
+        return sections.isEmpty() ? null : sections.get(0);
+    }
+
+    @Override
+    public List<Section> findNext100Sections(Integer novelCode, Integer code) {
+        Example example = new Example(Section.class);
+        example.createCriteria().andEqualTo("novelCode", novelCode).andGreaterThanOrEqualTo("code", code);
+
+        example.setOrderByClause("code asc");
+
+        PageHelper.startPage(1, 100);
+        return myMapper.selectByExample(example);
+    }
+
     /**
      * 拉取小说章节
      *

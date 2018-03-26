@@ -86,4 +86,20 @@ public interface SectionService {
      */
     void updateAllSections();
 
+    /**
+     * 查找第一章
+     *
+     * @param novelCode
+     * @return
+     */
+    Section findFirstSection(int novelCode);
+
+    /**
+     * 查找后面100章
+     *
+     * @param novelCode
+     * @param code
+     * @return
+     */
+    List<Section> findNext100Sections(Integer novelCode, Integer code);
 }

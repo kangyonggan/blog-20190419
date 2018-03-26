@@ -83,4 +83,12 @@ public interface NovelService {
      * @param code
      */
     void updateNovelFromNow(Integer code);
+
+    /**
+     * 搜索小说
+     *
+     * @param key
+     * @return
+     */
+    List<Novel> searchNovels(String key);
 }

@@ -1,4 +1,4 @@
-package com.kangyonggan.blog.dto;
+package com.kangyonggan.blog.dto.request;
 
 import lombok.Data;
 

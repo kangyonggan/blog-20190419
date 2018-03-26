@@ -2,12 +2,14 @@ package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.mapper.CategoryMapper;
 import com.kangyonggan.blog.service.CategoryService;
 import com.kangyonggan.blog.util.Collections3;
 import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.Category;
 import com.kangyonggan.extra.core.annotation.Log;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -15,6 +17,9 @@ import java.util.List;
 
 @Service
 public class CategoryServiceImpl extends BaseService<Category> implements CategoryService {
+
+    @Autowired
+    private CategoryMapper categoryMapper;
 
     @Override
     public List<Category> searchCategories(int pageNum, String code, String name, String type) {
@@ -91,4 +96,11 @@ public class CategoryServiceImpl extends BaseService<Category> implements Catego
         List<Category> categories = myMapper.select(category);
         return Collections3.extractToList(categories, "code");
     }
+
+    @Override
+    @Log
+    public List<Category> findAllCategoryWithBookCount() {
+        return categoryMapper.selectAllCategoryWithBookCount();
+    }
+
 }
