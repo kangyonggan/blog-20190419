@@ -16,8 +16,14 @@
     </resultMap>
 
     <select id="selectAllCategoryWithBookCount" resultMap="BaseResultMap">
-        SELECT count(*) AS bookCnt, category_code AS code, category_name AS name
-        FROM tb_novel GROUP BY category_code
+        SELECT
+          count(a.id) AS bookCnt, b.code, b.name
+        FROM
+          tb_novel a
+          LEFT JOIN
+          tb_category b
+            ON a.category_code = b.code
+        GROUP BY b.code, b.name
         ORDER BY bookCnt DESC
     </select>
 </mapper>

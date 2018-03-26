@@ -501,7 +501,7 @@ VALUES
   ('xiuzhen', '修真', 'NOVEL', 2),
   ('lishi', '历史', 'NOVEL', 3),
   ('yanqing', '言情', 'NOVEL', 4),
-  ('wangyou', '网友', 'NOVEL', 5),
+  ('wangyou', '网游', 'NOVEL', 5),
   ('kehuan', '科幻', 'NOVEL', 6),
   ('qita', '其他', 'NOVEL', 7);
 
