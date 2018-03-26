@@ -27,25 +27,58 @@ public class MobileSectionController {
     private SectionService sectionService;
 
     /**
-     * 查找章节
+     * 查找下一个章节
      *
      * @param code
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    public SectionResponse section(@RequestParam("code") int code) {
+    public SectionResponse nextSection(@RequestParam("code") int code) {
         SectionResponse response = new SectionResponse();
 
         try {
             Section section = sectionService.findSectionByCode(code);
+            Section nextSection = sectionService.findNextSectionByCode(section.getNovelCode(), code);
 
-            if (section == null) {
+            if (nextSection == null) {
                 response.setRespCo(Resp.FAILURE.getRespCo());
-                response.setRespMsg("不存在的章节");
+                response.setRespMsg("不存在下一个章节");
                 return response;
             }
 
-            response.setSection(section);
+            response.setSection(nextSection);
+            response.setRespCo(Resp.SUCCESS.getRespCo());
+            response.setRespMsg(Resp.SUCCESS.getRespMsg());
+        } catch (Exception e) {
+            log.warn("查找小说章节异常", e);
+            response.setRespCo(Resp.FAILURE.getRespCo());
+            response.setRespMsg(Resp.FAILURE.getRespMsg());
+        }
+
+        return response;
+    }
+
+    /**
+     * 查找上一个章节
+     *
+     * @param code
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public SectionResponse prevSection(@RequestParam("code") int code) {
+        SectionResponse response = new SectionResponse();
+
+        try {
+            Section section = sectionService.findSectionByCode(code);
+            Section nextSection = sectionService.findPrevSectionByCode(section.getNovelCode(), code);
+
+            if (nextSection == null) {
+                response.setRespCo(Resp.FAILURE.getRespCo());
+                response.setRespMsg("不存在上一个章节");
+                return response;
+            }
+
+            response.setSection(nextSection);
             response.setRespCo(Resp.SUCCESS.getRespCo());
             response.setRespMsg(Resp.SUCCESS.getRespMsg());
         } catch (Exception e) {
