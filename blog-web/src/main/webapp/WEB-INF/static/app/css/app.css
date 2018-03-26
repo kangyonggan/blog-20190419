@@ -1305,17 +1305,16 @@ table.ascll-table {
 
 .ad {
     position: fixed;
-    left: 5px;
+    left: -142px;
     top: 310px;
     width: 130px;
     height: 160px;
     font-size: 14px;
-    z-index: -100;
+    z-index: 100;
     background: #fff;
     padding: 6px;
-    border: 1px solid #dfd9ce;
+    border: 1px solid #c33b00;
     box-shadow: 0px 1px 2px #adaca9;
-    border-radius: 5px;
 }
 
 .ad .title {
@@ -1349,4 +1348,20 @@ table.ascll-table {
     text-align: center;
     border-top: 1px solid #ccc;
     padding-top: 5px;
+}
+
+.ad .ad-btn {
+    position: absolute;
+    right: -18px;
+    top: -1px;
+    bottom: 0;
+    width: 18px;
+    height: 117px;
+    border: 1px solid #c33b00;
+    border-left-color: #ccc;
+    padding-top: 55px;
+    background: #fff;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }

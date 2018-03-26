@@ -60,9 +60,6 @@
 </div>
 
 <div class="ad">
-    <div class="title">
-        接私活
-    </div>
     <div class="content">
         <ul>
             <li>1. 个人博客</li>
@@ -75,9 +72,20 @@
             一条龙服务，私我！
         </div>
     </div>
+    <div class="ad-btn">
+        接私活
+    </div>
 </div>
 
 <script src="${ctx}/static/ace/dist/js/jquery.min.js"></script>
+<script>
+    $(".ad").mouseenter(function () {
+        $(this).css("left", "0");
+    })
+    $(".ad").mouseleave(function () {
+        $(this).css("left", "-142px");
+    })
+</script>
 <@block name="script"/>
 </body>
 </html>
