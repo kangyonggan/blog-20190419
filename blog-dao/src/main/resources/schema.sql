@@ -368,7 +368,7 @@ CREATE TABLE tb_novel
   COMMENT '封面图片地址',
   code          INT(11)                               NOT NULL
   COMMENT '书籍代码',
-  descp         VARCHAR(1024)                         NOT NULL
+  descp         VARCHAR(2048)                         NOT NULL
   COMMENT '描述',
   is_deleted    TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
