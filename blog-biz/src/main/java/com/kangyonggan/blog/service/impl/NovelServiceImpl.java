@@ -133,7 +133,7 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         example.createCriteria().andLike("name", StringUtil.toLikeString(key));
         example.or(example.createCriteria().andLike("author", StringUtil.toLikeString(key)));
 
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
 
         PageHelper.startPage(pageNum, pageSize);
         return myMapper.selectByExample(example);
