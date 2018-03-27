@@ -91,4 +91,10 @@ public interface NovelService {
      * @return
      */
     List<Novel> searchNovels(int pageNum, int pageSize, String key);
+
+    /**
+     * 更新小说封面
+     */
+    void updateNovelCover();
+
 }

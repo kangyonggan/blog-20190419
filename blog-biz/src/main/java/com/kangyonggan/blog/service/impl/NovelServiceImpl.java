@@ -142,6 +142,33 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
     @Override
     @Log
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public void updateNovelCover() {
+        Novel n = new Novel();
+        n.setPicUrl("static/app/images/nocover.jpg");
+        List<Novel> novels = myMapper.select(n);
+        log.info("共有{}本没有封面的小说", novels.size());
+
+        for (Novel novel : novels) {
+            Document document = HtmlUtil.parseUrl(BI_QU_GE_URL + "book/" + novel.getCode());
+            if (document != null) {
+                String picUrl = document.select("#fmimg img").attr("src");
+                String filePath = "cover/" + novel.getCode() + picUrl.substring(picUrl.lastIndexOf("."));
+                try {
+                    FileUtil.downloadFromUrl(picUrl, PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + filePath);
+                    novel.setPicUrl(filePath);
+
+                    myMapper.updateByPrimaryKeySelective(novel);
+                    log.info("小说封面已更新, {}", novel);
+                } catch (Exception e) {
+                    log.warn("无法下载小说封面:{}", novel.getCode());
+                }
+            }
+        }
+    }
+
+    @Override
+    @Log
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void updateNovelFromNow(Integer code) {
         Object flag = redisService.get(prefix + NOVEL_UPDATE_FLAG);
 
