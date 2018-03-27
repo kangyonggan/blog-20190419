@@ -61,6 +61,7 @@
 
         <!--Shire-->
         <shiro.version>1.2.4</shiro.version>
+        <shiro.tags.version>1.0.0</shiro.tags.version>
 
         <!--Commons-->
         <commons-lang3.version>3.3.2</commons-lang3.version>
@@ -349,6 +350,11 @@
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-quartz</artifactId>
                 <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kangyonggan</groupId>
+                <artifactId>shiro</artifactId>
+                <version>${shiro.tags.version}</version>
             </dependency>
 
             <!--Commons-->
