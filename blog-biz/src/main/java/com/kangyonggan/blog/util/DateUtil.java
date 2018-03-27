@@ -158,4 +158,14 @@ public class DateUtil {
         return new SimpleDateFormat(DATE_PATTERN).parse(dateStr);
     }
 
+    /**
+     * 字符串转成10位日期
+     *
+     * @param dateStr
+     * @return
+     */
+    public static Date fromDate10(String dateStr) throws ParseException {
+        return dateFormat.parse(dateStr);
+    }
+
 }

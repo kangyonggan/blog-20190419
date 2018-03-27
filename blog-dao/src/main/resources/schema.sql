@@ -410,6 +410,33 @@ CREATE TABLE tb_section
 CREATE UNIQUE INDEX code_UNIQUE
   ON tb_section (code);
 
+-- ----------------------------
+--  Table structure for tb_login_log
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_login_log;
+
+CREATE TABLE tb_login_log
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  username     VARCHAR(32)                           NOT NULL
+  COMMENT '用户名',
+  ip           VARCHAR(20)                           NOT NULL
+  COMMENT '登录IP',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '章节表';
+CREATE INDEX ix_username
+  ON tb_login_log (username);
+CREATE INDEX ix_created_time
+  ON tb_login_log (created_time);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -445,6 +472,7 @@ VALUES
   ('SYSTEM_CATEGORY', '栏目管理', 'SYSTEM', 'system/category', 3, ''),
   ('SYSTEM_DICTIONARY', '数据字典', 'SYSTEM', 'system/dictionary', 4, ''),
   ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 5, ''),
+  ('SYSTEM_LOGIN', '登录日志', 'SYSTEM', 'system/login', 6, ''),
 
   ('MANAGE', '管理', 'DASHBOARD', 'manage', 2, 'menu-icon fa fa-desktop'),
   ('MANAGE_ARTICLE', '文章管理', 'MANAGE', 'manage/article', 0, ''),

@@ -3,6 +3,8 @@ package com.kangyonggan.blog.controller.web;
 import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.Resp;
 import com.kangyonggan.blog.controller.BaseController;
+import com.kangyonggan.blog.service.LoginLogService;
+import com.kangyonggan.blog.util.IPUtil;
 import com.kangyonggan.blog.vo.User;
 import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.SecurityUtils;
@@ -11,6 +13,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +32,9 @@ import java.util.Map;
 @RequestMapping("auth")
 @Log4j2
 public class AuthController extends BaseController {
+
+    @Autowired
+    private LoginLogService loginLogService;
 
     /**
      * 登录模板
@@ -100,6 +106,9 @@ public class AuthController extends BaseController {
             setResultMapFailure(resultMap);
             return resultMap;
         }
+
+        // 保存登录日志
+        loginLogService.saveLoginLog(user.getUsername(), IPUtil.getIp(request));
 
         return resultMap;
     }
