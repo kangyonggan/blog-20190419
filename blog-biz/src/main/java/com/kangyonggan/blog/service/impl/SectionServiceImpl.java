@@ -149,6 +149,18 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
 
     @Override
     @Log
+    public void updateSectionsFromNow(Integer novelCode) {
+        int lastNovelCode = novelService.findLastNovelCode();
+        for (int code = novelCode; code <= lastNovelCode; code++) {
+            Novel novel = novelService.findNovelByCode(code);
+            if (novel != null) {
+                updateSections(code);
+            }
+        }
+    }
+
+    @Override
+    @Log
     public Section findFirstSection(int novelCode) {
         Example example = new Example(Section.class);
 

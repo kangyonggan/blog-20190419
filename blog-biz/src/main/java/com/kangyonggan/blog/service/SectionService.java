@@ -87,6 +87,13 @@ public interface SectionService {
     void updateAllSections();
 
     /**
+     * 从某处更新所有章节
+     *
+     * @param novelCode
+     */
+    void updateSectionsFromNow(Integer novelCode);
+
+    /**
      * 查找第一章
      *
      * @param novelCode

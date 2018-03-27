@@ -37,6 +37,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="javascript:" data-category="novel-update" title="从此处更新章节"
+                       data-url="${ctx}/dashboard/manage/novel/${novel.code}/section/update">
+                        从此处更新章节
+                    </a>
+                </li>
+                <li>
                     <a href="javascript:" data-category="novel-update" title="清空小说章节"
                        data-url="${ctx}/dashboard/manage/novel/${novel.code}/clear">
                         清空小说章节

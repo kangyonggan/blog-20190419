@@ -176,6 +176,25 @@ public class DashboardManageNovelController extends BaseController {
     }
 
     /**
+     * 更新所有章节，从指定处
+     *
+     * @param code
+     * @return
+     */
+    @RequestMapping(value = "{code:[\\d]+}/section/update", method = RequestMethod.GET)
+    @RequiresPermissions("MANAGE_NOVEL")
+    @ResponseBody
+    public Map<String, Object> updateFromNow(@PathVariable("code") Integer code) {
+        new Thread() {
+            @Override
+            public void run() {
+                sectionService.updateSectionsFromNow(code);
+            }
+        }.start();
+        return super.getResultMap();
+    }
+
+    /**
      * 更新全部章节
      *
      * @return
