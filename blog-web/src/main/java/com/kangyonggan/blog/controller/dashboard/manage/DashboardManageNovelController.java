@@ -213,6 +213,24 @@ public class DashboardManageNovelController extends BaseController {
     }
 
     /**
+     * 更新封面
+     *
+     * @return
+     */
+    @RequestMapping(value = "updateCovers", method = RequestMethod.GET)
+    @RequiresPermissions("MANAGE_NOVEL")
+    @ResponseBody
+    public Map<String, Object> updateCovers() {
+        new Thread() {
+            @Override
+            public void run() {
+                novelService.updateNovelCover();
+            }
+        }.start();
+        return super.getResultMap();
+    }
+
+    /**
      * 拉取最新章节
      *
      * @param code

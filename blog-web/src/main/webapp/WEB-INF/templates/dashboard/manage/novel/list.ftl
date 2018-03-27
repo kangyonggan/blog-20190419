@@ -16,6 +16,10 @@
                data-url="${ctx}/dashboard/manage/novel/updateSections"  class="btn btn-sm btn-danger">
                 更新全部章节
             </a>
+            <a id="novel-update-cover" href="javascript:" data-category="novel-update" title="更新封面"
+               data-url="${ctx}/dashboard/manage/novel/updateCovers"  class="btn btn-sm btn-danger">
+                更新封面
+            </a>
         </small>
     </h1>
 </div>
