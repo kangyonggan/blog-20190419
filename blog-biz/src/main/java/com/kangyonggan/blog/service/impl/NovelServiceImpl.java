@@ -136,7 +136,8 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         example.setOrderByClause("id asc");
 
         PageHelper.startPage(pageNum, pageSize);
-        return myMapper.selectByExample(example);
+        List<Novel> novels = myMapper.selectByExample(example);
+        return findNewSection(novels);
     }
 
     @Override
