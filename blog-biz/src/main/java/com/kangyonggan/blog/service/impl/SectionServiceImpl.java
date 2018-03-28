@@ -78,11 +78,13 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
 
     @Override
     public List<Section> findNovelSections(Integer code) {
-        Section section = new Section();
-        section.setIsDeleted(AppConstants.IS_DELETED_NO);
-        section.setNovelCode(code);
+        Example example = new Example(Section.class);
+        example.createCriteria().andEqualTo("isDeleted", AppConstants.IS_DELETED_NO).andEqualTo("novelCode", code);
+        example.setOrderByClause("code asc");
 
-        return myMapper.select(section);
+        example.selectProperties("code", "title", "novelCode");
+
+        return myMapper.selectByExample(example);
     }
 
     @Override
