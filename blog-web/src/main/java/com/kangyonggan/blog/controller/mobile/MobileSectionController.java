@@ -156,15 +156,15 @@ public class MobileSectionController {
     /**
      * 查找小说全部章节
      *
-     * @param bookCode
+     * @param novelCode
      * @return
      */
     @RequestMapping(value = "all", method = RequestMethod.POST)
-    public SectionsResponse sections(@RequestParam("bookCode") int bookCode) {
+    public SectionsResponse sections(@RequestParam("novelCode") int novelCode) {
         SectionsResponse response = new SectionsResponse();
 
         try {
-            List<Section> sections = sectionService.findNovelSections(bookCode);
+            List<Section> sections = sectionService.findNovelSections(novelCode);
 
             response.setSections(sections);
             response.setRespCo(Resp.SUCCESS.getRespCo());
