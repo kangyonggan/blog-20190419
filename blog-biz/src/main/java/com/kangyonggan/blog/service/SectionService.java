@@ -109,4 +109,23 @@ public interface SectionService {
      * @return
      */
     List<Section> findNext100Sections(Integer novelCode, Integer code);
+
+    /**
+     * 查找下一章节，带有正文
+     *
+     * @param novelCode
+     * @param code
+     * @return
+     */
+    Section findNextSectionByCodeWithContent(Integer novelCode, int code);
+
+    /**
+     * 查找上一章节，带有正文
+     *
+     * @param novelCode
+     * @param code
+     * @return
+     */
+    Section findPrevSectionByCodeWithContent(Integer novelCode, int code);
+
 }

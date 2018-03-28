@@ -29,16 +29,16 @@ public class MobileSectionController {
     /**
      * 查找下一个章节
      *
+     * @param novelCode
      * @param code
      * @return
      */
     @RequestMapping(value = "next", method = RequestMethod.POST)
-    public SectionResponse nextSection(@RequestParam("code") int code) {
+    public SectionResponse nextSection(@RequestParam("novelCode") int novelCode, @RequestParam("code") int code) {
         SectionResponse response = new SectionResponse();
 
         try {
-            Section section = sectionService.findSectionByCode(code);
-            Section nextSection = sectionService.findNextSectionByCode(section.getNovelCode(), code);
+            Section nextSection = sectionService.findNextSectionByCodeWithContent(novelCode, code);
 
             if (nextSection == null) {
                 response.setRespCo(Resp.FAILURE.getRespCo());
@@ -61,16 +61,16 @@ public class MobileSectionController {
     /**
      * 查找上一个章节
      *
+     * @param novelCode
      * @param code
      * @return
      */
     @RequestMapping(value = "prev", method = RequestMethod.POST)
-    public SectionResponse prevSection(@RequestParam("code") int code) {
+    public SectionResponse prevSection(@RequestParam("novelCode") int novelCode, @RequestParam("code") int code) {
         SectionResponse response = new SectionResponse();
 
         try {
-            Section section = sectionService.findSectionByCode(code);
-            Section nextSection = sectionService.findPrevSectionByCode(section.getNovelCode(), code);
+            Section nextSection = sectionService.findPrevSectionByCodeWithContent(novelCode, code);
 
             if (nextSection == null) {
                 response.setRespCo(Resp.FAILURE.getRespCo());

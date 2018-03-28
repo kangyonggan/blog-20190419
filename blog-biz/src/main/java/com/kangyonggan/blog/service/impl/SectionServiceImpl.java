@@ -184,6 +184,42 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         return myMapper.selectByExample(example);
     }
 
+    @Override
+    public Section findNextSectionByCodeWithContent(Integer novelCode, int code) {
+        Example example = new Example(Section.class);
+
+        example.createCriteria().andEqualTo("novelCode", novelCode);
+        example.createCriteria().andEqualTo("code", code);
+
+        example.setOrderByClause("code asc");
+
+        PageHelper.startPage(1, 1);
+        List<Section> sections = myMapper.selectByExample(example);
+        if (sections.isEmpty()) {
+            return null;
+        }
+
+        return sections.get(0);
+    }
+
+    @Override
+    public Section findPrevSectionByCodeWithContent(Integer novelCode, int code) {
+        Example example = new Example(Section.class);
+
+        example.createCriteria().andEqualTo("novelCode", novelCode);
+        example.createCriteria().andEqualTo("code", code);
+
+        example.setOrderByClause("code desc");
+
+        PageHelper.startPage(1, 1);
+        List<Section> sections = myMapper.selectByExample(example);
+        if (sections.isEmpty()) {
+            return null;
+        }
+
+        return sections.get(0);
+    }
+
     /**
      * 拉取小说章节
      *
