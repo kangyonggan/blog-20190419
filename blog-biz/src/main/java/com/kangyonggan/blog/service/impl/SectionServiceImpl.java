@@ -88,8 +88,9 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
     }
 
     @Override
-    public Section findSectionByCode(Integer code) {
+    public Section findSectionByCode(Integer novelCode, Integer code) {
         Section section = new Section();
+        section.setNovelCode(novelCode);
         section.setCode(code);
 
         return myMapper.selectOne(section);

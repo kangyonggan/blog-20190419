@@ -44,10 +44,11 @@ public interface SectionService {
     /**
      * 查找章节
      *
+     * @param novelCode
      * @param code
      * @return
      */
-    Section findSectionByCode(Integer code);
+    Section findSectionByCode(Integer novelCode, Integer code);
 
     /**
      * 查找上一章节

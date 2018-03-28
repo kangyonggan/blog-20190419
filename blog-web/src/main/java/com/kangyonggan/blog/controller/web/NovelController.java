@@ -101,7 +101,7 @@ public class NovelController extends BaseController {
                                 @PathVariable("sectionCode") Integer sectionCode, Model model) {
         Novel novel = novelService.findNovelByCode(novelCode);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.NOVEL.getType());
-        Section section = sectionService.findSectionByCode(sectionCode);
+        Section section = sectionService.findSectionByCode(novelCode, sectionCode);
         Section prevSection = sectionService.findPrevSectionByCode(novelCode, sectionCode);
         Section nextSection = sectionService.findNextSectionByCode(novelCode, sectionCode);
 

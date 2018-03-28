@@ -92,7 +92,7 @@ public class DashboardManageNovelController extends BaseController {
     public String section(@PathVariable(value = "novelCode") Integer novelCode,
                           @PathVariable(value = "sectionCode") Integer sectionCode, Model model) {
         Novel novel = novelService.findNovelByCode(novelCode);
-        Section section = sectionService.findSectionByCode(sectionCode);
+        Section section = sectionService.findSectionByCode(novelCode, sectionCode);
         Section prevSection = sectionService.findPrevSectionByCode(novelCode, sectionCode);
         Section nextSection = sectionService.findNextSectionByCode(novelCode, sectionCode);
 

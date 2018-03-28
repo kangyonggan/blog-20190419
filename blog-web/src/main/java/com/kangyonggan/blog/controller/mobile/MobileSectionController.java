@@ -27,6 +27,38 @@ public class MobileSectionController {
     private SectionService sectionService;
 
     /**
+     * 查找指定章节
+     *
+     * @param novelCode
+     * @param code
+     * @return
+     */
+    @RequestMapping(value = "next", method = RequestMethod.POST)
+    public SectionResponse section(@RequestParam("novelCode") int novelCode, @RequestParam("code") int code) {
+        SectionResponse response = new SectionResponse();
+
+        try {
+            Section section = sectionService.findSectionByCode(novelCode, code);
+
+            if (section == null) {
+                response.setRespCo(Resp.FAILURE.getRespCo());
+                response.setRespMsg("不存在的章节");
+                return response;
+            }
+
+            response.setSection(section);
+            response.setRespCo(Resp.SUCCESS.getRespCo());
+            response.setRespMsg(Resp.SUCCESS.getRespMsg());
+        } catch (Exception e) {
+            log.warn("查找小说章节异常", e);
+            response.setRespCo(Resp.FAILURE.getRespCo());
+            response.setRespMsg(Resp.FAILURE.getRespMsg());
+        }
+
+        return response;
+    }
+
+    /**
      * 查找下一个章节
      *
      * @param novelCode
@@ -124,23 +156,16 @@ public class MobileSectionController {
     /**
      * 查找小说后面100章
      *
+     * @param novelCode
      * @param code
      * @return
      */
     @RequestMapping(value = "cache", method = RequestMethod.POST)
-    public SectionsResponse sectionCache(@RequestParam("code") int code) {
+    public SectionsResponse sectionCache(@RequestParam("novelCode") int novelCode, @RequestParam("code") int code) {
         SectionsResponse response = new SectionsResponse();
 
         try {
-            Section section = sectionService.findSectionByCode(code);
-
-            if (section == null) {
-                response.setRespCo(Resp.FAILURE.getRespCo());
-                response.setRespMsg("不存在的章节");
-                return response;
-            }
-
-            List<Section> sections = sectionService.findNext100Sections(section.getNovelCode(), section.getCode());
+            List<Section> sections = sectionService.findNext100Sections(novelCode, code);
             response.setSections(sections);
             response.setRespCo(Resp.SUCCESS.getRespCo());
             response.setRespMsg(Resp.SUCCESS.getRespMsg());
