@@ -380,6 +380,8 @@ CREATE TABLE tb_novel
   COMMENT '书籍表';
 CREATE UNIQUE INDEX code_UNIQUE
   ON tb_novel (code);
+CREATE INDEX  ix_category_code
+  ON tb_novel(category_code);
 
 -- ----------------------------
 --  Table structure for tb_section
@@ -409,6 +411,8 @@ CREATE TABLE tb_section
   COMMENT '章节表';
 CREATE UNIQUE INDEX code_UNIQUE
   ON tb_section (code);
+CREATE INDEX ix_novel_code
+  ON tb_section (novel_code);
 
 -- ----------------------------
 --  Table structure for tb_login_log
