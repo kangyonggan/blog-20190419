@@ -26,4 +26,12 @@ public interface NovelMapper extends MyMapper<Novel> {
      * @return
      */
     List<Novel> searchNovels(@Param("code") String code, @Param("name") String name, @Param("author") String author, @Param("categoryCode") String categoryCode);
+
+    /**
+     * 搜索小说，根据name或author
+     *
+     * @param key
+     * @return
+     */
+    List<Novel> searchNovelsByKey(@Param("key") String key);
 }

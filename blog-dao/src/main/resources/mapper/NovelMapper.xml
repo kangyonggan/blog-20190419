@@ -46,4 +46,19 @@
         </if>
         ORDER BY a.code ASC
     </select>
+
+    <select id="searchNovelsByKey" resultMap="BaseResultMap">
+        SELECT a.*, b.lastSectionCode, c.title AS lastSectionTitle
+        FROM tb_novel a LEFT JOIN
+          (SELECT max(code) AS lastSectionCode, novel_code FROM tb_section GROUP BY novel_code) b
+          ON a.code = b.novel_code
+        LEFT JOIN tb_section c
+          ON c.code = b.lastSectionCode
+        WHERE a.is_deleted = 0
+           AND (
+              a.name LIKE CONCAT('%', #{key}, '%')
+              OR a.author LIKE CONCAT('%', #{key}, '%')
+              )
+        ORDER BY a.code ASC
+    </select>
 </mapper>

@@ -10,7 +10,6 @@ import com.kangyonggan.blog.service.RedisService;
 import com.kangyonggan.blog.util.FileUtil;
 import com.kangyonggan.blog.util.HtmlUtil;
 import com.kangyonggan.blog.util.PropertiesUtil;
-import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.Novel;
 import com.kangyonggan.extra.core.annotation.Log;
 import lombok.extern.log4j.Log4j2;
@@ -96,14 +95,8 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
 
     @Override
     public List<Novel> searchNovels(int pageNum, int pageSize, String key) {
-        Example example = new Example(Novel.class);
-        example.createCriteria().andLike("name", StringUtil.toLikeString(key));
-        example.or(example.createCriteria().andLike("author", StringUtil.toLikeString(key)));
-
-        example.setOrderByClause("id asc");
-
         PageHelper.startPage(pageNum, pageSize);
-        return myMapper.selectByExample(example);
+        return novelMapper.searchNovelsByKey(key);
     }
 
     @Override
