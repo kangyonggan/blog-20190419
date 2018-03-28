@@ -67,10 +67,16 @@ public class Novel implements Serializable {
     private Date updatedTime;
 
     /**
-     * 最新章节
+     * 最新章节代码
      */
     @Transient
-    private Section lastSection;
+    private String lastSectionCode;
+
+    /**
+     * 最新章节标题
+     */
+    @Transient
+    private String lastSectionTitle;
 
     private static final long serialVersionUID = 1L;
 }

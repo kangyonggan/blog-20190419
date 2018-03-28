@@ -8,9 +8,9 @@
     <td>${novel.author}</td>
     <td><#include "category.ftl"></td>
     <td>
-        <#if novel.lastSection??>
-            <a href="${ctx}/dashboard#manage/novel/${novel.code}/section/${novel.lastSection.code}">
-                ${novel.lastSection.title}
+        <#if novel.lastSectionCode??>
+            <a href="${ctx}/dashboard#manage/novel/${novel.code}/section/${novel.lastSectionCode}">
+                ${novel.lastSectionTitle}
             </a>
         <#else>
             <a href="javascript:" data-category="novel-update" title="拉取最新章节"

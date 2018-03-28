@@ -23,4 +23,27 @@
         ORDER BY code DESC
         limit 1
     </select>
+
+    <select id="searchNovels" resultMap="BaseResultMap">
+        SELECT a.*, b.lastSectionCode, c.title AS lastSectionTitle
+        FROM tb_novel a LEFT JOIN
+          (SELECT max(code) AS lastSectionCode, novel_code FROM tb_section GROUP BY novel_code) b
+          ON a.code = b.novel_code
+        LEFT JOIN tb_section c
+          ON c.code = b.lastSectionCode
+          WHERE a.is_deleted = 0
+        <if test="code != null and code != ''">
+            AND a.code = #{code}
+        </if>
+        <if test="name != null and name != ''">
+            AND a.name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="author != null and author != ''">
+            AND a.author LIKE CONCAT('%', #{author}, '%')
+        </if>
+        <if test="categoryCode != null and categoryCode != ''">
+            AND a.category_code = #{categoryCode}
+        </if>
+        ORDER BY a.code ASC
+    </select>
 </mapper>

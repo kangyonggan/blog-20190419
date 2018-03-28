@@ -29,9 +29,9 @@
                     <#list page.list as novel>
                         <li>
                             <a href="${ctx}/novel/${novel.code}" class="novel-title nowrap">${novel.name}</a>
-                            <#if novel.lastSection??>
-                                <a href="${ctx}/novel/${novel.code}/section/${novel.lastSection.code}"
-                                   class="new-section nowrap">${novel.lastSection.title}</a>
+                            <#if novel.lastSectionCode??>
+                                <a href="${ctx}/novel/${novel.code}/section/${novel.lastSectionCode}"
+                                   class="new-section nowrap">${novel.lastSectionTitle}</a>
                             <#else>
                                 <a href="javascript:" class="new-section nowrap">暂无最新章节</a>
                             </#if>

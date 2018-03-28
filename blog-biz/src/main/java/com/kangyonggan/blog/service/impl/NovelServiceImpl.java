@@ -7,16 +7,13 @@ import com.kangyonggan.blog.mapper.NovelMapper;
 import com.kangyonggan.blog.service.CategoryService;
 import com.kangyonggan.blog.service.NovelService;
 import com.kangyonggan.blog.service.RedisService;
-import com.kangyonggan.blog.service.SectionService;
 import com.kangyonggan.blog.util.FileUtil;
 import com.kangyonggan.blog.util.HtmlUtil;
 import com.kangyonggan.blog.util.PropertiesUtil;
 import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.Novel;
-import com.kangyonggan.blog.vo.Section;
 import com.kangyonggan.extra.core.annotation.Log;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,9 +39,6 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
     private CategoryService categoryService;
 
     @Autowired
-    private SectionService sectionService;
-
-    @Autowired
     private RedisService redisService;
 
     private String prefix = PropertiesUtil.getProperties("redis.prefix") + ":";
@@ -63,41 +57,14 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
 
     @Override
     public List<Novel> findNovelsByCategory(int pageNum, int pageSize, String categoryCode) {
-        Novel novel = new Novel();
-        novel.setIsDeleted(AppConstants.IS_DELETED_NO);
-        if (StringUtils.isNotEmpty(categoryCode)) {
-            novel.setCategoryCode(categoryCode);
-        }
-
         PageHelper.startPage(pageNum, pageSize);
-        List<Novel> novels = myMapper.select(novel);
-
-        // 查找最新章节
-        return findNewSection(novels);
+        return novelMapper.searchNovels(null, null, null, categoryCode);
     }
 
     @Override
     public List<Novel> searchNovels(int pageNum, int pageSize, String code, String name, String author, String categoryCode) {
-        Example example = new Example(Novel.class);
-
-        Example.Criteria criteria = example.createCriteria();
-        if (StringUtils.isNotEmpty(code)) {
-            criteria.andEqualTo("code", code);
-        }
-        if (StringUtils.isNotEmpty(name)) {
-            criteria.andLike("name", StringUtil.toLikeString(name));
-        }
-        if (StringUtils.isNotEmpty(author)) {
-            criteria.andLike("author", StringUtil.toLikeString(author));
-        }
-        if (StringUtils.isNotEmpty(categoryCode)) {
-            criteria.andEqualTo("categoryCode", categoryCode);
-        }
-
-        example.setOrderByClause("id desc");
         PageHelper.startPage(pageNum, pageSize);
-        List<Novel> novels = myMapper.selectByExample(example);
-        return findNewSection(novels);
+        return novelMapper.searchNovels(code, name, author, categoryCode);
     }
 
     @Override
@@ -136,8 +103,7 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
         example.setOrderByClause("id asc");
 
         PageHelper.startPage(pageNum, pageSize);
-        List<Novel> novels = myMapper.selectByExample(example);
-        return findNewSection(novels);
+        return myMapper.selectByExample(example);
     }
 
     @Override
@@ -206,21 +172,6 @@ public class NovelServiceImpl extends BaseService<Novel> implements NovelService
 
         redisService.delete(prefix + NOVEL_UPDATE_FLAG);
     }
-
-    /**
-     * 查找最新章节
-     *
-     * @param novels
-     */
-    private List<Novel> findNewSection(List<Novel> novels) {
-        for (Novel novel : novels) {
-            Section section = sectionService.findLastSectionByNovelCode(novel.getCode());
-            novel.setLastSection(section);
-        }
-
-        return novels;
-    }
-
 
     /**
      * 解析小说
