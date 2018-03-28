@@ -1366,3 +1366,9 @@ table.ascll-table {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
+
+.err {
+    padding-top: 90px;
+    text-align: center;
+    font-size: 18px;
+}
