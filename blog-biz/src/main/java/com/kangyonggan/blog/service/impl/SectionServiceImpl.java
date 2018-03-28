@@ -189,7 +189,7 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         Example example = new Example(Section.class);
 
         example.createCriteria().andEqualTo("novelCode", novelCode);
-        example.createCriteria().andEqualTo("code", code);
+        example.createCriteria().andGreaterThan("code", code);
 
         example.setOrderByClause("code asc");
 
@@ -207,7 +207,7 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         Example example = new Example(Section.class);
 
         example.createCriteria().andEqualTo("novelCode", novelCode);
-        example.createCriteria().andEqualTo("code", code);
+        example.createCriteria().andLessThan("code", code);
 
         example.setOrderByClause("code desc");
 
