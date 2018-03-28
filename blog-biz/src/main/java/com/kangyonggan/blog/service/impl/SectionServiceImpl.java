@@ -188,8 +188,7 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
     public Section findNextSectionByCodeWithContent(Integer novelCode, int code) {
         Example example = new Example(Section.class);
 
-        example.createCriteria().andEqualTo("novelCode", novelCode);
-        example.createCriteria().andGreaterThan("code", code);
+        example.createCriteria().andEqualTo("novelCode", novelCode).andGreaterThan("code", code);
 
         example.setOrderByClause("code asc");
 
@@ -206,8 +205,7 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
     public Section findPrevSectionByCodeWithContent(Integer novelCode, int code) {
         Example example = new Example(Section.class);
 
-        example.createCriteria().andEqualTo("novelCode", novelCode);
-        example.createCriteria().andLessThan("code", code);
+        example.createCriteria().andEqualTo("novelCode", novelCode).andLessThan("code", code);
 
         example.setOrderByClause("code desc");
 
