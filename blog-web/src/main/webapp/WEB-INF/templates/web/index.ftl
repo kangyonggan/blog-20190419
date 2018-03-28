@@ -116,38 +116,27 @@
         <div class="category">
             <ul>
                 <li class="first"><a href="javascript:">小说分类</a></li>
-                <#list novelsList as list>
-                    <#if list?size gt 0>
-                        <#list categories as category>
-                            <#if category.code==list[0].categoryCode>
-                                <li <#if category_index==0>class="active"</#if>><a href="javascript:"
-                                                                                   data-code="${category.code}"
-                                                                                   class="category-btn">${category.name}</a>
-                                </li>
-                            </#if>
-                        </#list>
-                    </#if>
+                <#list categories as category>
+                    <li <#if category_index==0>class="active"</#if>>
+                        <a href="javascript:" class="category-btn" data-code="${category.code}">${category.name}</a>
+                    </li>
                 </#list>
             </ul>
             <a href="${ctx}/novel" class="more"><span class="icon">+</span>更多</a>
         </div>
         <div class="book-list">
-            <#list novelsList as list>
-                <#if list?size gt 0>
-                    <div class="novels <#if list_index gt 0>hidden</#if>" id="${list[0].categoryCode}-novels-list">
-                        <#list list as novel>
-                            <a href="${ctx}/novel/${novel.code}">
-                                <dl>
-                                    <dd>
-                                        <img src="${ctx}/${novel.picUrl}">
-                                    </dd>
-                                    <dt>${novel.name}</dt>
-                                </dl>
-                            </a>
-                        </#list>
-                    </div>
-                </#if>
-            </#list>
+            <div class="novels">
+                <#list novels as novel>
+                    <a href="${ctx}/novel/${novel.code}">
+                        <dl>
+                            <dd>
+                                <img src="${ctx}/${novel.picUrl}">
+                            </dd>
+                            <dt>${novel.name}</dt>
+                        </dl>
+                    </a>
+                </#list>
+            </div>
         </div>
     </div>
 </div>
@@ -172,12 +161,22 @@
         var fn = this.className.split(' ')[1];
         data04[fn]();
     });
-    $(".novel .category-btn").click(function () {
-        $(".category li").removeClass("active");
-        $(this).parent("li").addClass("active");
 
-        $(".book-list .novels").addClass("hidden");
-        $("#" + $(this).attr("data-code") + "-novels-list").removeClass("hidden");
+    $(".novel .category-btn").click(function () {
+        var $this = $(this);
+        $.get("${ctx}/novel/category?categoryCode=" + $(this).attr("data-code"), function (data) {
+            data = eval('(' + data + ')');
+            if (data.respCo == "0000") {
+                $(".category li").removeClass("active");
+                $this.parent("li").addClass("active");
+
+                $(".book-list .novels").empty();
+                for (var i = 0; i < data.novels.length; i++) {
+                    var novel = data.novels[i];
+                    $(".book-list .novels").append('<a href="${ctx}/novel/' + novel.code + '"><dl><dd><img src="${ctx}/' + novel.picUrl + '"></dd><dt>' + novel.name + '</dt></dl></a>');
+                }
+            }
+        });
     });
 </script>
 </@override>

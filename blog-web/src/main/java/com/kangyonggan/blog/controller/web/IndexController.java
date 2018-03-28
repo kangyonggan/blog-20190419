@@ -48,16 +48,13 @@ public class IndexController extends BaseController {
         List<Tool> tools = toolService.findSomeTools(6);
         List<Life> lifes = lifeService.findSomeLife(1, 4, null);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.NOVEL.getType());
-        List<List<Novel>> novelsList = new ArrayList<>();
-        for (Category category : categories) {
-            novelsList.add(novelService.findNovelsByCategory(1, 6, category.getCode()));
-        }
+        List<Novel> novels = novelService.findNovelsByCategory(1, 6, categories.get(0).getCode());
 
         model.addAttribute("articles", articles);
         model.addAttribute("tools", tools);
         model.addAttribute("lifes", lifes);
         model.addAttribute("categories", categories);
-        model.addAttribute("novelsList", novelsList);
+        model.addAttribute("novels", novels);
         return getPathRoot();
     }
 
