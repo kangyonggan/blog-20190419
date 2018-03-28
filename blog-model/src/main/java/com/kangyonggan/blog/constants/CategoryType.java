@@ -9,6 +9,7 @@ public enum CategoryType {
 
     ARTICLE("ARTICLE", "文章"),
     NOVEL("NOVEL", "小说"),
+    MUSIC("MUSIC", "音乐"),
     LIFE("LIFE", "生活");
 
     /**

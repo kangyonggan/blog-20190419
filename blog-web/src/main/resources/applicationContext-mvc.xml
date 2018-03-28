@@ -71,6 +71,7 @@
     <mvc:resources mapping="/static/**" location="/WEB-INF/static/" cache-period="31556926"/>
     <mvc:resources mapping="/upload/**" location="/WEB-INF/upload/" cache-period="31556926"/>
     <mvc:resources mapping="/cover/**" location="/WEB-INF/cover/" cache-period="31556926"/>
+    <mvc:resources mapping="/music/**" location="/WEB-INF/music/" cache-period="31556926"/>
 
     <!-- 定义无需Controller的url<->view直接映射 -->
     <mvc:view-controller path="/404" view-name="/404"/>

@@ -380,8 +380,8 @@ CREATE TABLE tb_novel
   COMMENT '书籍表';
 CREATE UNIQUE INDEX code_UNIQUE
   ON tb_novel (code);
-CREATE INDEX  ix_category_code
-  ON tb_novel(category_code);
+CREATE INDEX ix_category_code
+  ON tb_novel (category_code);
 
 -- ----------------------------
 --  Table structure for tb_section
@@ -440,6 +440,53 @@ CREATE INDEX ix_username
   ON tb_login_log (username);
 CREATE INDEX ix_created_time
   ON tb_login_log (created_time);
+
+-- ----------------------------
+--  Table structure for tb_music
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_music;
+
+CREATE TABLE tb_music
+(
+  id               BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  name             VARCHAR(64)                           NOT NULL
+  COMMENT '歌曲名',
+  singer           VARCHAR(64)                           NOT NULL
+  COMMENT '歌手',
+  album            VARCHAR(64)                           NOT NULL
+  COMMENT '专辑',
+  album_cover_path VARCHAR(128)                          NOT NULL
+  COMMENT '专辑封面路径',
+  duration         INT(11)                               NOT NULL
+  COMMENT '时长(秒)',
+  size             BIGINT(20)                            NOT NULL
+  COMMENT '文件大小(byte)',
+  category_code    VARCHAR(32)                           NOT NULL                    DEFAULT ''
+  COMMENT '栏目代码',
+  upload_username  VARCHAR(16)                           NOT NULL                    DEFAULT ''
+  COMMENT '上传人',
+  upload_remark    VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '上传备注',
+  status           VARCHAR(16)                           NOT NULL                    DEFAULT 'WAITING'
+  COMMENT '状态:{"WAITING":"待审核", "REJECT":"拒绝", "COMPLETE":"审核通过"}',
+  adjust_username  VARCHAR(16)                           NOT NULL                    DEFAULT ''
+  COMMENT '审核人',
+  is_stick         TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '是否置顶:{0:未置顶, 1:已置顶}',
+  is_deleted       TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time     TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time     TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '音乐表';
+CREATE UNIQUE INDEX id_unique_name_singer
+  ON tb_music (name, singer);
+CREATE INDEX ix_category_code
+  ON tb_music (category_code);
 
 #====================初始数据====================#
 
@@ -527,6 +574,12 @@ VALUES
   ('goal', '小目标', 'LIFE', 2),
   ('history', '历史事件', 'LIFE', 3),
   ('shit', '我的吐槽', 'LIFE', 4),
+
+  ('old', '怀旧', 'MUSIC', 0),
+  ('rhythm', '节奏', 'MUSIC', 1),
+  ('light', '轻音乐', 'MUSIC', 2),
+  ('net', '网络', 'MUSIC', 3),
+  ('other', '其他', 'MUSIC', 4),
 
   ('xuanhuan', '玄幻', 'NOVEL', 0),
   ('dushi', '都市', 'NOVEL', 1),
