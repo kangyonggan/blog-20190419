@@ -93,15 +93,15 @@ public class MobileSectionController {
     /**
      * 查找第一个章节
      *
-     * @param bookCode
+     * @param novelCode
      * @return
      */
     @RequestMapping(value = "first", method = RequestMethod.POST)
-    public SectionResponse lastSection(@RequestParam("bookCode") int bookCode) {
+    public SectionResponse lastSection(@RequestParam("novelCode") int novelCode) {
         SectionResponse response = new SectionResponse();
 
         try {
-            Section section = sectionService.findFirstSection(bookCode);
+            Section section = sectionService.findFirstSection(novelCode);
 
             if (section == null) {
                 response.setRespCo(Resp.FAILURE.getRespCo());
