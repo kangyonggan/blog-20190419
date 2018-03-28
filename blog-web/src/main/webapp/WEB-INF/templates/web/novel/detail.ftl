@@ -33,7 +33,7 @@
                     <div class="novel-author">
                         <span>作者：${novel.author}</span>
                         <#if lastSection??>
-                            <a href="${ctx}/novel/${novel.code}/section/${lastSectionCode}">最新章节：${lastSectionTitle}</a>
+                            <a href="${ctx}/novel/${novel.code}/section/${lastSection.code}">最新章节：${lastSection.title}</a>
                         <#else>
                             <a href="javascript:">暂无最新章节</a>
                         </#if>
