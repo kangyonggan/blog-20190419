@@ -33,7 +33,7 @@ public class MobileSectionController {
      * @param code
      * @return
      */
-    @RequestMapping(value = "next", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public SectionResponse section(@RequestParam("novelCode") int novelCode, @RequestParam("code") int code) {
         SectionResponse response = new SectionResponse();
 
