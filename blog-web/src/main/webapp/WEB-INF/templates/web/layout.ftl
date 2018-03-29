@@ -28,6 +28,7 @@
             <select name="type">
                 <option value="ARTICLE">文章</option>
                 <option value="NOVEL" <#if type=="NOVEL">selected</#if>>小说</option>
+                <option value="MUSIC" <#if type=="MUSIC">selected</#if>>音乐</option>
             </select>
         </form>
     </div>

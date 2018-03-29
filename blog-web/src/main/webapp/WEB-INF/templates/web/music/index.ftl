@@ -5,7 +5,7 @@
         <#assign title="${category.name}"/>
     </#if>
 </#list>
-<#if categoryCode==''><#assign title="全部栏目"/></#if>
+<#if categoryCode==''><#assign title="音乐"/></#if>
 
 <@override name="breadcrumbs">
     <#include "breadcrumbs.ftl"/>

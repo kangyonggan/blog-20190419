@@ -103,6 +103,20 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
         myMapper.deleteByPrimaryKey(id);
     }
 
+    @Override
+    public List<Music> searchMusics(int pageNum, int pageSize, String key) {
+        Example example = new Example(Music.class);
+
+        example.or(example.createCriteria().andLike("name", StringUtil.toLikeString(key)).andEqualTo("isDeleted", AppConstants.IS_DELETED_NO));
+        example.or(example.createCriteria().andLike("singer", StringUtil.toLikeString(key)).andEqualTo("isDeleted", AppConstants.IS_DELETED_NO));
+        example.or(example.createCriteria().andLike("album", StringUtil.toLikeString(key)).andEqualTo("isDeleted", AppConstants.IS_DELETED_NO));
+
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(pageNum, pageSize);
+        return myMapper.selectByExample(example);
+    }
+
     /**
      * 保存音乐
      *

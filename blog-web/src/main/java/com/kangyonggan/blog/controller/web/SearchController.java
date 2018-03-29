@@ -4,9 +4,11 @@ import com.github.pagehelper.PageInfo;
 import com.kangyonggan.blog.constants.CategoryType;
 import com.kangyonggan.blog.service.ArticleService;
 import com.kangyonggan.blog.service.CategoryService;
+import com.kangyonggan.blog.service.MusicService;
 import com.kangyonggan.blog.service.NovelService;
 import com.kangyonggan.blog.vo.Article;
 import com.kangyonggan.blog.vo.Category;
+import com.kangyonggan.blog.vo.Music;
 import com.kangyonggan.blog.vo.Novel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,9 @@ public class SearchController {
     @Autowired
     private NovelService novelService;
 
+    @Autowired
+    private MusicService musicService;
+
     /**
      * 搜索
      *
@@ -48,9 +53,31 @@ public class SearchController {
                          Model model) {
         if (type.equals(CategoryType.NOVEL.getType())) {
             return searchNovel(pageNum, key, model);
+        } else if (type.equals(CategoryType.MUSIC.getType())) {
+            return searchMusic(pageNum, key, model);
         } else {
             return searchArticle(pageNum, key, model);
         }
+    }
+
+    /**
+     * 搜索音乐
+     *
+     * @param pageNum
+     * @param key
+     * @param model
+     * @return
+     */
+    private String searchMusic(int pageNum, String key, Model model) {
+        List<Music> musics = musicService.searchMusics(pageNum, 8, key);
+        PageInfo<Music> page = new PageInfo<>(musics);
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
+        List<Article> topArticles = articleService.findTopArticles();
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("topArticles", topArticles);
+        model.addAttribute("page", page);
+        return "web/music/index";
     }
 
     /**

@@ -14,7 +14,7 @@
 <@override name="breadcrumbs">
 <a href="${ctx}/">首页</a>
 &gt;
-<a href="${ctx}/music">全部栏目</a>
+<a href="${ctx}/music">音乐</a>
 &gt;
 <a href="javascript:" class="active">${title}</a>
 </@override>

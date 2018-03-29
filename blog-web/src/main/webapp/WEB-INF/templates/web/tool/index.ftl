@@ -4,7 +4,7 @@
 <@override name="breadcrumbs">
 <a href="${ctx}/">首页</a>
 &gt;
-<a class="active" href="javascript:">常用工具</a>
+<a class="active" href="javascript:">工具</a>
 </@override>
 
 <@override name="main">

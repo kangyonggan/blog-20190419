@@ -10,7 +10,7 @@
     <#if key != ''>
         <#assign title="搜索结果"/>
     <#else>
-        <#assign title="全部栏目"/>
+        <#assign title="文章"/>
     </#if>
 </#if>
 

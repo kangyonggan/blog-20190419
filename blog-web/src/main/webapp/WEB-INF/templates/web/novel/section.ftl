@@ -4,7 +4,7 @@
 <@override name="breadcrumbs">
 <a href="${ctx}/">首页</a>
 &gt;
-<a href="${ctx}/novel">全部栏目</a>
+<a href="${ctx}/novel">小说</a>
 &gt;
 <a href="${ctx}/novel?categoryCode=${novel.categoryCode}"><#list categories as category><#if novel.categoryCode==category.code>${category.name}</#if></#list></a>
 &gt;

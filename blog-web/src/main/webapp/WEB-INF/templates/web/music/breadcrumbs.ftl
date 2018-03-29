@@ -1,6 +1,6 @@
 <a href="${ctx}/">首页</a>
 &gt;
-<a href="${ctx}/music" <#if categoryCode == ''>class="active"</#if>>全部栏目</a>
+<a href="${ctx}/music" <#if categoryCode == ''>class="active"</#if>>音乐</a>
 <#if categoryCode != ''>
 &gt;
 <a href="<#if music??>${ctx}/music?categoryCode=${categoryCode}<#else>javascript:</#if>" <#if !novel??>class="active"</#if>>

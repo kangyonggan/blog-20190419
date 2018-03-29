@@ -65,4 +65,14 @@ public interface MusicService {
      * @param id
      */
     void deleteMusic(Long id);
+
+    /**
+     * 搜索音乐
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param key
+     * @return
+     */
+    List<Music> searchMusics(int pageNum, int pageSize, String key);
 }

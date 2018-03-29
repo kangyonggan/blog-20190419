@@ -4,7 +4,7 @@
     <#if key?? && key != ''>
         搜索结果
     <#else>
-        全部栏目
+        文章
     </#if>
 </a>
 <#if categoryCode != ''>
@@ -18,6 +18,6 @@
 <#if article??>
 &gt;
 <a href="javascript:" class="active">
-    详情
+    ${article.title}
 </a>
 </#if>
