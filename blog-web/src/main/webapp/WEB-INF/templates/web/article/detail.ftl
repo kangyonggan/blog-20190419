@@ -3,6 +3,7 @@
 <#assign categoryCode="${article.categoryCode}"/>
 
 <@override name="style">
+<link rel="stylesheet" href="${ctx}/static/libs/zoomify/zoomify.min.css">
 <link rel="stylesheet" href="${ctx}/static/ace/dist/css/prettify.min.css"/>
 </@override>
 
@@ -72,6 +73,7 @@
 </@override>
 
 <@override name="script">
+<script src="${ctx}/static/libs/zoomify/zoomify.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/prettify.min.js"></script>
 <script src="${ctx}/static/app/js/web/article/detail.js"></script>
 </@override>
