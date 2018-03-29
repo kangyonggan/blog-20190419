@@ -35,4 +35,10 @@ public class AttachmentServiceImpl extends BaseService<Attachment> implements At
 
         myMapper.updateByPrimaryKeySelective(attachment);
     }
+
+    @Override
+    @Log
+    public void saveAttachment(Attachment attachment) {
+        myMapper.insertSelective(attachment);
+    }
 }

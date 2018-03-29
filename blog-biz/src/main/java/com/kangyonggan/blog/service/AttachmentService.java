@@ -25,4 +25,11 @@ public interface AttachmentService {
      * @param id
      */
     void deleteAttachment(Long id);
+
+    /**
+     * 保存附件
+     *
+     * @param attachment
+     */
+    void saveAttachment(Attachment attachment);
 }

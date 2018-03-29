@@ -488,6 +488,29 @@ CREATE UNIQUE INDEX id_unique_name_singer
 CREATE INDEX ix_category_code
   ON tb_music (category_code);
 
+-- ----------------------------
+--  Table structure for tb_photo
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_photo;
+
+CREATE TABLE tb_photo
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  title        VARCHAR(64)                           NOT NULL
+  COMMENT '相册标题',
+  cover_img    VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '相册封面',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '相册表';
+
 #====================初始数据====================#
 
 -- ----------------------------

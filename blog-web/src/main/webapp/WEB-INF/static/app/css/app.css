@@ -1294,6 +1294,15 @@ table.ascll-table {
     margin-top: 20px;
 }
 
+.photos-sm dl {
+    width: 196px;
+    float: left;
+    margin-top: 20px;
+    text-align: center;
+    margin-left: 0;
+    padding-left: 17px;
+}
+
 .photos dl dd {
     margin: 0;
     background: #fff;
@@ -1306,6 +1315,11 @@ table.ascll-table {
 .photos dl dd img {
     width: 320px;
     height: 240px;
+}
+
+.photos-sm dl dd img {
+    width: 160px;
+    height: 120px;
 }
 
 .photos dl dt {

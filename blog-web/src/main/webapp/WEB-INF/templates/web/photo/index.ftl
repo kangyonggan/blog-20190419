@@ -9,7 +9,20 @@
 
 <@override name="main">
 <div id="main">
-    正在开发中...
+    <div class="photos">
+        <#list photos as photo>
+            <dl>
+                <dd>
+                    <a href="${ctx}/photo/${photo.id}">
+                        <img src="${ctx}/${photo.coverImg}" title="${photo.title}"/>
+                    </a>
+                </dd>
+                <dt>${photo.title}</dt>
+            </dl>
+        </#list>
+    </div>
+
+    <div class="space-10"></div>
 </div>
 </@override>
 
