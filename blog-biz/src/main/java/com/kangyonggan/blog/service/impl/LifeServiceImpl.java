@@ -93,6 +93,8 @@ public class LifeServiceImpl extends BaseService<Life> implements LifeService {
             criteria.andEqualTo("categoryCode", categoryCode);
         }
 
+        example.selectProperties("id", "title", "summary", "categoryCode", "isDeleted", "createdTime");
+
         example.setOrderByClause("id desc");
 
         PageHelper.startPage(pageNum, pageSize);

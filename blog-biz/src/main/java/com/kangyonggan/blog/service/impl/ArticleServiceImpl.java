@@ -109,6 +109,8 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
             criteria.andEqualTo("categoryCode", categoryCode);
         }
 
+        example.selectProperties("id", "title", "summary", "categoryCode", "isTop", "isDeleted", "createdTime");
+
         example.setOrderByClause("is_top desc, id desc");
 
         PageHelper.startPage(pageNum, pageSize);
