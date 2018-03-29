@@ -1,40 +1,20 @@
 $(function () {
-    updateState("manage/tool");
-
-    var $form = $('#tool-form');
+    var $form = $('#modal-form');
     var $btn = $("#submit");
-
-    var file_input = $form.find('input[type=file]');
-    file_input.ace_file_input({
-        style: 'well',
-        btn_choose: '点击这里添加图片',
-        btn_change: null,
-        no_icon: 'ace-icon fa fa-picture-o',
-        droppable: false,
-        allowExt: ["jpeg", "jpg", "png", "gif"],
-        allowMime: ["image/jpeg", "image/jpg", "image/png", "image/gif"],
-        maxSize: 104857600,//bytes
-        thumbnail: 'fit'
-    });
-
-    file_input.on('file.error.ace', function (event, info) {
-        if (info.error_count['size']) Message.warning('超出最大上传限制。');
-        if (info.error_count['ext'] || info.error_count['mime']) Message.warning('不合法的文件类型。');
-        event.preventDefault();
-    });
+    var $modal = $form.parents('.modal');
 
     $form.validate({
         rules: {
-            code: {
+            uploadRemark: {
                 required: true,
-                rangelength: [1, 32]
+                maxlength: 256
             },
-            name: {
-                required: true,
-                rangelength: [1, 32]
-            },
-            isTop: {
+            categoryCode: {
                 required: true
+            },
+            uploadUsername: {
+                required: true,
+                maxlength: 16
             }
         },
         submitHandler: function (form, event) {
@@ -44,8 +24,9 @@ $(function () {
                 dataType: 'json',
                 success: function (response) {
                     if (response.respCo == '0000') {
-                        window.location.hash = "manage/tool?r=" + Math.random()
+                        window.location.hash = "manage/music?r=" + Math.random();
                         Message.success(response.respMsg);
+                        $modal.modal('hide');
                     } else {
                         Message.error(response.respMsg);
                     }

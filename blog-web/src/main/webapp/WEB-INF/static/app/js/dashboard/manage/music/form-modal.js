@@ -1,19 +1,17 @@
 $(function () {
-    updateState("manage/tool");
-
-    var $form = $('#tool-form');
+    var $form = $('#modal-form');
     var $btn = $("#submit");
+    var $modal = $form.parents('.modal');
 
     var file_input = $form.find('input[type=file]');
     file_input.ace_file_input({
         style: 'well',
-        btn_choose: '点击这里添加图片',
+        btn_choose: '点击这里添加MP3',
         btn_change: null,
-        no_icon: 'ace-icon fa fa-picture-o',
+        no_icon: 'ace-icon fa fa-file',
         droppable: false,
-        allowExt: ["jpeg", "jpg", "png", "gif"],
-        allowMime: ["image/jpeg", "image/jpg", "image/png", "image/gif"],
-        maxSize: 104857600,//bytes
+        allowExt: ["mp3"],
+        maxSize: 209715200,//bytes
         thumbnail: 'fit'
     });
 
@@ -25,15 +23,14 @@ $(function () {
 
     $form.validate({
         rules: {
-            code: {
+            uploadRemark: {
                 required: true,
-                rangelength: [1, 32]
+                maxlength: 256
             },
-            name: {
-                required: true,
-                rangelength: [1, 32]
+            categoryCode: {
+                required: true
             },
-            isTop: {
+            file: {
                 required: true
             }
         },
@@ -44,8 +41,9 @@ $(function () {
                 dataType: 'json',
                 success: function (response) {
                     if (response.respCo == '0000') {
-                        window.location.hash = "manage/tool?r=" + Math.random()
+                        window.location.hash = "manage/music?r=" + Math.random();
                         Message.success(response.respMsg);
+                        $modal.modal('hide');
                     } else {
                         Message.error(response.respMsg);
                     }

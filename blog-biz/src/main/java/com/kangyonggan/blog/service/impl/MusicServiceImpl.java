@@ -2,14 +2,18 @@ package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.Status;
 import com.kangyonggan.blog.service.MusicService;
 import com.kangyonggan.blog.util.FileUpload;
 import com.kangyonggan.blog.util.Mp3Util;
 import com.kangyonggan.blog.util.PropertiesUtil;
+import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.Music;
 import com.kangyonggan.extra.core.annotation.Log;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +28,7 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
 
     @Override
     @Log
-    public String saveMusic(String fileName, String uploadUsername, String uploadRemark) {
+    public String saveMusic(String fileName, String categoryCode, String uploadUsername, String uploadRemark) {
         Map<String, Object> map = Mp3Util.parse(PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + fileName, PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + "cover");
 
         try {
@@ -36,6 +40,7 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
                 // 落库
                 map.put("uploadUsername", uploadUsername);
                 map.put("uploadRemark", uploadRemark);
+                map.put("categoryCode", categoryCode);
                 saveMusic(map);
                 return "保存成功";
             } else {
@@ -51,10 +56,55 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
     public List<Music> findMusicsByCategory(int pageNum, int pageSize, String categoryCode) {
         Music music = new Music();
         music.setIsDeleted(AppConstants.IS_DELETED_NO);
-        music.setCategoryCode(categoryCode);
+        music.setStatus(Status.COMPLETE.getStatus());
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            music.setCategoryCode(categoryCode);
+        }
 
         PageHelper.startPage(pageNum, pageSize);
         return myMapper.select(music);
+    }
+
+    @Override
+    public List<Music> searchMusics(int pageNum, int pageSize, String name, String singer, String album, String categoryCode) {
+        Example example = new Example(Music.class);
+
+        Example.Criteria criteria = example.createCriteria();
+        if (StringUtils.isNotEmpty(name)) {
+            criteria.andLike("name", StringUtil.toLikeString(name));
+        }
+        if (StringUtils.isNotEmpty(singer)) {
+            criteria.andLike("singer", StringUtil.toLikeString(singer));
+        }
+        if (StringUtils.isNotEmpty(album)) {
+            criteria.andLike("album", StringUtil.toLikeString(album));
+        }
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            criteria.andEqualTo("categoryCode", categoryCode);
+        }
+
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(pageNum, pageSize);
+        return myMapper.selectByExample(example);
+    }
+
+    @Override
+    @Log
+    public Music findMusicById(Long id) {
+        return myMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    @Log
+    public void updateMusic(Music music) {
+        myMapper.updateByPrimaryKeySelective(music);
+    }
+
+    @Override
+    @Log
+    public void deleteMusic(Long id) {
+        myMapper.deleteByPrimaryKey(id);
     }
 
     /**
@@ -72,6 +122,7 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
         music.setSize((Long) resultMap.get("size"));
         music.setUploadUsername((String) resultMap.get("uploadUsername"));
         music.setUploadRemark((String) resultMap.get("uploadRemark"));
+        music.setCategoryCode((String) resultMap.get("categoryCode"));
 
         myMapper.insertSelective(music);
     }

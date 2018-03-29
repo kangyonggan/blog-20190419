@@ -473,8 +473,6 @@ CREATE TABLE tb_music
   COMMENT '状态:{"WAITING":"待审核", "REJECT":"拒绝", "COMPLETE":"审核通过"}',
   adjust_username  VARCHAR(16)                           NOT NULL                    DEFAULT ''
   COMMENT '审核人',
-  is_stick         TINYINT                               NOT NULL                    DEFAULT 0
-  COMMENT '是否置顶:{0:未置顶, 1:已置顶}',
   is_deleted       TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
   created_time     TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP

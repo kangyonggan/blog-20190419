@@ -18,7 +18,7 @@ public class MusicServiceTest extends AbstractServiceTest {
      */
     @Test
     public void testSaveMusic() {
-        musicService.saveMusic("upload/2.mp3", "康永敢", "测试上传音乐");
+        musicService.saveMusic("upload/2.mp3", null, "康永敢", "测试上传音乐");
     }
 
 }

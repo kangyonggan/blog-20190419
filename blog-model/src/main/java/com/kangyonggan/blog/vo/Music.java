@@ -1,9 +1,10 @@
 package com.kangyonggan.blog.vo;
 
+import lombok.Data;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
-import lombok.Data;
 
 @Table(name = "tb_music")
 @Data
@@ -74,12 +75,6 @@ public class Music implements Serializable {
      */
     @Column(name = "adjust_username")
     private String adjustUsername;
-
-    /**
-     * 是否置顶:{0:未置顶, 1:已置顶}
-     */
-    @Column(name = "is_stick")
-    private Byte isStick;
 
     /**
      * 逻辑删除:{0:未删除, 1:已删除}

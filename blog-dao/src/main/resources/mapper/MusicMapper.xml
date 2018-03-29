@@ -17,7 +17,6 @@
         <result column="upload_remark" property="uploadRemark" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="VARCHAR"/>
         <result column="adjust_username" property="adjustUsername" jdbcType="VARCHAR"/>
-        <result column="is_stick" property="isStick" jdbcType="TINYINT"/>
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
