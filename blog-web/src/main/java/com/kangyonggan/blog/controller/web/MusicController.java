@@ -85,17 +85,27 @@ public class MusicController extends BaseController {
      * @param music
      * @param result
      * @param file
+     * @param model
      * @return
      * @throws FileUploadException
      */
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     public String upload(@ModelAttribute("music") @Valid Music music, BindingResult result,
-                         @RequestParam(value = "file", required = false) MultipartFile file) throws FileUploadException {
+                         @RequestParam(value = "file", required = false) MultipartFile file,
+                         Model model) throws FileUploadException {
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.MUSIC.getType());
+        List<Article> topArticles = articleService.findTopArticles();
+
         if (!result.hasErrors()) {
             String fileName = FileUpload.upload(file, "MUSIC");
-            musicService.saveMusic(fileName, music.getCategoryCode(), music.getUploadUsername(), music.getUploadRemark());
+            String respMsg = musicService.saveMusic(fileName, music.getCategoryCode(), music.getUploadUsername(), music.getUploadRemark());
+            model.addAttribute("respMsg", respMsg);
+        } else {
+            model.addAttribute("respMsg", "表单错误，请重新再试");
         }
 
-        return "redirect:/music";
+        model.addAttribute("topArticles", topArticles);
+        model.addAttribute("categories", categories);
+        return getPathRoot() + "/result";
     }
 }
