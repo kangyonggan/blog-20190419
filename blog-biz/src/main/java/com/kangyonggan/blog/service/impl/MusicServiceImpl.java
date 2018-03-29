@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.Status;
 import com.kangyonggan.blog.service.MusicService;
-import com.kangyonggan.blog.util.FileUpload;
 import com.kangyonggan.blog.util.Mp3Util;
 import com.kangyonggan.blog.util.PropertiesUtil;
 import com.kangyonggan.blog.util.StringUtil;
@@ -33,14 +32,11 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
 
         try {
             if ((int) map.get("respCo") == 0) {
-                // 重新保存文件，使用新的文件名: 歌手 - 歌曲名.mp3
-                String newFilename = "music/" + map.get("singer") + " - " + map.get("name") + ".mp3";
-                FileUpload.copy(fileName, newFilename);
-
                 // 落库
                 map.put("uploadUsername", uploadUsername);
                 map.put("uploadRemark", uploadRemark);
                 map.put("categoryCode", categoryCode);
+                map.put("fileName", fileName);
                 saveMusic(map);
                 return "保存成功";
             } else {
@@ -123,6 +119,7 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
         music.setUploadUsername((String) resultMap.get("uploadUsername"));
         music.setUploadRemark((String) resultMap.get("uploadRemark"));
         music.setCategoryCode((String) resultMap.get("categoryCode"));
+        music.setMusicPath((String) resultMap.get("fileName"));
 
         myMapper.insertSelective(music);
     }

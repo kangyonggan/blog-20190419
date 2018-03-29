@@ -2,7 +2,7 @@
 
 <tr id="music-${music.id}">
     <td>
-        <a href="${ctx}/music/${music.album} - ${music.name}.mp3" target="_blank">${music.name}</a>
+        <a href="${ctx}/${music.musicPath}" target="_blank">${music.name}</a>
     </td>
     <td>${music.singer}</td>
     <td>${music.album}</td>

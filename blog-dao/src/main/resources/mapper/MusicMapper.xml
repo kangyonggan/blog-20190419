@@ -10,6 +10,7 @@
         <result column="singer" property="singer" jdbcType="VARCHAR"/>
         <result column="album" property="album" jdbcType="VARCHAR"/>
         <result column="album_cover_path" property="albumCoverPath" jdbcType="VARCHAR"/>
+        <result column="music_path" property="musicPath" jdbcType="VARCHAR"/>
         <result column="duration" property="duration" jdbcType="INTEGER"/>
         <result column="size" property="size" jdbcType="BIGINT"/>
         <result column="category_code" property="categoryCode" jdbcType="VARCHAR"/>

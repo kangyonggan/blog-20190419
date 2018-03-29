@@ -28,9 +28,13 @@
                 <#if page.list?size gt 0>
                     <#list page.list as music>
                         <li>
-                            <a target="_blank" href="${ctx}/music/${music.album} - ${music.name}.mp3" class="music-album nowrap">${music.album}</a>
-                            <a href="${ctx}/music/${music.album} - ${music.name}.mp3" class="music-name nowrap">${music.name}</a>
+                            <span class="music-name nowrap">${music.name}</span>
                             <span class="music-singer nowrap">${music.singer}</span>
+
+                            <audio controls="controls">
+                                <source src="${ctx}/${music.musicPath}" type="audio/mpeg">
+                                你的浏览器不支持，建议使用谷歌浏览器.
+                            </audio>
                         </li>
                     </#list>
                 <#else>

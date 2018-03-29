@@ -459,6 +459,8 @@ CREATE TABLE tb_music
   COMMENT '专辑',
   album_cover_path VARCHAR(128)                          NOT NULL
   COMMENT '专辑封面路径',
+  music_path       VARCHAR(128)                          NOT NULL
+  COMMENT 'mp3文件路径',
   duration         INT(11)                               NOT NULL
   COMMENT '时长(秒)',
   size             BIGINT(20)                            NOT NULL

@@ -38,6 +38,12 @@ public class Music implements Serializable {
     private String albumCoverPath;
 
     /**
+     * mp3文件路径
+     */
+    @Column(name = "music_path")
+    private String musicPath;
+
+    /**
      * 时长(秒)
      */
     private Integer duration;
