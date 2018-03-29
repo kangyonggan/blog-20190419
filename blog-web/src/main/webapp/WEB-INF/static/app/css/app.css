@@ -693,6 +693,16 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
+#main .right .title a {
+    float: right;
+    height: 43px;
+    line-height: 43px;
+    text-decoration: none;
+    color: #8a0e0c;
+    margin-right: 13px;
+    font-size: 14px;
+}
+
 #main .right .article-title {
     text-align: center;
     font-size: 22px;

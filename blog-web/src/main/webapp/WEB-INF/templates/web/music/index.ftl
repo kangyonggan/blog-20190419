@@ -22,6 +22,7 @@
         <div class="content">
             <div class="title">
                 <span>${title}</span>
+                <a href="${ctx}/music/upload">上传音乐</a>
             </div>
 
             <ul class="music-list">

@@ -6,16 +6,22 @@ import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.service.ArticleService;
 import com.kangyonggan.blog.service.CategoryService;
 import com.kangyonggan.blog.service.MusicService;
+import com.kangyonggan.blog.util.FileUpload;
 import com.kangyonggan.blog.vo.Article;
 import com.kangyonggan.blog.vo.Category;
 import com.kangyonggan.blog.vo.Music;
+import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -58,4 +64,38 @@ public class MusicController extends BaseController {
         return getPathIndex();
     }
 
+    /**
+     * 上传音乐
+     *
+     * @return
+     */
+    @RequestMapping(value = "upload", method = RequestMethod.GET)
+    public String upload(Model model) {
+        List<Category> categories = categoryService.findCategoriesByType(CategoryType.MUSIC.getType());
+        List<Article> topArticles = articleService.findTopArticles();
+
+        model.addAttribute("topArticles", topArticles);
+        model.addAttribute("categories", categories);
+        return getPathRoot() + "/upload";
+    }
+
+    /**
+     * 保存音乐
+     *
+     * @param music
+     * @param result
+     * @param file
+     * @return
+     * @throws FileUploadException
+     */
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    public String upload(@ModelAttribute("music") @Valid Music music, BindingResult result,
+                         @RequestParam(value = "file", required = false) MultipartFile file) throws FileUploadException {
+        if (!result.hasErrors()) {
+            String fileName = FileUpload.upload(file, "MUSIC");
+            musicService.saveMusic(fileName, music.getCategoryCode(), music.getUploadUsername(), music.getUploadRemark());
+        }
+
+        return "redirect:/music";
+    }
 }
