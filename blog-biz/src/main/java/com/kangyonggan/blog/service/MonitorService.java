@@ -1,0 +1,16 @@
+package com.kangyonggan.blog.service;
+
+import com.kangyonggan.extra.core.model.MonitorInfo; /**
+ * @author kangyonggan
+ * @since 3/30/18
+ */
+public interface MonitorService {
+
+    /**
+     * 保存监控信息
+     *
+     * @param monitorInfo
+     */
+    void saveMonitor(MonitorInfo monitorInfo);
+
+}

@@ -3,6 +3,7 @@ package com.kangyonggan.blog.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.AttachmentType;
+import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.mapper.AttachmentMapper;
 import com.kangyonggan.blog.service.ArticleService;
 import com.kangyonggan.blog.util.FileUpload;
@@ -12,6 +13,7 @@ import com.kangyonggan.blog.vo.Attachment;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
     @Override
     @CacheDel(key = "article:tops")
+    @Monitor(type = MonitorType.INSERT, description = "发布文章${article.title}")
     public void saveArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException {
         myMapper.insertSelective(article);
 
@@ -65,6 +68,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
     @Override
     @CacheDel(key = {"article:id:${article.id}", "article:tops"})
+    @Monitor(type = MonitorType.UPDATE, description = "更新文章${article.title}")
     public void updateArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException {
         myMapper.updateByPrimaryKeySelective(article);
 
