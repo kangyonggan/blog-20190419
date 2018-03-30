@@ -60,7 +60,7 @@
     Copyright © 2018 <@s.message "app.name"/> | <@s.message "app.ba.no"/>
 </div>
 
-<div class="ad">
+<div class="ad" style="display: none">
     <div class="content">
         <ul>
             <li>1. 个人博客</li>
@@ -78,6 +78,8 @@
     </div>
 </div>
 
+<a href="javascript:scrollTo(0, 0)" id="to-top">回到顶部<span class="icon"></span></a>
+
 <script src="${ctx}/static/ace/dist/js/jquery.min.js"></script>
 <script>
     var adOffset = "-142px";
@@ -87,6 +89,14 @@
     $(".ad").mouseleave(function () {
         $(this).css("left", adOffset);
     })
+    // 有滚动条时才显示回到顶部按钮
+    window.onscroll = function () {
+        if (document.documentElement.scrollTop + document.body.scrollTop > 300) {
+            document.getElementById("to-top").style.display = "block";
+        } else {
+            document.getElementById("to-top").style.display = "none";
+        }
+    };
 </script>
 <@block name="script"/>
 </body>

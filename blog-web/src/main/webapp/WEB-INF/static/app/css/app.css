@@ -1433,3 +1433,28 @@ table.ascll-table {
     width: 350px;
     height: 30px;
 }
+
+#to-top {
+    width: 18px;
+    display: none;
+    color: #fff;
+    padding: 8px 8px 8px 10px;
+    background: #ce511a;
+    position: fixed;
+    right: 25px;
+    bottom: 30px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#to-top .icon {
+    border-bottom: 10px solid #a12e01;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0px;
+    top: -13px;
+    display: inline-block;
+}
