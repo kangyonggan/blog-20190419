@@ -547,6 +547,11 @@ body {
     background: url(../images/bg3.png) left top repeat-x;
 }
 
+#footer a {
+    color: #d1b59f;
+    margin-left: 10px;
+}
+
 #main .left {
     width: 310px;
     float: left;

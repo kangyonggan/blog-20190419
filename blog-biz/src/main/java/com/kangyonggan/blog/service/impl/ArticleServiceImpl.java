@@ -6,14 +6,14 @@ import com.kangyonggan.blog.constants.AttachmentType;
 import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.mapper.AttachmentMapper;
 import com.kangyonggan.blog.service.ArticleService;
-import com.kangyonggan.blog.util.FileUpload;
-import com.kangyonggan.blog.util.StringUtil;
+import com.kangyonggan.blog.util.*;
 import com.kangyonggan.blog.vo.Article;
 import com.kangyonggan.blog.vo.Attachment;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
 import com.kangyonggan.extra.core.annotation.Monitor;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +21,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
+@Log4j2
 public class ArticleServiceImpl extends BaseService<Article> implements ArticleService {
 
     @Autowired
@@ -57,6 +62,8 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         if (files.length > 0) {
             saveAttachments(article, files);
         }
+
+        genRssFile();
     }
 
     @Override
@@ -75,6 +82,8 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         if (files.length > 0) {
             saveAttachments(article, files);
         }
+
+        genRssFile();
     }
 
     @Override
@@ -83,6 +92,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     @Monitor(type = MonitorType.DELETE, description = "删除文章id=${id}")
     public void deleteArticle(Long id) {
         myMapper.deleteByPrimaryKey(id);
+        genRssFile();
     }
 
     @Override
@@ -91,6 +101,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     @Monitor(type = MonitorType.UPDATE, description = "更新文章${article.title}")
     public void updateArticle(Article article) {
         myMapper.updateByPrimaryKeySelective(article);
+        genRssFile();
     }
 
     @Override
@@ -163,5 +174,67 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
         // 批量保存附件
         attachmentMapper.insertAttachments(attachments);
+    }
+
+    /**
+     * 生成rss文件
+     */
+    private void genRssFile() {
+        Example example = new Example(Article.class);
+        example.createCriteria().andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+        example.setOrderByClause("id desc");
+        List<Article> articles = myMapper.selectByExample(example);
+
+        StringBuilder rss = new StringBuilder("<feed xmlns=\"http://www.w3.org/2005/Atom\"><title>");
+        rss.append(PropertiesUtil.getProperties("app.name")).append("</title>");
+        rss.append("<link href=\"/rss/blog.xml\" rel=\"self\"/>").append("<link href=\"https://www.kangyonggan.com/\"/>");
+        rss.append("<updated>").append(DateUtil.toXmlDateTime(new Date())).append("</updated>");
+        rss.append("<id>https://www.kangyonggan.com/</id>");
+        rss.append("<author><name>").append(PropertiesUtil.getProperties("app.author")).append("</name></author>");
+
+        for (Article article : articles) {
+            rss.append("<entry><title>").append(article.getTitle()).append("</title>");
+            rss.append("<link href=\"https://www.kangyonggan.com/article/").append(article.getId()).append("\"/>");
+            rss.append("<id>https://www.kangyonggan.com/article/").append(article.getId()).append("</id>");
+            rss.append("<published>").append(DateUtil.toXmlDateTime(article.getCreatedTime())).append("</published>");
+            rss.append("<updated>").append(DateUtil.toXmlDateTime(article.getUpdatedTime())).append("</updated>");
+            rss.append("<content type=\"html\"><![CDATA[").append(MarkdownUtil.markdownToHtml(article.getContent())).append("]]></content>");
+
+            int index = article.getContent().indexOf("<!-- more -->");
+            if (index > -1) {
+                String summary = article.getContent().substring(0, index);
+                rss.append("<summary type=\"html\"><![CDATA[").append(MarkdownUtil.markdownToHtml(summary)).append("]]></summary>");
+            } else {
+                rss.append("<summary type=\"html\"><![CDATA[").append(MarkdownUtil.markdownToHtml(article.getContent())).append("]]></summary>");
+            }
+
+            rss.append("<category term=\"").append(article.getCategoryCode()).append("\" scheme=\"https://www.kangyonggan.com/article?category=").append(article.getCategoryCode()).append("\"/>");
+            rss.append("</entry>");
+        }
+
+        rss.append("</feed>");
+
+        File file = new File(PropertiesUtil.getProperties("file.root.path") + "rss/blog.xml");
+
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write(rss.toString());
+            writer.flush();
+        } catch (Exception e) {
+            log.error("生成博客rss异常, 文件路径：" + PropertiesUtil.getProperties("file.root.path") + "rss/blog.xml", e);
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (Exception e) {
+                    log.error("写rss后关闭输入流异常", e);
+                }
+            }
+        }
     }
 }

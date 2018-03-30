@@ -85,4 +85,5 @@ public interface ArticleService {
      * @return
      */
     List<Article> searchArticles(int pageNum, int pageSize, String key);
+
 }
