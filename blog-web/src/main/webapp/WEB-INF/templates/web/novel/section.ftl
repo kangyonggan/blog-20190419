@@ -70,6 +70,8 @@
                 下一章：没有章节了
             </a>
         </#if>
+
+        <#include "../pay.ftl"/>
     </div>
 
     <div style="text-align: center;margin-top: 10px">

@@ -1458,3 +1458,62 @@ table.ascll-table {
     top: -13px;
     display: inline-block;
 }
+
+
+.detail-pay {
+    text-align: center;
+}
+
+.detail-pay > a {
+    display: inline-block;
+    text-align: center;
+    width: 80px;
+    height: 35px;
+    line-height: 35px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    font-stretch: normal;
+    font-size: 18px;
+    font-family: "Microsoft Yahei";
+    background: #f44336;
+}
+
+.detail-pay > a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.detail-pay > a small {
+    font-size: 10px;
+    font-weight: 100;
+}
+
+.detail-pay > div {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.detail-pay > div > div.channel {
+    display: inline-block;
+    margin-right: 80px;
+    margin-left: 80px;
+}
+
+.detail-pay > div > div.channel > img {
+    width: 180px;
+    height: 180px;
+    padding: 5px;
+    border: 1px solid #e7e7e7;
+}
+
+.detail-pay > div > div.channel > div {
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    line-height: 100px;
+    border-radius: 100%;
+}

@@ -63,6 +63,8 @@
                     </#list>
                 </ul>
             </#if>
+
+            <#include "../pay.ftl"/>
         </div>
 
         <div class="space-10"></div>

@@ -34,6 +34,8 @@
         </div>
         <div style="height: 20px"></div>
     </#if>
+
+    <#include "../pay.ftl"/>
 </div>
 </@override>
 

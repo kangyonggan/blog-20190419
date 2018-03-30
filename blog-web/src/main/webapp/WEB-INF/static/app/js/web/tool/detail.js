@@ -64,9 +64,6 @@ $(function () {
             dialect: {
                 required: true
             },
-            prov: {
-                required: true
-            },
             startAge: {
                 required: true,
                 range: [1, 100]
@@ -95,6 +92,10 @@ $(function () {
             month: {
                 required: true,
                 range: [1, 12]
+            },
+            day: {
+                required: true,
+                range: [1, 31]
             },
             hour: {
                 required: true,

@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="${ctx}/static/app/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <link rel="stylesheet" href="${ctx}/static/app/css/app.css"/>
+    <script src="${ctx}/static/ace/dist/js/jquery.min.js"></script>
 <@block name="style"/>
 </head>
 <body>
@@ -80,7 +81,6 @@
 
 <a href="javascript:scrollTo(0, 0)" id="to-top">回到顶部<span class="icon"></span></a>
 
-<script src="${ctx}/static/ace/dist/js/jquery.min.js"></script>
 <script>
     var adOffset = "-142px";
     $(".ad").mouseenter(function () {
