@@ -19,7 +19,8 @@
         <#list attachments as attachment>
             <dl>
                 <dd>
-                    <img src="${ctx}/${attachment.url}" title="${attachment.originalFilename}"/>
+                    <img src="${ctx}/${attachment.thumb}" data-thumb="${ctx}/${attachment.thumb}"
+                         data-url="${ctx}/${attachment.url}" title="${attachment.originalFilename}"/>
                 </dd>
                 <dt>${attachment.createdTime?date}</dt>
             </dl>
@@ -33,6 +34,12 @@
 <@override name="script">
 <script src="${ctx}/static/libs/zoomify/zoomify.min.js"></script>
 <script>
+    $('.photos img').mouseenter(function () {
+        $(this).attr("src", $(this).attr("data-url"));
+    });
+    $('.photos img').mouseleave(function () {
+        $(this).attr("src", $(this).attr("data-thumb"));
+    });
     $('.photos img').zoomify();
 </script>
 </@override>

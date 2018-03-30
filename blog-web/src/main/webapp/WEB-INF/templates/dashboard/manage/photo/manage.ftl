@@ -17,7 +17,7 @@
                         <div class="dz-preview dz-success dz-image-preview">
                             <div class="dz-details">
                                 <div class="dz-size" data-dz-size="">${attachment.createdTime?date}</div>
-                                <img alt="${attachment.originalFilename!''}" src="${ctx}/${attachment.url}">
+                                <img alt="${attachment.originalFilename!''}" src="${ctx}/${attachment.thumb}">
                             </div>
                             <a class="dz-remove dz-remove-old" href="javascript:" data-file-id="${attachment.id}">删除文件</a>
                         </div>

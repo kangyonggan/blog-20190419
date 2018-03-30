@@ -7,6 +7,8 @@ import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.service.AttachmentService;
 import com.kangyonggan.blog.service.PhotoService;
 import com.kangyonggan.blog.util.FileUpload;
+import com.kangyonggan.blog.util.ImageUtil;
+import com.kangyonggan.blog.util.PropertiesUtil;
 import com.kangyonggan.blog.vo.Attachment;
 import com.kangyonggan.blog.vo.Photo;
 import lombok.extern.log4j.Log4j2;
@@ -211,6 +213,10 @@ public class DashboardManagePhotoController extends BaseController {
             attachment.setType(AttachmentType.PHOTO.getType());
             attachment.setOriginalFilename(file.getOriginalFilename());
             attachment.setUrl(fileName);
+
+            // 生成缩略图
+            ImageUtil.thumbnailImage(PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + fileName, 320, 240);
+            attachment.setThumb(AppConstants.FILE_UPLOAD + ImageUtil.DEFAULT_PREVFIX + fileName.substring(7));
 
             attachmentService.saveAttachment(attachment);
             resultMap.put("fileId", attachment.getId());

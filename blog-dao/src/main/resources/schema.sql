@@ -205,6 +205,8 @@ CREATE TABLE tb_attachment
   COMMENT '附件来源',
   url               VARCHAR(256)                          NOT NULL
   COMMENT '附件地址',
+  thumb             VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '缩略图地址',
   original_filename VARCHAR(128)                          NOT NULL                    DEFAULT ''
   COMMENT '附件原名',
   is_deleted        TINYINT                               NOT NULL                    DEFAULT 0

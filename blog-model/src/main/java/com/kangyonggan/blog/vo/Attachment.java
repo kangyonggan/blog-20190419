@@ -32,6 +32,11 @@ public class Attachment implements Serializable {
     private String url;
 
     /**
+     * 缩略图地址
+     */
+    private String thumb;
+
+    /**
      * 附件原名
      */
     @Column(name = "original_filename")

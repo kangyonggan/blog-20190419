@@ -9,6 +9,7 @@
         <result column="type" property="type" jdbcType="VARCHAR"/>
         <result column="source_id" property="sourceId" jdbcType="BIGINT"/>
         <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="thumb" property="thumb" jdbcType="VARCHAR"/>
         <result column="original_filename" property="originalFilename" jdbcType="VARCHAR"/>
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
