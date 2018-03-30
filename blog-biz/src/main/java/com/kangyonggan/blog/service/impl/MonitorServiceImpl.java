@@ -1,11 +1,14 @@
 package com.kangyonggan.blog.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.kangyonggan.blog.dto.ShiroUser;
 import com.kangyonggan.blog.service.MonitorService;
+import com.kangyonggan.blog.service.UserService;
 import com.kangyonggan.blog.vo.Monitor;
 import com.kangyonggan.extra.core.model.MonitorInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +21,9 @@ import java.util.Date;
  */
 @Service
 public class MonitorServiceImpl extends BaseService<Monitor> implements MonitorService {
+
+    @Autowired
+    private UserService userService;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -36,6 +42,10 @@ public class MonitorServiceImpl extends BaseService<Monitor> implements MonitorS
             monitor.setReturnValue(StringUtils.EMPTY);
         }
         monitor.setArgs(JSONObject.toJSONString(monitorInfo.getArgs()));
+        ShiroUser shiroUser = userService.getShiroUser();
+        if (shiroUser != null) {
+            monitor.setUsername(shiroUser.getUsername());
+        }
 
         myMapper.insertSelective(monitor);
     }

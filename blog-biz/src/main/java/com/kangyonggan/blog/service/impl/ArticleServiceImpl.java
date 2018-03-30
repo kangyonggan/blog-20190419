@@ -80,6 +80,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     @Override
     @Log
     @CacheDel(key = {"article:id:${id}", "article:tops"})
+    @Monitor(type = MonitorType.DELETE, description = "删除文章id=${id}")
     public void deleteArticle(Long id) {
         myMapper.deleteByPrimaryKey(id);
     }
@@ -87,6 +88,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     @Override
     @Log
     @CacheDel(key = {"article:id:${article.id}", "article:tops"})
+    @Monitor(type = MonitorType.UPDATE, description = "更新文章${article.title}")
     public void updateArticle(Article article) {
         myMapper.updateByPrimaryKeySelective(article);
     }

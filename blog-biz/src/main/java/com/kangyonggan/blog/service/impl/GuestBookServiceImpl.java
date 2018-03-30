@@ -2,6 +2,7 @@ package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.constants.Status;
 import com.kangyonggan.blog.service.GuestService;
 import com.kangyonggan.blog.util.DateUtil;
@@ -9,6 +10,7 @@ import com.kangyonggan.blog.util.IPUtil;
 import com.kangyonggan.blog.util.MarkdownUtil;
 import com.kangyonggan.blog.vo.Guest;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -51,6 +53,7 @@ public class GuestBookServiceImpl extends BaseService<Guest> implements GuestSer
 
     @Override
     @Log
+    @Monitor(type = MonitorType.INSERT, description = "保存留言${guest.realname}")
     public void saveGuest(Guest guest) {
         guest.setReplyMessage(StringUtils.EMPTY);
         guest.setIpInfo("正在查地址");
@@ -108,6 +111,7 @@ public class GuestBookServiceImpl extends BaseService<Guest> implements GuestSer
 
     @Override
     @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除留言id=${id}")
     public void deleteGuestById(Long id) {
         myMapper.deleteByPrimaryKey(id);
     }

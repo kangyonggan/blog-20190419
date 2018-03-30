@@ -539,6 +539,8 @@ CREATE TABLE tb_monitor
   COMMENT '返回值',
   args             LONGTEXT                              NOT NULL
   COMMENT '参数',
+  username         VARCHAR(32)                           NOT NULL                    DEFAULT ''
+  COMMENT '用户名',
   is_deleted       TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
   created_time     TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP

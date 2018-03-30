@@ -2,6 +2,7 @@ package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.mapper.RoleMapper;
 import com.kangyonggan.blog.service.RoleService;
 import com.kangyonggan.blog.util.StringUtil;
@@ -9,6 +10,7 @@ import com.kangyonggan.blog.vo.Role;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,12 +75,14 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.INSERT, description = "保存角色${role.code}")
     public void saveRole(Role role) {
         myMapper.insertSelective(role);
     }
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新角色${role.code}")
     @CacheDel(key = {"role:code:${role.code}", "role:all", "role:username*", "menu:username*"})
     public void updateRole(Role role) {
         Example example = new Example(Role.class);
@@ -89,6 +93,7 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新角色菜单${code}, ${menuCodes}")
     @CacheDel(key = {"menu:role:${code}", "menu:username*"})
     public void updateRoleMenus(String code, String menuCodes) {
         deleteRoleMenus(code);
@@ -110,6 +115,7 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除角色${code}")
     @CacheDel(key = {"role:code:${code}", "role:all", "role:username*", "menu:username*"})
     public void deleteRoleByCode(String code) {
         Role role = new Role();

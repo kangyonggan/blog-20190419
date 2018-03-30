@@ -49,6 +49,11 @@ public class Monitor implements Serializable {
     private Byte hasReturnValue;
 
     /**
+     * 用户名
+     */
+    private String username;
+
+    /**
      * 逻辑删除:{0:未删除, 1:已删除}
      */
     @Column(name = "is_deleted")

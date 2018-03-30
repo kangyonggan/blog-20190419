@@ -2,12 +2,14 @@ package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.service.DictionaryService;
 import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.Dictionary;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -50,6 +52,7 @@ public class DictionaryServiceImpl extends BaseService<Dictionary> implements Di
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新字典${dictionary.code}")
     @CacheDel(key = {"dictionary:id:${dictionary.id}", "dictionary:type*"})
     public void updateDictionary(Dictionary dictionary) {
         myMapper.updateByPrimaryKeySelective(dictionary);
@@ -58,6 +61,7 @@ public class DictionaryServiceImpl extends BaseService<Dictionary> implements Di
     @Override
     @Log
     @CacheDel(key = "dictionary:type*")
+    @Monitor(type = MonitorType.INSERT, description = "保存字典${dictionary.code}")
     public void saveDictionary(Dictionary dictionary) {
         myMapper.insertSelective(dictionary);
     }
@@ -88,6 +92,7 @@ public class DictionaryServiceImpl extends BaseService<Dictionary> implements Di
     @Override
     @Log
     @CacheDel(key = {"dictionary:id:${id}", "dictionary:type*"})
+    @Monitor(type = MonitorType.DELETE, description = "删除字典id=${id}")
     public void deleteDictionaryById(Long id) {
         myMapper.deleteByPrimaryKey(id);
     }

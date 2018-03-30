@@ -3,10 +3,7 @@ package com.kangyonggan.blog.service.impl;
 import com.alibaba.druid.sql.SQLUtils;
 import com.github.pagehelper.PageHelper;
 import com.google.zxing.WriterException;
-import com.kangyonggan.blog.constants.AppConstants;
-import com.kangyonggan.blog.constants.Dialect;
-import com.kangyonggan.blog.constants.DictionaryType;
-import com.kangyonggan.blog.constants.Resp;
+import com.kangyonggan.blog.constants.*;
 import com.kangyonggan.blog.dto.request.ToolDto;
 import com.kangyonggan.blog.service.DictionaryService;
 import com.kangyonggan.blog.service.ToolService;
@@ -16,6 +13,7 @@ import com.kangyonggan.blog.vo.Tool;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
@@ -82,6 +80,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
     @Override
     @Log
     @CacheDel(key = {"tool:all", "tool:some:*"})
+    @Monitor(type = MonitorType.INSERT, description = "保存工具${tool.name}")
     public void saveToolWithIcon(Tool tool, MultipartFile icon) throws FileUploadException {
         if (icon != null && !icon.isEmpty()) {
             String url = FileUpload.upload(icon, "TOOL");
@@ -92,6 +91,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新工具${tool.code}")
     @CacheDel(key = {"tool:all", "tool:id:${tool.id}", "tool:some:*"})
     public void updateToolWithIcon(Tool tool, MultipartFile icon) throws FileUploadException {
         if (icon != null && !icon.isEmpty()) {
@@ -104,6 +104,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新工具${tool.code}")
     @CacheDel(key = {"tool:all", "tool:id:${tool.id}", "tool:some:*"})
     public void updateTool(Tool tool) {
         myMapper.updateByPrimaryKeySelective(tool);
@@ -111,6 +112,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除工具${id}")
     @CacheDel(key = {"tool:all", "tool:id:${id}", "tool:some:*"})
     public void deleteTool(Long id) {
         myMapper.deleteByPrimaryKey(id);

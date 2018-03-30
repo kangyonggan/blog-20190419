@@ -2,6 +2,7 @@ package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.constants.Status;
 import com.kangyonggan.blog.service.MusicService;
 import com.kangyonggan.blog.util.Mp3Util;
@@ -9,6 +10,7 @@ import com.kangyonggan.blog.util.PropertiesUtil;
 import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.Music;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,7 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
 
     @Override
     @Log
+    @Monitor(type = MonitorType.INSERT, description = "保存音乐${fileName}")
     public String saveMusic(String fileName, String categoryCode, String uploadUsername, String uploadRemark) {
         Map<String, Object> map = Mp3Util.parse(PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + fileName, PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + "cover");
 
@@ -93,12 +96,14 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "保存相册${music.name}")
     public void updateMusic(Music music) {
         myMapper.updateByPrimaryKeySelective(music);
     }
 
     @Override
     @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除音乐id=${id}")
     public void deleteMusic(Long id) {
         myMapper.deleteByPrimaryKey(id);
     }

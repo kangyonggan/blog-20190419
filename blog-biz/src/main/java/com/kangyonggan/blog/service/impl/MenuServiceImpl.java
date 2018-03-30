@@ -1,11 +1,13 @@
 package com.kangyonggan.blog.service.impl;
 
+import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.mapper.MenuMapper;
 import com.kangyonggan.blog.service.MenuService;
 import com.kangyonggan.blog.vo.Menu;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +68,7 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
     @Override
     @Log
     @CacheDel(key = "menu:all")
+    @Monitor(type = MonitorType.INSERT, description = "保存菜单${menu.name}")
     public void saveMenu(Menu menu) {
         myMapper.insertSelective(menu);
     }
@@ -88,6 +91,7 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新菜单${menu.code}")
     @CacheDel(key = {"menu:id:${menu.id}", "menu:all", "menu:username*", "menu:role*"})
     public void updateMenu(Menu menu) {
         myMapper.updateByPrimaryKeySelective(menu);
@@ -95,6 +99,7 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除菜单id=${menu.id}")
     @CacheDel(key = {"menu:id:${menu.id}", "menu:all", "menu:username*", "menu:role*"})
     public void deleteMenu(Menu menu) {
         myMapper.deleteByPrimaryKey(menu);

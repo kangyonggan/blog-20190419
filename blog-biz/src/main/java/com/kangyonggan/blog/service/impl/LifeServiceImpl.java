@@ -3,6 +3,7 @@ package com.kangyonggan.blog.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.AttachmentType;
+import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.mapper.AttachmentMapper;
 import com.kangyonggan.blog.service.LifeService;
 import com.kangyonggan.blog.util.FileUpload;
@@ -10,6 +11,7 @@ import com.kangyonggan.blog.util.StringUtil;
 import com.kangyonggan.blog.vo.Attachment;
 import com.kangyonggan.blog.vo.Life;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,7 @@ public class LifeServiceImpl extends BaseService<Life> implements LifeService {
     }
 
     @Override
+    @Monitor(type = MonitorType.INSERT, description = "保存生活${life.title}")
     public void saveLifeWithAttachments(Life life, MultipartFile[] files) throws FileUploadException {
         myMapper.insertSelective(life);
 
@@ -63,6 +66,7 @@ public class LifeServiceImpl extends BaseService<Life> implements LifeService {
     }
 
     @Override
+    @Monitor(type = MonitorType.UPDATE, description = "更新生活${life.title}")
     public void updateLifeWithAttachments(Life life, MultipartFile[] files) throws FileUploadException {
         myMapper.updateByPrimaryKeySelective(life);
 
@@ -73,12 +77,14 @@ public class LifeServiceImpl extends BaseService<Life> implements LifeService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新生活${life.title}")
     public void updateLife(Life life) {
         myMapper.updateByPrimaryKeySelective(life);
     }
 
     @Override
     @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除生活id=${id}")
     public void deleteLife(Long id) {
         myMapper.deleteByPrimaryKey(id);
     }

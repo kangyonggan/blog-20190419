@@ -2,6 +2,7 @@ package com.kangyonggan.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.blog.constants.AppConstants;
+import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.dto.ShiroUser;
 import com.kangyonggan.blog.mapper.RoleMapper;
 import com.kangyonggan.blog.mapper.UserMapper;
@@ -13,6 +14,7 @@ import com.kangyonggan.blog.vo.User;
 import com.kangyonggan.extra.core.annotation.Cache;
 import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新用户${user.username}")
     @CacheDel(key = {"user:username:${user.username}", "role:username:${user.username}", "menu:username:${user.username}"})
     public void updateUserByUsername(User user) {
         Example example = new Example(User.class);
@@ -60,6 +63,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     @Override
     @Log
     @CacheDel(key = "user:username:${user.username}")
+    @Monitor(type = MonitorType.UPDATE, description = "更新密码${user.username}")
     public void updateUserPassword(User user) {
         User tUser = new User();
         tUser.setUsername(user.getUsername());
@@ -73,6 +77,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新用户角色${username}, ${roleCodes}")
     @CacheDel(key = {"role:username:${username}", "menu:username:${username}"})
     public void updateUserRoles(String username, String roleCodes) {
         roleMapper.deleteAllRolesByUsername(username);
@@ -84,6 +89,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除用户${username}")
     @CacheDel(key = {"role:username:${username}", "menu:username:${username}"})
     public void deleteUserByUsername(String username) {
         User user = new User();
@@ -121,6 +127,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Override
     @Log
+    @Monitor(type = MonitorType.INSERT, description = "保存用户${user.username}")
     public void saveUserWithDefaultRole(User user) {
         entryptPassword(user);
 
