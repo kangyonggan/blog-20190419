@@ -590,6 +590,7 @@ VALUES
   ('SYSTEM_DICTIONARY', '数据字典', 'SYSTEM', 'system/dictionary', 4, ''),
   ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 5, ''),
   ('SYSTEM_LOGIN', '登录日志', 'SYSTEM', 'system/login', 6, ''),
+  ('SYSTEM_SQL', '执行脚本', 'SYSTEM', 'system/sql', 7, ''),
 
   ('MANAGE', '管理', 'DASHBOARD', 'manage', 2, 'menu-icon fa fa-desktop'),
   ('MANAGE_ARTICLE', '文章管理', 'MANAGE', 'manage/article', 0, ''),
