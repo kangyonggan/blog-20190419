@@ -76,11 +76,15 @@ public class ArticleController extends BaseController {
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
         List<Attachment> attachments = attachmentService.findAttachmentsByTypeAndSourceId(AttachmentType.ARTICLE.getType(), id);
         List<Article> topArticles = articleService.findTopArticles();
+        Article prevArticle = articleService.finPrevArticle(id);
+        Article nextArticle = articleService.finNextArticle(id);
 
         model.addAttribute("article", article);
         model.addAttribute("categories", categories);
         model.addAttribute("topArticles", topArticles);
         model.addAttribute("attachments", attachments);
+        model.addAttribute("prevArticle", prevArticle);
+        model.addAttribute("nextArticle", nextArticle);
         return getPathDetail();
     }
 

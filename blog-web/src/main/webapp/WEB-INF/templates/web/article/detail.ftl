@@ -28,7 +28,7 @@
                 </span>
             </div>
             <div class="article-title">
-                ${article.title}
+            ${article.title}
             </div>
 
             <div class="article-date">
@@ -40,7 +40,7 @@
             </div>
 
             <div class="article-content markdown">
-                ${article.content}
+            ${article.content}
             </div>
 
             <#if attachments?size gt 0>
@@ -65,6 +65,15 @@
             </#if>
 
             <#include "../pay.ftl"/>
+        </div>
+
+        <div class="article-tool">
+            <#if prevArticle??>
+                <a href="${ctx}/article/${prevArticle.id}" class="left">&lt; ${prevArticle.title} </a>
+            </#if>
+            <#if nextArticle??>
+                <a href="${ctx}/article/${nextArticle.id}" class="right">${nextArticle.title} &gt;</a>
+            </#if>
         </div>
 
         <div class="space-10"></div>

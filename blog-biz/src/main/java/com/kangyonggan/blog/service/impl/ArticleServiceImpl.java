@@ -149,6 +149,36 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         return myMapper.selectByExample(example);
     }
 
+    @Override
+    @Log
+    public Article finPrevArticle(Long id) {
+        Example example = new Example(Article.class);
+        example.createCriteria().andEqualTo("isDeleted", AppConstants.IS_DELETED_NO).andLessThan("id", id);
+
+        example.selectProperties("id", "title");
+
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(1, 1);
+        List<Article> articles = myMapper.selectByExample(example);
+        return articles.isEmpty() ? null : articles.get(0);
+    }
+
+    @Override
+    @Log
+    public Article finNextArticle(Long id) {
+        Example example = new Example(Article.class);
+        example.createCriteria().andEqualTo("isDeleted", AppConstants.IS_DELETED_NO).andGreaterThan("id", id);
+
+        example.selectProperties("id", "title");
+
+        example.setOrderByClause("id asc");
+
+        PageHelper.startPage(1, 1);
+        List<Article> articles = myMapper.selectByExample(example);
+        return articles.isEmpty() ? null : articles.get(0);
+    }
+
     /**
      * 批量保存附件
      *

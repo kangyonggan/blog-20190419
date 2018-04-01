@@ -86,4 +86,19 @@ public interface ArticleService {
      */
     List<Article> searchArticles(int pageNum, int pageSize, String key);
 
+    /**
+     * 查找上一篇文章
+     *
+     * @param id
+     * @return
+     */
+    Article finPrevArticle(Long id);
+
+    /**
+     * 查找下一篇文章
+     *
+     * @param id
+     * @return
+     */
+    Article finNextArticle(Long id);
 }
