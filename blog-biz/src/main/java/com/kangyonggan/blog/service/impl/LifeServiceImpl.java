@@ -50,7 +50,6 @@ public class LifeServiceImpl extends BaseService<Life> implements LifeService {
     }
 
     @Override
-    @Monitor(type = MonitorType.INSERT, description = "保存生活${life.title}")
     public void saveLifeWithAttachments(Life life, MultipartFile[] files) throws FileUploadException {
         myMapper.insertSelective(life);
 
@@ -66,7 +65,6 @@ public class LifeServiceImpl extends BaseService<Life> implements LifeService {
     }
 
     @Override
-    @Monitor(type = MonitorType.UPDATE, description = "更新生活${life.title}")
     public void updateLifeWithAttachments(Life life, MultipartFile[] files) throws FileUploadException {
         myMapper.updateByPrimaryKeySelective(life);
 

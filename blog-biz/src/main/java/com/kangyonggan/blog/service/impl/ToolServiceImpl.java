@@ -80,7 +80,6 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
     @Override
     @Log
     @CacheDel(key = {"tool:all", "tool:some:*"})
-    @Monitor(type = MonitorType.INSERT, description = "保存工具${tool.name}")
     public void saveToolWithIcon(Tool tool, MultipartFile icon) throws FileUploadException {
         if (icon != null && !icon.isEmpty()) {
             String url = FileUpload.upload(icon, "TOOL");
@@ -91,7 +90,6 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
     @Override
     @Log
-    @Monitor(type = MonitorType.UPDATE, description = "更新工具${tool.code}")
     @CacheDel(key = {"tool:all", "tool:id:${tool.id}", "tool:some:*"})
     public void updateToolWithIcon(Tool tool, MultipartFile icon) throws FileUploadException {
         if (icon != null && !icon.isEmpty()) {

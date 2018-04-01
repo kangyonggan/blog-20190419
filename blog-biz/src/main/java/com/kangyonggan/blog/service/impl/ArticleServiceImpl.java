@@ -55,7 +55,6 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
     @Override
     @CacheDel(key = "article:tops")
-    @Monitor(type = MonitorType.INSERT, description = "发布文章${article.title}")
     public void saveArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException {
         myMapper.insertSelective(article);
 
@@ -75,7 +74,6 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
     @Override
     @CacheDel(key = {"article:id:${article.id}", "article:tops"})
-    @Monitor(type = MonitorType.UPDATE, description = "更新文章${article.title}")
     public void updateArticleWithAttachments(Article article, MultipartFile[] files) throws FileUploadException {
         myMapper.updateByPrimaryKeySelective(article);
 
