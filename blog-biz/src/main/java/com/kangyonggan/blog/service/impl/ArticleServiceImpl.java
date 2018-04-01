@@ -140,7 +140,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
         if (StringUtils.isNotEmpty(key)) {
             criteria.andLike("title", StringUtil.toLikeString(key));
-            example.or(example.createCriteria().andLike("summary", StringUtil.toLikeString(key)));
+            example.or(example.createCriteria().andLike("summary", StringUtil.toLikeString(key)).andEqualTo("isDeleted", AppConstants.IS_DELETED_NO));
         }
 
         example.setOrderByClause("is_top desc, id desc");
