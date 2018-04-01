@@ -168,9 +168,9 @@ CREATE TABLE tb_article
 (
   id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '主键, 自增',
-  title         VARCHAR(64)                           NOT NULL
+  title         VARCHAR(128)                          NOT NULL
   COMMENT '文章标题',
-  summary       VARCHAR(128)                          NOT NULL
+  summary       VARCHAR(1024)                         NOT NULL
   COMMENT '摘要',
   category_code VARCHAR(32)                           NOT NULL
   COMMENT '栏目代码',

@@ -33,14 +33,14 @@
         <div class="form-group">
             <label for="title" class="col-sm-3 control-label no-padding-right required">文章标题</label>
             <div class="col-xs-12 col-sm-5">
-            <@s.formInput "article.title" 'class="form-control" placeholder="请输入文章标题，最多64个字符"' />
+            <@s.formInput "article.title" 'class="form-control" placeholder="请输入文章标题，最多128个字符"' />
             </div>
         </div>
 
         <div class="form-group">
             <label for="summary" class="col-sm-3 control-label no-padding-right required">文章摘要</label>
             <div class="col-xs-12 col-sm-5">
-            <@s.formInput "article.summary" 'class="form-control" placeholder="请输入文章摘要，最多128个字符"' />
+            <@s.formInput "article.summary" 'class="form-control" placeholder="请输入文章摘要，最多1024个字符"' />
             </div>
         </div>
 

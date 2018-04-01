@@ -22,11 +22,11 @@ $(function () {
         rules: {
             title: {
                 required: true,
-                rangelength: [1, 64]
+                rangelength: [1, 128]
             },
             summary: {
                 required: true,
-                rangelength: [1, 128]
+                rangelength: [1, 1024]
             },
             categoryCode: {
                 required: true
