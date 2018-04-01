@@ -43,7 +43,7 @@
                     <#list lifes as life>
                         <#if life_index gt 0>
                             <li>
-                                <a href="${ctx}/life/${life.id}">
+                                <a href="${ctx}/life/${life.id}" title="${life.title}">
                                     <span class="nowrap">${life.title}</span>
                                     <span class="date">[${life.createdTime?date}]</span>
                                 </a>
@@ -66,7 +66,7 @@
                 <#if articles?size gt 0>
                     <#list articles as article>
                         <li>
-                            <a href="${ctx}/article/${article.id}">
+                            <a href="${ctx}/article/${article.id}" title="${article.title}">
                                 <span class="nowrap">${article.title}</span>
                                 <div>[${article.createdTime?date}]</div>
                             </a>
@@ -92,7 +92,7 @@
                 <#if tools?size gt 0>
                     <#list tools as tool>
                         <li>
-                            <a href="${ctx}/tool/${tool.id}">
+                            <a href="${ctx}/tool/${tool.id}" title="${tool.name}">
                                 <span class="nowrap">${tool.name}</span>
                                 <div>[${tool.createdTime?date}]</div>
                             </a>
