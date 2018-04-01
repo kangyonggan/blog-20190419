@@ -85,3 +85,13 @@ input[readonly].readonly {
     background: #fff !important;
     cursor: pointer !important;
 }
+
+.md-preview p {
+    color: #555;
+    line-height: 2;
+    font-size: 16px;
+}
+
+.md-preview img {
+    max-width: 100%;
+}
