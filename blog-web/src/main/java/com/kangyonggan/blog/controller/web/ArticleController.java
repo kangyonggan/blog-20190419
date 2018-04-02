@@ -56,6 +56,8 @@ public class ArticleController extends BaseController {
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
         List<Article> topArticles = articleService.findTopArticles();
 
+        int a = 1 / 0;
+
         model.addAttribute("categories", categories);
         model.addAttribute("topArticles", topArticles);
         model.addAttribute("page", page);

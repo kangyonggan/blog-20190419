@@ -1,6 +1,7 @@
 <#assign active_music="active"/>
 <#assign categoryCode = RequestParameters.categoryCode!'' />
 <#assign type = RequestParameters.type!'' />
+<#assign key = RequestParameters.key!'' />
 
 <#list categories as category>
     <#if categoryCode==category.code>
@@ -54,8 +55,11 @@
             <div class="space-10"></div>
         </div>
 
-        <@c.web_pagination url="${ctx}/music" param="categoryCode=${categoryCode}&type=${type}"/>
-
+        <#if key != ''>
+            <@c.web_pagination url="${ctx}/search" param="key=${key}&type=${type}"/>
+        <#else>
+            <@c.web_pagination url="${ctx}/music" param="categoryCode=${categoryCode}"/>
+        </#if>
     </div>
 
     <div class="space-10"></div>

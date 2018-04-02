@@ -1,9 +1,9 @@
-<#assign title="500"/>
+<#assign title="400"/>
 
 <@override name="main">
 <div id="main">
     <div class="err">
-        服务器内部错误（500），请联系<a href="${ctx}/about">管理员</a>！
+        请求参数有误！(400)
     </div>
 </div>
 </@override>

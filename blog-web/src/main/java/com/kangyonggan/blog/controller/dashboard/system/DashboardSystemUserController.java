@@ -51,6 +51,8 @@ public class DashboardSystemUserController extends BaseController {
         List<User> users = userService.searchUsers(pageNum, username, realname);
         PageInfo<User> page = new PageInfo(users);
 
+        int a = 1 / 0;
+
         model.addAttribute("page", page);
         return getPathList();
     }

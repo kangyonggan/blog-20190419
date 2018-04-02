@@ -1,3 +1,5 @@
+<#assign title="403"/>
+
 <@override name="main">
 <div id="main">
     <div class="err">

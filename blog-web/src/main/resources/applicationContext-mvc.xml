@@ -75,14 +75,13 @@
 
     <!-- 定义无需Controller的url<->view直接映射 -->
     <mvc:view-controller path="/404" view-name="/404"/>
-    <mvc:view-controller path="/405" view-name="/405"/>
     <mvc:view-controller path="/500" view-name="/500"/>
 
     <bean id="exceptionResolver" class="com.kangyonggan.blog.exception.CustomSimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
                 <prop key="java.lang.Exception">500</prop>
-                <prop key=".ResourceNotFoundException">404</prop>
+                <prop key=".UnauthorizedException">403</prop>
                 <prop key=".FileUploadException">upload-error</prop>
                 <prop key=".MaxUploadSizeExceededException">upload-max-error</prop>
             </props>

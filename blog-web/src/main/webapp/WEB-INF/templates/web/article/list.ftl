@@ -53,9 +53,9 @@
         </div>
 
         <#if key != ''>
-            <@c.web_pagination url="${ctx}/search" param="key=${key}"/>
+            <@c.web_pagination url="${ctx}/search" param="key=${key}&type=${type}"/>
         <#else>
-            <@c.web_pagination url="${ctx}/article" param="categoryCode=${categoryCode}&type=${type}"/>
+            <@c.web_pagination url="${ctx}/article" param="categoryCode=${categoryCode}"/>
         </#if>
     </div>
 
