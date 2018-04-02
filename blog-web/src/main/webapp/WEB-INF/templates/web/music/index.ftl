@@ -1,11 +1,19 @@
 <#assign active_music="active"/>
 <#assign categoryCode = RequestParameters.categoryCode!'' />
+<#assign type = RequestParameters.type!'' />
+
 <#list categories as category>
     <#if categoryCode==category.code>
         <#assign title="${category.name}"/>
     </#if>
 </#list>
-<#if categoryCode==''><#assign title="音乐"/></#if>
+<#if categoryCode==''>
+    <#if key != ''>
+        <#assign title="搜索结果"/>
+    <#else>
+        <#assign title="音乐"/>
+    </#if>
+</#if>
 
 <@override name="breadcrumbs">
     <#include "breadcrumbs.ftl"/>
@@ -46,7 +54,7 @@
             <div class="space-10"></div>
         </div>
 
-        <@c.web_pagination url="${ctx}/music" param="categoryCode=${categoryCode}"/>
+        <@c.web_pagination url="${ctx}/music" param="categoryCode=${categoryCode}&type=${type}"/>
 
     </div>
 

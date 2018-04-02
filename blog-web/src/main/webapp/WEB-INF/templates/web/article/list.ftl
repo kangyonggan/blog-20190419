@@ -1,6 +1,8 @@
 <#assign active_article="active"/>
 <#assign categoryCode = RequestParameters.categoryCode!'' />
 <#assign key = RequestParameters.key!'' />
+<#assign type = RequestParameters.type!'' />
+
 <#list categories as category>
     <#if categoryCode==category.code>
         <#assign title="${category.name}"/>
@@ -53,7 +55,7 @@
         <#if key != ''>
             <@c.web_pagination url="${ctx}/search" param="key=${key}"/>
         <#else>
-            <@c.web_pagination url="${ctx}/article" param="categoryCode=${categoryCode}"/>
+            <@c.web_pagination url="${ctx}/article" param="categoryCode=${categoryCode}&type=${type}"/>
         </#if>
     </div>
 

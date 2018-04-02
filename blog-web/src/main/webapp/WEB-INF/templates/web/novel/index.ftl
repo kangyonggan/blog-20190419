@@ -1,11 +1,19 @@
 <#assign active_novel="active"/>
 <#assign categoryCode = RequestParameters.categoryCode!'' />
+<#assign type = RequestParameters.type!'' />
+
 <#list categories as category>
     <#if categoryCode==category.code>
         <#assign title="${category.name}"/>
     </#if>
 </#list>
-<#if categoryCode==''><#assign title="小说"/></#if>
+<#if categoryCode==''>
+    <#if key != ''>
+        <#assign title="搜索结果"/>
+    <#else>
+        <#assign title="小说"/>
+    </#if>
+</#if>
 
 <@override name="breadcrumbs">
     <#include "breadcrumbs.ftl"/>
@@ -47,7 +55,7 @@
             <div class="space-10"></div>
         </div>
 
-        <@c.web_pagination url="${ctx}/novel" param="categoryCode=${categoryCode}"/>
+        <@c.web_pagination url="${ctx}/novel" param="categoryCode=${categoryCode}&type=${type}"/>
 
         <div style="text-align: center;margin-top: 10px">
             本站所有小说为转载作品，转载至本站只是为了宣传本书让更多读者欣赏。
