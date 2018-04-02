@@ -10,8 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -26,7 +24,6 @@ public class MonitorServiceImpl extends BaseService<Monitor> implements MonitorS
     private UserService userService;
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveMonitor(MonitorInfo monitorInfo) {
         Monitor monitor = new Monitor();
         BeanUtils.copyProperties(monitorInfo, monitor);

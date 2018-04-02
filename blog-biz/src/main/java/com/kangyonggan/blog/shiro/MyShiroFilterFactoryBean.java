@@ -22,12 +22,14 @@ import java.util.Set;
  * @author kangyonggan
  * @date 16/5/15
  */
-public class MShiroFilterFactoryBean extends ShiroFilterFactoryBean {
+public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
 
-    // 对ShiroFilter来说，需要直接忽略的请求
+    /**
+     * 对ShiroFilter来说，需要直接忽略的请求
+     */
     private Set<String> ignoreExt;
 
-    public MShiroFilterFactoryBean() {
+    public MyShiroFilterFactoryBean() {
         super();
         ignoreExt = new HashSet();
         ignoreExt.add(".jpg");
@@ -57,12 +59,12 @@ public class MShiroFilterFactoryBean extends ShiroFilterFactoryBean {
         PathMatchingFilterChainResolver chainResolver = new PathMatchingFilterChainResolver();
         chainResolver.setFilterChainManager(manager);
 
-        return new MSpringShiroFilter((WebSecurityManager) securityManager, chainResolver);
+        return new MySpringShiroFilter((WebSecurityManager) securityManager, chainResolver);
     }
 
-    private final class MSpringShiroFilter extends AbstractShiroFilter {
+    private final class MySpringShiroFilter extends AbstractShiroFilter {
 
-        protected MSpringShiroFilter(WebSecurityManager webSecurityManager, FilterChainResolver resolver) {
+        protected MySpringShiroFilter(WebSecurityManager webSecurityManager, FilterChainResolver resolver) {
             super();
             if (webSecurityManager == null) {
                 throw new IllegalArgumentException("WebSecurityManager property cannot be null.");

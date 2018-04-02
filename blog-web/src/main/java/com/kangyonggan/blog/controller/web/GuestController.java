@@ -5,7 +5,7 @@ import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.service.GuestService;
 import com.kangyonggan.blog.service.MailService;
-import com.kangyonggan.blog.util.IPUtil;
+import com.kangyonggan.blog.util.IpUtil;
 import com.kangyonggan.blog.util.PropertiesUtil;
 import com.kangyonggan.blog.vo.Guest;
 import lombok.extern.log4j.Log4j2;
@@ -69,7 +69,7 @@ public class GuestController extends BaseController {
             setResultMapFailure(resultMap, "表单错误");
         } else {
             // 访问量控制
-            String ip = IPUtil.getIp(request);
+            String ip = IpUtil.getIp(request);
             boolean isQuickWrite = guestService.isQuickWrite(ip);
             if (!isQuickWrite) {
                 guest.setIp(ip);

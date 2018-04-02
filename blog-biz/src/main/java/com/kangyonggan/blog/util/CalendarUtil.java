@@ -187,11 +187,14 @@ public class CalendarUtil {
         if ((lunarMonth < 1) || (lunarMonth > 12)) {
             throw (new Exception("非法农历月份！"));
         }
-        if ((lunarDay < 1) || (lunarDay > 30)) { // 中国的月最多30天
+
+        // 中国的月最多30天
+        if ((lunarDay < 1) || (lunarDay > 30)) {
             throw (new Exception("非法农历天数！"));
         }
 
-        int leap = getLeapMonth(lunarYear);// 计算该年应该闰哪个月
+        // 计算该年应该闰哪个月
+        int leap = getLeapMonth(lunarYear);
         if ((leapMonthFlag == true) && (lunarMonth != leap)) {
             throw (new IllegalAccessException("非法闰月！"));
         }
@@ -232,7 +235,8 @@ public class CalendarUtil {
         }
 
         //当年没有闰月或月份早于闰月或和闰月同名的月份
-        if (leapMonth == 0 || (lunarMonth < leapMonth) || (lunarMonth == leapMonth && !leapMonthFlag)) {
+        boolean hasRunYear = leapMonth == 0 || (lunarMonth < leapMonth) || (lunarMonth == leapMonth && !leapMonthFlag);
+        if (hasRunYear) {
             for (int i = 1; i < lunarMonth; i++) {
                 int tempMonthDaysCount = getMonthDays(lunarYear, i);
                 offset += tempMonthDaysCount;
@@ -253,16 +257,20 @@ public class CalendarUtil {
             }
 
             if (lunarMonth > leapMonth) {
-                int temp = getLeapMonthDays(lunarYear); // 计算闰月天数
-                offset += temp; // 加上闰月天数
+                // 计算闰月天数
+                int temp = getLeapMonthDays(lunarYear);
+                // 加上闰月天数
+                offset += temp;
 
                 if (lunarDay > getMonthDays(lunarYear, lunarMonth)) {
                     throw (new Exception("不合法的农历日期！"));
                 }
                 offset += lunarDay;
-            } else { // 如果需要计算的是闰月，则应首先加上与闰月对应的普通月的天数
+            } else {
+                // 如果需要计算的是闰月，则应首先加上与闰月对应的普通月的天数
                 // 计算月为闰月
-                int temp = getMonthDays(lunarYear, lunarMonth); // 计算非闰月天数
+                // 计算非闰月天数
+                int temp = getMonthDays(lunarYear, lunarMonth);
                 offset += temp;
 
                 if (lunarDay > getLeapMonthDays(lunarYear)) {
@@ -311,7 +319,8 @@ public class CalendarUtil {
 
         int offset = daysBetween(startDate, myDate);
         for (i = MIN_YEAR; i <= MAX_YEAR; i++) {
-            temp = getYearDays(i);  //求当年农历年天数
+            //求当年农历年天数
+            temp = getYearDays(i);
             if (offset - temp < 1) {
                 break;
             } else {
@@ -320,7 +329,8 @@ public class CalendarUtil {
         }
 
         lunarYear = i;
-        int leapMonth = getLeapMonth(lunarYear);//计算该年闰哪个月
+        //计算该年闰哪个月
+        int leapMonth = getLeapMonth(lunarYear);
 
         //设定当年是否有闰月
         if (leapMonth > 0) {
@@ -333,7 +343,6 @@ public class CalendarUtil {
             if (i == leapMonth + 1 && isLeapYear) {
                 temp = getLeapMonthDays(lunarYear);
                 isLeapYear = false;
-                leapMonthFlag = true;
                 i--;
             } else {
                 temp = getMonthDays(lunarYear, i);

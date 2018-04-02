@@ -4,7 +4,7 @@ import com.kangyonggan.blog.constants.AppConstants;
 import com.kangyonggan.blog.constants.Resp;
 import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.service.LoginLogService;
-import com.kangyonggan.blog.util.IPUtil;
+import com.kangyonggan.blog.util.IpUtil;
 import com.kangyonggan.blog.vo.User;
 import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.SecurityUtils;
@@ -87,7 +87,8 @@ public class AuthController extends BaseController {
         final Subject subject = SecurityUtils.getSubject();
 
         try {
-            session.setMaxInactiveInterval(30 * 24 * 60 * 60);// 30天
+            // 30天
+            session.setMaxInactiveInterval(30 * 24 * 60 * 60);
             subject.login(token);
         } catch (UnknownAccountException uae) {
             log.warn("用户名不存在", uae);
@@ -108,7 +109,7 @@ public class AuthController extends BaseController {
         }
 
         // 保存登录日志
-        loginLogService.saveLoginLog(user.getUsername(), IPUtil.getIp(request));
+        loginLogService.saveLoginLog(user.getUsername(), IpUtil.getIp(request));
 
         return resultMap;
     }

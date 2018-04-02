@@ -3,8 +3,13 @@ package com.kangyonggan.blog.vo;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
+
 import lombok.Data;
 
+/**
+ * @author kangyonggan
+ * @date 2018/04/02
+ */
 @Table(name = "tb_section")
 @Data
 public class Section implements Serializable {

@@ -27,10 +27,25 @@ import java.util.Random;
 @Log4j2
 public class CaptchaController {
 
-    private static final int WIDTH = 110; // 图片的宽度
-    private static final int HEIGHT = 34; // 图片的高度
-    private static final int COUNT_CHAR = 4; // 字符个数
-    private static final int COUNT_LINE = 30; // 干扰线的数量
+    /**
+     * 图片的宽度
+     */
+    private static final int WIDTH = 110;
+
+    /**
+     * 图片的高度
+     */
+    private static final int HEIGHT = 34;
+
+    /**
+     * 字符个数
+     */
+    private static final int COUNT_CHAR = 4;
+
+    /**
+     * 干扰线的数量
+     */
+    private static final int COUNT_LINE = 30;
 
     @RequestMapping(value = "captcha", method = RequestMethod.GET)
     public void getCode(HttpServletRequest req, HttpServletResponse resp) throws IOException {

@@ -6,7 +6,7 @@ import com.kangyonggan.blog.constants.MonitorType;
 import com.kangyonggan.blog.constants.Status;
 import com.kangyonggan.blog.service.GuestService;
 import com.kangyonggan.blog.util.DateUtil;
-import com.kangyonggan.blog.util.IPUtil;
+import com.kangyonggan.blog.util.IpUtil;
 import com.kangyonggan.blog.util.MarkdownUtil;
 import com.kangyonggan.blog.vo.Guest;
 import com.kangyonggan.extra.core.annotation.Log;
@@ -67,7 +67,7 @@ public class GuestBookServiceImpl extends BaseService<Guest> implements GuestSer
         new Thread() {
             @Override
             public void run() {
-                Map<String, String> resultMap = IPUtil.getIpInfo(ip);
+                Map<String, String> resultMap = IpUtil.getIpInfo(ip);
 
                 String city = resultMap.get("city");
                 if (StringUtils.isEmpty(city)) {

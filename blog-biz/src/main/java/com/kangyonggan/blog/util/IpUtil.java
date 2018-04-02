@@ -11,7 +11,7 @@ import java.util.Map;
  * @author kangyonggan
  * @date 4/10/17
  */
-public class IPUtil {
+public class IpUtil {
 
     /**
      * 获取用户真实IP地址，不使用request.getRemoteAddr();的原因是有可能用户使用了代理软件方式避免真实IP地址,
