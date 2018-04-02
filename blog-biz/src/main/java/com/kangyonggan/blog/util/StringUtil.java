@@ -16,6 +16,11 @@ public class StringUtil {
     public static final String REGEX_PASSWORD = "^[a-zA-Z0-9]{8,20}$";
 
     /**
+     * controller路径分隔符
+     */
+    public static final String SPLIT_CTRL = "_";
+
+    /**
      * 正则表达式：验证手机号
      */
     public static final String REGEX_MOBILE = "^((17[0-9])|(14[0-9])|(13[0-9])|(15[^4,\\D])|(18[0-3,5-9]))\\d{8}$";
@@ -149,20 +154,20 @@ public class StringUtil {
         for (int i = 0; i < chars.length; i++) {
             char ch = chars[i];
             if (Character.isUpperCase(ch)) {
-                sb.append("_").append(Character.toLowerCase(ch));
+                sb.append(SPLIT_CTRL).append(Character.toLowerCase(ch));
             } else {
                 sb.append(ch);
             }
         }
 
-        if (sb.toString().startsWith("_")) {
+        if (sb.toString().startsWith(SPLIT_CTRL)) {
             sb.deleteCharAt(0);
         }
-        if (sb.toString().endsWith("_")) {
-            sb.deleteCharAt(sb.lastIndexOf("_"));
+        if (sb.toString().endsWith(SPLIT_CTRL)) {
+            sb.deleteCharAt(sb.lastIndexOf(SPLIT_CTRL));
         }
 
-        return sb.toString().split("_");
+        return sb.toString().split(SPLIT_CTRL);
     }
 
     /**
@@ -202,13 +207,17 @@ public class StringUtil {
      */
     public static boolean isWrapClass(Class clazz) {
         try {
-            if ("String".equals(clazz.getSimpleName())) {
+            if (String.class.getSimpleName().equals(clazz.getSimpleName())) {
                 return true;
             }
             return ((Class) clazz.getField("TYPE").get(null)).isPrimitive();
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(String.class.getSimpleName());
     }
 
     /**

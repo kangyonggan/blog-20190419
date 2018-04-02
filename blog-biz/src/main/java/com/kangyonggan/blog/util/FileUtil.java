@@ -1,5 +1,6 @@
 package com.kangyonggan.blog.util;
 
+import com.kangyonggan.blog.constants.ImageType;
 import lombok.extern.log4j.Log4j2;
 import org.apache.tika.mime.MimeType;
 import org.apache.tika.mime.MimeTypes;
@@ -89,11 +90,11 @@ public class FileUtil {
             httpUrl = (HttpURLConnection) url.openConnection();
             httpUrl.connect();
             String type = httpUrl.getHeaderField("Content-Type");
-            if ("image/gif".equals(type)) {
+            if (ImageType.GIF.getType().equals(type)) {
                 savePath += ".gif";
-            } else if ("image/png".equals(type)) {
+            } else if (ImageType.PNG.getType().equals(type)) {
                 savePath += ".png";
-            } else if ("image/jpeg".equals(type)) {
+            } else if (ImageType.JPEG.getType().equals(type)) {
                 savePath += ".jpg";
             } else {
                 log.warn("未知图片格式");
