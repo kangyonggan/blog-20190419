@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author kangyonggan
- * @since 2016/12/3
+ * @date 2016/12/3
  */
 @Controller
 @RequestMapping("validate")

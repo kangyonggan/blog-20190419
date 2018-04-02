@@ -12,7 +12,7 @@ import java.util.Date;
  * 新日期时间工具类，会不断完善
  *
  * @author kangyonggan
- * @since 4/7/17
+ * @date 4/7/17
  */
 public class DateUtil {
 

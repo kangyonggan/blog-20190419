@@ -6,6 +6,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+/**
+ * @author kangyonggan
+ * @date 2018/04/02
+ */
 public interface ArticleService {
 
     /**

@@ -16,7 +16,7 @@ import java.util.Map;
  * 压缩工具
  *
  * @author kangyonggan
- * @since 4/24/17
+ * @date 4/24/17
  */
 public class CompressorUtil {
 

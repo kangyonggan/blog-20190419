@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author kangyonggan
- * @since 3/25/18
+ * @date 3/25/18
  */
 @Component
 @Log4j2

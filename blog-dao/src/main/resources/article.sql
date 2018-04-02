@@ -493,7 +493,7 @@ import java.io.FileInputStream;
 
 /**
  * @author kangyonggan
- * @since 2016/12/25
+ * @date 2016/12/25
  */
 public class TestFtp {
 
@@ -969,7 +969,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 2017/1/24
+ * @date 2017/1/24
  */
 @Data
 public class Feed {
@@ -993,7 +993,7 @@ import lombok.Data;
 
 /**
  * @author kangyonggan
- * @since 2017/1/24
+ * @date 2017/1/24
  */
 @Data
 public class FeedMessage {
@@ -1031,7 +1031,7 @@ import java.io.FileOutputStream;
 
 /**
  * @author kangyonggan
- * @since 2017/1/24
+ * @date 2017/1/24
  */
 public class RSSFeedWriter {
 
@@ -1228,7 +1228,7 @@ INSERT INTO blog.tb_article (title, summary, category_code, content, is_top, is_
  * 单页面路由
  *
  * @author kangyonggan
- * @since 2017/3/21
+ * @date 2017/3/21
  */
 (function ($) {
     /**
@@ -1512,7 +1512,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 16/7/22
+ * @date 16/7/22
  */
 public class FenCi {
 
@@ -1576,7 +1576,7 @@ import java.util.Map;
 
 /**
  * @author kangyonggan
- * @since 16/7/22
+ * @date 16/7/22
  */
 public class PinYin {
 
@@ -1859,7 +1859,7 @@ import java.time.LocalDate;
 
 /**
  * @author kangyonggan
- * @since 2017/3/22
+ * @date 2017/3/22
  */
 public class LocalDateNowDemo {
 
@@ -2630,7 +2630,7 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
 /**
  * @author kangyonggan
- * @since 2017/1/25
+ * @date 2017/1/25
  */
 @Log4j2
 public class MyPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
@@ -2714,7 +2714,7 @@ import java.net.URLDecoder;
 
 /**
  * @author kangyonggan
- * @since 2017/1/27
+ * @date 2017/1/27
  */
 @Controller
 @RequestMapping("configcenter")
@@ -2958,7 +2958,7 @@ import java.security.spec.X509EncodedKeySpec;
 
 /**
  * @author kangyonggan
- * @since 2016/12/27
+ * @date 2016/12/27
  */
 @Log4j2
 public class CryptoUtil {
@@ -3366,7 +3366,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author kangyonggan
- * @since 2017/3/20
+ * @date 2017/3/20
  */
 public class MyPatternLayout extends PatternLayout {
 
@@ -3410,7 +3410,7 @@ import org.apache.log4j.Logger;
 
 /**
  * @author kangyonggan
- * @since 2017/3/20
+ * @date 2017/3/20
  */
 public class Test {
 
@@ -3681,7 +3681,7 @@ import java.lang.annotation.*;
  * 在方法上加此注解会打印入参和出参，会计算方法消耗的时间
  *
  * @author kangyonggan
- * @since 2016/12/8
+ * @date 2016/12/8
  */
 @Documented
 @Inherited
@@ -3712,7 +3712,7 @@ import java.lang.reflect.Method;
  * 切于内部service的实现方法上， 需要在方法上手动加上@LogTime注解， 打印入参和出参，打印方法执行时间, 慢方法打印error日志
  *
  * @author kangyonggan
- * @since 2016/11/30
+ * @date 2016/11/30
  */
 @Log4j2
 public class LogAop {
@@ -3780,7 +3780,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 2016/11/30
+ * @date 2016/11/30
  */
 public class AopUtil {
     public static String getStringFromRequest(Object[] args) {
@@ -4421,7 +4421,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * @author kangyonggan
- * @since 2017/3/28
+ * @date 2017/3/28
  */
 public class Test {
 
@@ -4617,7 +4617,7 @@ import tk.mybatis.mapper.common.base.BaseUpdateMapper;
 
 /**
  * @author kangyonggan
- * @since 16/5/12
+ * @date 16/5/12
  */
 @Component
 public interface MyMapper<T> extends
@@ -4646,7 +4646,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 16/5/12
+ * @date 16/5/12
  */
 public class LombokPlugin extends PluginAdapter {
     private FullyQualifiedJavaType dataAnnotation = new FullyQualifiedJavaType("lombok.Data");
@@ -5244,7 +5244,7 @@ import java.io.Serializable;
 
 /**
  * @author kangyonggan
- * @since 2016/12/31
+ * @date 2016/12/31
  */
 public class MyEnterpriseCacheSessionDAO extends EnterpriseCacheSessionDAO {
 
@@ -6503,7 +6503,7 @@ import org.apache.logging.log4j.message.SimpleMessage;
 
 /**
  * @author kangyonggan
- * @since 2017/4/24 0024
+ * @date 2017/4/24 0024
  */
 public final class MyRewritePolicy implements RewritePolicy {
 
@@ -6534,7 +6534,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * @author kangyonggan
- * @since 2017/4/24 0024
+ * @date 2017/4/24 0024
  */
 public class Test {
 
@@ -6595,7 +6595,7 @@ import org.apache.logging.log4j.message.SimpleMessage;
 
 /**
  * @author kangyonggan
- * @since 2017/4/24 0024
+ * @date 2017/4/24 0024
  */
 public final class MyRewritePolicy implements RewritePolicy {
 
@@ -6637,7 +6637,7 @@ import org.apache.logging.log4j.message.SimpleMessage;
 
 /**
  * @author kangyonggan
- * @since 2017/4/24 0024
+ * @date 2017/4/24 0024
  */
 public final class MyRewritePolicy implements RewritePolicy {
 
@@ -6748,7 +6748,7 @@ import java.sql.ResultSet;
 
 /**
  * @author kangyonggan
- * @since 4/25/17
+ * @date 4/25/17
  */
 public class ExcelParse605 {
 
@@ -6915,7 +6915,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
  * 多数据源
  *
  * @author kangyonggan
- * @since 4/28/17
+ * @date 4/28/17
  */
 public class MultiDataSource extends AbstractRoutingDataSource {
 
@@ -6939,7 +6939,7 @@ package com.shhxzq.fin.ehelper.model.constants;
 
 /**
  * @author kangyonggan
- * @since 4/28/17
+ * @date 4/28/17
  */
 public enum DataSource {
     DEV, UAT;
@@ -7056,7 +7056,7 @@ import java.lang.annotation.*;
  * 在方法上加此注解，会使用第一个参数即DataSource枚举切换数据源
  *
  * @author kangyonggan
- * @since 2016/12/8
+ * @date 2016/12/8
  */
 @Documented
 @Inherited
@@ -7086,7 +7086,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author kangyonggan
- * @since 4/28/17
+ * @date 4/28/17
  */
 @Log4j2
 @Component
@@ -7148,7 +7148,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author kangyonggan
- * @since 4/28/17
+ * @date 4/28/17
  */
 @Service
 public class BeCommandServiceImpl extends BaseService<BeCommand> implements BeCommandService {
@@ -7364,7 +7364,7 @@ import java.util.Map;
  * mp3工具类
  *
  * @author kangyonggan
- * @since 9/4/17
+ * @date 9/4/17
  */
 @Log4j2
 public class Mp3Util {
@@ -7873,7 +7873,7 @@ import java.lang.annotation.Target;
 
 /**
  * @author kangyonggan
- * @since 9/28/17
+ * @date 9/28/17
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.METHOD)
@@ -7907,7 +7907,7 @@ import java.util.Set;
  * 注解处理器
  *
  * @author kangyonggan
- * @since 9/28/17
+ * @date 9/28/17
  */
 @SupportedAnnotationTypes("com.kangyonggan.demo.hello.core.MethodLogger")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
@@ -8039,7 +8039,7 @@ import com.kangyonggan.demo.hello.core.MethodLogger;
 
 /**
  * @author kangyonggan
- * @since 10/17/17
+ * @date 10/17/17
  */
 public class MethodLoggerTest {
 
@@ -8111,7 +8111,7 @@ import com.kangyonggan.methodlogger.MethodLogger;
 
 /**
  * @author kangyonggan
- * @since 10/18/17
+ * @date 10/18/17
  */
 public class Hello {
 

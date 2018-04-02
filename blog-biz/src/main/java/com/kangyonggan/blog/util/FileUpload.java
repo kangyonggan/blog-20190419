@@ -13,7 +13,7 @@ import java.nio.channels.FileChannel;
 
 /**
  * @author kangyonggan
- * @since 2016/12/6
+ * @date 2016/12/6
  */
 public class FileUpload {
 

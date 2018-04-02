@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 3/27/18
+ * @date 3/27/18
  */
 public interface LoginLogService {
 

@@ -4,6 +4,10 @@ import com.kangyonggan.blog.vo.Section;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author kangyonggan
+ * @date 2018/04/02
+ */
 @Repository
 public interface SectionMapper extends MyMapper<Section> {
 

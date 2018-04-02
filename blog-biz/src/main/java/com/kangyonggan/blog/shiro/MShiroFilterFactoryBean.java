@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  * @author kangyonggan
- * @since 16/5/15
+ * @date 16/5/15
  */
 public class MShiroFilterFactoryBean extends ShiroFilterFactoryBean {
 

@@ -17,6 +17,10 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
+/**
+ * @author kangyonggan
+ * @date 2018/04/02
+ */
 @Service
 public class CategoryServiceImpl extends BaseService<Category> implements CategoryService {
 

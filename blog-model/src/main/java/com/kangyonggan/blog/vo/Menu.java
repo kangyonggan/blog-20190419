@@ -6,6 +6,10 @@ import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 
+/**
+ * @author kangyonggan
+ * @date 2018/04/02
+ */
 @Table(name = "tb_menu")
 @Data
 public class Menu implements Serializable {

@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author kangyonggan
+ * @date 2018/04/02
+ */
 @Controller
 @RequestMapping("dashboard/manage/novel")
 public class DashboardManageNovelController extends BaseController {

@@ -22,7 +22,7 @@ import java.util.Map;
  * 二维码
  *
  * @author kangyonggan
- * @since 4/24/17
+ * @date 4/24/17
  */
 public class QrCodeUtil {
 

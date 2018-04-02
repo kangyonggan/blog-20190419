@@ -5,6 +5,10 @@ import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
+/**
+ * @author kangyonggan
+ * @date 2018/04/02
+ */
 @Table(name = "tb_attachment")
 @Data
 public class Attachment implements Serializable {

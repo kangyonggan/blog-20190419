@@ -17,7 +17,7 @@ import java.util.Map;
  * mp3工具类
  *
  * @author kangyonggan
- * @since 9/4/17
+ * @date 9/4/17
  */
 @Log4j2
 public class Mp3Util {

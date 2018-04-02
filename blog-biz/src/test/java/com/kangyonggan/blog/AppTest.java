@@ -5,7 +5,7 @@ import org.junit.Test;
 
 /**
  * @author kangyonggan
- * @since 4/11/17
+ * @date 4/11/17
  */
 @Log4j2
 public class AppTest extends AbstractServiceTest {

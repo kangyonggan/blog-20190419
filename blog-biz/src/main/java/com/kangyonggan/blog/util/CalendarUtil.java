@@ -10,7 +10,7 @@ import java.util.Date;
  * 日历转换工具类：阴历和阳历日期互换(阴历日期范围19000101~20491229)
  *
  * @author kangyonggan
- * @since 7/13/17
+ * @date 7/13/17
  */
 public class CalendarUtil {
 

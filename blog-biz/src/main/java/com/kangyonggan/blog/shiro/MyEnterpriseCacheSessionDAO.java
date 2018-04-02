@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * @author kangyonggan
- * @since 2016/12/31
+ * @date 2016/12/31
  */
 @Log4j2
 public class MyEnterpriseCacheSessionDAO extends EnterpriseCacheSessionDAO {

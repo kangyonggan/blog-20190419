@@ -11,7 +11,7 @@ import java.net.URL;
 
 /**
  * @author kangyonggan
- * @since 2017/5/10 0010
+ * @date 2017/5/10 0010
  */
 @Log4j2
 public class FileUtil {

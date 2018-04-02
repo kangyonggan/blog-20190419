@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @author kangyonggan
- * @since 8/11/17
+ * @date 8/11/17
  */
 @Data
 public class CommonResponse implements Serializable {

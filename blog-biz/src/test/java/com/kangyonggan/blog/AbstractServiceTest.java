@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * 没有事务
  *
  * @author kangyonggan
- * @since 2016/11/30
+ * @date 2016/11/30
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/test-core.xml"})

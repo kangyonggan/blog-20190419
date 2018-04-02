@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  * @author kangyonggan
- * @since 6/26/17
+ * @date 6/26/17
  */
 public class IDCardConstants {
 

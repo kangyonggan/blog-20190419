@@ -13,7 +13,7 @@ import tk.mybatis.mapper.common.base.BaseUpdateMapper;
  * 其他的Mapper继承MyMapper后，单表的curd不用写sql
  *
  * @author kangyonggan
- * @since 4/7/17
+ * @date 4/7/17
  */
 @Component
 public interface MyMapper<T> extends

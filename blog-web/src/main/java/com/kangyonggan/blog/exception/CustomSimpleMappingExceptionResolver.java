@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author kangyonggan
- * @since 16/9/25
+ * @date 16/9/25
  */
 @Log4j2
 public class CustomSimpleMappingExceptionResolver extends SimpleMappingExceptionResolver {

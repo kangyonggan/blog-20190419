@@ -2,7 +2,7 @@
  * 单页面路由
  *
  * @author kangyonggan
- * @since 2017/3/21
+ * @date 2017/3/21
  */
 (function ($) {
     /**

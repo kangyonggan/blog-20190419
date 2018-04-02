@@ -6,7 +6,7 @@ import lombok.extern.log4j.Log4j2;
 
 /**
  * @author kangyonggan
- * @since 2017/11/5 0005
+ * @date 2017/11/5 0005
  */
 @Log4j2
 public class Log4j2LogHandle implements LogHandle {

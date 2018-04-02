@@ -6,7 +6,7 @@ import lombok.Getter;
  * 响应码枚举
  *
  * @author kangyonggan
- * @since 3/16/18
+ * @date 3/16/18
  */
 public enum Resp {
 

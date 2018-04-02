@@ -2,8 +2,12 @@ package com.kangyonggan.blog.constants;
 
 import lombok.Getter;
 
+
 /**
  * 栏目类型
+ *
+ * @author kangyonggan
+ * @date 2018/04/02
  */
 public enum CategoryType {
 

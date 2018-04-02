@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 /**
  * @author kangyonggan
- * @since 3/30/18
+ * @date 3/30/18
  */
 @Log4j2
 public class ImageUtil {

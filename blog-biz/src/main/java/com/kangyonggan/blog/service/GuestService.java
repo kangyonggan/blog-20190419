@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 3/24/18
+ * @date 3/24/18
  */
 public interface GuestService {
 

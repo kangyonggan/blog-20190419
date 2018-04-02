@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author kangyonggan
- * @since 3/25/18
+ * @date 3/25/18
  */
 @Log4j2
 public class NovelServiceTest extends AbstractServiceTest {

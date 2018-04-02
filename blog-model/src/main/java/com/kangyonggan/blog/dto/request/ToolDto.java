@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @author kangyonggan
- * @since 3/23/18
+ * @date 3/23/18
  */
 @Data
 public class ToolDto implements Serializable {

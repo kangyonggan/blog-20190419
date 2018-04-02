@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /**
  * @author kangyonggan
- * @since 5/5/17
+ * @date 5/5/17
  */
 public enum DictionaryType {
 

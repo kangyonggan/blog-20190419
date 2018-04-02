@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  * redis服务接口
  *
  * @author kangyonggan
- * @since 2016/11/30
+ * @date 2016/11/30
  */
 public interface RedisService {
 

@@ -2,8 +2,12 @@ package com.kangyonggan.blog.constants;
 
 import lombok.Getter;
 
+
 /**
  * 附件类型
+ *
+ * @author kangyonggan
+ * @date 2018/04/02
  */
 public enum AttachmentType {
 

@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @author kangyonggan
- * @since 3/22/18
+ * @date 3/22/18
  */
 @Data
 public class ShiroUser implements Serializable {

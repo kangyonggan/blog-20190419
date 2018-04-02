@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author kangyonggan
- * @since 16/5/23
+ * @date 16/5/23
  */
 @Service
 public abstract class BaseService<T> {

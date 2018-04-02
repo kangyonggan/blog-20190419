@@ -2,6 +2,9 @@ package com.kangyonggan.blog.constants;
 
 /**
  * 监控类型
+ *
+ * @author kangyonggan
+ * @date 2018/04/02
  */
 public interface MonitorType {
 

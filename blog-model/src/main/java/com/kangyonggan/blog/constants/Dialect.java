@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /**
  * @author kangyonggan
- * @since 7/6/17
+ * @date 7/6/17
  */
 public enum Dialect {
 

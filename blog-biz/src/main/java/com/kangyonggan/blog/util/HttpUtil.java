@@ -10,7 +10,7 @@ import java.net.URLConnection;
 
 /**
  * @author kangyonggan
- * @since 4/10/17
+ * @date 4/10/17
  */
 public class HttpUtil {
 

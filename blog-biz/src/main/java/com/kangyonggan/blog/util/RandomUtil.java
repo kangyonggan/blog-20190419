@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author kangyonggan
- * @since 3/23/18
+ * @date 3/23/18
  */
 public class RandomUtil {
 

@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 8/15/17
+ * @date 8/15/17
  */
 @RestController
 @RequestMapping("mobile/novel")

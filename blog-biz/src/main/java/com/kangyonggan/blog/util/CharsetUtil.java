@@ -2,7 +2,7 @@ package com.kangyonggan.blog.util;
 
 /**
  * @author kangyonggan
- * @since 6/28/17
+ * @date 6/28/17
  */
 public class CharsetUtil {
 

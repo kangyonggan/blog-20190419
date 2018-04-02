@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * 生辰八字
  *
  * @author kangyonggan
- * @since 7/11/17
+ * @date 7/11/17
  */
 public class DestinyUtil {
 

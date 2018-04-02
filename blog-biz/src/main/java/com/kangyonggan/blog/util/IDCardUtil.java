@@ -12,7 +12,7 @@ import java.util.*;
  * 身份证工具类
  *
  * @author kangyonggan
- * @since 6/23/17
+ * @date 6/23/17
  */
 @Log4j2
 public class IDCardUtil {

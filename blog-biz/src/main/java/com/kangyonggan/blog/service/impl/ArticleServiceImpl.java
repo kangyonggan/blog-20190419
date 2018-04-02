@@ -28,6 +28,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author kangyonggan
+ * @date 2018/04/02
+ */
 @Service
 @Log4j2
 public class ArticleServiceImpl extends BaseService<Article> implements ArticleService {

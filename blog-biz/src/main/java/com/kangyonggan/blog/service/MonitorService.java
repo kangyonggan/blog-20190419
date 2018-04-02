@@ -2,7 +2,7 @@ package com.kangyonggan.blog.service;
 
 import com.kangyonggan.extra.core.model.MonitorInfo; /**
  * @author kangyonggan
- * @since 3/30/18
+ * @date 3/30/18
  */
 public interface MonitorService {
 

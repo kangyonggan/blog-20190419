@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 3/27/18
+ * @date 3/27/18
  */
 @Service
 public class LoginLogServiceImpl extends BaseService<LoginLog> implements LoginLogService {

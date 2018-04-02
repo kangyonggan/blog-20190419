@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /**
  * @author kangyonggan
- * @since 4/2/18
+ * @date 4/2/18
  */
 public enum ImageType {
 

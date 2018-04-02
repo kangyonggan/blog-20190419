@@ -6,6 +6,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author kangyonggan
+ * @date 2018/04/02
+ */
 @Table(name = "tb_photo")
 @Data
 public class Photo implements Serializable {

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 3/28/18
+ * @date 3/28/18
  */
 public interface MusicService {
 

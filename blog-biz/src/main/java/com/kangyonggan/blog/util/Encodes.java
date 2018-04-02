@@ -23,7 +23,7 @@ import java.net.URLEncoder;
  * 4.JDK提供的URLEncoder
  *
  * @author kangyonggan
- * @since 16/5/15
+ * @date 16/5/15
  */
 public class Encodes {
 

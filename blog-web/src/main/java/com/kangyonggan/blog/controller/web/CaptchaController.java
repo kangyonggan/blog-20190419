@@ -20,7 +20,7 @@ import java.util.Random;
  * 验证码生成
  *
  * @author kangyonggan
- * @since 16/6/23
+ * @date 16/6/23
  */
 @Controller
 @RequestMapping("/")

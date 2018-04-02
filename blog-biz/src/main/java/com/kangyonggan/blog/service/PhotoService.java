@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @author kangyonggan
- * @since 3/29/18
+ * @date 3/29/18
  */
 public interface PhotoService {
 

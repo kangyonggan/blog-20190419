@@ -2,7 +2,7 @@ package com.kangyonggan.blog.service;
 
 /**
  * @author kangyonggan
- * @since 4/12/17
+ * @date 4/12/17
  */
 public interface MailService {
 

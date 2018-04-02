@@ -12,7 +12,7 @@ import java.util.Properties;
  * app.properties工具类
  *
  * @author kangyonggan
- * @since 2016/12/6
+ * @date 2016/12/6
  */
 @Log4j2
 public class PropertiesUtil {
