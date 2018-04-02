@@ -36,7 +36,7 @@ public class QrCodeUtil {
      * @throws IOException
      */
     public static void genQrCode(String name, String content, int width) throws WriterException, IOException {
-        Map<EncodeHintType, Object> hints = new HashMap();
+        Map<EncodeHintType, Object> hints = new HashMap(16);
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
         BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, width, hints);
 

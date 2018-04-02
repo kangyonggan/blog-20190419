@@ -30,7 +30,7 @@ public class Mp3Util {
      * @return
      */
     public static Map<String, Object> parse(String mp3Path, String albumDir) {
-        Map<String, Object> resultMap = new HashMap();
+        Map<String, Object> resultMap = new HashMap(16);
 
         FileOutputStream out = null;
         try {

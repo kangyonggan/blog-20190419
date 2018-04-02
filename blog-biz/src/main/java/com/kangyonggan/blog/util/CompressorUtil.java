@@ -50,7 +50,7 @@ public class CompressorUtil {
      * @return
      */
     public static Map<String, String> compressJS(String data) {
-        Map<String, String> resultMap = new HashMap();
+        Map<String, String> resultMap = new HashMap(16);
 
         if (StringUtils.isEmpty(data)) {
             return resultMap;

@@ -55,7 +55,7 @@ public class IPUtil {
      * @return
      */
     public static Map<String, String> getIpInfo(String ip) {
-        Map<String, String> resultMap = new HashMap();
+        Map<String, String> resultMap = new HashMap(16);
         try {
             String result = HttpUtil.sendGet("http://ip.taobao.com/service/getIpInfo.php", "ip=" + ip);
 

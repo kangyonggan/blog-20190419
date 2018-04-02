@@ -208,7 +208,7 @@ public class DashboardManagePhotoController extends BaseController {
     @RequiresPermissions("MANAGE_PHOTO")
     @ResponseBody
     public Map<String, Object> upload(@RequestParam("id") Long id, @RequestParam("file") MultipartFile file) {
-        Map<String, Object> resultMap = new HashMap<>();
+        Map<String, Object> resultMap = new HashMap<>(16);
         resultMap.put("status", "success");
         try {
             String fileName = FileUpload.upload(file, "PHOTO");

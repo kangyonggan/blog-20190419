@@ -49,7 +49,7 @@ public class SqlServiceImpl implements SqlService {
             //获得列数
             int columnCount = md.getColumnCount();
             while (rs.next()) {
-                Map<String, Object> rowData = new HashMap<>();
+                Map<String, Object> rowData = new HashMap<>(16);
                 for (int i = 1; i <= columnCount; i++) {
                     rowData.put(md.getColumnName(i), rs.getObject(i));
                 }
