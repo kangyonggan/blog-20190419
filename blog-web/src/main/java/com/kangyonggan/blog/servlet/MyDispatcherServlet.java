@@ -17,7 +17,13 @@ public class MyDispatcherServlet extends DispatcherServlet {
     protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response,
                                                    Object handler, Exception ex) throws Exception {
         if (ex instanceof HttpRequestMethodNotSupportedException) {
-            return new ModelAndView("/405");
+            boolean isCommonReq = !(request.getHeader("accept").contains("application/json") || (request.getHeader("X-Requested-With") != null && request
+                    .getHeader("X-Requested-With").contains("XMLHttpRequest")));
+            if (isCommonReq) {
+                return new ModelAndView("405");
+            } else {
+                return new ModelAndView("dashboard/405");
+            }
         } else {
             return super.processHandlerException(request, response, handler, ex);
         }
