@@ -26,6 +26,7 @@ public class RedisServiceImpl implements RedisService {
      * @param value
      * @return
      */
+    @Override
     public boolean set(String key, Object value) {
         redisTemplate.opsForValue().set(key, value);
         return Boolean.TRUE.booleanValue();
@@ -39,6 +40,7 @@ public class RedisServiceImpl implements RedisService {
      * @param value
      * @return
      */
+    @Override
     public boolean set(String key, Object value, long timeout) {
         redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.SECONDS);
         return Boolean.TRUE.booleanValue();
@@ -53,6 +55,7 @@ public class RedisServiceImpl implements RedisService {
      * @param unit
      * @return
      */
+    @Override
     public boolean set(String key, Object value, long timeout, TimeUnit unit) {
         redisTemplate.opsForValue().set(key, value, timeout, unit);
         return Boolean.TRUE.booleanValue();
@@ -64,6 +67,7 @@ public class RedisServiceImpl implements RedisService {
      * @param key
      * @return
      */
+    @Override
     public Object get(String key) {
         return redisTemplate.opsForValue().get(key);
     }
@@ -74,6 +78,7 @@ public class RedisServiceImpl implements RedisService {
      * @param keys
      * @return
      */
+    @Override
     public List<Object> multiGet(Set<String> keys) {
         return redisTemplate.opsForValue().multiGet(keys);
     }
@@ -84,6 +89,7 @@ public class RedisServiceImpl implements RedisService {
      * @param key
      * @return
      */
+    @Override
     public Object delete(String key) {
         Object object = redisTemplate.opsForValue().get(key);
         if (object != null) {
@@ -98,6 +104,7 @@ public class RedisServiceImpl implements RedisService {
      * @param pattern
      * @return
      */
+    @Override
     public void deleteAll(String pattern) {
         redisTemplate.delete(redisTemplate.keys(pattern));
     }
@@ -108,6 +115,7 @@ public class RedisServiceImpl implements RedisService {
      * @param key
      * @return
      */
+    @Override
     public long incr(String key) {
         return redisTemplate.opsForValue().increment(key, 1);
     }
@@ -118,6 +126,7 @@ public class RedisServiceImpl implements RedisService {
      * @param key
      * @return
      */
+    @Override
     public long listLeftPush(String key, String url) {
         long size = redisTemplate.opsForList().leftPush(key, url);
         return size;
@@ -129,6 +138,7 @@ public class RedisServiceImpl implements RedisService {
      * @param key
      * @return
      */
+    @Override
     public long listRightPush(String key, String url) {
         long size = redisTemplate.opsForList().rightPush(key, url);
         return size;
@@ -140,6 +150,7 @@ public class RedisServiceImpl implements RedisService {
      * @param key
      * @return
      */
+    @Override
     public List<Object> listRange(String key, long start, long end) {
         List<Object> list = redisTemplate.opsForList().range(key, start, end);
         return list;
@@ -153,6 +164,7 @@ public class RedisServiceImpl implements RedisService {
      * @param value
      * @return
      */
+    @Override
     public boolean hashSetNx(String hash, String key, String value) {
         return redisTemplate.opsForHash().putIfAbsent(hash, key, value);
     }
@@ -163,6 +175,7 @@ public class RedisServiceImpl implements RedisService {
      * @param hash
      * @return
      */
+    @Override
     public long hashSize(String hash) {
         return redisTemplate.opsForHash().size(hash);
     }
@@ -174,6 +187,7 @@ public class RedisServiceImpl implements RedisService {
      * @param key
      * @return
      */
+    @Override
     public boolean hashExist(String hash, String key) {
         return redisTemplate.opsForHash().hasKey(hash, key);
     }

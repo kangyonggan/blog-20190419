@@ -122,9 +122,9 @@ public class CalendarUtil {
      */
     @Deprecated
     private static int daysBetween2(Date startDate, Date endDate) {
-        long between_days = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24);
+        long betweenDays = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24);
 
-        return Integer.parseInt(String.valueOf(between_days));
+        return Integer.parseInt(String.valueOf(betweenDays));
     }
 
     /**

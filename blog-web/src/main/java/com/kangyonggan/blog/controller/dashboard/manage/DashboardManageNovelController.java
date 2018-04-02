@@ -115,7 +115,7 @@ public class DashboardManageNovelController extends BaseController {
     @RequiresPermissions("MANAGE_NOVEL")
     public String delete(@PathVariable("code") Integer code, @PathVariable("isDeleted") String isDeleted, Model model) {
         Novel novel = novelService.findNovelByCode(code);
-        novel.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        novel.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         novelService.updateNovel(novel);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.NOVEL.getType());
 

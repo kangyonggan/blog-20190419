@@ -69,10 +69,10 @@
 
         <div class="article-tool">
             <#if prevArticle??>
-                <a href="${ctx}/article/${prevArticle.id}" class="left">&lt; ${prevArticle.title} </a>
+                <a href="${ctx}/article/${prevArticle.id}" class="l nowrap">&lt; ${prevArticle.title} </a>
             </#if>
             <#if nextArticle??>
-                <a href="${ctx}/article/${nextArticle.id}" class="right">${nextArticle.title} &gt;</a>
+                <a href="${ctx}/article/${nextArticle.id}" class="r nowrap">${nextArticle.title} &gt;</a>
             </#if>
         </div>
 

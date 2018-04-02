@@ -65,6 +65,7 @@ public class GuestBookServiceImpl extends BaseService<Guest> implements GuestSer
     @Log
     public void updateGuestIpInfo(Long id, String ip) {
         new Thread() {
+            @Override
             public void run() {
                 Map<String, String> resultMap = IPUtil.getIpInfo(ip);
 

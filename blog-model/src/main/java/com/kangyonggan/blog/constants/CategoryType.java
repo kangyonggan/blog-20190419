@@ -7,9 +7,24 @@ import lombok.Getter;
  */
 public enum CategoryType {
 
+    /**
+     * 文章
+     */
     ARTICLE("ARTICLE", "文章"),
+
+    /**
+     * 小说
+     */
     NOVEL("NOVEL", "小说"),
+
+    /**
+     * 音乐
+     */
     MUSIC("MUSIC", "音乐"),
+
+    /**
+     * 生活
+     */
     LIFE("LIFE", "生活");
 
     /**

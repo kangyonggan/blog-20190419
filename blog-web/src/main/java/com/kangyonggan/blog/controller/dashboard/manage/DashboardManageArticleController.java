@@ -194,7 +194,7 @@ public class DashboardManageArticleController extends BaseController {
     @RequiresPermissions("MANAGE_ARTICLE")
     public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
         Article article = articleService.findArticleById(id);
-        article.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        article.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         articleService.updateArticle(article);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
 
@@ -215,7 +215,7 @@ public class DashboardManageArticleController extends BaseController {
     @RequiresPermissions("MANAGE_ARTICLE")
     public String top(@PathVariable("id") Long id, @PathVariable("isTop") String isTop, Model model) {
         Article article = articleService.findArticleById(id);
-        article.setIsTop((byte) (isTop.equals("top") ? 1 : 0));
+        article.setIsTop((byte) ("top".equals(isTop) ? 1 : 0));
         articleService.updateArticle(article);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.ARTICLE.getType());
 

@@ -70,7 +70,7 @@ public class DashboardManageGuestController extends BaseController {
     @RequiresPermissions("MANAGE_GUEST")
     public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
         Guest guest = guestService.findGuestById(id);
-        guest.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        guest.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         guestService.updateGuest(guest);
 
         model.addAttribute("guest", guest);

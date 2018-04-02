@@ -81,19 +81,19 @@ public class FileUtil {
         BufferedInputStream bis = null;
         HttpURLConnection httpUrl = null;
         URL url;
-        int BUFFER_SIZE = 1024;
-        byte[] buf = new byte[BUFFER_SIZE];
+        int bufferSize = 1024;
+        byte[] buf = new byte[bufferSize];
         int size;
         try {
             url = new URL(urlStr);
             httpUrl = (HttpURLConnection) url.openConnection();
             httpUrl.connect();
-            String Type = httpUrl.getHeaderField("Content-Type");
-            if (Type.equals("image/gif")) {
+            String type = httpUrl.getHeaderField("Content-Type");
+            if ("image/gif".equals(type)) {
                 savePath += ".gif";
-            } else if (Type.equals("image/png")) {
+            } else if ("image/png".equals(type)) {
                 savePath += ".png";
-            } else if (Type.equals("image/jpeg")) {
+            } else if ("image/jpeg".equals(type)) {
                 savePath += ".jpg";
             } else {
                 log.warn("未知图片格式");

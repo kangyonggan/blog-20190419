@@ -85,6 +85,7 @@ public class CompressorUtil {
             this.data = data;
         }
 
+        @Override
         public void warning(String message, String sourceName, int line, String lineSource, int lineOffset) {
             if (line < 0) {
                 warningMsg = message;
@@ -94,6 +95,7 @@ public class CompressorUtil {
 
         }
 
+        @Override
         public void error(String message, String sourceName, int line, String lineSource, int lineOffset) {
             if (line < 0) {
                 errorMsg = message;
@@ -103,6 +105,7 @@ public class CompressorUtil {
 
         }
 
+        @Override
         public EvaluatorException runtimeError(String message, String sourceName, int line, String lineSource, int lineOffset) {
             this.error(message, sourceName, line, lineSource, lineOffset);
             return new EvaluatorException(message);

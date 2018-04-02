@@ -24,6 +24,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public void send(String to, String title, String text) {
         new Thread() {
+            @Override
             public void run() {
                 send(to, title, text, true);
             }

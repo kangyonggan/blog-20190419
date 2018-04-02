@@ -8,8 +8,19 @@ import lombok.Getter;
  */
 public enum Dialect {
 
+    /**
+     * MySQL
+     */
     MySQL("MySQL"),
+
+    /**
+     * Oracle
+     */
     Oracle("Oracle"),
+
+    /**
+     * SQLServer
+     */
     SQLServer("SQLServer");
 
     /**

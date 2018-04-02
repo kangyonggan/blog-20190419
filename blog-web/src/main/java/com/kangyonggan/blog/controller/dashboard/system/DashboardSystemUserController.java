@@ -136,7 +136,7 @@ public class DashboardSystemUserController extends BaseController {
     @RequiresPermissions("SYSTEM_USER")
     public String delete(@PathVariable("username") String username, @PathVariable("isDeleted") String isDeleted, Model model) {
         User user = userService.findUserByUsername(username);
-        user.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        user.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         userService.updateUserByUsername(user);
 
         model.addAttribute("user", user);

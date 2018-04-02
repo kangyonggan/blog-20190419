@@ -77,7 +77,7 @@ public class DashboardSystemDictionaryController extends BaseController {
     @RequiresPermissions("SYSTEM_DICTIONARY")
     public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
         Dictionary dictionary = dictionaryService.findDictionaryById(id);
-        dictionary.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        dictionary.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         dictionaryService.updateDictionary(dictionary);
 
         model.addAttribute("dictionary", dictionary);

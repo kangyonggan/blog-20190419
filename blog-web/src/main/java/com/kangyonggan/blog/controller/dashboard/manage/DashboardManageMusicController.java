@@ -120,7 +120,7 @@ public class DashboardManageMusicController extends BaseController {
     @RequiresPermissions("MANAGE_MUSIC")
     public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
         Music music = musicService.findMusicById(id);
-        music.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        music.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         musicService.updateMusic(music);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.MUSIC.getType());
 

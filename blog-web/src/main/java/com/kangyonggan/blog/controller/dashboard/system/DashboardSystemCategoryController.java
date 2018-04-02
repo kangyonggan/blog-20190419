@@ -136,7 +136,7 @@ public class DashboardSystemCategoryController extends BaseController {
     @RequiresPermissions("SYSTEM_CATEGORY")
     public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
         Category category = categoryService.findCategoryById(id);
-        category.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        category.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         categoryService.updateCategory(category);
 
         model.addAttribute("category", category);

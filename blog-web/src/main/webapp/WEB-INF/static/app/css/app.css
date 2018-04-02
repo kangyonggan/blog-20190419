@@ -1531,14 +1531,17 @@ table.ascll-table {
 }
 
 .article-tool a {
+    display: inline-block;
     color: #000;
+    width: 370px;
     text-decoration: none;
 }
 
-.article-tool .left {
+.article-tool .l {
     float: left;
 }
 
-.article-tool .right {
-    float: right !important;
+.article-tool .r {
+    float: right;
+    text-align: right;
 }

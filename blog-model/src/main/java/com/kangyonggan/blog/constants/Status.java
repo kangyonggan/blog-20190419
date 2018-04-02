@@ -8,8 +8,19 @@ import lombok.Getter;
  */
 public enum Status {
 
+    /**
+     * 待审核
+     */
     WAITING("WAITING", "待审核"),
+
+    /**
+     * 审核通过
+     */
     COMPLETE("COMPLETE", "审核通过"),
+
+    /**
+     * 拒绝
+     */
     REJECT("REJECT", "拒绝");
 
     /**

@@ -16,7 +16,7 @@ import java.util.Map;
 @Log4j2
 public class BaseController {
 
-    private String PATH_ROOT;
+    private String pathRoot;
     private static final String LIST = "/list";
     private static final String INDEX = "/index";
     private static final String FORM = "/form";
@@ -29,49 +29,49 @@ public class BaseController {
         String className = getClass().getSimpleName();
         String arr[] = StringUtil.camelToArray(className);
 
-        PATH_ROOT = "";
+        pathRoot = "";
         for (int i = 0; i < arr.length - 1; i++) {
             if (i != 0) {
-                PATH_ROOT += "/";
+                pathRoot += "/";
             }
-            PATH_ROOT += arr[i];
+            pathRoot += arr[i];
         }
 
-        if (!PATH_ROOT.startsWith("dashboard")) {
-            PATH_ROOT = "web/" + PATH_ROOT;
+        if (!pathRoot.startsWith("dashboard")) {
+            pathRoot = "web/" + pathRoot;
         }
     }
 
     protected String getPathRoot() {
-        return PATH_ROOT;
+        return pathRoot;
     }
 
     protected String getPathIndex() {
-        return PATH_ROOT + INDEX;
+        return pathRoot + INDEX;
     }
 
     protected String getPathList() {
-        return PATH_ROOT + LIST;
+        return pathRoot + LIST;
     }
 
     protected String getPathForm() {
-        return PATH_ROOT + FORM;
+        return pathRoot + FORM;
     }
 
     protected String getPathDetail() {
-        return PATH_ROOT + DETAIL;
+        return pathRoot + DETAIL;
     }
 
     protected String getPathFormModal() {
-        return PATH_ROOT + FORM_MODAL;
+        return pathRoot + FORM_MODAL;
     }
 
     protected String getPathDetailModal() {
-        return PATH_ROOT + DETAIL_MODAL;
+        return pathRoot + DETAIL_MODAL;
     }
 
     protected String getPathTableTr() {
-        return PATH_ROOT + TABLE_TR;
+        return pathRoot + TABLE_TR;
     }
 
     protected Map<String, Object> getResultMap() {

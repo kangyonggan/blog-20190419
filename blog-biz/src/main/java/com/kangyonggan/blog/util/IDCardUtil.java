@@ -35,7 +35,7 @@ public class IDCardUtil {
     /**
      * 省、直辖市代码表
      */
-    private static final String cityCode[] = {
+    private static final String CITY_CODE[] = {
             "11", "12", "13", "14", "15", "21", "22", "23", "31", "32", "33", "34", "35", "36", "37", "41",
             "42", "43", "44", "45", "46", "50", "51", "52", "53", "54", "61", "62", "63", "64", "65", "71",
             "81", "82", "91"
@@ -44,14 +44,14 @@ public class IDCardUtil {
     /**
      * 每位加权因子
      */
-    private static final int power[] = {
+    private static final int POWER[] = {
             7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2
     };
 
     /**
      * 第18位校检码
      */
-    private static final String verifyCode[] = {
+    private static final String VERIFY_CODE[] = {
             "1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"
     };
 
@@ -280,8 +280,8 @@ public class IDCardUtil {
     private static int getPowerSum(String idCard) {
         int iArr[] = converCharToInt(idCard.toCharArray());
         int iSum = 0;
-        for (int i = 0; i < power.length; i++) {
-            iSum = iSum + iArr[i] * power[i];
+        for (int i = 0; i < POWER.length; i++) {
+            iSum = iSum + iArr[i] * POWER[i];
         }
         return iSum;
     }
@@ -312,7 +312,7 @@ public class IDCardUtil {
      * @return 校验位
      */
     private static String getCheckCode18(int iSum) {
-        return verifyCode[iSum % 11];
+        return VERIFY_CODE[iSum % 11];
     }
 
     /**
@@ -523,7 +523,7 @@ public class IDCardUtil {
 
         if (StringUtils.isEmpty(sex)) {
             return genRandomNum();
-        } else if (sex.equals("0")) {
+        } else if ("0".equals(sex)) {
             return String.valueOf(boys[random.nextInt(5)]);
         } else {
             return String.valueOf(girls[random.nextInt(5)]);

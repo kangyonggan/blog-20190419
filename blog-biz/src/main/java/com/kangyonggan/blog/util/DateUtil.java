@@ -21,13 +21,15 @@ public class DateUtil {
     private static final String DATE_PATTERN = "yyyyMMdd";
     private static final String TIME_PATTERN = "HHmmss";
 
-    private static final ZoneId zoneId = ZoneId.systemDefault();
+    private static final ZoneId ZONE_ID = ZoneId.systemDefault();
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private static final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss.SSS");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss.SSS");
 
     public static String toXmlDateTime(Date date) {
-        return dateFormat.format(date) + "T" + timeFormat.format(date) + "Z";
+        synchronized (DATE_FORMAT) {
+            return DATE_FORMAT.format(date) + "T" + DATE_FORMAT.format(date) + "Z";
+        }
     }
 
     /**
@@ -55,7 +57,7 @@ public class DateUtil {
      * @return
      */
     public static Date plusNanos(long nanosToAdd) {
-        return Date.from(LocalDateTime.now().plusNanos(nanosToAdd).atZone(zoneId).toInstant());
+        return Date.from(LocalDateTime.now().plusNanos(nanosToAdd).atZone(ZONE_ID).toInstant());
     }
 
     /**
@@ -65,7 +67,7 @@ public class DateUtil {
      * @return
      */
     public static Date plusSeconds(long secondsToAdd) {
-        return Date.from(LocalDateTime.now().plusSeconds(secondsToAdd).atZone(zoneId).toInstant());
+        return Date.from(LocalDateTime.now().plusSeconds(secondsToAdd).atZone(ZONE_ID).toInstant());
     }
 
     /**
@@ -75,7 +77,7 @@ public class DateUtil {
      * @return
      */
     public static Date plusMinutes(long minutesToAdd) {
-        return Date.from(LocalDateTime.now().plusMinutes(minutesToAdd).atZone(zoneId).toInstant());
+        return Date.from(LocalDateTime.now().plusMinutes(minutesToAdd).atZone(ZONE_ID).toInstant());
     }
 
     /**
@@ -85,7 +87,7 @@ public class DateUtil {
      * @return
      */
     public static Date plusHours(long hoursToAdd) {
-        return Date.from(LocalDateTime.now().plusHours(hoursToAdd).atZone(zoneId).toInstant());
+        return Date.from(LocalDateTime.now().plusHours(hoursToAdd).atZone(ZONE_ID).toInstant());
     }
 
     /**
@@ -95,7 +97,7 @@ public class DateUtil {
      * @return
      */
     public static Date plusDays(long datesToAdd) {
-        return Date.from(LocalDateTime.now().plusDays(datesToAdd).atZone(zoneId).toInstant());
+        return Date.from(LocalDateTime.now().plusDays(datesToAdd).atZone(ZONE_ID).toInstant());
     }
 
     /**
@@ -115,7 +117,7 @@ public class DateUtil {
      * @return
      */
     public static Date plusWeeks(long weeksToAdd) {
-        return Date.from(LocalDateTime.now().plusWeeks(weeksToAdd).atZone(zoneId).toInstant());
+        return Date.from(LocalDateTime.now().plusWeeks(weeksToAdd).atZone(ZONE_ID).toInstant());
     }
 
     /**
@@ -125,7 +127,7 @@ public class DateUtil {
      * @return
      */
     public static Date plusMonths(long monthsToAdd) {
-        return Date.from(LocalDateTime.now().plusMonths(monthsToAdd).atZone(zoneId).toInstant());
+        return Date.from(LocalDateTime.now().plusMonths(monthsToAdd).atZone(ZONE_ID).toInstant());
     }
 
     /**
@@ -135,7 +137,7 @@ public class DateUtil {
      * @return
      */
     public static Date plusYears(long yearsToAdd) {
-        return Date.from(LocalDateTime.now().plusYears(yearsToAdd).atZone(zoneId).toInstant());
+        return Date.from(LocalDateTime.now().plusYears(yearsToAdd).atZone(ZONE_ID).toInstant());
     }
 
     /**
@@ -144,7 +146,7 @@ public class DateUtil {
      * @return
      */
     public static Date now() {
-        return Date.from(LocalDateTime.now().atZone(zoneId).toInstant());
+        return Date.from(LocalDateTime.now().atZone(ZONE_ID).toInstant());
     }
 
     /**
@@ -154,7 +156,7 @@ public class DateUtil {
      * @return
      */
     public static Date fromDate(String dateStr) throws ParseException {
-//        return Date.from(LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern(DATE_PATTERN)).atZone(zoneId).toInstant());
+//        return Date.from(LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern(DATE_PATTERN)).atZone(ZONE_ID).toInstant());
         return new SimpleDateFormat(DATE_PATTERN).parse(dateStr);
     }
 
@@ -165,7 +167,9 @@ public class DateUtil {
      * @return
      */
     public static Date fromDate10(String dateStr) throws ParseException {
-        return dateFormat.parse(dateStr);
+        synchronized (DATE_FORMAT) {
+            return DATE_FORMAT.parse(dateStr);
+        }
     }
 
 }

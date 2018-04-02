@@ -136,7 +136,7 @@ public class DashboardSystemRoleController extends BaseController {
     @RequiresPermissions("SYSTEM_ROLE")
     public String delete(@PathVariable("code") String code, @PathVariable("isDeleted") String isDeleted, Model model) {
         Role role = roleService.findRoleByCode(code);
-        role.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        role.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         roleService.updateRole(role);
 
         model.addAttribute("role", role);

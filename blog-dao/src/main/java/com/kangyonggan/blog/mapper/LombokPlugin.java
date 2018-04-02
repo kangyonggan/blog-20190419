@@ -19,29 +19,35 @@ public class LombokPlugin extends PluginAdapter {
 
     private FullyQualifiedJavaType dataAnnotation = new FullyQualifiedJavaType("lombok.Data");
 
+    @Override
     public boolean validate(List<String> warnings) {
         return true;
     }
 
+    @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         this.addDataAnnotation(topLevelClass);
         return true;
     }
 
+    @Override
     public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         this.addDataAnnotation(topLevelClass);
         return true;
     }
 
+    @Override
     public boolean modelRecordWithBLOBsClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         this.addDataAnnotation(topLevelClass);
         return true;
     }
 
+    @Override
     public boolean modelGetterMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         return false;
     }
 
+    @Override
     public boolean modelSetterMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         return false;
     }

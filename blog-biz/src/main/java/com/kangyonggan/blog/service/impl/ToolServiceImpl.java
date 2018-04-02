@@ -136,34 +136,34 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         model.addAttribute(AppConstants.RESP_MSG, Resp.SUCCESS.getRespMsg());
 
         try {
-            if (tool.getCode().equals("qr")) {
+            if ("qr".equals(tool.getCode())) {
                 // 生成二维码
                 qrHandle(toolDto, model);
-            } else if (tool.getCode().equals("qr2")) {
+            } else if ("qr2".equals(tool.getCode())) {
                 // 二维码解析
                 qr2Handle(file, model);
-            } else if (tool.getCode().equals("xml")) {
+            } else if ("xml".equals(tool.getCode())) {
                 // xml格式化
                 model.addAttribute("result", XmlUtil.format(toolDto.getData()));
-            } else if (tool.getCode().equals("sql")) {
+            } else if ("sql".equals(tool.getCode())) {
                 // sql格式化
                 sqlHandle(toolDto, model);
-            } else if (tool.getCode().equals("json")) {
+            } else if ("json".equals(tool.getCode())) {
                 model.addAttribute(RESULT, GsonUtil.format(toolDto.getData()));
-            } else if (tool.getCode().equals("js")) {
+            } else if ("js".equals(tool.getCode())) {
                 model.addAttribute(RESULT, CompressorUtil.compressJS(toolDto.getData()));
-            } else if (tool.getCode().equals("css")) {
+            } else if ("css".equals(tool.getCode())) {
                 model.addAttribute(RESULT, CompressorUtil.compressCSS(toolDto.getData()));
-            } else if (tool.getCode().equals("idcard")) {
+            } else if ("idcard".equals(tool.getCode())) {
                 idcardHandle(toolDto, model);
-            } else if (tool.getCode().equals("gencard")) {
+            } else if ("gencard".equals(tool.getCode())) {
                 model.addAttribute("cityCodes", IDCardUtil.getCityCodes());
                 model.addAttribute(RESULT, IDCardUtil.genIdCard(toolDto.getProv(), toolDto.getStartAge(), toolDto.getEndAge(), toolDto.getSex(), toolDto.getLen(), toolDto.getCount()));
-            } else if (tool.getCode().equals("charset")) {
+            } else if ("charset".equals(tool.getCode())) {
                 model.addAttribute(RESULT, CharsetUtil.convert(toolDto.getData(), toolDto.getCharset()));
-            } else if (tool.getCode().equals("bazi")) {
+            } else if ("bazi".equals(tool.getCode())) {
                 bazihandle(toolDto, model);
-            } else if (tool.getCode().equals("compare")) {
+            } else if ("compare".equals(tool.getCode())) {
                 compareHandle(props, model);
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
@@ -248,7 +248,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         String bazi;
         String yinli;
         String yangli;
-        if (toolDto.getLunar().equals("0")) {
+        if ("0".equals(toolDto.getLunar())) {
             bazi = DestinyUtil.getEightWord4Lunar(toolDto.getYear(), toolDto.getMonth(), toolDto.getDay(), toolDto.getHour());
             yinli = LocalDate.of(toolDto.getYear(), toolDto.getMonth(), toolDto.getDay()).format(DateTimeFormatter.BASIC_ISO_DATE);
             yangli = CalendarUtil.lunarToSolar(yinli);
@@ -281,7 +281,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
      */
     private void idcardHandle(ToolDto toolDto, Model model) {
         String res[] = IDCardUtil.isIdCard(toolDto.getData());
-        if (res[0].equals("0")) {
+        if ("0".equals(res[0])) {
             String year = IDCardUtil.getYearFromIdCard(toolDto.getData());
             model.addAttribute("province", IDCardUtil.getProvinceFromIdCard(toolDto.getData()));
             model.addAttribute("age", IDCardUtil.getAgeFromIdCard(toolDto.getData()));
@@ -304,7 +304,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
             }
         }
 
-        model.addAttribute("isIdCard", res[0].equals("0"));
+        model.addAttribute("isIdCard", "0".equals(res[0]));
     }
 
     /**
@@ -329,15 +329,15 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
     @Override
     public void preHandle(Tool tool, Model model) {
-        if (tool.getCode().equals("ascll")) {
+        if ("ascll".equals(tool.getCode())) {
             List<Dictionary> asclls = dictionaryService.findDictionariesByType(DictionaryType.ASCLL.getType());
             model.addAttribute("asclls", asclls);
-        } else if (tool.getCode().equals("html")) {
+        } else if ("html".equals(tool.getCode())) {
             List<Dictionary> htmls = dictionaryService.findDictionariesByType(DictionaryType.HTML.getType());
             model.addAttribute("htmls", htmls);
-        } else if (tool.getCode().equals("sql")) {
+        } else if ("sql".equals(tool.getCode())) {
             model.addAttribute("dialects", Dialect.values());
-        } else if (tool.getCode().equals("gencard")) {
+        } else if ("gencard".equals(tool.getCode())) {
             model.addAttribute("cityCodes", IDCardUtil.getCityCodes());
         }
     }

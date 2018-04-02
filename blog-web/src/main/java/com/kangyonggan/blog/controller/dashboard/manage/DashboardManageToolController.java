@@ -133,7 +133,7 @@ public class DashboardManageToolController extends BaseController {
     @RequiresPermissions("MANAGE_TOOL")
     public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
         Tool tool = toolService.findToolById(id);
-        tool.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        tool.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         toolService.updateTool(tool);
 
         model.addAttribute("tool", tool);
@@ -152,7 +152,7 @@ public class DashboardManageToolController extends BaseController {
     @RequiresPermissions("MANAGE_TOOL")
     public String top(@PathVariable("id") Long id, @PathVariable("isTop") String isTop, Model model) {
         Tool tool = toolService.findToolById(id);
-        tool.setIsTop((byte) (isTop.equals("top") ? 1 : 0));
+        tool.setIsTop((byte) ("top".equals(isTop) ? 1 : 0));
         toolService.updateTool(tool);
 
         model.addAttribute("tool", tool);

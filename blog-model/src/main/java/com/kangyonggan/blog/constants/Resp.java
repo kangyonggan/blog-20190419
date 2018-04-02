@@ -10,7 +10,14 @@ import lombok.Getter;
  */
 public enum Resp {
 
+    /**
+     * 操作成功
+     */
     SUCCESS("0000", "操作成功"),
+
+    /**
+     * 未知错误
+     */
     FAILURE("9999", "未知错误，请联系管理员！");
 
     /**

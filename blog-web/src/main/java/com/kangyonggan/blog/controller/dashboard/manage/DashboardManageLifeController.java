@@ -195,7 +195,7 @@ public class DashboardManageLifeController extends BaseController {
     @RequiresPermissions("MANAGE_LIFE")
     public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
         Life life = lifeService.findLifeById(id);
-        life.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        life.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         lifeService.updateLife(life);
         List<Category> categories = categoryService.findCategoriesByType(CategoryType.LIFE.getType());
 

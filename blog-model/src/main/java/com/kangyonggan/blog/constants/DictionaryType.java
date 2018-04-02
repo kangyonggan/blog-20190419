@@ -8,9 +8,20 @@ import lombok.Getter;
  */
 public enum DictionaryType {
 
+    /**
+     * 地区
+     */
     AREA("AREA", "地区"),
+
+    /**
+     * ascll码
+     */
     ASCLL("ASCLL", "ascll码"),
-    HTML("HTML", "html转移字符");
+
+    /**
+     * html转译字符
+     */
+    HTML("HTML", "html转译字符");
 
     /**
      * 字典类型

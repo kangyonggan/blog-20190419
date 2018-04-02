@@ -153,7 +153,7 @@ public class DashboardManagePhotoController extends BaseController {
     @RequiresPermissions("MANAGE_PHOTO")
     public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
         Photo photo = photoService.findPhotoById(id);
-        photo.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
+        photo.setIsDeleted((byte) ("delete".equals(isDeleted) ? 1 : 0));
         photoService.updatePhoto(photo);
 
         model.addAttribute("photo", photo);
