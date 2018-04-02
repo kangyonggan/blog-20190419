@@ -1545,3 +1545,22 @@ table.ascll-table {
     float: right;
     text-align: right;
 }
+
+.fall-list {
+}
+
+.fall-list > div {
+    width: 340px;
+    margin: 0 0 0 13px;
+    float: left;
+}
+
+.fall-list > div > img {
+    width: 330px;
+    margin-top: 15px;
+    background: #fff;
+    padding: 5px;
+    border: 1px solid #dfd9ce;
+    box-shadow: 0px 1px 2px #adaca9;
+    display: inline-block;
+}
