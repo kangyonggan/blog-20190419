@@ -51,7 +51,7 @@ public class Mp3Util {
             // 专辑图片
             AbstractID3v2Frame frame = (AbstractID3v2Frame) id3v2Tag.frameMap.get("APIC");
             String mimeTpe = (String) frame.getBody().getObjectValue("MIMEType");
-            byte data[] = (byte[]) frame.getBody().getObjectValue("PictureData");
+            byte[] data = (byte[]) frame.getBody().getObjectValue("PictureData");
             String extension = FileUtil.getExtension(mimeTpe);
             if (StringUtils.isEmpty(extension)) {
                 extension = ".jpg";

@@ -156,7 +156,6 @@ public class DateUtil {
      * @return
      */
     public static Date fromDate(String dateStr) throws ParseException {
-//        return Date.from(LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern(DATE_PATTERN)).atZone(ZONE_ID).toInstant());
         return new SimpleDateFormat(DATE_PATTERN).parse(dateStr);
     }
 

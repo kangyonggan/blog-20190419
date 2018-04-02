@@ -27,7 +27,7 @@ public class BaseController {
 
     public BaseController() {
         String className = getClass().getSimpleName();
-        String arr[] = StringUtil.camelToArray(className);
+        String[] arr = StringUtil.camelToArray(className);
 
         pathRoot = "";
         for (int i = 0; i < arr.length - 1; i++) {

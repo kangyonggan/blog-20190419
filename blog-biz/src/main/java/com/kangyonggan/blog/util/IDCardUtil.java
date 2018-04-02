@@ -35,7 +35,7 @@ public class IDCardUtil {
     /**
      * 省、直辖市代码表
      */
-    private static final String CITY_CODE[] = {
+    private static final String[] CITY_CODE = {
             "11", "12", "13", "14", "15", "21", "22", "23", "31", "32", "33", "34", "35", "36", "37", "41",
             "42", "43", "44", "45", "46", "50", "51", "52", "53", "54", "61", "62", "63", "64", "65", "71",
             "81", "82", "91"
@@ -44,14 +44,14 @@ public class IDCardUtil {
     /**
      * 每位加权因子
      */
-    private static final int POWER[] = {
+    private static final int[] POWER = {
             7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2
     };
 
     /**
      * 第18位校检码
      */
-    private static final String VERIFY_CODE[] = {
+    private static final String[] VERIFY_CODE = {
             "1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"
     };
 
@@ -127,10 +127,10 @@ public class IDCardUtil {
      * @return
      */
     public static String[] isIdCard(String idCard) {
-        String res[] = new String[2];
+        String[] res = new String[2];
 
-        String res1[] = isIdCard15(idCard);
-        String res2[] = isIdCard18(idCard);
+        String[] res1 = isIdCard15(idCard);
+        String[] res2 = isIdCard18(idCard);
 
         if ("0".equals(res1[0]) || "0".equals(res2[0])) {
             res[0] = "0";
@@ -156,7 +156,7 @@ public class IDCardUtil {
      * @return
      */
     public static String[] isIdCard15(String idCard) {
-        String res[] = new String[2];
+        String[] res = new String[2];
         if (idCard == null || idCard.length() != CHINA_ID_MIN_LENGTH) {
             res[0] = "-1";
             res[1] = "身份证长度不对";
@@ -224,7 +224,7 @@ public class IDCardUtil {
      * @return
      */
     public static String[] isIdCard18(String idCard) {
-        String res[] = new String[2];
+        String[] res = new String[2];
 
         if (idCard == null || idCard.length() != CHINA_ID_MAX_LENGTH) {
             res[0] = "-1";
@@ -278,7 +278,7 @@ public class IDCardUtil {
      * @return
      */
     private static int getPowerSum(String idCard) {
-        int iArr[] = converCharToInt(idCard.toCharArray());
+        int[] iArr = converCharToInt(idCard.toCharArray());
         int iSum = 0;
         for (int i = 0; i < POWER.length; i++) {
             iSum = iSum + iArr[i] * POWER[i];
@@ -518,8 +518,8 @@ public class IDCardUtil {
     private static String genSexNum(String sex) {
         Random random = new Random();
 
-        int boys[] = {1, 3, 5, 7, 9};
-        int girls[] = {0, 2, 4, 6, 8};
+        int[] boys = {1, 3, 5, 7, 9};
+        int[] girls = {0, 2, 4, 6, 8};
 
         if (StringUtils.isEmpty(sex)) {
             return genRandomNum();

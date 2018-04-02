@@ -280,7 +280,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
      * @param model
      */
     private void idcardHandle(ToolDto toolDto, Model model) {
-        String res[] = IDCardUtil.isIdCard(toolDto.getData());
+        String[] res = IDCardUtil.isIdCard(toolDto.getData());
         if ("0".equals(res[0])) {
             String year = IDCardUtil.getYearFromIdCard(toolDto.getData());
             model.addAttribute("province", IDCardUtil.getProvinceFromIdCard(toolDto.getData()));

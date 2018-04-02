@@ -150,7 +150,7 @@ public class StringUtil {
 
         StringBuilder sb = new StringBuilder();
 
-        char chars[] = word.toCharArray();
+        char[] chars = word.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             char ch = chars[i];
             if (Character.isUpperCase(ch)) {

@@ -245,11 +245,11 @@ public class DestinyUtil {
      * @return
      */
     public static String wuxing(String data) {
-        String wuxing[] = {"金", "木", "水", "火", "土"};
+        String[] wuxing = {"金", "木", "水", "火", "土"};
 
-        String que[] = new String[4];
-        String ruo[] = new String[4];
-        String qiang[] = new String[2];
+        String[] que = new String[4];
+        String[] ruo = new String[4];
+        String[] qiang = new String[2];
         int queLen = 0;
         int ruoLen = 0;
         int qiangLen = 0;
