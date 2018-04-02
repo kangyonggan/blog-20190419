@@ -23,6 +23,7 @@ public class DashboardSystemSqlController extends BaseController {
 
     @Autowired
     private SqlService sqlService;
+    private static final String SLQ_TYPE_EXEC = "exec";
 
     /**
      * 执行脚本
@@ -49,7 +50,7 @@ public class DashboardSystemSqlController extends BaseController {
         Map<String, Object> resultMap = getResultMap();
 
         try {
-            if ("exec".equals(type)) {
+            if (SLQ_TYPE_EXEC.equals(type)) {
                 int count = sqlService.exec(sql);
                 resultMap.put("count", count);
             } else {

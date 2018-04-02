@@ -43,6 +43,23 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
     @Autowired
     private DictionaryService dictionaryService;
+    private String qr = "qr";
+    private String qr2 = "qr2";
+    private String xml = "xml";
+    private String sql = "sql";
+    private String json = "json";
+    private String js = "js";
+    private String css = "css";
+    private String ascll = "ascll";
+    private String html = "html";
+    private String idcard = "idcard";
+    private String gencard = "gencard";
+    private String charset = "charset";
+    private String bazi = "bazi";
+    private String compare = "compare";
+    private static final int PROP_FILE_COUNT = 2;
+    private static final String FLAG_ZREO = "0";
+    private static final int ID_CARD_LEN_15 = 15;
 
     @Override
     @Log
@@ -136,34 +153,34 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         model.addAttribute(AppConstants.RESP_MSG, Resp.SUCCESS.getRespMsg());
 
         try {
-            if ("qr".equals(tool.getCode())) {
+            if (qr.equals(tool.getCode())) {
                 // 生成二维码
                 qrHandle(toolDto, model);
-            } else if ("qr2".equals(tool.getCode())) {
+            } else if (qr2.equals(tool.getCode())) {
                 // 二维码解析
                 qr2Handle(file, model);
-            } else if ("xml".equals(tool.getCode())) {
+            } else if (xml.equals(tool.getCode())) {
                 // xml格式化
                 model.addAttribute("result", XmlUtil.format(toolDto.getData()));
-            } else if ("sql".equals(tool.getCode())) {
+            } else if (sql.equals(tool.getCode())) {
                 // sql格式化
                 sqlHandle(toolDto, model);
-            } else if ("json".equals(tool.getCode())) {
+            } else if (json.equals(tool.getCode())) {
                 model.addAttribute(RESULT, GsonUtil.format(toolDto.getData()));
-            } else if ("js".equals(tool.getCode())) {
+            } else if (js.equals(tool.getCode())) {
                 model.addAttribute(RESULT, CompressorUtil.compressJS(toolDto.getData()));
-            } else if ("css".equals(tool.getCode())) {
+            } else if (css.equals(tool.getCode())) {
                 model.addAttribute(RESULT, CompressorUtil.compressCSS(toolDto.getData()));
-            } else if ("idcard".equals(tool.getCode())) {
+            } else if (idcard.equals(tool.getCode())) {
                 idcardHandle(toolDto, model);
-            } else if ("gencard".equals(tool.getCode())) {
+            } else if (gencard.equals(tool.getCode())) {
                 model.addAttribute("cityCodes", IDCardUtil.getCityCodes());
                 model.addAttribute(RESULT, IDCardUtil.genIdCard(toolDto.getProv(), toolDto.getStartAge(), toolDto.getEndAge(), toolDto.getSex(), toolDto.getLen(), toolDto.getCount()));
-            } else if ("charset".equals(tool.getCode())) {
+            } else if (charset.equals(tool.getCode())) {
                 model.addAttribute(RESULT, CharsetUtil.convert(toolDto.getData(), toolDto.getCharset()));
-            } else if ("bazi".equals(tool.getCode())) {
+            } else if (bazi.equals(tool.getCode())) {
                 bazihandle(toolDto, model);
-            } else if ("compare".equals(tool.getCode())) {
+            } else if (compare.equals(tool.getCode())) {
                 compareHandle(props, model);
             } else {
                 model.addAttribute(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
@@ -185,7 +202,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
      */
     private void compareHandle(MultipartFile[] files, Model model) throws Exception {
         StringBuilder result = new StringBuilder();
-        if (files.length != 2) {
+        if (files.length != PROP_FILE_COUNT) {
             result.append("请选择两个properties文件");
             model.addAttribute(RESULT, result.toString());
             return;
@@ -248,7 +265,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
         String bazi;
         String yinli;
         String yangli;
-        if ("0".equals(toolDto.getLunar())) {
+        if (FLAG_ZREO.equals(toolDto.getLunar())) {
             bazi = DestinyUtil.getEightWord4Lunar(toolDto.getYear(), toolDto.getMonth(), toolDto.getDay(), toolDto.getHour());
             yinli = LocalDate.of(toolDto.getYear(), toolDto.getMonth(), toolDto.getDay()).format(DateTimeFormatter.BASIC_ISO_DATE);
             yangli = CalendarUtil.lunarToSolar(yinli);
@@ -281,7 +298,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
      */
     private void idcardHandle(ToolDto toolDto, Model model) {
         String[] res = IDCardUtil.isIdCard(toolDto.getData());
-        if ("0".equals(res[0])) {
+        if (FLAG_ZREO.equals(res[0])) {
             String year = IDCardUtil.getYearFromIdCard(toolDto.getData());
             model.addAttribute("province", IDCardUtil.getProvinceFromIdCard(toolDto.getData()));
             model.addAttribute("age", IDCardUtil.getAgeFromIdCard(toolDto.getData()));
@@ -297,7 +314,7 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
             String tianGan = DestinyUtil.getDayColumn(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day)).substring(0, 1);
             model.addAttribute("yunshi", DestinyUtil.getYunShi(DestinyUtil.getTianGanWuXing(tianGan), Integer.parseInt(month)));
 
-            if (toolDto.getData().length() == 15) {
+            if (toolDto.getData().length() == ID_CARD_LEN_15) {
                 model.addAttribute("to18", IDCardUtil.convert15To18(toolDto.getData()));
             } else {
                 model.addAttribute("to15", IDCardUtil.convert18To15(toolDto.getData()));
@@ -329,15 +346,15 @@ public class ToolServiceImpl extends BaseService<Tool> implements ToolService {
 
     @Override
     public void preHandle(Tool tool, Model model) {
-        if ("ascll".equals(tool.getCode())) {
+        if (ascll.equals(tool.getCode())) {
             List<Dictionary> asclls = dictionaryService.findDictionariesByType(DictionaryType.ASCLL.getType());
             model.addAttribute("asclls", asclls);
-        } else if ("html".equals(tool.getCode())) {
+        } else if (html.equals(tool.getCode())) {
             List<Dictionary> htmls = dictionaryService.findDictionariesByType(DictionaryType.HTML.getType());
             model.addAttribute("htmls", htmls);
-        } else if ("sql".equals(tool.getCode())) {
+        } else if (sql.equals(tool.getCode())) {
             model.addAttribute("dialects", Dialect.values());
-        } else if ("gencard".equals(tool.getCode())) {
+        } else if (gencard.equals(tool.getCode())) {
             model.addAttribute("cityCodes", IDCardUtil.getCityCodes());
         }
     }

@@ -18,6 +18,7 @@ public class ImageUtil {
 
     public static final String DEFAULT_PREVFIX = "THUMB_";
     private static final boolean DEFAULT_FORCE = false;
+    private static final String SUFFIX_SPLIT = ".";
 
     /**
      * 依据图片路径生成缩略图
@@ -34,8 +35,8 @@ public class ImageUtil {
                 String types = Arrays.toString(ImageIO.getReaderFormatNames());
                 String suffix = null;
                 // 获取图片后缀
-                if (imgFile.getName().indexOf(".") > -1) {
-                    suffix = imgFile.getName().substring(imgFile.getName().lastIndexOf(".") + 1);
+                if (imgFile.getName().indexOf(SUFFIX_SPLIT) > -1) {
+                    suffix = imgFile.getName().substring(imgFile.getName().lastIndexOf(SUFFIX_SPLIT) + 1);
                 }// 类型和图片后缀所有小写，然后推断后缀是否合法
                 if (suffix == null || types.toLowerCase().indexOf(suffix.toLowerCase()) < 0) {
                     log.error("Sorry, the image suffix is illegal. the standard image suffix is {}.", types);

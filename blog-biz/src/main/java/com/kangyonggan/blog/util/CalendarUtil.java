@@ -67,6 +67,7 @@ public class CalendarUtil {
      * @param year 阴历年
      * @return (int)天数
      */
+    @SuppressWarnings("AlibabaUndefineMagicConstant")
     private static int getLeapMonthDays(int year) {
         if (getLeapMonth(year) != 0) {
             if ((LUNAR_INFO[year - 1900] & 0xf0000) == 0) {
@@ -85,6 +86,7 @@ public class CalendarUtil {
      * @return (int)该月天数
      * @throws Exception
      */
+    @SuppressWarnings("AlibabaUndefineMagicConstant")
     private static int getMonthDays(int lunarYeay, int month) throws Exception {
         if ((month > 31) || (month < 0)) {
             throw (new Exception("月份有错！"));
@@ -103,6 +105,7 @@ public class CalendarUtil {
      * @param year 阴历年
      * @return (int)总天数
      */
+    @SuppressWarnings("AlibabaUndefineMagicConstant")
     private static int getYearDays(int year) {
         int sum = 29 * 12;
         for (int i = 0x8000; i >= 0x8; i >>= 1) {
@@ -180,6 +183,7 @@ public class CalendarUtil {
      * @param leapMonthFlag 闰月标志
      * @throws Exception
      */
+    @SuppressWarnings("AlibabaUndefineMagicConstant")
     private static void checkLunarDate(int lunarYear, int lunarMonth, int lunarDay, boolean leapMonthFlag) throws Exception {
         if ((lunarYear < MIN_YEAR) || (lunarYear > MAX_YEAR)) {
             throw (new Exception("非法农历年份！"));
@@ -297,6 +301,7 @@ public class CalendarUtil {
      * @return 阴历日期
      * @throws Exception
      */
+    @SuppressWarnings("AlibabaUndefineMagicConstant")
     public static String solarToLunar(String solarDate) throws Exception {
         int i;
         int temp = 0;
@@ -360,6 +365,7 @@ public class CalendarUtil {
         return to2num(lunarYear) + to2num(lunarMonth) + to2num(lunarDay);
     }
 
+    @SuppressWarnings("AlibabaUndefineMagicConstant")
     private static String to2num(int num) {
         if (num < 10) {
             return "0" + num;

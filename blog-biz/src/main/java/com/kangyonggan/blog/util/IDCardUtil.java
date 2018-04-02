@@ -14,6 +14,7 @@ import java.util.*;
  * @author kangyonggan
  * @date 6/23/17
  */
+@SuppressWarnings("ALL")
 @Log4j2
 public class IDCardUtil {
 
@@ -56,6 +57,7 @@ public class IDCardUtil {
     };
 
     private static Map<String, String> cityCodes = new HashMap();
+    private final static String FLAG_ZREO = "0";
 
     static {
         cityCodes.put("11", "北京");
@@ -132,7 +134,7 @@ public class IDCardUtil {
         String[] res1 = isIdCard15(idCard);
         String[] res2 = isIdCard18(idCard);
 
-        if ("0".equals(res1[0]) || "0".equals(res2[0])) {
+        if (FLAG_ZREO.equals(res1[0]) || FLAG_ZREO.equals(res2[0])) {
             res[0] = "0";
             res[1] = "合法身份证";
         } else if (StringUtils.isEmpty(idCard)) {

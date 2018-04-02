@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
  * @author kangyonggan
  * @date 7/11/17
  */
+@SuppressWarnings("AlibabaUndefineMagicConstant")
 public class DestinyUtil {
 
     /**

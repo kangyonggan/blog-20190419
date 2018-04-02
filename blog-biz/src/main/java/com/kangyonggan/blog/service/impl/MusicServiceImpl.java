@@ -27,6 +27,8 @@ import java.util.Map;
 @Log4j2
 public class MusicServiceImpl extends BaseService<Music> implements MusicService {
 
+    private static final String respCo = "respCo";
+
     @Override
     @Log
     @Monitor(type = MonitorType.INSERT, description = "保存音乐${fileName}")
@@ -34,7 +36,7 @@ public class MusicServiceImpl extends BaseService<Music> implements MusicService
         Map<String, Object> map = Mp3Util.parse(PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + fileName, PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + "cover");
 
         try {
-            if ((int) map.get("respCo") == 0) {
+            if ((int) map.get(respCo) == 0) {
                 // 落库
                 map.put("uploadUsername", uploadUsername);
                 map.put("uploadRemark", uploadRemark);

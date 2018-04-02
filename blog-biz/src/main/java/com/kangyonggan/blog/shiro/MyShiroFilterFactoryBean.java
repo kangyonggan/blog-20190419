@@ -64,6 +64,8 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
 
     private final class MySpringShiroFilter extends AbstractShiroFilter {
 
+        private static final String SUFFIX_SPLIT = ".";
+
         protected MySpringShiroFilter(WebSecurityManager webSecurityManager, FilterChainResolver resolver) {
             super();
             if (webSecurityManager == null) {
@@ -84,8 +86,8 @@ public class MyShiroFilterFactoryBean extends ShiroFilterFactoryBean {
             // 所以我们这里将一些能忽略的请求忽略掉。
             // 当然如果你的集群系统使用了动静分离处理，静态资料的请求不会到Filter这个层面，便可以忽略。
             boolean flag = true;
-            int idx = 0;
-            if ((idx = str.indexOf(".")) > 0) {
+            int idx;
+            if ((idx = str.indexOf(SUFFIX_SPLIT)) > 0) {
                 str = str.substring(idx);
                 if (ignoreExt.contains(str.toLowerCase())) {
                     flag = false;
