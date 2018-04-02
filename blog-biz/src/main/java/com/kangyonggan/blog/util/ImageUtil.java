@@ -6,7 +6,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 
 /**
@@ -74,5 +76,91 @@ public class ImageUtil {
         } else {
             log.warn("the image is not exist.");
         }
+    }
+
+    /**
+     * 获取图片宽度
+     *
+     * @param file 图片文件
+     * @return 返回宽度，异常时返回-1
+     */
+    public static int getImgWidth(File file) {
+        InputStream is = null;
+        int ret = -1;
+        try {
+            is = new FileInputStream(file);
+            BufferedImage src = javax.imageio.ImageIO.read(is);
+            // 得到源图宽
+            ret = src.getWidth(null);
+        } catch (Exception e) {
+            log.error("获取图片宽度异常", e);
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    log.error("获取图片宽度异常", e);
+                }
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * 获取图片高度
+     *
+     * @param file 图片文件
+     * @return 返回高度，异常时返回-1
+     */
+    public static int getImgHeight(File file) {
+        InputStream is = null;
+        int ret = -1;
+        try {
+            is = new FileInputStream(file);
+            BufferedImage src = javax.imageio.ImageIO.read(is);
+            // 得到源图高
+            ret = src.getHeight(null);
+        } catch (Exception e) {
+            log.error("获取图片高度异常", e);
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    log.error("获取图片高度异常", e);
+                }
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * 获取图片宽度和高度
+     *
+     * @param file 图片文件
+     * @return 返回宽度和高度，异常时返回[-1, -1]
+     */
+    public static int[] getImgHeightAndWidth(File file) {
+        InputStream is = null;
+        int[] ret = new int[]{-1, -1};
+        try {
+            is = new FileInputStream(file);
+            BufferedImage src = javax.imageio.ImageIO.read(is);
+            // 得到源图高
+            ret[0] = src.getHeight(null);
+            // 得到源图宽
+            ret[1] = src.getWidth(null);
+        } catch (Exception e) {
+            log.error("获取图片宽度和高度异常", e);
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    log.error("获取图片宽度和高度异常", e);
+                }
+            }
+        }
+        return ret;
     }
 }
