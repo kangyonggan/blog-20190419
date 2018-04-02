@@ -20,21 +20,21 @@
         <div>
             <#list 0..total-1 as index>
                 <#assign attachment=attachments[index]/>
-                <img src="${ctx}/${attachment.thumb}" data-url="${ctx}/${attachment.url}"
+                <img src="${ctx}/${attachment.url}" data-url="${ctx}/${attachment.url}"
                      data-thumb="${ctx}/${attachment.thumb}">
             </#list>
         </div>
         <div>
             <#list total..2*total-1 as index>
                 <#assign attachment=attachments[index]/>
-                <img src="${ctx}/${attachment.thumb}" data-url="${ctx}/${attachment.url}"
+                <img src="${ctx}/${attachment.url}" data-url="${ctx}/${attachment.url}"
                      data-thumb="${ctx}/${attachment.thumb}">
             </#list>
         </div>
         <div>
             <#list 2*total..attachments?size-1 as index>
                 <#assign attachment=attachments[index]/>
-                <img src="${ctx}/${attachment.thumb}" data-url="${ctx}/${attachment.url}"
+                <img src="${ctx}/${attachment.url}" data-url="${ctx}/${attachment.url}"
                      data-thumb="${ctx}/${attachment.thumb}">
             </#list>
         </div>
@@ -47,12 +47,6 @@
 <@override name="script">
 <script src="${ctx}/static/libs/zoomify/zoomify.min.js"></script>
 <script>
-    $('.fall-list img').mouseenter(function () {
-        $(this).attr("src", $(this).attr("data-url"));
-    });
-    $('.fall-list img').mouseleave(function () {
-        $(this).attr("src", $(this).attr("data-thumb"));
-    });
     $('.fall-list img').zoomify();
 </script>
 </@override>

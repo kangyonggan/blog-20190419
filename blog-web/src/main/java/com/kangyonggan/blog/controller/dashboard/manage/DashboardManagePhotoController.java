@@ -218,10 +218,6 @@ public class DashboardManagePhotoController extends BaseController {
             attachment.setOriginalFilename(file.getOriginalFilename());
             attachment.setUrl(fileName);
 
-            // 生成缩略图
-            ImageUtil.thumbnailImage(PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + fileName, 320, 240);
-            attachment.setThumb(AppConstants.FILE_UPLOAD + ImageUtil.DEFAULT_PREVFIX + fileName.substring(7));
-
             attachmentService.saveAttachment(attachment);
             resultMap.put("fileId", attachment.getId());
         } catch (Exception e) {
