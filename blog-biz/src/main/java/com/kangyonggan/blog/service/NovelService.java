@@ -87,6 +87,8 @@ public interface NovelService {
     /**
      * 搜索小说
      *
+     * @param pageNum
+     * @param pageSize
      * @param key
      * @return
      */

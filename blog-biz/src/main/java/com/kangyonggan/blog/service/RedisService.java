@@ -85,6 +85,7 @@ public interface RedisService {
      * listLeftPush
      *
      * @param key
+     * @param url
      * @return
      */
     long listLeftPush(String key, String url);
@@ -93,6 +94,7 @@ public interface RedisService {
      * listRightPush
      *
      * @param key
+     * @param url
      * @return
      */
     long listRightPush(String key, String url);
@@ -101,6 +103,8 @@ public interface RedisService {
      * listRange
      *
      * @param key
+     * @param start
+     * @param end
      * @return
      */
     List<Object> listRange(String key, long start, long end);
