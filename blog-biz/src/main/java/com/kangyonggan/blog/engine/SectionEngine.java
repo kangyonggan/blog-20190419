@@ -1,17 +1,14 @@
 package com.kangyonggan.blog.engine;
 
-import com.kangyonggan.blog.service.NovelService;
 import com.kangyonggan.blog.service.SectionService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 /**
  * @author kangyonggan
  * @date 3/25/18
  */
-@Component
 @Log4j2
 public class SectionEngine {
 
