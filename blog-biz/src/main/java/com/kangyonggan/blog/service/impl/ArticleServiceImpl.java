@@ -51,7 +51,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
             criteria.andEqualTo("categoryCode", categoryCode);
         }
 
-        example.setOrderByClause("is_top desc, id desc");
+        example.setOrderByClause("id desc");
 
         PageHelper.startPage(pageNum, pageSize);
         return myMapper.selectByExample(example);
@@ -130,7 +130,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
         example.selectProperties("id", "title", "summary", "categoryCode", "isTop", "isDeleted", "createdTime");
 
-        example.setOrderByClause("is_top desc, id desc");
+        example.setOrderByClause("id desc");
 
         PageHelper.startPage(pageNum, pageSize);
         return myMapper.selectByExample(example);
@@ -147,7 +147,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
             example.or(example.createCriteria().andLike("summary", StringUtil.toLikeString(key)).andEqualTo("isDeleted", AppConstants.IS_DELETED_NO));
         }
 
-        example.setOrderByClause("is_top desc, id desc");
+        example.setOrderByClause("id desc");
 
         PageHelper.startPage(pageNum, pageSize);
         return myMapper.selectByExample(example);

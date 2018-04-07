@@ -1,5 +1,6 @@
 <#assign active_novel="active"/>
 <#assign categoryCode = RequestParameters.categoryCode!'' />
+<#assign key = RequestParameters.key!'' />
 <#assign type = RequestParameters.type!'' />
 
 <#list categories as category>
