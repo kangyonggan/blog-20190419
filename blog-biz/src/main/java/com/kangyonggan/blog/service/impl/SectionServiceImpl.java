@@ -282,7 +282,7 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         section.setNovelCode(novelCode);
         section.setCode(sectionCode);
         section.setTitle(title);
-        section.setContent(content);
+        section.setContent(content.replaceAll("———", ""));
 
         log.info("章节【{}】保存成功", section.getTitle());
         myMapper.insertSelective(section);
