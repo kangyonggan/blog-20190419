@@ -101,6 +101,7 @@
         <jaudiotagger.version>2.0.3</jaudiotagger.version>
         <tika.version>1.16</tika.version>
         <extra.version>3.0.0</extra.version>
+        <jieba.version>1.0.2</jieba.version>
     </properties>
 
     <build>
@@ -520,6 +521,11 @@
                 <groupId>com.kangyonggan</groupId>
                 <artifactId>extra-core</artifactId>
                 <version>${extra.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.huaban</groupId>
+                <artifactId>jieba-analysis</artifactId>
+                <version>${jieba.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

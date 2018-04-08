@@ -7,6 +7,7 @@ import com.kangyonggan.blog.controller.BaseController;
 import com.kangyonggan.blog.service.ArticleService;
 import com.kangyonggan.blog.service.AttachmentService;
 import com.kangyonggan.blog.service.CategoryService;
+import com.kangyonggan.blog.util.FenCi;
 import com.kangyonggan.blog.util.MarkdownUtil;
 import com.kangyonggan.blog.vo.Article;
 import com.kangyonggan.blog.vo.Attachment;
@@ -78,6 +79,7 @@ public class ArticleController extends BaseController {
         Article prevArticle = articleService.finPrevArticle(id);
         Article nextArticle = articleService.finNextArticle(id);
 
+        model.addAttribute("keywords", FenCi.process(article.getTitle()));
         model.addAttribute("article", article);
         model.addAttribute("categories", categories);
         model.addAttribute("topArticles", topArticles);

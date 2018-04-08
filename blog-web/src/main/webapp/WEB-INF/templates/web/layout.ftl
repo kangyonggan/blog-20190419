@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
     <title>${title!''}</title>
-    <meta name="description" content=""/>
+    <meta name="description" content="${description!'康永敢的博客'}"/>
+    <meta name="keywords" content="${keywords!'康永敢,康永敢的博客'}">
     <link rel="shortcut icon" href="${ctx}/static/app/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <link rel="stylesheet" href="${ctx}/static/app/css/app.css"/>

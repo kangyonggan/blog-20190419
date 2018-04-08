@@ -1,4 +1,6 @@
 <#assign title="${article.title}"/>
+<#assign description="${article.summary}"/>
+<#assign keywords="${keywords}"/>
 <#assign active_article="active"/>
 <#assign categoryCode="${article.categoryCode}"/>
 
