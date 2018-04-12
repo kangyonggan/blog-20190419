@@ -25,7 +25,13 @@ $(function () {
         }
     });
 
-    $(".markdown pre.prettyprint").addClass("hidden").after("<div class='code-toggle-btn'><a href='javascript:'>显示代码</a></div>");
+    var $ols = $(".markdown pre.prettyprint ol");
+    for (var i = 0; i < $ols.length; i++) {
+        var $ol = $($ols[i]);
+        if ($ol.find("li").length > 5) {
+            $ol.parent("pre").addClass("hidden").after("<div class='code-toggle-btn'><a href='javascript:'>显示代码</a></div>");
+        }
+    }
 
     $(".code-toggle-btn a").click(function () {
         if ($(this).text() == "显示代码") {
