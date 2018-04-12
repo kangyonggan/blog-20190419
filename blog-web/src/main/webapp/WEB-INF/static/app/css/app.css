@@ -1568,7 +1568,7 @@ table.ascll-table {
     padding: 13px;
     border-radius: 3px;
     position: fixed;
-    overflow-y: scroll;
+    overflow-y: auto;
     right: 20px;
     top: 350px;
     z-index: 99999;
