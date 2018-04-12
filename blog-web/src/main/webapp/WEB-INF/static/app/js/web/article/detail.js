@@ -18,10 +18,10 @@ $(function () {
         $(".markdown-toc ul").toggle();
         if ($(".markdown-toc > a > span").text() == "[-]") {
             $(".markdown-toc > a > span").text("[+]");
-            $(".markdown-toc").css("top", "350px");
+            $(".markdown-toc").css("top", "350px").removeClass("toc-large");
         } else {
             $(".markdown-toc > a > span").text("[-]");
-            $(".markdown-toc").css("top", "52px");
+            $(".markdown-toc").css("top", "52px").addClass("toc-large");
         }
     });
 
@@ -29,10 +29,10 @@ $(function () {
 
     $(".code-toggle-btn a").click(function () {
         if ($(this).text() == "显示代码") {
-            $(this).parent("div").prev("pre").removeClass("hidden");
+            $(this).parent("div").prev("pre").toggle();
             $(this).text("折叠代码");
         } else {
-            $(this).parent("div").prev("pre").addClass("hidden");
+            $(this).parent("div").prev("pre").toggle();
             $(this).text("显示代码");
         }
     });

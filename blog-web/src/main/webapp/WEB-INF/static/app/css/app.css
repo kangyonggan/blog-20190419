@@ -1568,11 +1568,16 @@ table.ascll-table {
     padding: 13px;
     border-radius: 3px;
     position: fixed;
-    max-width: 280px;
+    overflow-y: scroll;
     right: 20px;
     top: 350px;
     z-index: 99999;
     border: 1px solid #a12e01;
+}
+
+.toc-large {
+    width: 280px;
+    height: 550px;
 }
 
 .markdown-toc > a {
