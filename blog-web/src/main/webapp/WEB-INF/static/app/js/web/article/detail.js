@@ -25,4 +25,16 @@ $(function () {
         }
     });
 
+    $(".markdown pre.prettyprint").addClass("hidden").after("<div class='code-toggle-btn'><a href='javascript:'>显示代码</a></div>");
+
+    $(".code-toggle-btn a").click(function () {
+        if ($(this).text() == "显示代码") {
+            $(this).parent("div").prev("pre").removeClass("hidden");
+            $(this).text("折叠代码");
+        } else {
+            $(this).parent("div").prev("pre").addClass("hidden");
+            $(this).text("显示代码");
+        }
+    });
+
 });

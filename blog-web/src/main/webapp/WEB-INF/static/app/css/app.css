@@ -1627,3 +1627,18 @@ table.ascll-table {
 .markdown-toc .md-H6 {
     margin-left: 80px;
 }
+
+.code-toggle-btn {
+    text-align: center;
+}
+
+.code-toggle-btn a {
+    text-align: center;
+    padding: 7px 30px;
+    color: #aaa;
+    height: 34px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 34px;
+    border: 1px solid #ccc;
+}
