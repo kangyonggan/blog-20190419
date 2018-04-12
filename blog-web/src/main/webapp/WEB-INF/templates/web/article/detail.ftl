@@ -37,6 +37,11 @@
                 【发布时间： ${article.createdTime?date}】
             </div>
 
+            <div class="markdown-toc">
+                <a href="javascript:">目录<span>[+]</span></a>
+                <ul></ul>
+            </div>
+
             <div class="well article-summary">
                 摘要：${article.summary}
             </div>

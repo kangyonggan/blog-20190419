@@ -563,7 +563,7 @@ INSERT INTO tb_user
 (username, realname, password, salt)
 VALUES
   # 用户 admin 密码 111111
-  ('admin', '管理员', '25500f5b85a66895e0b99117a12cd51b6d07eb13', '93fab0ba521763fc');
+  ('admin', '管理员', 'df9e06125caf2f421535bc725b9c96d329ae377b', '5cf6b1a302cabcbd');
 
 -- ----------------------------
 --  data for tb_role
