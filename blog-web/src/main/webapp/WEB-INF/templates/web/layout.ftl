@@ -82,6 +82,30 @@
 
 <a href="javascript:scrollTo(0, 0)" id="to-top">回到顶部<span class="icon"></span></a>
 
+
+<#--百度分享-->
+<script>
+    var pic = "https://kangyonggan.com/static/app/images/600.png";
+    if ($("img").length > 2) {
+        pic = "https://kangyonggan.com/" + $($("img")[2]).attr("src");
+    }
+
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": document.title,
+            "bdUrl": window.location.href,
+            "bdDesc": $("meta[name='description']").attr("content"),
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": pic,
+            "bdStyle": "0",
+            "bdSize": "16"
+        }, "slide": {"type": "slide", "bdImg": "0", "bdPos": "left", "bdTop": "154"}
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = '${ctx}/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+
 <script>
     var adOffset = "-142px";
     $(".ad").mouseenter(function () {
