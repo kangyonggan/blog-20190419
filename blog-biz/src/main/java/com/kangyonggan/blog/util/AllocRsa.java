@@ -23,8 +23,9 @@ public class AllocRsa {
      * @param args
      */
     public static void main(String[] args) {
+        double []a = {1, 2};
         // N个苹果的重量
-        int n = 7;
+        int n = 30;
         List<Double> apples = new ArrayList<>(n);
         System.out.println("一共" + n + "个苹果：");
         for (int i = 0; i < n; i++) {
@@ -48,7 +49,12 @@ public class AllocRsa {
         double minStandardDeviation = Double.MAX_VALUE;
         System.out.println("初始化标准差:" + minStandardDeviation);
 
+        long startTime = System.currentTimeMillis();
         System.out.println("最终计算所得最小标准差：" + func(apples, baskets, m, minStandardDeviation));
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("计算耗时：" + (endTime - startTime) + "ms");
+
         System.out.println("对应每个篮子苹果分配：");
         for (int i = 0; i < resultBaskets.size(); i++) {
             System.out.print("篮子" + (i + 1) + "：");
@@ -67,6 +73,7 @@ public class AllocRsa {
             if (standardDeviation < minStandardDeviation) {
                 minStandardDeviation = standardDeviation;
                 System.out.println("发现一个更小的标准差:" + minStandardDeviation);
+                disp(baskets);
                 resultBaskets = new ArrayList<>();
                 for (int i = 0; i < baskets.size(); i++) {
                     resultBaskets.add(new ArrayList<>());
@@ -86,13 +93,31 @@ public class AllocRsa {
                 Double a = apples.get(j);
                 copyBaskets.get(i).add(a);
                 copyApples.remove(j);
-                minStandardDeviation = func(copyApples, copyBaskets, m, minStandardDeviation);
+                if (j == apples.size() - 1) {
+                    minStandardDeviation = func(copyApples, copyBaskets, m, minStandardDeviation);
+                    if (minStandardDeviation <= 0) {
+                        return minStandardDeviation;
+                    }
+                }
                 copyApples.add(j, a);
                 copyBaskets.get(i).remove(copyBaskets.get(i).size() - 1);
             }
         }
 
         return minStandardDeviation;
+    }
+
+    private static void disp(List<List<Double>> baskets) {
+        System.out.println("---------------------------------------------------------");
+        for (int i = 0; i < baskets.size(); i++) {
+            for (int j = 0; j < baskets.get(i).size(); j++) {
+                System.out.print(String.format("%.0f ", baskets.get(i).get(j)));
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------------------------------------");
+        System.out.println();
+        System.out.println();
     }
 
     /**
