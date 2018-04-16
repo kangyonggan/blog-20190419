@@ -43,7 +43,7 @@
             康永敢，男，全日制本科毕业生，家在安徽省蚌埠市怀远县，现在在上海漂泊，职业是java程序猿，主要从事互联网金融行业。爱好：走路吃饭时看小说，有空就敲敲代码做些小玩意，比如iOS版的小说APP，比如博客网站等。
         </p>
         <p>
-            励志做一个全栈攻城狮，奈何学海无涯啊。目前手上主要会：Java、MySQL、Maven、Git、Idea、Html、Css、jQuery、Freemarker、Markdown、Spring、SpringMVC、Mybatis、Redis、Dubbo、RabbitMQ、Jenkins、Nginx等。
+            励志做一个全栈攻城狮，奈何学海无涯啊。目前手上主要会：Java、MySQL、Maven、Git、Idea、Html、Css、jQuery、Freemarker、Markdown、Spring、SpringMVC、Mybatis、Activiti6.x、Redis、Dubbo、RabbitMQ、Jenkins、Nginx等。
         </p>
         <div style="clear: both; height: 1px;"></div>
         <p>
