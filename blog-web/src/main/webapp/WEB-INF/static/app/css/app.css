@@ -1647,3 +1647,17 @@ table.ascll-table {
     line-height: 34px;
     border: 1px solid #ccc;
 }
+
+@media (max-width: 600px) {
+    .mobile-hidden {
+        display: none;
+    }
+    .warn-mobile {
+        display: block;
+        color: #f00;
+        text-align: center;
+    }
+    body .bdshare-slide-button-box .bdshare-slide-button {
+        display: none;
+    }
+}
