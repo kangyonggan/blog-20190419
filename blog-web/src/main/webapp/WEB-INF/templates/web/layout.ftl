@@ -17,16 +17,6 @@
 <@block name="style"/>
 </head>
 <body>
-<div class="warn-mobile hidden wap-adj">
-    <h3>小屏幕请使用<a href="${ctx}/wap">手机版</a>网站。</h3>
-    <script>
-        var disp = $(".wap-adj").css("display");
-        if (disp != "none") {
-            window.location.href = '${ctx}/wap';
-        }
-    </script>
-</div>
-
 <div class="mobile-hidden">
     <div id="header">
         <div class="top">
@@ -65,6 +55,15 @@
     </div>
 
 <@block name="main"/>
+    <div class="warn-mobile hidden wap-adj">
+        <h3>小屏幕请使用<a href="${ctx}/wap">手机版</a>网站。</h3>
+        <script>
+            var disp = $(".wap-adj").css("display");
+            if (disp != "none") {
+                window.location.href = '${ctx}/wap';
+            }
+        </script>
+    </div>
 
     <div class="space-20"></div>
 

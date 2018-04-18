@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    font-size: 13px;
+    background: #fff;
+}
+
+/*搜索表单*/
+.search-panel {
+    height: 40px;
+    background: #c33b00;
+    color: #fff;
+}
+
+.search-panel form input {
+    margin-top: 4px;
+    margin-right: 10px;
+    border: 1px solid #c33b00;
+    height: 27px;
+    display: inline-block;
+    float: right;
+    width: 78%;
+    text-indent: 32px;
+    font-size: 15px;
+    outline: none;
+    background: url(../images/search.png) 5px 2px #fdfdfd no-repeat;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.search-panel form select {
+    margin-right: 5px;
+    display: block;
+    margin-top: 4px;
+    float: right;
+    width: 57px;
+    height: 32px;
+    outline: none;
+    border: none;
+    direction: rtl;
+    background: #c33b00;
+    color: #fff;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    -ms-appearance:none;
+}
+
+.main-panel {
+    margin-top: 7px;
+    background: #fff;
+    padding: 5px;
+}
+
+
+.item-list > .item a {
+    display: inline-block;
+    padding: 5px 27px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    color: #333;
+    text-decoration: none;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.item-list > .item a img {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+}
+
+.item-list > .item a p {
+    margin-top: 0px;
+}
+
+.clear {
+    clear: both;
+    height: 1px;
+    width: 1px;
+    display: block;
+}
