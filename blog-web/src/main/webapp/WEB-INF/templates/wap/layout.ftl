@@ -17,10 +17,15 @@
 <@block name="style"/>
 </head>
 <body>
-<div class="search-panel">
+<div class="navbar">
+    <#if !noBack??>
+    <a href="javascript:history.back(-1);"></a>
+    </#if>
+    <div class="title nowrap">${title!''}</div>
+
     <form action="${ctx}/wap/search" method="get">
-        <input type="text" name="key" placeholder="搜一搜..." value="${key}" required/>
-        <select name="type">
+        <input type="text" name="key" id="search-key" placeholder="搜一搜..." value="${key}" required/>
+        <select name="type" id="search-type" class="hidden">
             <option value="ARTICLE">文&nbsp;章</option>
             <option value="NOVEL" <#if type=="NOVEL">selected</#if>>小&nbsp;说</option>
             <option value="MUSIC" <#if type=="MUSIC">selected</#if>>音&nbsp;乐</option>
@@ -32,5 +37,7 @@
 <@block name="main"/>
 </div>
 
+<script src="${ctx}/static/app/js/wap/index.js"></script>
+<@block name="script"/>
 </body>
 </html>

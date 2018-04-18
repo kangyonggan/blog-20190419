@@ -23,4 +23,14 @@ public class WapController extends BaseController {
         return getPathIndex();
     }
 
+    /**
+     * 关于我
+     *
+     * @return
+     */
+    @RequestMapping(value = "about", method = RequestMethod.GET)
+    public String about() {
+        return getPathRoot() + "/about";
+    }
+
 }

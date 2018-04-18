@@ -5,45 +5,70 @@ body {
 }
 
 /*搜索表单*/
-.search-panel {
+.navbar {
     height: 40px;
     background: #c33b00;
     color: #fff;
 }
 
-.search-panel form input {
-    margin-top: 4px;
-    margin-right: 10px;
+.navbar {
+    height: 40px;
+    background: #c33b00;
+    color: #fff;
+}
+
+.navbar .title {
+    width: 120px;
+    font-size: 16px;
+    margin: 0 auto;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+}
+
+.navbar a {
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    width: 25px;
+    height: 25px;
+    background: url("../images/back.png") left center no-repeat;
+    background-size: 20px 20px;
+}
+
+.navbar form {
+    position: relative;
+}
+
+.navbar form input {
+    position: fixed;
+    right: 5px;
+    top: 5px;
+    width: 100px;
     border: 1px solid #c33b00;
-    height: 27px;
+    height: 25px;
     display: inline-block;
-    float: right;
-    width: 78%;
     text-indent: 32px;
     font-size: 15px;
     outline: none;
     background: url(../images/search.png) 5px 2px #fdfdfd no-repeat;
-    border-radius: 2px;
+    border-radius: 15px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-.search-panel form select {
-    margin-right: 5px;
-    display: block;
-    margin-top: 4px;
-    float: right;
+.navbar form select {
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin-left: 17px;
+    margin-top: 3px;
     width: 57px;
     height: 32px;
     outline: none;
     border: none;
-    direction: rtl;
-    background: #c33b00;
-    color: #fff;
-    appearance:none;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    -ms-appearance:none;
+    background: transparent;
+    color: #c33b00;
 }
 
 .main-panel {
@@ -52,12 +77,11 @@ body {
     padding: 5px;
 }
 
-
 .item-list > .item a {
     display: inline-block;
-    padding: 5px 27px;
+    padding: 10px 34px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid #c33b00;
     border-radius: 10px;
     color: #333;
     text-decoration: none;
@@ -68,12 +92,13 @@ body {
 
 .item-list > .item a img {
     display: inline-block;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
 }
 
 .item-list > .item a p {
-    margin-top: 0px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .clear {
@@ -81,4 +106,20 @@ body {
     height: 1px;
     width: 1px;
     display: block;
+}
+
+.nowrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 400px) {
+    .item-list > .item a {
+        padding: 5px 27px;
+    }
 }
