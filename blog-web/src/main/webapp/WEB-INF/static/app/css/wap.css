@@ -101,14 +101,6 @@ body {
     margin-bottom: 10px;
 }
 
-.about {
-
-}
-
-.about .top {
-
-}
-
 .about .top .left {
     background: #fff;
     padding: 5px;
@@ -159,6 +151,40 @@ body {
     text-indent: 27px;
     padding-left: 8px;
     padding-right: 8px;
+}
+
+.filter-form {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-form div {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+}
+
+.filter-form .down {
+    border-right: 1px solid #ccc;
+}
+
+.filter-form .down:after {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    content: "";
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #666 transparent transparent transparent;
+}
+
+.filter-form .sort {
+    background: url("../images/sort.png") left center no-repeat;
+    background-size: 12px 12px;
+    background-position: 72%;
 }
 
 .clear {
