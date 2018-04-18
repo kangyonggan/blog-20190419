@@ -17,6 +17,7 @@ import java.util.Map;
 public class BaseController {
 
     private static final String DASHBOARD = "dashboard";
+    private static final String WAP = "wap";
     private String pathRoot;
     private static final String LIST = "/list";
     private static final String INDEX = "/index";
@@ -38,7 +39,7 @@ public class BaseController {
             pathRoot += arr[i];
         }
 
-        if (!pathRoot.startsWith(DASHBOARD)) {
+        if (!pathRoot.startsWith(DASHBOARD) && !pathRoot.startsWith(WAP)) {
             pathRoot = "web/" + pathRoot;
         }
     }
