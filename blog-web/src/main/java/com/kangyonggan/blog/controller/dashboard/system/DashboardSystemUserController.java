@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +54,24 @@ public class DashboardSystemUserController extends BaseController {
 
         model.addAttribute("page", page);
         return getPathList();
+    }
+
+    /**
+     * 查询用户列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequiresPermissions("SYSTEM_USER")
+    @ResponseBody
+    public Map<String, Object> list() {
+        Map<String, Object> resultMap = new HashMap<>();
+        List<User> users = userService.searchUsers(1, null, null);
+        PageInfo<User> page = new PageInfo(users);
+
+        resultMap.put("rows", page.getList());
+        resultMap.put("total", page.getTotal());
+        return resultMap;
     }
 
     /**

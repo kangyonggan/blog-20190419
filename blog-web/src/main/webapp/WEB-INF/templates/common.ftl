@@ -126,6 +126,7 @@
     </#if>
 </#macro>
 
+<#--模态框底部按钮-->
 <#macro modal_form_tool>
 <button class="btn btn-sm" data-dismiss="modal">
     <i class="ace-icon fa fa-times"></i>
@@ -139,8 +140,9 @@
 </button>
 </#macro>
 
-<#macro search_form_tool>
-<button class="btn btn-sm btn-purple" data-toggle="search-submit">
+<#--搜索表单按钮-->
+<#macro search_form_tool search_table_id>
+<button class="btn btn-sm btn-purple" data-toggle="search-submit" data-table-id="${search_table_id}">
     搜索
     <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
 </button>
@@ -163,4 +165,36 @@
         <#t><#elseif ct gt 0><#--n秒前-->${ct?int}秒前
         <#t><#else>刚刚
     </#if>
+</#macro>
+
+<#macro table id url>
+<table id="${id}" data-toggle="table" data-url="${url}" data-pagination="true"
+       data-side-pagination="server" data-undefined-text="" data-striped="true">
+    <thead>
+    <tr>
+        <#nested/>
+    </tr>
+    </thead>
+</table>
+</#macro>
+
+<#macro th title field="" sortable="false" render="false" datetime="false">
+<th data-sortable="${sortable}" data-field="${field}"
+    <#if render=="true">
+    data-formatter="${field}Format"
+    </#if>
+>
+${title}
+    <#if render=="true">
+        <div id="${field}Template" class="hidden">
+            <#nested/>
+        </div>
+        <script>
+            function ${field}Format(value, row, index) {
+                var data = {"value": value, "row": row, "index": index};
+                return template('${field}Template', data);
+            }
+        </script>
+    </#if>
+</th>
 </#macro>

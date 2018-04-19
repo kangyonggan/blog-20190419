@@ -41,9 +41,10 @@ $(function () {
                 dataType: 'json',
                 success: function (response) {
                     if (response.respCo == '0000') {
-                        window.location.hash = "system/user?r=" + Math.random();
                         Message.success(response.respMsg);
                         $modal.modal('hide');
+                        var params = $("#user-query-form").serializeForm();
+                        $('#user-table').bootstrapTable("refresh", {query: params});
                     } else {
                         Message.error(response.respMsg);
                     }

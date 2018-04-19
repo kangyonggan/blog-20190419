@@ -95,3 +95,14 @@ input[readonly].readonly {
 .md-preview img {
     max-width: 100%;
 }
+
+.page-list .dropup button.btn {
+    color: #000 !important;
+    background: transparent !important;
+    border: 1px solid #ccc !important;
+    padding: 4px 0px 0px 5px !important;
+}
+
+.dropdown-menu {
+    z-index: 99 !important;
+}

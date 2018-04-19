@@ -1,0 +1,17 @@
+{
+  "total": 103,
+  "rows": [
+    {
+      "username": "admin",
+      "realname": "管理员"
+    },
+    {
+      "username": "kangyonggan",
+      "realname": "康永敢"
+    },
+    {
+      "username": "xiaotiao",
+      "realname": null
+    }
+  ]
+}
