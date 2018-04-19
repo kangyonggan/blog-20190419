@@ -2,25 +2,28 @@ $(function () {
     /**
      * 排序
      */
-    var isSorting = false;
+    var isLoadingNextPage = false;
     $(".filter-form .sort").click(function () {
-        if (!isSorting) {
-            isSorting = true;
+        if (!isLoadingNextPage) {
+            isLoadingNextPage = true;
             if (sort == "desc") {
-                sort = "asc"
+                sort = "asc";
+                $(this).text("升序");
             } else {
                 sort = "desc";
+                $(this).text("降序");
             }
             $.get(ctx + "/wap/article/page?categoryCode=" + categoryCode + "&sort=" + sort, function (data, status) {
                 if (status == "success") {
                     data = eval('(' + data + ')');
                     hasNextPage = data.page.hasNextPage;
+                    pageNum = data.page.pageNum;
                     $(".article-list").empty();
                     appendList(data.page.list);
                 } else {
                     alert("网络错误，请稍后再试！");
                 }
-                isSorting = false;
+                isLoadingNextPage = false;
             });
         }
     });
@@ -56,8 +59,9 @@ $(function () {
         }
     }
 
-    // 上滑加载下一页
-    var isLoadingNextPage = false;
+    /**
+     * 上滑加载下一页
+     */
     $(window).scroll(function () {
         if (hasNextPage && !isLoadingNextPage) {
             if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
@@ -67,14 +71,45 @@ $(function () {
                     if (status == "success") {
                         data = eval('(' + data + ')');
                         hasNextPage = data.page.hasNextPage;
+                        pageNum = data.page.pageNum;
                         $(".article-list .more").addClass("hidden");
                         appendList(data.page.list);
                     } else {
+                        $(".article-list .more").text("上滑加载更多");
                         alert("网络错误，请稍后再试！");
                     }
                     isLoadingNextPage = false;
                 });
             }
+        }
+    });
+
+    // 显示/隐藏 下拉框
+    $(".filter-form .down").click(function () {
+        $(".filter-form .down-list").toggle();
+    });
+
+    // 点击栏目，查询
+    $(".filter-form .down-list li").click(function () {
+        $(".filter-form .down-list").toggle();
+        if (!isLoadingNextPage) {
+            isLoadingNextPage = true;
+            categoryCode = $(this).data("code");
+            $(".filter-form .down-list li").removeClass("active");
+            $(".filter-form .down").text($(this).text());
+            $(this).addClass("active");
+            $.get(ctx + "/wap/article/page?categoryCode=" + categoryCode + "&sort=" + sort, function (data, status) {
+                if (status == "success") {
+                    data = eval('(' + data + ')');
+                    hasNextPage = data.page.hasNextPage;
+                    pageNum = data.page.pageNum;
+                    $(".article-list").empty();
+                    appendList(data.page.list);
+                } else {
+                    alert("网络错误，请稍后再试！");
+                }
+                isLoadingNextPage = false;
+            });
         }
     });
 });

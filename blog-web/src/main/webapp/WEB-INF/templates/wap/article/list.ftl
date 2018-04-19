@@ -3,8 +3,16 @@
 <@override name="main">
 <form class="filter-form" action="${ctx}/wap/article" method="get">
     <input type="hidden" name="categoryCode">
-    <div class="down">全部栏目</div>
-    <div class="sort">发布时间</div>
+    <div class="down">
+        全部栏目
+    </div>
+    <ul class="down-list">
+        <li data-code="" class="active">全部栏目</li>
+        <#list categories as category>
+            <li data-code="${category.code}">${category.name}</li>
+        </#list>
+    </ul>
+    <div class="sort">降序</div>
 </form>
 
 <div class="article-list">
