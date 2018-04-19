@@ -24,6 +24,11 @@
                 </div>
             </div>
         </#list>
+        <#if page.hasNextPage>
+            <div class="more">上滑加载更多</div>
+        <#else>
+            <div class="no-more-content">没有更多内容了</div>
+        </#if>
     <#else>
         <div class="empty">
             暂无查询记录
@@ -36,6 +41,8 @@
 <script>
     var sort = "desc";
     var categoryCode = "";
+    var hasNextPage = "${page.hasNextPage?c}";
+    var pageNum = "${page.pageNum}";
 </script>
 <script src="${ctx}/static/app/js/wap/article/list.js"></script>
 </@override>

@@ -260,6 +260,23 @@ body {
     height: 74px;
 }
 
+.article-list .no-more-content {
+    padding: 10px 0px;
+    font-size: 14px;
+    text-align: center;
+    color: #ccc;
+    margin-top: 10px;
+    clear: both;
+}
+
+.article-list .more {
+    padding: 10px 0px;
+    color: #ccc;
+    text-align: center;
+    margin-top: 10px;
+    clear: both;
+}
+
 .clear {
     clear: both;
     height: 1px;
