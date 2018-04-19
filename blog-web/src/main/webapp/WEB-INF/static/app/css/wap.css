@@ -4,14 +4,11 @@ body {
     background: #fff;
 }
 
-/*搜索表单*/
 .navbar {
-    height: 40px;
-    background: #c33b00;
-    color: #fff;
-}
-
-.navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
     height: 40px;
     background: #c33b00;
     color: #fff;
@@ -68,11 +65,27 @@ body {
     outline: none;
     border: none;
     background: transparent;
-    color: #c33b00;
+
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+}
+
+.navbar form select:after {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    content: "";
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #666 transparent transparent transparent;
 }
 
 .main-panel {
-    margin-top: 7px;
+    margin-top: 47px;
     background: #fff;
     padding: 5px;
 }
@@ -165,6 +178,7 @@ body {
 }
 
 .filter-form .down {
+    cursor: pointer;
     border-right: 1px solid #ccc;
 }
 
@@ -182,9 +196,68 @@ body {
 }
 
 .filter-form .sort {
-    background: url("../images/sort.png") left center no-repeat;
+    cursor: pointer;
+    background: #fff url("../images/sort.png") left center no-repeat;
     background-size: 12px 12px;
     background-position: 72%;
+}
+
+.article-list {
+    margin-top: 10px;
+}
+
+.article-list .empty {
+    padding: 40px 0px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.article-list .left {
+    float: left;
+}
+
+.article-list .right {
+    float: left;
+    margin-left: 10px;
+    max-width: 70%;
+}
+
+.article-list .full-width {
+    max-width: 95%;
+}
+
+.article-list .item {
+    width: 100%;
+    min-height: 80px;
+    float: left;
+    border-bottom: 1px solid #f5f5f5;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.article-list .right a {
+    text-decoration: none;
+    color: #000;
+}
+
+.article-list .right .title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.article-list .right .summary {
+    text-indent: 30px;
+    clear: both;
+    max-height: 50px;
+    padding-top: 5px;
+    line-height: 17px;
+    overflow: hidden;
+    color: #777;
+}
+
+.article-list .left img {
+    width: 98px;
+    height: 74px;
 }
 
 .clear {

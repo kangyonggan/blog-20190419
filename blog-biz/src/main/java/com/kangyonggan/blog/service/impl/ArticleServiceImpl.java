@@ -27,6 +27,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author kangyonggan
@@ -38,6 +40,8 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
     @Autowired
     private AttachmentMapper attachmentMapper;
+
+    private static Pattern pattern = Pattern.compile("!\\[.*]\\(.*\\)");
 
     @Override
     public List<Article> searchArticles(int pageNum, int pageSize, String title, String categoryCode) {
@@ -181,6 +185,49 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         PageHelper.startPage(1, 1);
         List<Article> articles = myMapper.selectByExample(example);
         return articles.isEmpty() ? null : articles.get(0);
+    }
+
+    @Override
+    public List<Article> findWapArticles(int pageNum, int pageSize, String categoryCode, String sort) {
+        Example example = new Example(Article.class);
+
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            criteria.andEqualTo("categoryCode", categoryCode);
+        }
+
+        example.selectProperties("id", "title", "summary", "categoryCode", "content");
+
+        if (StringUtils.isEmpty(sort)) {
+            sort = "desc";
+        }
+
+        example.setOrderByClause("id " + sort);
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<Article> articles = myMapper.selectByExample(example);
+        return dealArticles(articles);
+    }
+
+    /**
+     * 处理文章首图
+     *
+     * @param articles
+     * @return
+     */
+    private List<Article> dealArticles(List<Article> articles) {
+        for (Article article : articles) {
+            String content = article.getContent();
+            Matcher matcher = pattern.matcher(content);
+            if (matcher.find()) {
+                String pic = matcher.group();
+                pic = pic.substring(pic.indexOf("(") + 1, pic.lastIndexOf(")"));
+                article.setPicture(pic);
+            }
+        }
+        return articles;
     }
 
     /**

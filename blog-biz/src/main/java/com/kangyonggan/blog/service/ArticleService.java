@@ -105,4 +105,15 @@ public interface ArticleService {
      * @return
      */
     Article finNextArticle(Long id);
+
+    /**
+     * 查找wap文章
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param categoryCode
+     * @param sort
+     * @return
+     */
+    List<Article> findWapArticles(int pageNum, int pageSize, String categoryCode, String sort);
 }

@@ -37,7 +37,8 @@
 <@block name="main"/>
 </div>
 
-<script src="${ctx}/static/app/js/wap/index.js"></script>
+<script>var ctx = '${ctx}';</script>
+<script src="${ctx}/static/app/js/wap/layout.js"></script>
 <@block name="script"/>
 </body>
 </html>
