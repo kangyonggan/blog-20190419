@@ -70,7 +70,7 @@ $(function () {
         var arr = this.serializeArray();
         $.each(arr, function () {
             if (json[this.name]) {
-                if (json[this.name].push) {
+                if (!json[this.name].push) {
                     json[this.name] = [json[this.name]];
                 }
                 json[this.name].push(this.value || '');
@@ -135,6 +135,7 @@ $(function () {
         var $table = $("#" + $this.data("table-id"));
 
         var params = $this.parent("form").serializeForm();
+        console.log(params);
         $table.bootstrapTable("refresh", {query: params});
         return false;
     });
