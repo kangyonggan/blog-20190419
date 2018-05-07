@@ -6,7 +6,7 @@
         <property name="blog.app.name.en" description="项目名字（英文）" defaultValue="Kang YongGan's Blog"/>
         <property name="blog.app.author" description="项目构建者" defaultValue="康永敢"/>
         <property name="blog.app.author.en" description="项目构建者（英文）" defaultValue="Kang YongGan"/>
-        <property name="blog.app.ba.no" description="备案号" defaultValue="皖ICP备16017743号-1"/>
+        <property name="blog.app.ba.no" description="备案号" defaultValue="皖ICP备18009089号"/>
         <property name="blog.app.key" description="阿凡达数据key" defaultValue="xxx"/>
 
         <!-- redis -->
