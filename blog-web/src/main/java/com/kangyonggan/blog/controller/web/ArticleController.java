@@ -15,10 +15,7 @@ import com.kangyonggan.blog.vo.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -60,6 +57,40 @@ public class ArticleController extends BaseController {
         model.addAttribute("topArticles", topArticles);
         model.addAttribute("page", page);
         return getPathList();
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin("*")
+    public PageInfo<Article> list(@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                  @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
+                                  @RequestParam(value = "title", required = false, defaultValue = "") String title) {
+        List<Article> articles = articleService.searchArticles(pageNum, pageSize, title);
+        PageInfo<Article> page = new PageInfo<>(articles);
+        return page;
+    }
+
+    @RequestMapping(value = "top", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin("*")
+    public List<Article> top() {
+        return articleService.findTopArticles();
+    }
+
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin("*")
+    public List<Article> edit() {
+        return articleService.findTopArticles();
+    }
+
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin("*")
+    public Article detail(@RequestParam("id") Long id) {
+        Article article = articleService.findArticleById(id);
+        article.setContent(MarkdownUtil.markdownToHtml(article.getContent()));
+        return article;
     }
 
     /**

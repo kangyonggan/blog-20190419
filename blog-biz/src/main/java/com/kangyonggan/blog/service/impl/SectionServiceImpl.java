@@ -221,6 +221,13 @@ public class SectionServiceImpl extends BaseService<Section> implements SectionS
         return sections.get(0);
     }
 
+    @Override
+    public Section findSectionByCode(Integer code) {
+        Section section = new Section();
+        section.setCode(code);
+        return myMapper.selectOne(section);
+    }
+
     /**
      * 拉取小说章节
      *

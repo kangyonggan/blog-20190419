@@ -129,4 +129,11 @@ public interface SectionService {
      */
     Section findPrevSectionByCodeWithContent(Integer novelCode, int code);
 
+    /**
+     * 查找章节
+     *
+     * @param code
+     * @return
+     */
+    Section findSectionByCode(Integer code);
 }

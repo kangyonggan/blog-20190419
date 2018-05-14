@@ -62,6 +62,41 @@ public class NovelController extends BaseController {
         return getPathIndex();
     }
 
+    @RequestMapping(value = "favorite", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin("*")
+    public List<Novel> top() {
+        return novelService.findNovelsByCategory(1, 2, null);
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin("*")
+    public PageInfo<Novel> list(@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
+                                @RequestParam(value = "key", required = false, defaultValue = "") String key) {
+        List<Novel> novels = novelService.searchNovels(pageNum, pageSize, key);
+
+        return new PageInfo<>(novels);
+    }
+
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin("*")
+    public Novel detail(@RequestParam("code") Integer code) {
+        return novelService.findNovelByCode(code);
+    }
+
+    @RequestMapping(value = "{code:[\\d]+}/sections", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin("*")
+    public PageInfo<Section> sections(@PathVariable("code") Integer code,
+                                      @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                      @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        List<Section> sections = sectionService.findSectionsByNovelCode(pageNum, pageSize, code);
+        return new PageInfo<>(sections);
+    }
+
     /**
      * 小说详情
      *
